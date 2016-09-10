@@ -1,0 +1,11 @@
+
+// @import "custom/custom";
+@import "custom/mixin";
+
+.test{
+    color: red;
+    text-align: center;
+}
+
+// 颜色
+@include color('gray', "#444");

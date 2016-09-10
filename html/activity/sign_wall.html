@@ -1,0 +1,42 @@
+<!-- 签到墙 -->
+<meta charset="UTF-8">
+
+ <div class="rolling_p"  ng-controller="sign_ticketxController">
+             <div class="avatars_act"   ng-repeat="si in sign_f.sign_data">
+                       <div class="yj ov pr">
+                          <img ng-src="{{si.user_icon}}">
+                           <p class="user_nmae_hdq pt10 pm20">
+                               <span class="dian fz16" ng-bind="si.name">
+                                 
+                               </span>
+                             
+                           </p>
+                       </div> 
+                 </div>
+                 
+                 <!--签到成功提示-->
+             <div class="sogn_success">
+                <div class="yj4 bgff succer_Poiiu">
+                    
+                    <div class="avatars_act">
+                       <div class="yj ov pr">
+                          <img ng-src="{{sign_f.sign_data[0].user_icon}}">
+                           <p class="user_nmae_hdq pt10 pm20">
+                               <span class="dian fz16" ng-bind="sign_f.sign_data[0].name">
+                                
+                               </span>
+                             
+                           </p>
+                       </div>
+                    </div>
+                    
+                    <p class="fz30 cen success_text">
+                      签到成功
+                    </p>
+                 <p class="qc"></p>
+                 </div>
+              
+             </div>
+        </div>
+        
+   

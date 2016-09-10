@@ -1,0 +1,68 @@
+<!-- 我 的银行卡 -->
+<meta charset="UTF-8">
+<div class="md bgff tabbable"  ng-controller="bankAccount_controller">
+      <div class="ov poiuyt_loiyt_a pr ">      
+        <ul class="nav nav-tabs user_poiy_er">
+                    <li class="active"><a ng-href="/bank_card#wallet_a" class="zc df_poiu" data-toggle="tab">我的银行卡</a></li>
+                    <li><a class="zc add_poiu_m" ng-href="/bank_card#wallet_b" data-toggle="tab">添加银行卡</a></li>
+                   
+            </ul>
+            
+          <p class="qc"></p>
+      </div>
+    
+    <div class="tab-content">
+        <div class="tab-pane active ov" id="wallet_a">
+
+              <div class="mt40 bhg_oi pd">
+              
+                  <div class="bank_card_case fl pr"  ng-repeat="arr in bank_card_p.bank_query_arr">
+                      <p class="fz16 blur_name" ng-bind="arr.bank_name"></p>
+                      <p class="zc mt10" ng-bind="arr.bank_account"></p>
+                      <p ng-bind="arr.bank_name"></p>
+                  
+                      <img src="/img/close.png" class="close_icon_a" ng-click="bank_card_p.bank_delete_f(arr.account_id)">
+                  </div>
+                  
+          
+                  
+                   <div class="bank_card_case fl pr">   
+                       <a class="cen df_add_b fz16 blur_name blur_name_add">+添加银行卡</a>
+                  </div>
+                  <p class="qc"></p>
+              </div>
+            
+       
+            
+            
+        </div>
+         <div class="tab-pane " id="wallet_b">
+             <div class="df_blju ">
+               <ul class="form_poiu_q_m mt40 form_poiu_q_m_i">
+             <li class="zq mt10">
+                                   <label class="f_d title_poi ">姓名：</label>
+                                        <input id="ban_user_name" type="text" placeholder="请输入姓名" class="user_input_a">
+                                  </li>
+                    <li class="zq mt10">
+                                   <label class="f_d title_poi ">卡号：</label>
+                                        <input id="card_number" type="text" placeholder="请输入卡号" class="user_input_a">
+                                  </li>
+                    <li class="zq mt10">
+                                   <label class="f_d title_poi ">开户银行：</label>
+                                        <input id="deposit_bank" type="text" placeholder="请输入开户银行" class="user_input_a">
+                                  </li>
+                  <li class="zq mt10">
+                                        <label class="f_d title_poi"></label>
+                                        <a class="btn btn-primary submit_button_a submit_button_b" ng-click="bank_card_p.bank_f()" data-toggle="tab">提交</a>
+                                        
+                                  </li>
+             
+             </ul>
+             </div>
+            
+        </div>
+        
+    </div>
+    
+    
+</div>

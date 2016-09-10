@@ -1,0 +1,25 @@
+#overall {
+	width: 1175px;
+	height: 300px;
+	margin: auto;
+}
+
+#photo_editors {
+	width: 330px;
+	height: 380px;
+	margin: auto;
+	border: 1px solid #ccc;
+}
+
+#add_photo {
+	width: 330px;
+	height: 380px;
+	margin: auto;
+	border: 1px solid #ccc;
+}
+
+#image_recovery {
+	width: 1175px;
+	height: 300px;
+	margin: auto;
+}

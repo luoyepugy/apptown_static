@@ -1,0 +1,517 @@
+@CHARSET "UTF-8";
+html,body{
+	 font-family:'Microsoft Yahei';
+	height:100%;
+}
+input[type=tel],input[type=text],input[type=password] {
+	margin-bottom: 0px;
+	border: 0px;
+	height: 46px;
+}
+.fff_i {
+	color:#fff !important;
+}
+.br0 {
+	padding: 0px;
+}
+
+.f_i {
+	display: inline-block;
+	background: url(/img/activity/sign_in.png);
+}
+
+.nav_sign_w {
+	/* padding-top: 66%; */
+	position: relative;
+	overflow: hidden;
+	height:200px;
+}
+
+.nav_sign_n {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	background: url("/img/activity/background_sign_in.png");
+	background-size: 100% 100%;
+	text-align: center;
+}
+
+.text_is_a {
+	margin-top: 10%;
+}
+
+.icon_user {
+	width: 80px;
+	height: 80px;
+	border-radius: 80px;
+	border: 2px solid #fff;
+	margin-top: 14%;
+}
+
+.name_fail {
+  color: #141414;
+}
+
+.success_icon {
+	width: 28px;
+	height: 28px;
+	background-position: -16px -18px;
+	position: relative;
+	top: 5px;
+	margin-right: 16px;
+}
+
+.ISTEXT {
+	width: 28px;
+	height: 28px;
+	background-position: -109px -18px;
+	position: relative;
+	top: 5px;
+	margin-right: 16px;
+}
+
+.error_icon {
+	width: 28px;
+	height: 28px;
+	background-position: -63px -18px;
+	position: relative;
+	top: 5px;
+	margin-right: 16px;
+}
+
+.bottom_btn {
+	margin-top: 5%;
+}
+
+.bottom_btn p:nth-child(1) {
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;;
+	overflow: hidden;
+}
+
+.bottom_btn p:nth-child(2) {
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;;
+	overflow: hidden;
+}
+
+.bottom_btn button {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width:100%;
+	text-align:center;
+	background: #009EF6;
+	font-size: 20px;
+	color:#fff;
+	padding-top: 2.2%;
+	padding-bottom: 2.2%;
+	font-size:20px;
+}
+
+.bottom_btn button:nth-child(1) {
+	border-right: 1px solid #fff;
+}
+
+.sine_font, .case_input_a {
+	font-size: 14px;
+}
+
+.omnb_sing {
+	
+	margin-top:20px;
+	width: 100%;
+	z-index:9999;
+}
+
+.omnb_sing p {
+	border-radius: 6px;
+}
+
+.nav_font-size {
+	margin-top: 6%;
+	line-height: 1.9;
+}
+
+.nav_font-size  span {
+	font-size: 16px;
+	font-weight: 900;
+	margin-top: 10%;
+}
+.verification_code input[type=text]{
+    width: 60%
+        
+}
+.verification_code .f-bg-878787{
+  background: #878787;
+}
+.verification_button{
+    width: 90px;
+    
+}
+
+.sign_pup {
+  width: 80%;
+  height: 30%;
+  background: #fff;
+  position: absolute;
+  left: 2%;
+  top: 15%;
+  z-index: 120;
+  text-align: center;
+}
+.sign_pup_dismiss {
+	position: absolute;	
+	color:#878787;
+	right:2.8%;
+	font-size:20px;
+	top:0%
+}
+.sign_pup_suceess {
+	position: absolute;
+	top:19.3%;
+	left:22%;
+	width: 52%;
+}
+.sign_pup_suceess label{
+	position:absolute;
+	width:40px;
+	height:40px;
+	background: url(/img/activity/ticket_correct.png) no-repeat;
+	background-size: 100% 100%;
+}
+.sign_pup_suceess span {
+	width: 100%;
+	font-size:20px;
+	color:#141414;
+	padding-left: 28%;
+	line-height: 40px;
+}
+.check_sign {
+	  position: absolute;
+  padding: 0% 7%;
+  color: #fff;
+  font-size: 20px;
+  background: #009EF6;
+  border-radius: 4px;
+  left: 24%;
+  line-height:40px;  
+  height: 39px;
+  top: 62%;
+}
+.tip_baoming {
+	margin-left: 4%;
+	font-size:15px;
+	color: #575757;
+}
+.to_enroll {
+	color:#4ea45d;
+}
+
+.confirm_enroll{
+	position: relative;
+	margin-top: 100px;
+	width:100%;
+	text-align:center;
+	background: #4ea45d;
+	font-size: 20px;
+	color:#fff;
+	padding-top: 2.2%;
+	padding-bottom: 2.2%;
+	font-size:20px;
+}
+
+.activity_over{
+	position: relative;
+	margin-top: 100px;
+	width:100%;
+	text-align:center;
+	background: #c7c7c7;
+	font-size: 20px;
+	color:#fff;
+	padding-top: 2.2%;
+	padding-bottom: 2.2%;
+	font-size:20px;
+}
+
+/*签到票号页面*/
+.ticket_title {
+	font-size: 18px;
+	color:#141414;
+	margin-top:3%;
+	font-weight: normal;
+	text-align: center;
+}
+.ticket_horner {
+	color:#141414;
+	margin-top:5%;
+	font-size: 16px;
+	text-align: center;
+}
+.ticket_name,.ticket_phone {
+	color:#575757;
+	margin-top:4%;
+	padding-left: 7%;
+	font-size: 14px;
+	
+}
+.ticket_middle {
+	height:17%;
+	clear:both;
+	margin-top: 20%;
+	margin-left: 3%;
+}
+
+.ticket_middle_right {
+	margin-left: 40%;
+}
+.ticket_middle_right_t1 ,.ticket_middle_right_t2{
+	font-size: 15px;
+	color:#141414;
+	text-align:center;
+}
+.ticket_middle_left {
+	display:block;
+	margin:0 auto;
+	width:104px;
+	height:107px;
+	margin-top: 6%;
+	overflow:hidden;
+	border-radius:50%;
+}
+.wechat_ico {
+	  padding-top: 7%;
+	height:23%;
+	text-align: center;
+}
+.bgf_5 {
+	padding-top:2%;
+	margin:5% auto 0;
+	width:90%;
+	background:rgba(255,255,255,0.5);
+	height:80%;
+}
+.bottom_button {
+	  width: 100%;
+	height:6.5%;
+	position:absolute;
+	bottom:5.4%;
+	text-align: center;
+}
+
+.bottom_save {
+	background: #009EF6;
+}
+.bottom_print {
+	background: #ff6600;
+}
+.save_pup {
+	position: absolute;
+	top:40%;
+	left:34.2%;
+	padding: 2% 7%;
+	background: #7f7f7f;
+	color:#fff;
+	opacity: 0.8;
+}
+
+/*打印票号页面*/
+.sign_in_print {
+	height:95%;
+	background: url(/img/activity/ticket_print.jpg);
+	background-size: 100% 100%;
+}
+.sign_in_print_t1 {
+	font-size: 17px;
+	padding-top: 120%;
+	text-align: center;
+	color:#575757;
+}
+._print_input {
+	width:78.3%;
+	height: 6.7%;
+	margin-left: 11%;
+	margin-top: 4.4%;
+	border:1px,solid;
+	font-size: 20px;
+	background: gray;
+}
+
+/** 打印页面  **/
+.bg_print {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: url(/img/quoted_printable.jpg);
+	background-size: 100% 100%;
+	left: 0px;
+	top: 0px;
+	z-index: 1;
+}
+
+.confirm_input {
+	width: 84%;
+	margin: auto;
+	margin-top: 48%;
+	position: relative;
+	z-index: 10;
+}
+
+.confirm_p{
+	width: 100%;
+	padding-top: 50px;
+}
+
+.confirm_print {
+	background: #009ef6;
+	padding: 8px 27px;
+	width: 50%; 
+	margin-left: 75px;
+	position: absolute;
+	bottom: 0px;
+	color:#fff;
+	font-size: 20px;
+}
+
+.print_prompt {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .6);
+	z-index: 100;
+	top: 0px;
+	left: 0px;
+	display: none;
+}
+
+.print_section {
+	width: 80%;
+	margin: auto;
+	background: #fff;
+	border-radius: 4px;
+	min-height: 160px;
+	margin-top: 48%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.print_section p{
+    color: #045858;
+    font-size: 16px;
+}
+
+
+.print_section img{
+    width: 30%;
+}
+
+.print_info{
+	text-align: center;
+}
+
+.print_success{
+    background: #009ef6;
+    color: #fff;
+    border: 1px solid #009ef6;
+    padding: 10px 40px;
+}
+.print_ok{
+	text-align:center;
+    display: none;
+}
+
+
+.sign_in{
+	margin-top: 10px;
+}
+
+.sign_info{
+	/* margin-left: 80px; */
+	margin-top: 10px;
+}
+
+.sign_time_info{
+/* 	margin-left: 80px; */
+	margin-top: -10px;
+}
+
+
+.apply_confirm{
+	position: relative;
+	width:80%;
+	text-align:center;
+	background: #4ea45d;
+	font-size: 20px;
+	color:#fff;
+	padding-top: 2.2%;
+	padding-bottom: 2.2%;
+	
+}
+
+.apply_close{
+	position: absolute;	
+	color:#878787;
+	right:18px;
+	font-size:20px;
+	top:16px
+}
+
+.apply_win{
+	z-index:999 !important;
+	left: 0% !important;
+	background: #fff !important;
+	width: 94% !important;
+	left: 3% !important;
+	border-radius: 4px !important;
+   -moz-border-radius: 4px !important;
+   -webkit-border-radius: 4px !important;
+}
+
+.apply_input{
+	border:1px solid #ddd !important;
+	margin-top:10px !important ;
+	width:80% !important;
+}
+
+.xz360{
+	margin-left: 100px;
+    -webkit-animation:rotate_360 1.2s linear infinite;
+     -moz-animation:rotate_360 1.2s linear infinite;
+     -oit-animation:rotate_360 1.2s linear infinite;
+      animation:rotate_360 1.2s linear infinite;
+}
+
+@media screen and (min-width: 370px) {
+	.sine_font, .bottom_btn button, .case_input_a {
+		font-size: 16px;
+	}
+	.
+	.nav_font-size  span { {
+		font-size: 18px;
+	}
+}
+
+@media screen and (min-width: 410px) {
+	.sine_font, .bottom_btn button, .case_input_a {
+		font-size: 18px;
+	}
+	.nav_font-size  span {
+		font-size: 20px;
+	}
+}
+
+@-webkit-keyframes rotate_360{
+     100%{-webkit-transform:rotate(360deg)}
+}
+@-moz-keyframes rotate_360{
+     100%{-moz-transform:rotate(360deg)}
+}
+@keyframes rotate_360{
+      100%{transform:rotate(360deg)}
+}
+
+@-o-keyframes rotate_360 {
+     100%{-o-transform:rotate(360deg)}
+}

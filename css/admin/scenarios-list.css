@@ -1,0 +1,37 @@
+.overall {
+	width: 1200px;
+	height: 300px;
+	margin: auto;
+}
+
+.scene_recycling {
+	width: 1175px;
+	height: 300px;
+	margin: auto;
+}
+
+.scenario_editor {
+	width: 335px;
+	height: 410px;
+	margin: auto;
+	border: 1px solid #b3b3b3;
+}
+
+.overall {
+	width: 1175px;
+	height: 300px;
+	margin: auto;
+}
+
+.scene_recycling {
+	width: 1175px;
+	height: 300px;
+	margin: auto;
+}
+
+.scenario_editor {
+	width: 335px;
+	height: 410px;
+	margin: auto;
+	border: 1px solid #b3b3b3;
+}

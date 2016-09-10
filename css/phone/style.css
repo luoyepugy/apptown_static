@@ -1,0 +1,79 @@
+.note_logo{
+    width: 260px;
+    height: 26px;
+    background-position: -95px -23px;
+}
+.note_nav{
+    background: #878787
+}
+.right_icon{
+    width: 9px;
+    height: 16px;
+    background-position: -12px -59px;
+    margin-left: 6px;
+    position: relative;
+    top: 2px;
+}
+.dd_poiuy{
+    position: absolute;
+    width: 60px;
+    right: 0px
+}
+.note_banner{
+    min-height: 194px;
+    background:url(/img/phone/note_banner.png);
+    background-size: 100% 100%
+}
+.df_po_icon{
+    width: 103px;
+    height: 103px;
+}
+.qc_icon_note{
+    padding: 10px;
+}
+.ex_case{
+    width: 147px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+        
+}
+.ex_case span{
+    border-right: 1px solid #fff
+}
+.di_icon{
+     width: 6px;
+    height: 6px;
+    background: #fff;
+    position: absolute;
+   
+    top: 11px;
+}
+.dia_left{
+    left: -2px;
+}
+.dia_right{
+    right: -2px;
+}
+.hint_note{
+    position: absolute;
+    width: 60px;
+    font-size: 14px;
+    color: #fff;
+    background: #BFBFBF;
+    text-align: center;
+    left: 30%;
+    top: 2px;
+    transform:rotate(-20deg);
+    -ms-transform:rotate(-20deg);
+    -moz-transform:rotate(-20deg);
+    -webkit-transform:rotate(-20deg);
+    -o-transform:rotate(-20deg);
+}
+.map_ico{
+    width: 73px;
+    height: 40px;
+    background-position: -6px -10px;
+}

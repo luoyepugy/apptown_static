@@ -1,0 +1,151 @@
+<!-- 个人中心 -->
+<meta charset="UTF-8">
+            <div class="tabbable poiuyr_qdffg" ng-controller="personal_center">
+                   <ul class="nav nav-tabs user_poiy_er">
+                       <li class="active"><a ng-href="#information" data-toggle="tab" class="zc">基本信息</a></li>
+                       <li><a class="zc" ng-href="#certification" data-toggle="tab">实名认证</a></li>
+                       <li><a class="zc" ng-href="#sponsor" data-toggle="tab">主办方认证</a></li>
+                    </ul>
+                
+                  <div class="tab-content">
+                        <div class="tab-pane active" id="information">
+                              <ul class="form_poiu_q_m mt20">
+                                 <li>
+                                     <label class="f_d title_poi fl">头像</label>
+                                     
+                                     <img id="personal_user_icon" ng-src="{{user_detail.user_icon}}" class="yj4 user_oiyty_qe fl" >
+                                     <div class="ov pl20">
+                                        <p><button class="btn fz12 btn-primary" ng-click="uoicon()">本地上传</button></p>
+                                         <p class="fz12 zc mt30"> 
+                                         提示：上传图片尺寸最佳为100*100px，<br> 如果不是该尺寸系统会自动生成头像缩略图。
+                                         
+                                         </p>
+                                     </div>
+                                     
+                                     <p class="qc"></p>
+                                  </li>
+                                  
+                                  <li class="zq mt20">
+                                   <label class="f_d title_poi">账户ID</label>
+                                    <span id="personal_user_id" class="zc" ng-bind="user_detail.user_id"></span>
+                                  </li>
+                                   <li class="zq mt10">
+                                   <label class="f_d title_poi ">昵称</label>
+                                        <input id="personal_user_name" type="text" placeholder="昵称" class="user_input_a" value="{{user_detail.user_name}}">
+                                  </li>
+                            
+                                     <li class="zq">
+                                   <label class="f_d title_poi ">电话</label>
+                                        <input id="personal_user_phone" type="text" placeholder="电话" class="user_input_a" value="{{user_detail.user_phone}}">
+                                  </li>
+                                     <li class="zq mt10">
+                                   <label class="f_d title_poi ">性别</label>
+                                        <label class="f_d ra_poiu">
+                                           <input type="radio"  name="sex" id="personal_user_sex" ng-checked="user_detail.user_sex==1" data-sex="1"> <span class="ml10">男</span>
+                                         </label>
+                                           <label class="f_d ml30 ra_poiu">
+                                           <input type="radio"  name="sex" ng-checked="user_detail.user_sex==2" data-sex="2"><span class="ml10">女</span>
+                                         </label>
+                                  </li>
+                                  <li class="zq mt10">
+                                   <label class="f_d title_poi fl">个性签名</label>
+                                      <textarea id="personal_user_signature" ng-bind="user_detail.user_sign"  placeholder="请输入个性签名" class="user_signature"></textarea>
+                                      
+                                      <p class="qc"></p>
+                                      
+                                  </li>
+                                    <li class="zq mt10">
+                                        <label class="f_d title_poi"></label>
+                                        <button class="btn btn-primary submit_button_a" ng-click="person_detail_edit()">提交</button>
+                                        
+                                  </li>
+                              </ul>
+                        </div>
+                        <div class="tab-pane" id="certification">
+                            <ul class="form_poiu_q_m mt20">
+                                <li class="zq">
+                                   <label class="f_d title_poi ">真实姓名</label>
+                                        <input type="text" id="real_name" placeholder="请输入真实姓名" value="{{user_real_detail.real_name}}" class="user_input_a">
+                                  </li>
+                                 <li class="zq mt10">
+                                   <label class="f_d title_poi ">手机号码</label>
+                                        <input type="text" id="real_phone" placeholder="请输入手机号码" value="{{user_real_detail.contact_info}}"  class="user_input_a">
+                                  </li>
+                                 <li class="zq mt10">
+                                   <label class="f_d title_poi ">身份证号码</label>
+                                        <input type="text" id="real_idcard" placeholder="请输入身份证号码" value="{{user_real_detail.identity_id}}" class="user_input_a">
+                                  </li>
+                                 <li class="zq mt10">
+                                        <label class="f_d title_poi"></label>
+                                        <button class="btn btn-primary submit_button_a" ng-click="person_real_edit()">提交</button>
+                                        
+                                  </li>
+                                
+                            </ul>
+                            
+                            
+                            
+                            
+                        </div>
+                        <div class="tab-pane" id="sponsor">
+                            <ul class="form_poiu_q_m mt20 j-sponsorForm" ng-if="status.editForm">
+                                <li>
+                                     <label class="f_d title_poi fl">头像</label>
+                                     
+                                     <img title="默认图片" ng-src="{{sponsor.sponsor_icon}}" class="yj4 user_oiyty_qe fl icon100" >
+                                     <div class="ov pl20">
+                                        <p><button class="btn fz12 btn-primary" ng-click="sponsorIcon()">本地上传</button></p>
+                                         <p class="fz12 zc mt30"> 
+                                          提示：上传图片尺寸最佳为190*190px，<br> 如果不是该尺寸系统会自动生成头像缩略图。
+                                         </p>
+                                     </div>
+                                     
+                                     <p class="qc"></p>
+                                </li>
+                                <li class="zq mt10">
+                                   <label class="f_d title_poi ">主办方名称</label>
+                                        <input type="text" placeholder="请输入主办方名称" value="" class="user_input_a" ng-model="sponsor.name">
+                                  </li>
+                                  <li class="zq mt10">
+                                   <label class="f_d title_poi ">联系人</label>
+                                        <input type="text" placeholder="请输入联系人" value=""  class="user_input_a" ng-model="sponsor.contacter">
+                                  </li>
+                                 <li class="zq mt10">
+                                   <label class="f_d title_poi ">联系电话</label>
+                                        <input type="text" placeholder="请输入联系电话" value=""  class="user_input_a" ng-model="sponsor.contacter_phone">
+                                  </li>
+                                 <li class="zq mt10">
+                                   <label class="f_d title_poi ">主办方简介</label>
+                                   <textarea style="left: 0;" placeholder="请输入主办方简介(不超过150字)" value="" class="user_signature" ng-model="sponsor.introduction"></textarea>
+                                 </li>
+                                 <li class="zq mt10">
+                                        <label class="f_d title_poi"></label>
+                                        <button class="btn btn-primary submit_button_a" ng-click="sponsorAuthForm()">完成提交</button>
+                                  </li>
+                            </ul>
+                            <div class="ml60 fz16 gray mt30 j-sponsorWaiting ov" ng-if="status.waiting">
+                              正在审核中！24小时内给你反馈结果，请耐心等待...
+                            </div>
+                            <div class="j-sponsorFail" ng-if="status.fail">
+                              <div class="fz16 ml20"><img src="/img/face_fail.png" alt="失败">认证失败!</div>
+                              <p class="ml90 gray" ng-bind="sponsor.failInfo"></p>
+                              <button class="btn btn-primary submit_button_a ml90 mt30" ng-click="reSponsorAuth()">重新填写</button>
+                            </div>
+                            <div class="sponsor_success ov j-sponsorSuccess" ng-if="status.success">
+                              <ul>
+                                <li class="zq">
+                                  <img ng-src="{{sponsor.sponsor_icon}}" class="yj4 user_oiyty_qe" >
+                                  <span class="pl20">{{sponsor.name}}</span>
+                                </li>
+                                <li class="zq mt20"><span class="gray">联系人：</span><span ng-bind="sponsor.contacter"></span></li>
+                                <li class="zq mt20"><span class="gray">联系方式：</span><span ng-bind="sponsor.contacter_phone"></span></li>
+                                <li class="zq mt20"><span class="gray vt">主办方简介：</span><p class="profile db" ng-bind="sponsor.introduction"></p></li>
+                                <li class="mt30"><span class="bgray p5 db">认证信息错误或修改请联系<b class="green">400-046-1388</b></span></li>
+                              </ul>
+                            </div>
+                        </div>
+                    </div>
+            
+            
+            </div>
+            <input id="personal_icon" name="personal_icon" type="file" style="display:none"/>

@@ -1,0 +1,144 @@
+<!-- 个人中心发起的活动 -7 -->
+<meta charset="UTF-8">
+<div class="md bgff" ng-controller="my_activities">
+      <div class="ov poiuyt_loiyt_a pr">      
+        <ul class="nav nav-tabs user_poiy_er">
+                    <li class="active"  ><a  ng-href="/user/to_user_center?v=1#/user_my_activities" class="zc">发起的活动</a></li>
+                    <li><a class="zc" ng-href="/user/to_user_center?v=2#/user_my_activities">参与的活动</a></li>
+                  <!--   <li><a class="zc" >收藏的活动</a></li>
+                    <li><a class="zc" >关注的主办方</a></li>  -->
+                   
+            </ul>
+              <a class="btn btn-primary  noiiuy_po_mn" ng-href="/jsp/launch_index.jsp">发起活动</a>
+          <p class="qc"></p>
+      </div>
+       <p class="pt10 pm10 tioiy_po_po">
+          <span class="zb" ng-click=" act_fu.ac_tyoe($event.target,'')">全部</span>| 
+           <span ng-click=" act_fu.ac_tyoe($event.target,1)">未开始  </span>|  
+           <span ng-click=" act_fu.ac_tyoe($event.target,2)" ng-if="act_fu.active_state==1">进行中  | </span> 
+           <span ng-click=" act_fu.ac_tyoe($event.target,3)">已结束</span>
+       </p>
+    
+
+      
+      <table class="table user_list_act">
+          <thead class="poiuyt_oiuy" >
+             <tr class="zc">
+                  <td class="act_left" style="width:540px;">项目信息</td>
+                  <td >报名人数</td>
+                  <td>状态</td>
+                  <td>操作</td>
+              </tr>
+          </thead>
+          <tbody>
+             <tr class="zhng_poi_a_p">
+               <td colspan="4" >
+                 <p class="zhng_poi_a" style="display: block;">找不到活动</p>
+               </td>
+             </tr>
+              <tr class="act_left"  ng-repeat="ac in act_my_p"  >
+                  <td style="width:540px;" data-href="/activity/{{ac.id}}.httl"> 
+                   <img ng-src="{{ac.activity_first_face}}" class="fl user_polit_a">
+                  <div class="ov pl20 act_left">
+                     <p class="fz16 dian title_act"><strong ng-bind="ac.activity_title"></strong></p>
+                      
+                      <p class="mt10 mt10 zc">时间：<span ng-bind="ac.activity_time"></span></p>
+                        <p class="mt10  zc">地点：<span ng-bind="ac.activity_address"></span></p>
+                      <p class="mt10"><span class="bqi_pooiu_q ml0" data-x="{{ac.type-1}}" ng-bind="classify[0].maker_title[ac.type-1].name"></span></p>
+                      
+                  </div>
+                  
+                  <p class="qc"></p>
+                  
+                  </td>
+                  <td data-href="/activity/{{ac.id}}.httl">
+                    <p class="mt40" ng-bind="ac.activity_number+'人'"></p> 
+                  </td>
+                  <td>
+                    <p class="mt40" ng-bind="act_fu.more_time(ac.start_time,ac.end_time)" ng-if="ac.status==0"></p>
+                    <p class="mt40"  ng-if="ac.status==1">未发布</p>
+                  </td>
+                  <td >
+                      <p class="binhg_iiyt mt20" ng-if="act_fu.active_state==1&&ac.status==0">
+                         <a data-href="/user/prepaid_phone_immediately?activityId={{ac.id_p}}">报名详情</a><br>
+        <!--                  <a data-href="/jsp/user/download_qr_code.jsp">微信签到</a><br> -->
+                         <a data-href="/activity/to_sponsor_activity?activityId={{ac.id_p}}">活动修改</a><br>
+                      </p>
+                      
+                       <p class="binhg_iiyt mt20" ng-if="act_fu.active_state==1&&ac.status==1">
+                         <a data-href="/activity/to_sponsor_activity?activityId={{ac.id_p}}">编辑</a><br>
+                         <a ng-click="act_fu.post_activity(ac.id_p)">发布</a><br>
+                        </p>
+                       <p class="binhg_iiyt mt40" ng-if="act_fu.active_state==2">
+                         <span  class="f_the_ticket"  ng-click="act_fu.the_ticket(ac.id_p,ac.order_id)">取票</span>
+                        
+                      </p>
+                     
+                  </td>
+                
+              </tr>
+              
+             
+          </tbody>
+     </table>
+
+
+
+    <div id="the_ticket" class="modal hide fade pd"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+           <p class="pd pt20 pm10 brm fz16">
+              票券详情
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </p>
+        
+      
+        
+        <div class="mt10  poiu_xq_p">
+           <p class="bghs pd pt10 pm10 fz14">
+              <span>订单号：{{superginseng.info.order_id}}</span>
+                <span class="ml20">报名时间：{{superginseng.info.entrycode_array[0].apply_time|date:' MM/dd EEE HH:mm'}}</span>
+            </p>
+            
+            <div class="pd">
+                   <div class="mt20 vouchers_user">
+                    <p class="fz120 fl mb10" ng-repeat="sen in superginseng.info.entrycode_array">票号：<span ng-bind="sen.entry_code"></span><span ng-if="sen.use==2" class="hs" >已使用</span><span ng-if="sen.use==1" class="hs" >未使用</span></p>
+                  <p class="qc"></p>
+                </div>
+            
+                <div class="mt10">
+                   <p class="dian f_d zc fl label_type">
+                       类型：{{superginseng.info.ticket_name}}
+                    </p>
+                    
+                     <p class="dian f_d zc fl label_type_b">
+                         价格：￥{{superginseng.info.price}}
+                    </p>
+            <p class="qc"></p>
+                </div>
+                <div class="mt10">
+                   <p class="dian f_d zc fl label_type">
+                       姓名：{{superginseng.info.name}}
+                    </p>
+                    
+                     <p class="dian f_d zc fl label_type_b">
+                         电话：{{superginseng.info.phone}}
+                    </p>
+                    
+            <p class="qc"></p>
+                </div>
+            </div>
+         
+            
+        </div>
+           
+    </div>
+    
+    
+
+<div class="mt20 fe_page">
+<ul class="pager">
+  <li><a ng-click="act_fu.page_in(true,$event.target)">上一页</a></li>
+  <li class="ml20"><a ng-click="act_fu.page_in(false,$event.target)">下一页</a></li>
+</ul>
+</div>
+    </div>
+   

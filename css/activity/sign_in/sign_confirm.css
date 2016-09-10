@@ -1,0 +1,105 @@
+@CHARSET "UTF-8";
+ body,html{
+            height: 100%;
+            width: 100%;
+        }
+        body{
+            overflow: hidden;
+       
+        }
+        .bg_conf_a{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background:url(/img/quoted_printable.jpg);
+            background-size: 100% 100%;
+            left:0px;
+            top:0px;
+            z-index: 1;
+        }
+        .confirmation_a{
+            background: #009ef6;
+            color: #fff;
+            border: 1px solid #009ef6;
+            padding: 10px 40px;
+        }
+        .confirmation_w{
+            width: 84%;
+            margin: auto;
+            margin-top: 48%;
+            position: relative;
+            z-index: 10;
+        }
+.oup_rpouye_a{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+      background-color: rgba(0,0,0,.6); 
+    z-index: 100;
+    top: 0px;
+    left: 0px;
+    display: none;
+}
+
+.pup_bgf_p{
+    width: 80%;
+    margin: auto;
+    background: #fff;
+    border-radius: 4px;
+    min-height: 160px;
+    margin-top: 48%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.pup_bgf_p p{
+    color: #045858;
+    font-size: 16px;
+}
+
+
+.pup_bgf_p img{
+    width: 30%;
+}
+.xz360{
+    -webkit-animation:riodo_a360 1.2s linear infinite;
+     -moz-animation:riodo_a360 1.2s linear infinite;
+     -oit-animation:riodo_a360 1.2s linear infinite;
+      animation:riodo_a360 1.2s linear infinite;
+}
+.success_buttom_a{
+    background: #009ef6;
+    color: #fff;
+    border: 1px solid #009ef6;
+    padding: 10px 40px;
+}
+.sunb_pou{
+    display: none;
+}
+@-webkit-keyframes riodo_a360{
+     100%{-webkit-transform:rotate(360deg)}
+}
+@-moz-keyframes riodo_a360{
+       100%{-moz-transform:rotate(360deg)}
+}
+@keyframes riodo_a360{
+         100%{transform:rotate(360deg)}
+}
+
+@-o-keyframes riodo_a360 {
+     100%{-o-transform:rotate(360deg)}
+}
+
+
+
+
+        @media screen and (min-width: 370px){
+            .fz14{
+                font-size: 16px;
+            }
+        }
+         @media screen and (min-width: 400px){
+             .confirmation_w{
+                 width: 78%;
+             }
+        }

@@ -1,0 +1,50 @@
+
+.act_input_a{
+line-height: 2.6 !important;  
+}
+.tri_icon,.data_icon_a{
+    *top:14px;
+}
+.next_icon{
+     *margin-left: 6px;
+    *margin-right: 6px;
+    *top:0px;
+    *left:10px;
+}
+.ty_poi_q{
+    *margin-left:-30px;
+}
+.ml10{
+    *margin-left: 0
+}
+.map_poou_car{
+    *position: relative;
+    *bottom: 26px;
+}
+.up_icon_po {
+    *padding-top: 10px;
+    *padding-bottom: 6px;
+}
+.up_icon{
+    *top: 0px;
+}
+.clase_pup_s{
+    *position: absolute;
+    *right: 20px;
+    *top: 10px;
+}
+.poiuyt_ouy_nmjh_a{
+    *position: relative;
+    *left: 10px;
+}
+.xl_oiu{
+    *width: 95%;
+    *left: 10px;
+}
+
+
+.ptp_icon_n{
+ *position: relative;
+    *width:730px;
+    *height: 490px;
+}

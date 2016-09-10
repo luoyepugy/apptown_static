@@ -1,0 +1,137 @@
+<!-- 我的赞助 -->
+<meta charset="UTF-8">
+    <meta http-equiv="content-type" content="application/x-www-form-urlencoded; charset=UTF-8" /> 
+<div class="md bgff"  ng-controller="my_sponsor" >
+      <div class="ov poiuyt_loiyt_a pr">      
+        <ul class="nav nav-tabs user_poiy_er">
+                    <li class="active" ng-click="clickmysponsor()"><a  data-toggle="tab" class="zc" >发起的赞助</a></li>
+                    <li><a class="zc" ng-click="clickmyattentsponsor()" data-toggle="tab" >参与的赞助</a></li>                  
+        </ul>
+        <a class="btn btn-primary  noiiuy_po_mn">发起赞助</a>
+        <p class="qc"></p>
+      </div>
+       <p class="pt10 pm10 tioiy_po_po" ng-if="typeStatus==1">
+          <span ng-click="list_person_sponsor.all()">全部</span>|  
+          <span ng-click="list_person_sponsor.sponsoring()">赞助中</span>|  
+          <span ng-click="list_person_sponsor.success_sponsor()">已成功</span>|  
+          <span ng-click="list_person_sponsor.fail_sponsor()">已失败</span>|  
+          <span ng-click="list_person_sponsor.future_sponsor()">预热中</span>| 
+          <span ng-click="list_person_sponsor.checking_sponsor()">审核中</span>|  
+          <span ng-click="list_person_sponsor.unpublish_sponsor()">未发布</span>                
+       </p>
+       <p class="pt10 pm10 tioiy_po_po" ng-if="typeStatus==2">
+          <span ng-click="list_personattent_sponsor.all_a()">全部</span>|  
+          <span ng-click="list_personattent_sponsor.sponsoring_a()">赞助中</span>|  
+          <span ng-click="list_personattent_sponsor.success_sponsor_a()">已成功</span>|  
+          <span ng-click="list_personattent_sponsor.fail_sponsor_a()">已失败</span>|  
+          <span ng-click="list_personattent_sponsor.future_sponsor_a()">预热中</span>             
+       </p>
+    
+  
+                         <table class="table user_list_act">   
+          <thead class="poiuyt_oiuy">
+             <tr class="zc">
+                  <td class="act_left">个人信息</td>
+           
+                      <td>操作</td>
+              </tr>
+          </thead>
+          <tbody>
+              <tr class="act_left bore_1" ng-repeat="spons in mySp_list">
+                  <td>
+                   <img ng-src="{{spons.covers[0]}}"  class="fl user_polit_a"  data-href="/support/{{spons.id_p}}.httl">                 
+                  <div class="ov pl20 act_left">
+                      <div class="mt10">
+                      
+                
+                     <p class="fz16 dianer fg_poiuy_a fl"><strong ng-bind="spons.title"></strong></p>
+                        <span class="zzzhong_a yj4" ng-bind="arr_status[spons.status]"></span>
+                                </div>
+                      <p class="qc"></p>
+                        <p class="mt10  zc mt30"  ng-if="typeStatus==1">
+                            <span ng-bind="'已筹金额：'+spons.now_money+'元'" ng-if="spons.now_money!=null"> </span>
+                            <span ng-bind="'已筹金额：'+0+'元'" ng-if="spons.now_money==null"> </span>
+                             <span class="ml20" ng-bind="'赞助进度：'+spons.schedule"></span>
+                             <span class="ml20">剩余时间：<span ng-bind="spons.end_time|reduce_time:''"> </span> </span>
+                      </p>
+                      <p class="mt10  zc mt30"  ng-if="typeStatus==2">
+                             <span ng-bind="'支付时间：'+spons.pay_time" ng-if="spons.pay_time=='null'"> </span>
+                             <span class="ml20" ng-bind="'支付金额：'+spons.my_pay_money+'元'"></span>                            
+                      </p>
+                      
+                  </div>
+                  
+                  <p class="qc"></p>
+                  
+                  </td>
+                 
+               
+                  <td >
+                      <p class="mt10">
+                      <a class="person_spon_datail" ng-if="typeStatus==2" ng-click="change_password(spons)">支付详情</a>
+                      </p>
+                  </td>                              
+                
+              </tr>
+               
+
+                             </tbody>
+                       
+               </table>
+               <div class="mt20" >
+					<ul class="pager" ng-if="typeStatus==1&&person_sp_result/10>1">
+					  <li><a ng-click="list_person_sponsor.previous_page()">上一页</a></li>
+					  <li><a ng-click="list_person_sponsor.next_page()">下一页</a></li>
+					</ul>
+					<ul class="pager" ng-if="typeStatus==2&&person_sp_result/10>1">
+					  <li><a ng-click="list_personattent_sponsor.previous_page_a()">上一页</a></li>
+					  <li><a ng-click="list_personattent_sponsor.next_page_a()">下一页</a></li>
+					</ul>
+				</div>
+               
+               
+                 <!--赞助详情弹框开始-->
+              <div id="change_password" class="modal hide fade pd"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		           <p class="pd pt20 pm10 brm fz16">
+		             {{date_po.title}}
+		                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          </p>
+		        
+		       <div class="pd brm mt30 brm pm10">
+		              <p class="" ng-bind="'姓名:'+date_po.content_detail.name"></p>
+		           <p class="" ng-bind="'电话:'+date_po.content_detail.tel"></p>
+		           <p class="" ng-bind="'地址:'+date_po.content_detail.address"></p>		   
+		            
+		        </div>
+		        
+		        <div class="mt20 pd">
+		            <p class="fz16" ng-bind="'回报类型：'+date_po.repay_title"></p>
+		            <p class="mt10">
+		               <span ng-bind="'单价金额：'+date_po.pri_pay_money+'元'"></span>
+		               <span ng-bind="'支付数量：'+date_po.num" class="ml30"></span>
+		                 <span ng-bind="'订单号：'+date_po.order_id" class="ml30"></span>
+		            </p>
+		            <p class="bghs pd pt10 pm10 mt10" ng-bind="'回报内容：'+date_po.repay_content">
+		                   
+		            
+		            </p>
+		            
+		            <p class="brm mt10 fz12 pm10">
+		                <span ng-bind="'发起人：'+date_po.create_support_user_name"></span> <span class="ml50" ng-bind="'联系电话:'+date_po.create_support_phone"></span>
+		                <span class="ml20" >
+		                  回报时间:截止<span ng-bind="date_po.repay_time|date:'yyyy-MM-dd hh:mm'"></span>之前
+		                </span>
+		                    
+		               
+		            </p>
+		            
+		            <p class="mt10 tr pm20" >
+		                支付金额： <span class="hs" ng-bind="date_po.my_pay_money"></span>元 
+		            </p>
+		        
+		        </div>
+           
+    		</div>
+              <!--赞助详情弹框结束-->
+
+    </div>

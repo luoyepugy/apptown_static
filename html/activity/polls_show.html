@@ -1,0 +1,28 @@
+<meta charset="UTF-8">
+ <div class="rolling_p"  ng-controller="polls_showController">
+ <ul class="voting_list">
+
+               <li class="mt20"   ng-repeat="list in voteItemList_p">
+                  <img ng-src="{{list.image_urls}}" class="votile_piu fl">
+                   <div class="fl pl20 according_schedule">
+                      <p class="vote_header_background" ng-bind="list.item_name">
+                       </p>
+                       
+                       <div class="progress progress-striped active mt10">
+                            <div class="bar" style="width: {{list.schedule}}%;background-color:{{list.jdbg}}"></div>
+                       </div>
+                       
+                       <p class="cf fz18 " ng-bind="list.schedule+'%'">
+                       </p>
+                       
+                       
+                   </div>
+                   <div class="ov cen yellow fz20 polls_show" ng-bind="list.vote_count+'票'">
+                     
+                   </div>
+                   <p class="qc"></p>
+                </li>
+                
+            </ul>
+            
+            </div>

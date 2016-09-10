@@ -1,0 +1,45 @@
+@CHARSET "UTF-8";
+/*错误页面css 2月24日lzm开始*/
+.error-wrap {
+	border-top:1px solid #575757;	
+}
+.error-content {
+	width:1000px;
+	height:600px;
+	margin:70px auto 0;
+	background:url("/img/newimg/img/images/error_bg.png") no-repeat;
+	padding-top:240px;	
+}
+.error-content .error-1st {
+font-size:53px;
+margin-left:250px;
+}
+.error-content .error-2nd {
+	margin-left:104px;
+	margin-top:20px;
+	height:24px;
+	line-height:24px;
+	background:url("/img/newimg/img/images/error_font.png") no-repeat;
+}
+.error-content .error-2nd .error-re {
+	width:23px;
+	height:24px;
+	margin-left:320px;
+	display:inline-block;
+	background:url("/img/newimg/img/images/error_reico.png") no-repeat;
+	cursor:pointer;
+}
+.error-content .error-2nd .error-back {
+	position:relative;
+	top:-7px;
+	left:10px;
+	color:#575757;
+}
+.error-content .error-2nd .error-back:hover {
+	text-decoration:underline;
+}
+.error-content .error-3rd {
+	margin-left:104px;
+	margin-top:45px;
+}
+/*错误页面css 2月24日lzm结束*/
