@@ -4,11 +4,13 @@ angular.module('searchHostMain',["directive_mml",'tm.pagination',"activity_servr
 	var form_json={};//传过去的json
 	form_json.pageIndex=1;//初始化页码
 	form_json.name=decodeURI(window.location.search.split("host_title=")[1]);//搜索的关键词
+	 $("#suosuo_p").val(form_json.name);
 	form_json.pageSize=12;//行数
 	var user_P=[];
 	$scope.person;
 	$scope.activity_hot=[];//推荐活动 
 	$scope.page_row=[];
+	$("#seach_type").attr("data-type",2);
     for(var i=1;i<10;i++){
    	 $scope.page_row.push(i);
     }

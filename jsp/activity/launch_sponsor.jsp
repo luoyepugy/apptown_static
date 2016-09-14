@@ -117,7 +117,7 @@
                      <label class="f_d title_poi fl mt20">联系电话 <span class="hs">*</span></label>
                      <div class="ov map_poou_car">
                           <div class="pr poiuy_poiu_q fl">
-                             <input type="text" class="act_input_a ipue" placeholder="手机/电话/邮箱" id="contact_information">
+                             <input type="text" maxlength="11" class="act_input_a ipue" placeholder="请输入手机号码" id="contact_information">
                               
                          </div>
                         </div>

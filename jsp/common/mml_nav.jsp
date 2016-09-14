@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 
-<!--[if lt IE 9]>
+<!--[if lt IE 8]>
   <div id="browserWrap">
     <div class="browser-happy">  
     </div>
@@ -26,7 +26,7 @@
 
 	<!-- 菜单栏 -->
 <link href="/css/common/font-awesome.css" rel="stylesheet"> 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1473314198_3888736.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1473825271_925848.css">
 <div ng-controller="navigation_mml">
  <div class="men_nav">
          <div class="wd">
@@ -49,22 +49,22 @@
 
                       <li class="nav_li">
                           <a ng-href="/activity/to_activity_page" class="interlinkage" >找活动</a>
-                               <ul class="dropdown-menu act_nav_a_a padding_none" >
-                                     <!-- <li class="sj_fh_a"></li>  -->
+                               <!-- <ul class="dropdown-menu act_nav_a_a padding_none" >
+                                     <li class="sj_fh_a"></li> 
                                     <li ><a class="bor_t_6" ng-href="/activity/launch_index">发起活动</a></li> 
                                     <li ng-if="prefsession_a==true"><a ng-href="/user/to_user_center?v=1#/user_my_activities">我发起的活动</a></li> 
                                     <li ng-if="prefsession_a==true"><a class="bor_b_6" ng-href="/user/to_user_center?v=2#/user_my_activities">我参与的活动</a></li>
-                                </ul>
+                                </ul> -->
                    </li>
                       <li class="nav_li"><a ng-href="/support/supporList"  class="interlinkage">去赞助</a>
                    
-                     <ul class="dropdown-menu padding_none act_nav_a_a"  >
-                                    <!-- <li class="sj_fh_a"></li> -->
+                               <!-- <ul class="dropdown-menu padding_none act_nav_a_a"  >
+                                    <li class="sj_fh_a"></li>
                                     <li><a class="bor_t_6" ng-href="/activity/launch_index">发起赞助</a></li>
                                     
                                     <li ng-if="prefsession_a==true"><a ng-href="/user/to_user_center?sor=1#/hacer_mipad_rine" >我发起的赞助</a></li> 
                                     <li ng-if="prefsession_a==true"><a class="bor_b_6" ng-href="/user/to_user_center?sor=2#/hacer_mipad_rine">我参与的赞助</a></li>
-                                </ul>
+                                </ul> -->
                    </li>
                       <li class="nav_li"><a ng-href="/activity/launch_index"  class="interlinkage">+发起</a></li>
                  
@@ -73,7 +73,7 @@
                      <div class="input-prepend input-append poiut_idex_q mt18">
                             <div class="btn-group">
                                 <button class="btn dropdown-toggle btn dropdown_toggle_o" data-toggle="dropdown">
-                                    活动
+                                  	<span id="option" >${option}</span>
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-pou padding_none" >
@@ -83,13 +83,13 @@
                                     <li><a class="bor_b_6">主办方</a></li>
                                 </ul>
                             </div>
-                             <input class="span2"  type="text" placeholder="输入搜索内容" id="suosuo_p">
-                              <p class="btn pd0 poiuytr_q" data-type="0">
+                             <input class="span2"  type="text" placeholder="输入搜索内容" id="suosuo_p" value="${seach_content}" />
+                              <p class="btn pd0 poiuytr_q" data-type="0" id="seach_type" >
                                   <img src="/img/search-btn-1.png" class="search">
                                 </p>
                           </div>
                       </li>
-                    <li class="nav_li"><a class="interlinkage" ng-href="/jsp/appdownload.jsp">App下载</a></li>
+                    <li class="nav_li"><a class="interlinkage" target="_blank" ng-href="/jsp/appdownload.jsp">App下载</a></li>
                     
                     <li class="fr user_logo  fz16 user_logo_a">
                       
@@ -105,7 +105,9 @@
           
                            <ul class="dropdown-menu act_nav_a_a padding_none"  >
                                     <li class="sj_fh_a"></li>
-                                     <li><a class="bor_t_6" ng-href="/user/to_user_center#/personal_center">个人中心</a></li>
+                                    <li><a class="bor_t_6" ng-href="/user/to_user_center#/personal_center">个人中心</a></li>
+                                    <li><a class="bor_t_6" ng-href="/user/to_user_center?v=1#/user_my_activities">我的活动</a></li>
+                                    <li><a class="bor_t_6" ng-href="/user/to_user_center?sor=1#/hacer_mipad_rine">我的赞助</a></li>
                                     <li><a ng-href="/user/to_user_center#/my_purse" >我的钱包</a></li> 
                                     <li><a ng-href="/help/menu">帮助中心</a></li>
                                     <li  ng-click="user_lo.login_out()"><a class="bor_b_6">退出</a></li>
@@ -200,3 +202,12 @@
            </p>
         </div>
     </div>
+  <script type="text/javascript">
+	window.onload=init;
+	function init(){
+		var option=$("#option").html();
+		if(option==null||option==""){
+			$("#option").html("活动");
+		}
+	}
+</script>

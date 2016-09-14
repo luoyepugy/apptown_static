@@ -14,11 +14,19 @@ function preferential(getActivityHot){
 	this.activity_time=getActivityHot.activity_time;//活动时间开始时间
 	this.activity_number=getActivityHot.activity_number;//报名人数
 	this.activity_first_face=getActivityHot.activity_first_face;//活动第一张封面
-	this.activity_address=getActivityHot.activity_address;//活动地址
+	this.activity_address="地点："+(getActivityHot.city_name==null?"":getActivityHot.city_name)+ getActivityHot.activity_address;//活动地址
+	if(getActivityHot.type==10){
+		if(getActivityHot.activity_address.indexOf("地点")>=0){
+			this.activity_address=getActivityHot.activity_address
+		}else{
+			this.activity_address="地点："+getActivityHot.activity_address//活动地址  
+		}  
+	
+	} 
 	this.sponsorImageUrl=getActivityHot.sponsor_image_url;//主办方名头像
 	this.sponsorName=getActivityHot.sponsor_name;//主办方名称target_amount
-	this.sbrowse_count=getActivityHot.sbrowse_count;
-	
+	this.browse_count=getActivityHot.browse_count;
+	 
 	this.support_id=getActivityHot.support_id==null?0:getActivityHot.support_id     //关联赞助ID
 	this.target_money=getActivityHot.target_money==null?0:getActivityHot.target_money  //目标金额
 	this.now_money=getActivityHot.now_money==null?0:getActivityHot.now_money     //已筹金额
@@ -79,6 +87,9 @@ function query_activity_list(list_data){
    this.order_id=list_data.order_id;
    this.city_name=list_data.city_name;//城市
    this.type=list_data.type;
+   this.now_money=list_data.now_money;//已筹金额
+   this.target_money=list_data.target_money;//目标金额
+   this.schedule=list_data.schedule;//赞助进度
 }
 
 
@@ -133,7 +144,8 @@ function query_activity_list(list_data){
 	  })
        this.consumption_list=consumption_list;
 	  this.support_id=info.support_id//赞助关联ID
-	  this.type=info.type
+	  this.type=info.type;
+	  this.sponsor_auth=info.sponsor_auth;//是否关注主办方，0为未关注，1为已关注
 	  
 	  
 	  
@@ -447,9 +459,8 @@ function query_activity_list(list_data){
     }
     /*签到墙*/
     function consumption_list(data){
-    	 this.user_icon=data.user_icon;//用户头像
-    	 this.name=data.from_info.姓名;
-      	 this.tel=data.from_info.手机号码;
+    	 this.user_icon=data.icon;//用户头像
+    	 this.name=data.name;
     }
 
   
@@ -508,6 +519,7 @@ function query_activity_list(list_data){
 		this.activitySize=data.sponsoractivitycountAndjoincount.activitySize==null?0:data.sponsoractivitycountAndjoincount.activitySize;
 		this.attention_sponsor=data.attention_sponsor//主办方是否关注，0位未关注，1为已关注	
 		this.comment_count=data.comment_count//评论总人数
+		this.user_id=data.user_id//用户ID
 	}
 	/*搜索主办方*/
 	function search_host(data){
@@ -541,7 +553,7 @@ function query_activity_list(list_data){
 		this.support_id=data.support_id;//赞助iD
 		this.sponsor_image_url=data.sponsor_image_url;//主办方头像	
 		this.is_free=data.is_free;//是否免费 
-		this.activity_money=data.activity_money;//活动金额
+		this.activity_money=data.activity_money==null?0:data.activity_money;//活动金额
 	}
 
 	

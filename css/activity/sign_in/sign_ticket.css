@@ -2,6 +2,7 @@
 html,body{
 	 font-family:'Microsoft Yahei';
 	height:100%;
+	padding-top:0px;
 }
 input[type=tel],input[type=text],input[type=password] {
 	margin-bottom: 0px;

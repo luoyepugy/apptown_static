@@ -3,15 +3,7 @@
     pageEncoding="utf-8"%>
 <!-- 底部 -->
 <div ng-controller="bottom_mml" class="mml_bottm">
-   <p class="fz20 zq mt30 wd ">合作伙伴</p>
-   <div class="bgff mt20 partner_bottom">
-        <div class="wd ov">
-          	 <img src="/img/cooperator_a.gif" class="cooperator_img">
-          	  <img src="/img/cooperator_b.gif" class="cooperator_img">
-          	   <img src="/img/cooperator_c.gif" class="cooperator_img">
-          	    <img src="/img/cooperator_d.gif" class="cooperator_img">
-       </div>
-    </div> 
+
     <div class="lk_poiu pt20 pm20">
     <div class="wd mt10 ov ">
         <div class="case_poi_oi_index">

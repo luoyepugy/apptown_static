@@ -26,12 +26,12 @@
           <dd><h4 style="color:#fff;">轻松举办一场活动</h4></dd>
           <dd><a  class="btn btn-default btn-lg bdr-20 issue-activity" ng-click="act_index.promotional_activities(1)">发起活动</a></dd>
         </dl>
-        <dl class="fl border-right1">
+       <!--<dl class="fl border-right1">
           <dt><img src="/img/newimg/img/faqi-icon2.png" width="108" height="108"></dt>
           <dd><h2 class="faqi-type" style="color:#fff;">研究 测试 征集 选秀</h2></dd>
           <dd><h4 style="color:#fff;">谁才能力压全雄</h4></dd>
           <dd><a  data-ty="2" class="btn btn-default btn-lg bdr-20 issue-activity" >发起投票</a></dd>
-        </dl>
+        </dl> -->
         <!--<dl class="fl border-right1"> 
           <dt><img src="/img/newimg/img/faqi-icon3.png" width="108" height="108"></dt>
           <dd><h2 class="faqi-type" style="color:#fff;">咨询 感悟 故事 评论</h2></dd>

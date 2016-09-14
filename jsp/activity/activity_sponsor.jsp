@@ -199,7 +199,7 @@
                               </ul>
                          </div>
                           <div class="pr poiuy_poiu_q fl ml10">
-                             <input type="text" class="act_input_a  ipud map_poiu_a" placeholder="例如：北京市海淀区中关村南大街" id="detailed_address">
+                             <input type="text" class="act_input_a  ipud map_poiu_a" placeholder="请输入详细地址" id="detailed_address">
                                 <label class="f_i map_icon"></label>
                                 <div class="xl_oiu BaiDuMap" id="BaiDuMap">
                                  
@@ -240,7 +240,7 @@
                      <label class="f_d title_poi fl mt20">主办方单位 <span class="hs">*</span></label>
                      <div class="ov map_poou_car">
                           <div class="pr poiuy_poiu_q fl">
-                             <input type="text" class="act_input_a ipue" placeholder="请输入您的主办方单位" id="main_host">
+                             <input type="text" class="act_input_a ipue" placeholder="请输入您的主办方单位" id="main_host" maxlength="20">
                               
                          </div>
                         </div>
@@ -313,7 +313,7 @@
     </div>
     
         <div class="wd mt20 bgff sponsor_div">
-         <p class="fz24 j-accordionDown accordion-title">高级设置<i>+</i></p>
+         <p class="fz24 j-accordionDown accordion-title">高级设置<i class="j-addSign">+</i><img style="margin-left: 35px;" src="/img/minus.png" class="none" /></p>
          <div class="j-accordionContent none">
               <ul class="form_poiu_q_m mt20 form_poiu_q_m_o">
               <li class="zq mt20 ">
@@ -459,7 +459,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                   <tr  ng-repeat="mlist in mySp_list">
+                                   <tr  ng-repeat="mlist in mySp_list" data-sr="{{mlist.status}}">
                                      <td class="cen" >
                                      <span title="选择赞助">
                                          <i class="f_i  choice" ng-click="ct_check(mlist.id,$event.target)" data-xz="0"></i>
@@ -496,7 +496,7 @@
 
       </div>
       <div class="wd mt20 bgff sponsor_div">
-      	<p class="fz24 j-accordionDown accordion-title">签到设置<i>+</i></p>
+      	<p class="fz24 j-accordionDown accordion-title">签到设置<i class="j-addSign">+</i><img style="margin-left: 35px;" src="/img/minus.png" class="none" /></p>
         <div class="j-accordionContent none">
         	<p class="atten_set">
         		<span style="float:left">二维码关注设置</span>
@@ -537,7 +537,7 @@
                   </li>
                   <div class="db addBtn icon216x128" ng-click="adSetting.uploadImg()" ng-if="adSetting.isShow">+</div>
                 </ul>
-                <p class="gray">提示：请上传至少<b class="red">1080*640</b>尺寸的图片, 最多上传6张。</p>
+                <p class="gray">提示：请上传至少<span style="color:#4ea45d;">1080*640</span>尺寸的图片, 最多上传6张。</p>
               </div>
             </div>
            <p class="slideUp j-accordionUp">收起选项<i class="iconfont icon-arrowup fz12" style="margin: 3px 0 0 5px;font-size: 14px;"></i></p>

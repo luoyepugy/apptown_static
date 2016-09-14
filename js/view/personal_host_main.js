@@ -8,7 +8,7 @@ angular.module('personal_host_main',["directive_mml",'tm.pagination',"activity_s
 		activity_data.person_detail_info({"user_id":$scope.user_id}).then(//主办方详情
 				function success(data) {
                          $scope.perDeta= new secrchH(data.info);
-                         if($scope.perDeta.attention_sponsor==0){
+                         if($scope.perDeta.attention_sponsor==0||$scope.perDeta.attention_sponsor==null){
                         	 $(".attent_change").css("background","#4FA45D").attr("data-x",1).text("关注TA");
                          }else {
                         	 
@@ -75,7 +75,10 @@ angular.module('personal_host_main',["directive_mml",'tm.pagination',"activity_s
 	
 	//关注主办方操作
 	$scope.attentHost=function(){	
-	    
+		 if(!$scope.prefsession_a){
+    		 $('#log_in').modal('toggle');
+    		 return;
+    	 }
 			if($(".attent_change").attr("data-x")==1){
 				activity_data.exec_attention({"resources_id":$scope.user_id,"type":4}).then(//主办方发起的结束活动列表
 						function success(data) {

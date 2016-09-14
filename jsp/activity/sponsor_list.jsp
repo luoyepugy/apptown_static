@@ -48,12 +48,13 @@
          <div class="wd ov mt10 pr clearfix">
          	<div class="act_list_p_lefy fl ">
          		<ul class="clearfix act_list_p_wrap">
-         		  <li class="pull-left spons_list"  ng-repeat="x in spon_list" data-href="/support/{{x.id_p}}.httl">
-         		     <img ng-src="{{x.covers[0]}}"  width="248" height="132" style="width:250px;height:132px;"/>
+         		  <li class="pull-left spons_list"  ng-repeat="x in spon_list" data-href="/support/{{x.id_p}}.httl" data-open="1">
+         		     <img ng-src="{{x.covers[0]}}"  width="260" height="132" style="width:260px;height:146px;"/>
          		     <h1 class="spo_list_ti" ng-bind="x.title"></h1>
-         		     <p class="spon_list_m">
-         		      <span>已筹金额:<span class="sponsor_mo"  ng-if="x.now_money!=null" ng-bind="x.now_money+'元'"></span><span class="sponsor_mo"  ng-if="x.now_money==null" ng-bind="0+'元'"></span></span>
-         		      <a class="sonspor_stu" ng-bind="arrStatus[x.status]">赞助中</a>
+         		     <p class="spon_list_m" style="padding-left: 10px;">
+         		      <span>已筹金额: <span class="sponsor_mo"  ng-if="x.now_money!=null">{{x.now_money}}元</span><span class="sponsor_mo"  ng-if="x.now_money==null" ng-bind="0+'元'"></span></span>
+         		      <a class="sonspor_stu" ng-bind="arrStatus[x.status]" ng-if="x.status!=7" >赞助中</a>
+         		      <a class="sonspor_stu_fail" ng-bind="arrStatus[x.status]" ng-if="x.status==7" >赞助失败</a>
          		     </p>
          		     <p class="sp_jd_a"><span style="width:{{x.schedule}};"></span></p>
          		     <div class="sp_jd_case_a">
@@ -75,7 +76,7 @@
                    <p class="fz18 zq mt10"><strong>便捷的活动发布平台</strong></p>
                    <p class="mt10">
                      轻松举办一场活动<br>
-                       <a class="btn btn-primary  want_launch"  ng-href="/jsp/activity/launch_sponsor.jsp">我要发起</a>
+                       <a class="btn btn-primary  want_launch"  data-href="/activity/launch_index">我要发起</a>
                    </p>
                 </div>
                  <div class="cen pd poiut_top_q">

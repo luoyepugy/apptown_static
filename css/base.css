@@ -35,7 +35,6 @@ li {
     width: 100%;
    text-overflow: ellipsis;
     white-space:nowrap;
-    
     overflow: hidden;
 }
 .dianer{
@@ -46,6 +45,8 @@ li {
     -o-line-clamp: 2;
      line-clamp: 2;
     -webkit-box-orient: vertical;
+     height: 45px;
+    overflow: hidden;
 }
 .diansan{
     overflow : hidden;
@@ -608,7 +609,7 @@ em{
 }
 .ls{
     
-    color: #009ef6
+    color: #4FA45D
 }
 .green{
     color: #4ea45d
@@ -734,7 +735,7 @@ em{
     color: #141414
 }
 .zb{
-    color: #009ef6 !important;
+    color: #4FA45D !important;
 }
 .f-fix li a:hover{
     cursor: pointer;
@@ -774,7 +775,7 @@ a:hover{
     color: #E76C1A;
 }
 .tr{
-    text-align: right;
+    text-align: right !important;
 }
 .tl{
     text-align: left !important;
@@ -1094,7 +1095,7 @@ border-bottom: 16px solid #f1f1f1;
     cursor: pointer;
 }
 .btn-primary{
-    *background: #009ef6;
+    *background: #4FA45D;
     border: 0px;
 }
 .gx_icon{
@@ -1135,4 +1136,7 @@ border-bottom: 16px solid #f1f1f1;
 }
 .pl5 {
 	padding-left:5px
+}
+.point {
+	cursor:pointer;
 }

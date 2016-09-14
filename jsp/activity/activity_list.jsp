@@ -82,16 +82,16 @@
                <ul class="act_poiuy_case">
                   <li class="yj4 pr" ng-repeat="list in act_list" >
                        <div class="fl case_li_oiuuy">
-                         <img style="cursor:pointer;" ng-src="{{list.activity_first_face}}" data-href="/activity/{{list.id}}.httl">
+                         <img style="cursor:pointer;" ng-src="{{list.activity_first_face}}" data-href="/activity/{{list.id}}.httl" data-open="1">
                        </div> 
                       <div class="ov pl20">
-                         <p class="dian ls fz18 dian" style="width:83%;cursor:pointer;" data-href="/activity/{{list.id}}.httl"><strong ng-bind="list.activity_title"></strong></p>
-                          <p class="zc  mt30">
+                         <p class="dian fz18" style="width:97%;cursor:pointer;" data-href="/activity/{{list.id}}.httl" data-open="1"><strong ng-bind="list.activity_title"></strong></p>
+                          <p class="zc  mt20">
                              <label class="f_i time_icon"></label>
                               <span ng-bind="list.activity_time"></span>
                           </p>
                           
-                            <p class="zc mt10">
+                            <p class="zc mt5">
                              <label class="f_i map_icon_list"></label>
                           <span ng-if="list.type==10" ng-bind="list.activity_address"></span>
                           <span ng-if="list.type!=10" ng-bind="list.city_name+list.activity_address"></span>
@@ -99,23 +99,35 @@
                           
                           
                           
-                          <p class="zc  Organizer_po mt10">
+                          <p class="zc  Organizer_po mt5">
                                <img ng-src="{{list.sponsorImageUrl}}">
                         
-                                 <span class="green_new" ng-bind="list.sponsorName"></span>主办
-                                  <span class="yj4 bqi_pooiu_w green_bg1_f" ng-if="list.is_free==0">免费</span>
-                                    <span class="yj4 bqi_pooiu_w" ng-if="list.is_free!=0" ng-bind="list.activity_money+'元起'"></span>
+                                 <span class="green_new mr5" ng-bind="list.sponsorName"></span>主办
+                                  <span style="padding:2px 10px;" class="yj4  cf fr green_new" ng-if="list.is_free==0">免费</span>
+                                  <span style="padding:2px 10px;color:#fe4e58"  class="yj4 cf fr" ng-if="list.is_free!=0">￥{{list.activity_money}}&nbsp;起</span>
                           </p>
-                         <p class="mt20">
-                             <span class="hs" ng-bind="list.browseCount"></span>浏览
-                             <span class="ml20 hs" ng-bind="list.activity_number">47</span>报名
+                         <p class="mt15">
+                             <span class="green_new mr5" ng-bind="list.browseCount"></span>浏览
+                             <span class="ml20 green_new mr5" ng-bind="list.activity_number">47</span>参与
                           </p>
                           
                        <a class="btn btn-primary act_sub_poiu act_sub_poiu_o" data-href="/support/12282{{list.support_id}}12282.httl" ng-if="list.support_id!=null">我要赞助</a>
                        <a style="background:#a9a9a9" class="btn btn-primary act_sub_poiu act_sub_poiu_o disable_href"    ng-if="list.support_id==null">我要赞助</a>
                       <a class="btn btn-primary act_sub_poiu" ng-href="/activity/{{list.id}}.httl">我要报名</a>
+                      
                       </div>
                       <p class="qc"></p>
+                      <div style="border-top: 1px solid #f1f1f1; margin-top: 10px;padding-top:5px;">
+                         <p class="d_inline cen fz16" style="width:32%;line-height:30px;color:#a9a9a9">
+                            目标金额 {{list.target_money}}
+                         </p>
+                         <p class="d_inline cen fz16" style="width:33%;line-height:30px;color:#a9a9a9">
+                          已筹金额{{list.now_money}}
+                         </p>
+                         <p class="d_inline cen fz16" style="width:33%;line-height:30px;color:#a9a9a9">
+                          项目进度 {{list.schedule}}
+                         </p>
+                       </div>
                    </li>
                      
                   
@@ -139,9 +151,9 @@
             <div class="act_list_p_right fr yj4 bgff gd">
                <div class="cen pd poiut_top_q">
                    <p class="fz18 zq mt10"><strong>便捷的活动发布平台</strong></p>
+                   <p class="mt10">轻松举办一场活动</p>
                    <p class="mt10">
-                     轻松举办一场活动<br>
-                       <a class="btn btn-primary  want_launch" ng-href="/activity/to_sponsor_activity">我要发起</a>
+                      <a class="btn btn-primary  want_launch" ng-href="/activity/to_sponsor_activity">我要发起</a>
                    </p>
                 </div>
                  <div class="cen pd poiut_top_q">

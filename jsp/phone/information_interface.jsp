@@ -89,7 +89,7 @@
         <li class="mui-table-view-cell mui-collapse mui-active bgff">
             <a class="mui-navigate-right" href="#">电子票使用说明</a>
             <section class="mui-collapse-content ">
-                <p class="pm20">1、本次活动凭票参加，一人一票一次性，请勿复制或 转增他人；<br>
+                <p class="pm20">1、本次活动凭票参加，一人一票一次性，请勿复制或 转赠他人；<br>
                     2、请保存电子票到手机或打印携带，保持条码清晰完 整；<br>
                     3、本次活动有【e场景活动】提供票券服务；如有任何疑问，请拨打热线<a href="tel:400046-1388">400-046-1388</a></p>
             </section>

@@ -210,7 +210,7 @@
             <div class="act_list_p_right fr yj4 bgff">
 		           <div class="activitySponsor-share">
 		              <div class="activitySponsor-btn">		             
-		                <button class="btn btn-primary issue-skip" type="button" style="margin-left: 30px;">我要发起</button>		
+		                <button class="btn btn-primary issue-skip" data-href="/activity/launch_index" type="button" style="margin-left: 30px;">我要发起</button>		
 		              </div>
 		              <div class="shareContent">
 		                <div class="pull-left" style="line-height:20px;margin-top:5px;">分享</div>
@@ -322,7 +322,7 @@
 							<p>回报介绍：<span ng-bind="o_induction"></p>
 							<p></p>
 							<p>
-							回报时间：<span ng-bind="o_repaytime|date:'yyyy-MM-dd hh:mm'"></span>
+							回报时间：<span ng-bind="o_repaytime"></span>
 							</p>
 							<p>
 							发起人：<span ng-bind="detail.sponsor_name"></span>

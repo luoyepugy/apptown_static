@@ -106,9 +106,11 @@
                   <!--  <p class="zc"><span class="zq">主&nbsp;&nbsp;&nbsp;&nbsp;办方：</span><span ng-bind="detail.sponsor_name"></span></p> -->
                    <p class="zc"><span class="zq">行业 :</span> <span ng-bind="classify[1].maker_title[detail.industry_id-1].name"></span></p>
                       <p class="zc  Organizer_po mt20"> 
-                               <img ng-src="{{detail.sponsor_head}}">
+                               <img ng-if="detail.sponsor_auth==0" ng-src="{{detail.sponsor_head}}">
+                               <img class="pointer" data-href="/activity/to_host_list?sponsor_id={{detail.sponsor_user_id}}" ng-if="detail.sponsor_auth==1" ng-src="{{detail.sponsor_head}}">
                         
-                            <span ng-bind="detail.sponsor_name"></span>
+                            <span   ng-if="detail.sponsor_auth==0" ng-bind="detail.sponsor_name" ></span>
+                             <span class="green_new pointer"   data-href="/activity/to_host_list?sponsor_id={{detail.sponsor_user_id}}"  ng-if="detail.sponsor_auth==1" ng-bind="detail.sponsor_name"></span>
                             
                           </p>
                           <div ng-if="detail.ticket_list.length>0">

@@ -8,6 +8,7 @@ angular.module('sponsor_list', [ "directive_mml","activity_servrt"])
      $scope.page_row=[];//活动总数
      $scope.arrStatus={"4":"预热中","5":"赞助中","6":"赞助成功","7":"赞助失败"}
      var name_til=$("#sponsor_title").val();//获取搜素的标题
+     $("#seach_type").attr("data-type",1);
      for(var i=1;i<10;i++){
     	 $scope.page_row.push(i);
      }
@@ -18,9 +19,21 @@ angular.module('sponsor_list', [ "directive_mml","activity_servrt"])
      * 最热赞助筛选（PC端的）sort=2*/  
      var oIndex=1  //初始化页码为第一页
      var oSort=1;  //初始化排序筛选为空  
-     var industy="";
+     var gloabl_industy="";
+     var seach_url=window.location.search;//获取问号后面的值
+
+     var param = seach_url.split("?")[1];
+
+     if(param!=null&&param!=""){param=param.split("=")[1]}
+     var global_name="";
+     if(param!=undefined){
+    	 global_name=decodeURI(param);
+     }
+     
       $scope.list_fun={
 	      	"demand":function(pageIndex,sort,industy,name){
+	      		gloabl_industy=industy;
+	      		global_name=name;
 	      		 activity_data.query_sponsor_list(pageIndex,sort,industy,name).then(
 			     	function success(data) {
 			     		$scope.spon_results=data.results;
@@ -39,46 +52,45 @@ angular.module('sponsor_list', [ "directive_mml","activity_servrt"])
 	      		if(oIndex<$scope.spon_results/8){
 	      			oIndex++;	
 	      		}
-	      		industy="";
-	      		$scope.list_fun.demand(oIndex,oSort,industy,name_til);	 
+	      		//industy="";
+	      		$scope.list_fun.demand(oIndex,oSort,gloabl_industy,global_name);	 
 	      	},
 	      	"previous_page":function(){//上一页
 	      		$scope.spon_list=[];
 	      		if(oIndex>1){
 	      			oIndex--;	
 	      		}
-	      		industy="";
-	      		$scope.list_fun.demand(oIndex,oSort,industy,name_til);	
+	      		//industy="";
+	      		$scope.list_fun.demand(oIndex,oSort,gloabl_industy,global_name);	
 	      	},
 	      	"newest_sort":function(){//最新赞助排序
 	      		$scope.spon_list=[];
-	      		industy="";
+	      		//industy="";
 	      		oIndex=1;
 	      		oSort=1;
-	      		$scope.list_fun.demand(oIndex,oSort,industy,name_til);
+	      		$scope.list_fun.demand(oIndex,oSort,gloabl_industy,global_name);
 	      	},
 	      	"hotest_sort":function(){//最热赞助排序
 	      		$scope.spon_list=[];
-	      		industy="";
+	      		//industy="";
 	      		oIndex=1;
 	      		oSort=2;
-	      		$scope.list_fun.demand(oIndex,oSort,industy,name_til);
+	      		$scope.list_fun.demand(oIndex,oSort,gloabl_industy,global_name);
 	      	},
 	      	"industy_search":function(industy){
 	      		$scope.spon_list=[];
 	      		oIndex=1;
+	      		gloabl_industy=industy;
 	      		if(industy==0){
-	      			 $scope.list_fun.newest_sort(1);
+	      			 $scope.list_fun.newest_sort();
 	      		}else{
-	      			$scope.list_fun.demand(oIndex,oSort,industy,name_til);
+	      			$scope.list_fun.demand(oIndex,oSort,industy,global_name);
 	      		}
 				
 	      	}
-	      	
       	
       } 
-
-      $scope.list_fun.newest_sort(1);
+      $scope.list_fun.newest_sort(1,1,"","");
     
 }])
 

@@ -1,11 +1,4 @@
-body{
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
+
 .pup_title_a {
 	cursor: pointer
 }
@@ -58,6 +51,14 @@ body{
 
     .slider .tempWrap ul {
         margin-left: -1080px !important;
+    }
+    .cooperator_img{
+       width:24.6%; 
+           margin-right:0px  !important;
+    }
+    .lk_poiu{
+       background:#333333
+    
     }
 
     .slider .hd {
@@ -174,7 +175,7 @@ div#wxqr {
 
 a.btn.btn-primary.act_sub_poiu.act_sub_poiu_o {
     background: #fe4e58;
-    right: 173px;
+    right: 145px;
 }
 
 .index_data_text{
@@ -207,6 +208,7 @@ a.btn.btn-primary.act_sub_poiu.act_sub_poiu_o {
     float: left;
     margin-right: 24px;
     margin-bottom: 20px;
+    height:345px;
   
 }
 .case_img_a{
@@ -241,13 +243,13 @@ a.btn.btn-primary.act_sub_poiu.act_sub_poiu_o {
     padding-bottom: 10px;
 }
 .case_stat:hover{
-    border: 1px solid #009ef6;
+    border: 1px solid #4FA45D;
 }
 .case_stat:hover .case_bottom{
-    color: #009ef6;
+    color: #4FA45D;
 }
 .user_index{
-    width: 320px;
+    width: 310px;
     background: #fff;
     padding: 2px;
     float: left;
@@ -257,7 +259,7 @@ a.btn.btn-primary.act_sub_poiu.act_sub_poiu_o {
     border: 1px solid #fff
 }
 .user_index:hover{
-    border: 1px solid #009ef6;
+    border: 1px solid #4FA45D;
 }
 .user_index_d{
     height: 190px;
@@ -313,7 +315,7 @@ a.btn.btn-primary.act_sub_poiu.act_sub_poiu_o {
     padding-bottom: 6px;
 }
 .qc_bottom_a{
-    border-left: 1px solid #f1f1f1;
+    border-left: 1px solid #454545;
     padding-left: 70px;
     padding-bottom: 20px;
 }
@@ -324,7 +326,7 @@ a.btn.btn-primary.act_sub_poiu.act_sub_poiu_o {
     margin-bottom: 4px;
 }
 .bottm_text{
-    background: #4d4d4d;
+    background: #2A2B2D;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -393,7 +395,7 @@ cursor: pointer;
 }
 .case_li_oiuuy{
     width: 260px;
-    height: 180px;
+    height: 165px;
     
 }
 .case_li_oiuuy img{
@@ -435,9 +437,6 @@ cursor: pointer;
 
 }
 .bqi_pooiu_w{
-	right: -55px;
-    top: 19px;
-    position: absolute;
     width: 183px;
     height: 30px;
     line-height: 30px;
@@ -445,11 +444,6 @@ cursor: pointer;
     text-align: center;
     background: #fe4e58;
     color: #fff;
-    transform: rotate(30deg);
-    -ms-transform: rotate(30deg);
-    -moz-transform: rotate(30deg);
-    -webkit-transform: rotate(41deg);
-    -o-transform: rotate(30deg);
 }
 .bqi_pooiu_q {
     background: #fe4e58;
@@ -458,13 +452,13 @@ cursor: pointer;
     margin-left: 40px;
 }
 .act_sub_poiu{
-    width: 126px;
+    width: 100px;
     height: 30px;
     line-height: 30px;
     font-size: 16px;
     position: absolute;
     right: 10px;
-    bottom: 5px;
+    bottom: 58px;
 }
 .want_launch{
        padding: 12px 40px;
@@ -488,11 +482,11 @@ cursor: pointer;
 }
 .poiut_top_q{
     border-bottom: 1px solid #f1f1f1;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
-.poiut_top_q .mt10{
+/*.poiut_top_q .mt10{
     margin-top: 20px;
-}
+}*/
 .qc_icon_q{
     width: 160px;
     height: 160px;
@@ -512,7 +506,7 @@ cursor: pointer;
     cursor:pointer;
 }
 .tujian_poiu li{
-    color: #009ef6;
+    color: #4FA45D;
     cursor:pointer;
 
     padding-bottom: 16px;
@@ -747,7 +741,7 @@ a{
 }
 .apply_button,.my_succse_a{
     color: #fff;
-    background: #009ef6;
+    background: #4FA45D;
     border:0px;
 }
 .apply_button:hover,.my_succse_a:hover,.collect_po:hover,.want_launch:hover{
@@ -809,11 +803,11 @@ border-bottom-left-radius:6px;border-bottom-right-radius:6px;
 }
 .comment_po textarea{
     width: 98.5%;
-   height: 100px;
+   height: 70px;
     
 }
 .act_text_a{
-    color: #009ef6;
+    color: #4FA45D;
     font-size: 20px;
     padding-bottom: 20px;
     border-bottom: 2px solid #f1f1f1;
@@ -883,12 +877,12 @@ border-bottom-left-radius:6px;border-bottom-right-radius:6px;
 .act_text_a span{
     padding-right: 20px;
     padding-bottom: 17px;
-    border-bottom: 2px solid #009ef6;
+    border-bottom: 2px solid #4FA45D;
 }
 
 
 .liuy_tipye_top .act{
-    background: #009ef6;
+    background: #4FA45D;
     color: #fff;
 }
 .act_banner_a{
@@ -1031,7 +1025,7 @@ p.zhng_poi_a {
         cursor:pointer
 }
 .user_list_left a:hover{
-    color: #009ef6;
+    color: #4FA45D;
 
 }
 .title_user_a label{
@@ -1073,10 +1067,10 @@ p.zhng_poi_a {
   
 }
 .user_poiy_er .active a,.user_poiy_er .active a:hover,.user_poiy_er .active a:focus{
-    color: #009ef6;
+    color: #4FA45D;
     border: 0px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #009ef6
+    border-bottom: 2px solid #4FA45D
 }
 .poiuyr_qdffg{
     min-height: 600px;
@@ -1164,8 +1158,8 @@ p.zhng_poi_a {
 }
 .zzzhong_a{
     padding: 4px 10px;;
-    color: #009ef6;
-    border: 1px solid #009ef6;
+    color: #4FA45D;
+    border: 1px solid #4FA45D;
 }
 .user_polit_a_i{
     width: 112px;
@@ -1180,19 +1174,20 @@ p.zhng_poi_a {
     min-height: 74px;
 }
 .spons_list {
-	width: 250px;
+	width: 260px;
     height: auto;
     margin: 0 20px 16px 0;
     border: 1px solid #d6d6db;
     list-style:none;
     cursor:pointer;
+    background: #fff;
 }
 .spons_list:hover {
-	border:1px solid #009ef6;
+	border:1px solid #4FA45D;
 }
 .spo_list_ti {
 	height: 38px;
-    margin: 6px;
+    margin: 0 8px;
     padding: 0;
     overflow: hidden;
     white-space: pre-wrap;
@@ -1201,7 +1196,7 @@ p.zhng_poi_a {
     -webkit-box-orient: vertical;
     font-size:16px;
     font-weight: normal;
-    color:#575757;
+    color:#141414;
     text-align:left;
 }
 .sonspor_stu {
@@ -1209,10 +1204,22 @@ p.zhng_poi_a {
 	background:#4fa45d;
 	color:#fff;
 	border-radius:4px;
-	font-size:14px;
+	font-size:12px;
 	float:right;
     margin-top: -4px;
+    margin-right: 10px;
 }
+.sonspor_stu_fail {
+	padding:2px 12px;
+	background:#a9a9a9;
+	color:#fff;
+	border-radius:4px;
+	font-size:12px;
+	float:right;
+    margin-top: -4px;
+    margin-right: 10px;
+}
+
 .sonspor_stu:hover {
 	color:#fff;
 }
@@ -1220,12 +1227,13 @@ p.zhng_poi_a {
 	color:#fe4e58;
 }
 .spon_list_m {
-    font-size: 16px;
+    font-size: 14px;
+    color: #878787;
 }
 .sp_jd_a {
     height: 3px;
     background: #dadada;
-    margin-top: 16px;
+    margin: 10px;
     border-radius: 14px;
     overflow: hidden;
     position: relative;
@@ -1237,16 +1245,16 @@ p.zhng_poi_a {
     left: 0;
 }
 .sp_jd_case_a {
-    margin-top: 18px;
-    padding-bottom: 40px;
-    color: #575757;
+    margin-bottom: 5px;
+    color: #878787;
+    float: left;
+    width: 100%;
 }
 .sp_jd_case_a div {
     width: 33%;
     float: left;
     border-right: 1px solid #d6d6db;
     text-align: center;
-    line-height: 1;
 }
 .kmnb_poiu_q{
     padding: 10px 20px;
@@ -1316,16 +1324,16 @@ p.zhng_poi_a {
     display: none;
 }
 .act_pouu{
-    border: 1px solid #009ef6;
-      color: #009ef6;
+    border: 1px solid #4FA45D;
+      color: #4FA45D;
 }
 .act_pouu .gxxuan_a{
     display: block;
   
 }
 .pay_az_a:hover{
-        border: 1px solid #009ef6;
-      color: #009ef6;
+        border: 1px solid #4FA45D;
+      color: #4FA45D;
 }
 .pay_az_a:hover .gxxuan_a{
       display: block;
@@ -1341,7 +1349,7 @@ p.zhng_poi_a {
     height: 122px;
 }
 .qc_poiu_mk{
-    background: #009ef6;
+    background: #4FA45D;
     
 }
 
@@ -1718,15 +1726,15 @@ padding:0;
     height: 35px;
     line-height: 35px;
     font-size: 16px;
-    border: 1px solid #009ef6;
+    border: 1px solid #4FA45D;
 }
 .poiuyt_ouy{
     border: 0px;
 }
 .rese_button_a{
     background: #fff;
-    color: #009ef6;
-    border: 1px solid #009ef6;
+    color: #4FA45D;
+    border: 1px solid #4FA45D;
 }
 .sub_poiy_a{
     width: 190px;
@@ -1931,7 +1939,7 @@ label.f_d.title_poi.fl.mt20.title_poi_poi {
 	right:0;
 	top:0;
 	padding:10px 20px;
-	color:#009ef6;
+	color:#4FA45D;
 	border-left:1px solid #ddd;
 	border-bottom:1px solid #ddd;
 	cursor:pointer;
@@ -2033,7 +2041,7 @@ a:active, a:hover {
 	overflow: hidden;
 }
 .faqi-con dl{
-	width: 33%;
+	width: 49%;
 	height: 300px;
 }
 .faqi-con h3,.faqi-con h5{text-align:center;}
@@ -2054,9 +2062,10 @@ a:active, a:hover {
 .sponsor_bar {
 	width:435px;
 	height:5px;
+    margin: 10px 0;
 }
 .sp_host {
-    line-height: 30px;
+    line-height: 40px;
     padding-left: 10px;
 }
 .shareContent {
@@ -2068,7 +2077,6 @@ a:active, a:hover {
 	border: 1px solid #ddd;
 	margin-top: 12px;
 	background: #fff;
-	padding-bottom: 30px;
 }
 
 .activitySponsor-list li h1 {
@@ -2109,7 +2117,7 @@ a:active, a:hover {
 .addmore {
 	margin-left:780px;
     margin-top: 10px;
-    color: #009ef6;
+    color: #4FA45D;
     cursor:pointer;
 }
 /*个人中心活动详情*/
@@ -2533,7 +2541,7 @@ img.right_icon_a {
     padding-bottom: 12px;
     border: 0;
     border-radius: 4px;
-    background: #009ef6;
+    background: #4FA45D;
     color: #fff;
     width: 120px;
 }
@@ -2547,7 +2555,7 @@ img.right_icon_a {
     border-radius: 4px;
     margin-left: 40px;
     background: #D9D9D9;
-    color: #009ef6;
+    color: #4FA45D;
 }
 .form-repay-setting-button {
     float: left;
@@ -2557,6 +2565,15 @@ img.right_icon_a {
     border-top: 1px solid #dadada;
     padding-top: 30px;
     width: 100%;
+}
+.repay_title {
+    color: #4ea45d;
+    padding: 5px 10px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 10px;
+    border: 1px solid #4ea45d;
+    font-weight: 700;
 }
 #target_repay_time {
 	cursor:pointer;
@@ -2658,6 +2675,7 @@ img.right_icon_a {
     background: #D9D9D9;
     color: #4ea45d;
 }
+
 /* 回报标题选项 */
 .repay-options li {
     display: inline-block;  
@@ -2685,6 +2703,35 @@ img.right_icon_a {
     border-color: #4ea45d;
     background: url('/img/activity/repay-selected.png') no-repeat right bottom;
 }
+
+/* 回报标题选项 */
+.repay-options li {
+    display: inline-block;  
+    margin-right: 5px;
+    margin-bottom: 10px; 
+}
+.repay-options li.last {
+    margin-top: 7px;
+}
+.repay-options li .confirmBtn {
+    background: #4ea45d;
+    color: #fff;
+    padding: 5px 10px;
+    position: relative;
+    bottom: 3px;
+    border-radius: 3px;
+}
+.repay-options li > span {
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 20px;
+}
+.repay-options li > span.on {
+    border-color: #4ea45d;
+    background: url('/img/activity/repay-selected.png') no-repeat right bottom;
+}
+
 
 .form-repay-select[data-lx="0"] {
     background: url(/img/pc_icon.png) -242px -18px;
@@ -2729,7 +2776,7 @@ img.right_icon_a {
     background: url(/img/pc_icon.png) -382px -52px;
 }
 .sponsor-repay-div p {
-    width: 820px;
+    width: 875px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -2743,6 +2790,7 @@ img.right_icon_a {
 .sponsor-repay-edit-div {
     float: right;
     position: relative;
+    color: #4FA45D;
 }
 .sponsor-repay-edit-div * {
     vertical-align: middle;
@@ -3270,6 +3318,12 @@ background-position:-318px -1035px;
     *display: inline;
     *zoom: 1;
 }
+.mr5 {
+    margin-right: 5px;
+}
+.mt15 {
+    margin-top: 15px;
+}
 .mt18 {
     margin-top: 18px;
 }
@@ -3355,13 +3409,20 @@ background-position:-318px -1035px;
     margin: 22px 0 0 5px;
     border-top-color: #fff;
 } 
+.city_list_a{
+	min-width:100%;
+	text-align: center;
+}
+.act_nav_a_a  li {
+    border-bottom: 1px solid #f1f1f1;
+}
 /* 发起活动手风琴式标题 */
 .accordion-title {
     background: url('/img/activity/setting-bg.png') no-repeat 10px top;
     cursor: pointer;
     color: #fff;
-    line-height: 50px;
-    padding-left: 20px;
+    line-height: 45px;
+    padding-left: 30px;
     font-size: 18px;
     padding-bottom: 15px;
 }
@@ -3369,9 +3430,13 @@ background-position:-318px -1035px;
     background-color: #efefef;
 }
 .accordion-title i {
-    margin-left: 3px;
+    margin-left: 30px;
     font-style: normal;
     font-weight: 700;
+    color: #4ea45d;
+    font-size: 30px;
+    position: relative;
+    top: 2px;
 }
 .sponsor_div .slideUp {
     color: #4ea45d;
@@ -3459,7 +3524,7 @@ background-position:-318px -1035px;
 }
 .sign-adSetting .addBtn{
     vertical-align: top;
-    border: 1px dashed #009ef6;
+    border: 1px dashed #4FA45D;
     line-height: 128px;
     text-align: center;
     font-size: 40px;
@@ -3548,6 +3613,10 @@ background-position:-318px -1035px;
 .vote_padd {
 	padding:10px 34px
 }
+
+.paging_list{
+	cursor: pointer;
+}
 /*主办方*/
 .person_top_bg {
     width:100%;
@@ -3574,6 +3643,8 @@ height:180px;
 .person_host_ico {
 width:180px;
 height:180px;
+border:4px #fff solid;
+border-radius:4px;
 }
 .person_atttning {
     background: #4ea45d;
@@ -3584,7 +3655,8 @@ height:180px;
 margin-top:48px;
 }
 .person_tab_1 .act {
-border-bottom:2px solid #4ea45d
+border-bottom:2px solid #4ea45d;
+color:#4ea45d;
 }
 .per_bar {
 margin-top:-2px;
@@ -3599,12 +3671,22 @@ width:830px;
 .person_de_right {
 width:250px;
 }
+.bg_gr{
+background:#4ea45d;
+}
+.bg_ga{
+background:#a9a9a9;
+}
+.person_activity_list li {
+    margin-bottom: 10px;
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #f1f1f1;
+    overflow: hidden;
+}
 /*搜索主办方*/
 .search_host_left {
 width:830px;
-}
-.search_host_left ul {
-
 }
 .search_host_list  {
 padding:10px;

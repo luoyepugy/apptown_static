@@ -1,0 +1,89 @@
+
+.pt50{
+    padding-top: 50px;
+}
+.wt_sbanner{
+    height: 666px; 
+    background: url( /img/white_bar/baner.png) 50% 0px no-repeat;
+}
+.form_ddf_a{
+    width: 420px;
+      background-color: rgba(255,255,255,.7); 
+}
+.form_ooiu{
+	    clear: both;
+    padding-top: 10px;
+}
+.form_ooiu label{
+    width: 92px;
+    font-size: 20px;
+    padding-right: 10px;
+    float: left;
+    padding-top: 10px;
+}
+.form_ooiu .nkjh_a{
+      width: 300px;
+    height: 40px;
+   padding-left: 10px;
+    float:left;
+}
+.form_ooiu input{
+  height: 30px;
+  width: 280px;
+     background-color: rgba(255,255,255,.7); 
+    border: 1px solid #BDBDBD;
+}
+.fa-check-circle{
+    color: #4FA45D !important
+}
+.pou_teatr{
+    min-height: 90px;
+}
+.pou_teatr textarea{
+height: 88px;
+    width: 280px;
+     background-color: rgba(255,255,255,.7); 
+
+}
+.submiuyt_sd{
+    background: #5BBF6D;
+    color: #fff;
+    width: 154px;
+    height: 38px;
+    border: 0px;
+    
+}
+.bghs_poo{
+    background: #E0DCDD
+}
+.bghs_poo_s{
+    background: #BFD3C8
+}
+
+.sort_down {
+    position: absolute;
+    right: 17px;
+    top: 6px;
+    font-size: 20px !important;
+}
+
+.select_input p {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f1f1f1;
+    text-align: center;
+  background-color: rgba(255,255,255,.7); 
+}
+.select_input p:hover{
+	background:#4FA45D;
+	color:#fff;
+	cursor: pointer;
+}
+.select_input {
+    position: absolute;
+    width: 94%;
+    top: 39px;
+    border: 1px solid #f1f1f1;
+    border-bottom: 0px;
+    display:none;
+}

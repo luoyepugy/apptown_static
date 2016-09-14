@@ -13,8 +13,8 @@
 <script src="/js/common/uaredirect.js"></script>
 <script>
 	uaredirect("http://m.apptown.cn");//手机打开跳转到手机页面
-	var title_p="${activity_title }" 
-	
+	var title_p="${activity_title }", 
+		vote_id="${vote_id}"
 </script>
 </head>
 <body ng-controller="signAdCtrl">
@@ -72,8 +72,8 @@
                  </span>
                  
                  
-                  <span class="cf fz20 fl ml100 cen" ui-sref="polls_show({vote_id: ${vote_id}})">
-                   <i class="f_i poiuy_po_d"></i><br>
+                  <span class="cf fz20 fl ml100 cen" ng-click="stau()">
+                   <i class="f_i poiuy_po_d"></i><br> 
                 	  投票
                  </span>
 
@@ -125,7 +125,8 @@
     <script src="https://hammerjs.github.io/dist/hammer.js"></script>
     <script src="/js/common/jquery.qrcode.min.js"></script>
     <script src="/js/common/jquery.SuperSlide.2.1.1.js"></script>
-    <script src="/js/common/angular.min.js"></script>
+    <script src="/js/common/angular.min.js"></script> 
+    <script src="/js/common/angular-websocket.min.js"></script> 
     <script src="/js/common/angular-ui-router.min.js"></script>
     <script src="/js/entity/entity_activity.js?v=10"></script>
     <script src="/js/mode/directive.js"></script>

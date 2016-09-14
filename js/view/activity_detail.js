@@ -333,9 +333,9 @@ angular.module('activity_detail', [ "directive_mml","activity_servrt"])
 			  return;
 		  }
 		  if(a==1){			 
-			  window.location.href="/activity/to_sponsor_activity"  
+			 window.open("/activity/to_sponsor_activity" )
 		  }else if(a==2){
-			  window.location.href="/jsp/activity/launch_sponsor.jsp"
+			 window.open("/activity/to_launch_sponsor")
 		  }
 		  
 	  }}

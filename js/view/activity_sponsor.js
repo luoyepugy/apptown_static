@@ -873,10 +873,13 @@ $(document).on("click",".remove_video",function(){
             if(data.code!=0){
         alert(data.msg);
         return;
-      }
+      }         
             $scope.mySp_list=[]
            
             for(var i=0;i<data.rows.length;i++){
+               if(data.rows[i].status==7||data.rows[i].status==6){
+            	   continue
+               } 
               var spon=new personMySponsor(data.rows[i]);
               $scope.mySp_list.push(spon);
             }
@@ -960,9 +963,11 @@ $(document).on("click",".remove_video",function(){
      */
     $('.j-accordionDown').click(function() {
       $(this).next('.j-accordionContent').slideToggle();
+      $(this).find('.j-addSign').toggleClass('none').next('img').toggleClass('none');
     });
     $('.j-accordionUp').click(function() {
       $(this).closest('.j-accordionContent').slideUp();
+      $(this).closest('.j-accordionContent').prev('.j-accordionDown').find('.j-addSign').removeClass('none').next('img').addClass('none');
     });
     
 }])

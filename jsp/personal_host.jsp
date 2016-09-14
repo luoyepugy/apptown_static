@@ -8,7 +8,7 @@
 <meta charset="utf-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta charset="UTF-8">
-<title>e场景--首页</title>
+<title>e场景</title>
 <meta name="baidu-site-verification" content="VoUwjzsjO4" />
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=0.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
@@ -33,8 +33,8 @@
     <div class="wd  ov person_host_wrap">
 	         <div class="person_code_wrap">
 	                  <div class="fr">
-	                    <div style="padding:10px;background:#4ea45d;">
-	                          <img class="person_code"  width="150" height="150">
+	                    <div style="padding:10px;">
+	                          <img class="person_code"   width="150" height="150"   ng-src="http://www.2d-code.cn/2dcode/api.php?key=c_e170d93zzNkfW4eEg0KMr0oYZvO8ZIkR47oRRwUkt4&text=http://m.apptown.cn/index.html%23/personal_host/{{perDeta.user_id}}&logo=http://resource.apptown.cn/share/share_activity.png">
 	                    </div>
 	                     
 	                       		                    	                    
@@ -46,7 +46,7 @@
 	         </div>
 	         <div class="person_detail">
 		        <img class="fl person_host_ico" ng-src="{{perDeta.sponsor_icon}}" width="175" height="175" />
-		        <div class="fl pdl10 pdt35">
+		        <div class="fl pdl10 pdt35" style="width:880px;">
 		            <div class="person_detail_content pd10">
 		            	<p class="cf d_inline fz28" ng-bind="perDeta.name">
 		            	 
@@ -54,14 +54,14 @@
 		            	<p data-x="1" class="d_inline ml80 person_atttning attent_change yj4 fz24 pointer" ng-click="attentHost()">
 		            	关注TA
 		            	</p>
-		            	<p class="cf d_inline mt100 fz24 ml150">
-		            	活动<span ng-bind="perDeta.activitySize"></span>场
+		            	<p class="cf d_inline mt100 fz24 ml218">
+		            	活动&nbsp;<span ng-bind="perDeta.activitySize"></span>&nbsp;场
 		            	</p>
-		            	<p class="cf d_inline fz24 ml90">
-		            	参与<span ng-bind="perDeta.signSize"></span>人
+		            	<p class="cf d_inline fz24  fr" style="line-height:38px;">
+		            	参与&nbsp;<span ng-bind="perDeta.signSize"></span>&nbsp;人
 		            	</p>		            	
 		            </div>
-		            <p class="person_signa fz16 mt60 dianer" ng-bind="perDeta.introduction">
+		            <p class="person_signa fz16 mt40 dianer gray" ng-bind="perDeta.introduction">
 		            	
 		            </p>
 		        </div>
@@ -70,8 +70,8 @@
    			 </div>
    			 
    			 <div class="person_tab_1 pr">
-   			 	<p class="d_inline pb20 fz24  act point" ng-click="person_tab_act()">TA发起的{{perDeta.activitySize}}</p>
-   			 	<p class="d_inline pb20 fz24 ml20 point" ng-click="person_tab_mes()">留言板{{perDeta.comment_count}}</p>
+   			 	<p class="d_inline pb20 fz18  act point" ng-click="person_tab_act()">TA发起的（{{perDeta.activitySize}}）</p>
+   			 	<p class="d_inline pb20 fz18 ml20 point" ng-click="person_tab_mes()">留言板（{{perDeta.comment_count}}）</p>
    			 	<p class="per_bar"></p>
    			 </div>
    			 <div class="person_de_con mt30">
@@ -79,7 +79,56 @@
    			 	     <div>
    			 	                   <!--主办办方发起的未结束的活动  -->
 		   			 	     <ul class="person_activity_list">
-		   			 	         <li class="yj4   bgff ov pt10 pl5 mb10" style="border:1px #e0e0e0 solid;" ng-repeat="z in perList">
+		   			 	              	<li class="yj4 pr" ng-repeat="z in perList" >
+						                               <div class="fl case_li_oiuuy">
+						                                 <img style="cursor:pointer;" ng-src="{{z.activity_first_face}}" data-href="/activity/16889{{z.id}}16889.httl" data-open="1">
+						                               </div> 
+						                              <div class="ov pl20">
+						                                 <p class="dian fz18" style="width:97%;cursor:pointer;" data-href="/activity/16889{{z.id}}16889.httl" data-open="1"><strong ng-bind="z.activity_title"></strong></p>
+						                                  <p class="zc  mt20">
+						                                     <label class="f_i time_icon"></label>
+						                                      <span ng-bind="z.activity_time"></span>
+						                                  </p>
+						                                  
+						                                    <p class="zc mt5">
+						                                     <label class="f_i map_icon_list"></label>
+						                                  <span ng-if="z.type==10" ng-bind="z.activity_address"></span>
+						                                  <span ng-if="z.type!=10" ng-bind="z.city_name+z.activity_address"></span>
+						                                  </p>
+						                                  
+						                                  
+						                                  
+						                                  <p class="zc  Organizer_po mt5">
+						                                       <img ng-src="{{z.sponsor_image_url}}">
+						                                
+						                                         <span class="green_new mr5" ng-bind="z.sponsor_name"></span>主办
+						                                          <span style="padding:2px 10px;" class="yj4  cf fr green_new" ng-if="z.is_free==0">免费</span>
+						                                          <span style="padding:2px 10px;color:#fe4e58"  class="yj4 cf fr" ng-if="z.is_free!=0">￥{{z.activity_money}}&nbsp;起</span>
+						                                  </p>
+						                                 <p class="mt15">
+						                                     <span class="green_new mr5" ng-bind="z.browse_count"></span>浏览
+						                                     <span class="ml20 green_new mr5" ng-bind="z.person_count"></span>参与
+						                                  </p>
+						                                  
+						                               <a class="btn btn-primary act_sub_poiu act_sub_poiu_o" data-href="/support/12282{{z.support_id}}12282.httl" ng-if="z.support_id!=null">我要赞助</a>
+						                               <a style="background:#a9a9a9" class="btn btn-primary act_sub_poiu act_sub_poiu_o disable_href"    ng-if="z.support_id==null">我要赞助</a>
+						                              <a class="btn btn-primary act_sub_poiu" ng-href="/activity/12282{{z.id}}12282.httl">我要报名</a>
+						                              
+						                              </div>
+						                              <p class="qc"></p>
+						                              <div style="border-top: 1px solid #f1f1f1; margin-top: 10px;padding-top:5px;">
+						                                 <p class="d_inline cen fz16" style="width:32%;line-height:30px;color:#a9a9a9">
+						                                    目标金额 {{z.target_money}}
+						                                 </p>
+						                                 <p class="d_inline cen fz16" style="width:33%;line-height:30px;color:#a9a9a9">
+						                                  已筹金额{{z.now_money}}
+						                                 </p>
+						                                 <p class="d_inline cen fz16" style="width:33%;line-height:30px;color:#a9a9a9">
+						                                  项目进度 {{z.schedule}}
+						                                 </p>
+						                               </div>
+            								</li>
+		   			 	        <!--  <li class="yj4   bgff ov pt10 pl5 mb10" style="border:1px #e0e0e0 solid;" ng-repeat="z in perList">
 		   			 	           <div class="pr" style="border-bottom:1px #e0e0e0 solid; ">
 		   			 	              <div class="fl case_li_oiuuy">
 				                         <img style="cursor:pointer;" data-href="/activity/44853{{z.id}}44853.httl" ng-src="{{z.activity_first_face}}"  >
@@ -128,59 +177,60 @@
 				                   		 进度 {{z.schedule}}
 				                     </p>
 				                   </div>
-		                   		  </li>
+		                   		  </li> -->
    			 	     		</ul>
-   			 	     		<div class="person_overdate mt10" >
-   			 	     		    <ul class="person_overdate_list"  style="display:none">
-   			 	     		    	      <li class="yj4   bgff ov pt10 pl5 mb10" style="border:1px #e0e0e0 solid;" ng-repeat="d in perOver">
-						   			 	           <div class="pr" style="border-bottom:1px #e0e0e0 solid; ">
-						   			 	              <div class="fl case_li_oiuuy">
-								                         <img style="cursor:pointer;" data-href="/activity/44853{{d.id}}44853.httl" ng-src="{{d.activity_first_face}}"  >
-								                       </div> 
-								                      <div class="ov pl20">
-								                         <p class="dian ls fz18 dian" data-href="/activity/44853{{d.id}}44853.httl" style="width:83%;cursor:pointer;" ><strong  class="zq" ng-bind="d.activity_title"></strong></p>
-								                          <p class="zc  mt30">
-								                             <label class="f_i time_icon"></label>
-								                              <span   ng-bind="d.activity_time"></span>
-								                          </p>
-								                          
-								                            <p class="zc mt10">
-								                             <label class="f_i map_icon_list"></label>
-								                             <span   ng-bind="d.activity_address"></span>
-								                          </p>
-								                          
-								                          
-								                          
-								                          <p class="zc  Organizer_po mt10">
-								                               <img ng-src="{{d.sponsor_image_url}}">
-								                        
-								                                 <span class="green_new" ng-bind="d.sponsor_name"></span>主办
-								                                  <!-- ngIf: list.is_free==0 --><span class="yj4 bqi_pooiu_w green_bg1_f" >免费</span><!-- end ngIf: list.is_free==0 -->
-								                                    <!-- ngIf: list.is_free!=0 -->
-								                          </p>
-								                         <p class="mt20">
-								                             <span class="hs" ng-bind="d.browse_count"></span>浏览
-								                             <span class="ml20 hs" ng-bind="d.person_count"></span>参与
-								                          </p>
-								                          
-						                                 <a style="background:#a9a9a9" class="btn btn-primary act_sub_poiu act_sub_poiu_o" ng-if="d.support_id==null">我要赞助</a>
-						                                  <a class="btn btn-primary act_sub_poiu act_sub_poiu_o" data-href="/support/12282{{d.support_id}}12282.httl" ng-if="d.support_id!=null">我要赞助</a>
-								                      <a class="btn btn-primary act_sub_poiu" data-href="/activity/44853{{d.id}}44853.httl">我要报名</a>
-								                      </div>
-						                      			<p class="qc"></p>
-						   			 	           </div>
-								                   <div>
-								                     <p class="d_inline cen fz16" style="width:32%;line-height:30px;color:#a9a9a9">
-								                   		  目标金额 {{d.target_money}}
-								                     </p>
-								                     <p class="d_inline cen fz16" style="width:33%;line-height:30px;color:#a9a9a9">
-								                   		已筹金额{{d.now_money}}
-								                     </p>
-								                     <p class="d_inline cen fz16" style="width:33%;line-height:30px;color:#a9a9a9">
-								                   		 进度 {{d.schedule}}
-								                     </p>
-								                   </div>
-		                   		          </li>
+   			 	     		<div class="person_overdate" >
+   			 	     		    <ul class="person_activity_list"  style="display:none">  			 	     		    	      
+		                   		          <li class="yj4 pr" ng-repeat="d in perOver" >
+						                               <div class="fl case_li_oiuuy">
+						                                 <img style="cursor:pointer;" ng-src="{{d.activity_first_face}}" data-href="/activity/16889{{d.id}}16889.httl" data-open="1">
+						                               </div> 
+						                              <div class="ov pl20">
+						                                 <p class="dian fz18" style="width:97%;cursor:pointer;" data-href="/activity/16889{{d.id}}16889.httl" data-open="1"><strong ng-bind="d.activity_title"></strong></p>
+						                                  <p class="zc  mt20">
+						                                     <label class="f_i time_icon"></label>
+						                                      <span ng-bind="d.activity_time"></span>
+						                                  </p>
+						                                  
+						                                    <p class="zc mt5">
+						                                     <label class="f_i map_icon_list"></label>
+						                                  <span ng-if="z.type==10" ng-bind="d.activity_address"></span>
+						                                  <span ng-if="z.type!=10" ng-bind="d.city_name+d.activity_address"></span>
+						                                  </p>
+						                                  
+						                                  
+						                                  
+						                                  <p class="zc  Organizer_po mt5">
+						                                       <img ng-src="{{d.sponsor_image_url}}">
+						                                
+						                                         <span class="green_new mr5" ng-bind="d.sponsor_name"></span>主办
+						                                          <span style="padding:2px 10px;" class="yj4  cf fr green_new" ng-if="d.is_free==0">免费</span>
+						                                          <span style="padding:2px 10px;color:#fe4e58"  class="yj4 cf fr" ng-if="d.is_free!=0">￥{{z.activity_money}}&nbsp;起</span>
+						                                  </p>
+						                                 <p class="mt15">
+						                                     <span class="green_new mr5" ng-bind="d.browse_count"></span>浏览
+						                                     <span class="ml20 green_new mr5" ng-bind="d.person_count"></span>参与
+						                                  </p>
+						                                  
+						                               <a class="btn btn-primary act_sub_poiu act_sub_poiu_o" data-href="/support/12282{{d.support_id}}12282.httl" ng-if="d.support_id!=null">我要赞助</a>
+						                               <a style="background:#a9a9a9" class="btn btn-primary act_sub_poiu act_sub_poiu_o disable_href"    ng-if="d.support_id==null">我要赞助</a>
+						                              <a class="btn btn-primary act_sub_poiu" ng-href="/activity/12282{{d.id}}12282.httl">我要报名</a>
+						                              
+						                              </div>
+						                              <p class="qc"></p>
+						                              <div style="border-top: 1px solid #f1f1f1; margin-top: 10px;padding-top:5px;">
+						                                 <p class="d_inline cen fz16" style="width:32%;line-height:30px;color:#a9a9a9">
+						                                    目标金额 {{d.target_money}}
+						                                 </p>
+						                                 <p class="d_inline cen fz16" style="width:33%;line-height:30px;color:#a9a9a9">
+						                                  已筹金额{{d.now_money}}
+						                                 </p>
+						                                 <p class="d_inline cen fz16" style="width:33%;line-height:30px;color:#a9a9a9">
+						                                  项目进度 {{d.schedule}}
+						                                 </p>
+						                               </div>
+            								</li>
+		                   		          
    			 	     		    </ul>
    			 	     			<p class="qc bgff pt10 pm10 cen paging_list mt10 check_overdate" ng-click="check_overdate()">
 									<a class="ls clkh_po">
@@ -193,7 +243,7 @@
 		   			 	   
    			 	     <!--主办办方发起的活动  -->
    			 	     <!--留言 -->
-   			 	       <div class="mt10 comment_po bgff yj4 person_host_message" style="display:none">
+   			 	       <div class="comment_po bgff yj4 person_host_message" style="display:none">
                     <p class="fz20 zq mt20">您有任何问题，在这里提问！</p>
                      <textarea class="mt10" placeholder="有好多心里话，想对主办方说..." id="meeage_p" maxlength="200"></textarea>
                     <p class="tr">

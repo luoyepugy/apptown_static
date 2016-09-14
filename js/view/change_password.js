@@ -5,7 +5,7 @@ angular.module('change_password', [ "directive_mml","activity_servrt"])
 .controller('change_passwordController',["$scope","activity_data",function($scope,activity_data) {
 	  var nex_p=1;//进度
 	  var message_identification=false;//验证手机是否正确
-      var icon_href=["/img/newimg/img/find-pass-progress1.jpg","/img/newimg/img/find-pass-progress2.jpg","/img/newimg/img/find-pass-progress3.jpg","/img/newimg/img/find-pass-progress4.jpg"];//进度图片
+      var icon_href=["/img/newimg/img/find-pass-progress1.png","/img/newimg/img/find-pass-progress2.png","/img/newimg/img/find-pass-progress3.png","/img/newimg/img/find-pass-progress4.png"];//进度图片
       var bubbling=true ;//阻止点击事件冒泡
 	  $scope.user_form={"next_button":function(num,evt){//下一步按钮触发事件
 		   nex_p=num
@@ -52,7 +52,7 @@ angular.module('change_password', [ "directive_mml","activity_servrt"])
       					  $scope.ipone_zh=$("#user_phone_i").val();//获取用户输入的手机号码 
       					  $(".form_poiu_q_m").removeClass("act_po")
       					  $(".form_poiu_q_m").eq(1).addClass("act_po")
-      					  $(".poiu_icon").attr("src","/img/newimg/img/find-pass-progress2.jpg")
+      					  $(".poiu_icon").attr("src","/img/newimg/img/find-pass-progress2.png")
       				}, function error() {
       					console.log("验证失败")
       					 bubbling=true;
@@ -85,7 +85,7 @@ angular.module('change_password', [ "directive_mml","activity_servrt"])
     					  $(evt).text("加载中").attr("disabled","disabled")
     					  $(".form_poiu_q_m").removeClass("act_po")
         					  $(".form_poiu_q_m").eq(2).addClass("act_po")
-        					  		  $(".poiu_icon").attr("src","/img/newimg/img/find-pass-progress3.jpg")
+        					  		  $(".poiu_icon").attr("src","/img/newimg/img/find-pass-progress3.png")
     				}, function error() {
     					console.log("短息验证失败")
     			});
@@ -121,7 +121,7 @@ angular.module('change_password', [ "directive_mml","activity_servrt"])
     					  }
     					  $(".form_poiu_q_m").removeClass("act_po")
     					  $(".form_poiu_q_m").eq(3).addClass("act_po")
-    					  		  $(".poiu_icon").attr("src","/img/newimg/img/find-pass-progress4.jpg")
+    					  		  $(".poiu_icon").attr("src","/img/newimg/img/find-pass-progress4.png")
     					  $(evt).text("加载中").attr("disabled","disabled")
     					  var hpo_o=10
     					  setInterval(function(){
@@ -185,3 +185,4 @@ angular.module('change_password', [ "directive_mml","activity_servrt"])
 	
 	
 }])
+$('.j-navCity').addClass('none').prev('a').removeClass('none'); 

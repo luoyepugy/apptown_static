@@ -38,7 +38,7 @@
                </p>
                 
                <p class="mt20">
-                 <img src="/img/newimg/img/find-pass-progress1.jpg" class="poiu_icon"> 
+                 <img src="/img/newimg/img/find-pass-progress1.png" class="poiu_icon"> 
                </p>
                
                <div class="mt60 form_lotuy_a">

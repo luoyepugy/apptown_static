@@ -608,6 +608,18 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
 	                    var end_tme=$("#end_time_a").val();//结束时间
 			        	this.data_up.startDate=this.gettime(st_tme+" 00:00");//初始化开始时间
 			            this.data_up.endDate=this.gettime(end_tme+" 23:59");//初始化结束时间
+                        if(isNaN(this.data_up.startDate)){
+                        	alert("请选择查询账户历史记录的开始时间");
+                        	return;                     
+                        }
+                        if(isNaN(this.data_up.endDate)){
+                        	alert("请选择查询账户历史记录的结束时间");
+                        	return;                     
+                        }
+                        if(this.data_up.startDate>this.data_up.endDate){
+                        	alert("查询账户历史记录的开始时间不能大于结束时间");
+                        	return;                     
+                        }
 			            this.data_up.pageSize=10;
 			            if(page_type==0){
 			            	$scope.judgment=true;

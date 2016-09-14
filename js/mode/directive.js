@@ -273,8 +273,14 @@
             	 /*阻止触发时间冒泡*/
                  e.preventDefault();
                  e.stopPropagation();
-                 var this_href=$(this).attr("data-href")
-                 window.location.href=this_href;
+                 var this_href=$(this).attr("data-href"),
+                 op=$(this).attr("data-open");  //传入data-open:1则会打开一个新的窗口
+                 if(op=="1"){  
+                	window.open(this_href);
+                 }else{
+                	 window.location.href=this_href
+                 }
+                
              });
          }
      };
@@ -301,6 +307,7 @@
      }
  }).filter('to_trusted', ['$sce', function ($sce) {  
 	   return function (text) {  //输入HTml 
+	
 	       return $sce.trustAsHtml(text); 
 	   }
 }]).filter("getDateDiff",function(){//多长时间前
@@ -375,8 +382,41 @@
              result="已结束";
          return result;
    }
-})
- 
+}).factory('MyData', function($websocket) {
+    // Open a WebSocket connection
+    var dataStream = $websocket('ws://172.16.2.104/webSocketServer');
+    var collection = [],q_random=Math.floor(Math.random()*99999+1) ;
+    var hjkh=false;
+    dataStream.onMessage(function(message) {
+    	/*collection.push(JSON.parse(message.data));*/
+    	console.info(message.data);
+    	var iiuyh_p=JSON.parse(message.data)
+    	if(iiuyh_p!=""&&hjkh){
+    		$(".sogn_success").addClass("show")
+    		setTimeout(function(){
+    				$(".sogn_success").removeClass("show")
+    		},6000)	
+    		var a=document.getElementById("player_p")
+    		a.play()//播放
+    	}
+    	hjkh=true
+    					
+    	$(iiuyh_p).map(function(){
+    		collection.push(this)
+    	}) 
+    	$(".yuyt_poiu").text(collection.length)
+    });
+    var methods = {
+      act_id:0,		
+      collection: collection,
+      get: function() {
+        dataStream.send(this.act_id+"#"+q_random);
+      }
+    };
+    
+     return methods;
+  })
+  
    /* 图片上传*/
    function updata_icon(ja_url,data_icon,uio_o){
 	   $("#iconFile").off("change").on("change",function(x){

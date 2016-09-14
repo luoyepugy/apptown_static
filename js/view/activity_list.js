@@ -9,6 +9,7 @@ angular.module('activity_list', [ "directive_mml","activity_servrt"])
      $scope.activity_hot=[];//推荐活动 
      $scope.act_results;//活动总数
      $scope.page_row=[];
+     $("#seach_type").attr("data-type",0);
      for(var i=1;i<10;i++){
     	 $scope.page_row.push(i);
      }
@@ -70,13 +71,25 @@ angular.module('activity_list', [ "directive_mml","activity_servrt"])
     	  $scope.list_fun.demand($scope.act_list_sarg);
       },"act_check":function(chk){/*是否免费    1.免费  2收费*/ 
     	  var is_po=1;
-    	  chk? is_po=1:is_po=2;
+    	  chk? is_po=1:is_po="";
     	  $scope.act_list_sarg.pageIndex=1;//初始化页码
     	  $scope.act_list_sarg.is_free=is_po;//是否免费
     	  $scope.list_fun.demand($scope.act_list_sarg);
     	  
       },"demand":function(sarg){
-    	/* 查询活动列表控制器*/
+    	/* 查询活动列表控制器*/    	  
+    	  try{
+    	    	 var act_s=window.location.search;//获取问号后面的值
+    	         var mpv_a=act_s.split("?")[1].split("=")[0],text_ac=act_s.split("?")[1].split("=")[1];
+    	         if(text_ac!=""){
+    	        	   text_ac=decodeURI(text_ac);//处理乱码 
+    	        	   $scope.act_list_sarg.name=text_ac;
+    	        	   $("#suosuo_p").val($scope.act_list_sarg.name);
+    	         }
+    	     }catch(e){
+    	    	 console.log("搜索框没有内容")
+    	     }
+    	     
     	 activity_data.query_activity_list(sarg.pageIndex, sarg.pageSize, sarg.activity_type, sarg.industry_id, sarg.startDate,sarg.endDate,sarg.is_free, sarg.name,sarg.city,sarg.sort ).then(
    				function success(data) {
    					if(data.code!=0){
@@ -121,6 +134,7 @@ angular.module('activity_list', [ "directive_mml","activity_servrt"])
          if(text_ac!=""){
         	   text_ac=decodeURI(text_ac);//处理乱码 
         	   $scope.act_list_sarg.name=text_ac;
+        	   $("#suosuo_p").val($scope.act_list_sarg.name);
          }
      }catch(e){
     	 console.log("搜索框没有内容")

@@ -463,7 +463,7 @@ angular.module('activity_servrt', []).
 	    this.query_person_my_sponsor = function(pageIndex,user_id,status,timeStatus,name,pageSize){ 
 	    	pageSize=pageSize==undefined?"":pageSize
             var y_list = $q.defer();
-           $http.get('/support/support_list?pageIndex='+pageIndex+"&user_id="+user_id+"&status="+status+"&timeStatus="+timeStatus+"&pageSize="+pageSize).success(function(data){
+           $http.get('/support/support_list?pageIndex='+pageIndex+"&user_id="+user_id+"&status="+status+"&timeStatus="+timeStatus+"&pageSize="+pageSize+"&sort=1").success(function(data){
         	   y_list.resolve(data);
            }).error(function () {
         	   y_list.reject();

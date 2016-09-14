@@ -37,12 +37,40 @@ angular.module('index_date', [ "directive_mml","activity_servrt"])
 	        				console.log(data.msg);
 							return;
 	        			}else{
-	        				$scope.indexData = new getStatisticsData(data.info);
-	        				console.info($scope.indexData);
-						}
+	        				   $scope.indexData = new getStatisticsData(data.info);
+	        				   console.info($scope.indexData);
+	        				   $('.datanum').each(function(i,e){
+	        					var o = $(this);
+	        		            var t = 10;
+	        		            var changenum = "" ;
+	        		            if(o.attr('data-param')=='sponsor_sum'){
+	        		            	changenum = $scope.indexData.sponsor_sum+"" ;
+	        		            }
+	        		            if(o.attr('data-param')=='user_sum'){
+	        		            	changenum = $scope.indexData.user_sum+"" ;
+	        		            }
+	        		            if(o.attr('data-param')=='activity_sum'){
+	        		            	changenum = $scope.indexData.activity_sum+"" ;
+	        		            }
+	        		            console.info(changenum);
+	        		            var val = parseInt(changenum.replace(/,/g,""))/t;
+	        		            console.info("val="+val);
+	        		            var setIntervalId = window.setInterval(function(){
+	        		              if(t--){
+	        		                var v = parseInt(val*(10-t)).toString();
+	        		                var varr = v.split("");
+	        		                for (var i = varr.length-4; i >= 0; i -= 3) varr[i] += ",";
+	        		                o.text(varr.join(""));
+	        		              }
+	        		              else{clearInterval(setIntervalId);}
+	        		            },50);
+	        		           });
+	        				}
 	        		}, function error() {
 						console.log("获取首页数据统计失败");
 	        });
+	        
+	        
 	        
 	        /*热门活动*/
 	        activity_data.getActivityHot().then(
@@ -74,7 +102,7 @@ angular.module('index_date', [ "directive_mml","activity_servrt"])
 	        $scope.activity_list=[];
 	        $scope.load_l=false;//判断热门活动是否还有数据
 	        $scope.query_activity=function(data){
-	        	 activity_data.my_activity_list(data).then(
+	        	 activity_data.my_activity_list(data).then( 
 	     	    		function success(data){
 	     	    			if(data.code!=0){
 	     	    				alert(data.msg);
@@ -84,9 +112,11 @@ angular.module('index_date', [ "directive_mml","activity_servrt"])
 	     	    				 var hoti=new preferential(this)
 	     						 $scope.activity_list.push(hoti);
 	     	    			})
-	     	    		
+	     	    	
 	     	    			if(data.rows.length>=10){
 	     	    				 $scope.load_l=true;//判断热门活动是否还有数据
+	     	    			}else{
+	     	    				 $scope.load_l=false;//判断热门活动是否还有数据
 	     	    			}
 	     	    			$(".sys-loading").removeClass("show_a")
 	     	    		}, function error() {

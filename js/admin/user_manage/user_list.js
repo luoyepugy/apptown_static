@@ -25,13 +25,15 @@ $(document).ready(function(){
 		        	
 		        }
 	        },
-	        {field:'show',title:'热门主办方',width:200,align:'center',formatter:function(value,rowData,rowIndex){
+	        {field:'activity_count',title:'发起活动数',width:150,align:'center'},
+	        {field:'show',title:'热门主办方',width:50,align:'center',formatter:function(value,rowData,rowIndex){
 	        	var str = "";
 	        	if(value == 1){
 	        		str = 'checked="checked"';
 	        	}
 	        	return '<input class="banner_crowdfund" '+str+' name="play" type="checkbox" data-type="5" data-id="'+rowData.user_id+'" onclick="onLoadDataGid(this)" />';
 	        }}
+	        
 	    ]],
 	    loadMsg:"数据加载中请稍后!",
 	    fitColumns:true,
@@ -252,7 +254,8 @@ function queryUserByParam(){
 	$('#user_list_tab').datagrid('load',{
 		name: $("#input-sel-data").val().trim(),
 		account:$("#input-sel-account").val().trim(),
-		phone:$("#input-sel-phone").val().trim()	
+		phone:$("#input-sel-phone").val().trim(),
+		is_sponsor:$("#is_sponsor").val().trim()
 	});
 }
 

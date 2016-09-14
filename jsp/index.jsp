@@ -22,7 +22,7 @@
 <title>e场景活动</title>
 <script src="http://apptown.cn/js/common/uaredirect.js"></script>
 <script>
-	uaredirect("http://m.apptown.cn/index.html#/index");//手机打开跳转到手机页面
+uaredirect("http://m.apptown.cn/index.html#/index");//手机打开跳转到手机页面
 </script>
 </head>
 <body ng-controller="indexController">
@@ -31,7 +31,7 @@
     <div class="bd">
         <ul class="dage_p">
             <li class="hero" ng-repeat="bn in banner_index"  finish  >
-               <a ng-href="/activity/{{bn.id}}.httl">
+               <a ng-href="/activity/{{bn.id}}.httl" target="_blank">
                         <img class="thumb" ng-src="{{bn.banner_url[0]}}" />
                         </a>
                 </li> 
@@ -53,41 +53,40 @@
        <div  class="index_data">
         <ul>
 	        <li class="index_data_text" >赞助金额</li>
-	        <li class="index_data_number"><p ng-bind="indexData.sponsor_sum | number : 0"></p></li>
+	        <li class="index_data_number"><span class="datanum j-test"  data-param="sponsor_sum"></span></li>
         </ul>
         <ul>
 	        <li class="index_data_text">会员</li>
-	        <li class="index_data_number"><p ng-bind="indexData.user_sum | number : 0 "></p></li>
+	        <li class="index_data_number"><span class="datanum" data-param="user_sum" ></span></li>
         </ul>
         <ul>
 	        <li class="index_data_text">活动数</li>
-	        <li class="index_data_number"><p ng-bind="indexData.activity_sum"></p></li>
+	        <li class="index_data_number"><span class="datanum" data-param="activity_sum"></span></li>
         </ul>
        </div>
        <div style="margin-top: 60px;"></div>
        <p class="fz20 zq mt30 pr pl20" style="margin-top: 20px"><span class="index_bar1"></span>推荐活动</p>
-        <p class="cen logo_ad"><img src="/img/img_icon.gif"></p>
+        <p class="cen logo_ad"><img src="/img/img_icon.gif"></p> 
        <div class="mt10 case_poi_oi_index recommend_ac"> 
                    
-            <div class="case_stat bgff"  ng-repeat="hot in activity_hot"  data-href="/activity/{{hot.j_id}}.httl">
-               <p class="case_img_a"><img ng-src="{{hot.activity_first_face}}"></p>
+            <div class="case_stat bgff"  ng-repeat="hot in activity_hot"  >
+               <p class="case_img_a" data-href="/activity/{{hot.j_id}}.httl" data-open="1"><img ng-src="{{hot.activity_first_face}}"></p>
                 <div class="pd">
-                        <p class=" fz14 dianer mt10 case_title" ng-bind="hot.activity_title"></p>
+                        <p class=" fz14 dianer mt10 case_title" ng-bind="hot.activity_title" data-href="/activity/{{hot.j_id}}.httl" data-open="1"></p>
                         <p class="fz12 zc mt10">时间：<span ng-bind="hot.activity_time"></span></p>    
                         <p class="fz12 zc ">
-                       	 	 <span class="fl f_d dian uytr_sr" ng-bind="'地点:'+hot.activity_address"></span>
-                       		 <span class="fr" ng-bind="hot.activity_number+'人'"></span> 
+                       	 	<span class="fl f_d dian uytr_sr" ng-bind="hot.activity_address"></span>
                         </p>  
                         <p class="qc"></p>
-                        
                         <p class="dian zc fz12 case_bottom mt10 qc">
-                         <img ng-src="{{hot.sponsorImageUrl}}" class=" case_user_icon">
-                             <span ng-bind="hot.sponsorName"></span>
+                            <img ng-src="{{hot.sponsorImageUrl}}" class="case_user_icon mr5">
+                            <span ng-bind="hot.sponsorName"></span>
+                            <span class="fr">{{hot.browse_count}}<i style="margin-left: 5px;font-style:normal;">浏览</i></span> 
                         </p>
                        <div class="sp_jd_case_a fg_index_case_act">
-         		        <div class="green_new tl"><p >目标金额</p><p  ng-bind="hot.target_money | number : 0"></p></div>
-         		        <div class="green_new"><p>已赞助</p><span class="money_a" ng-bind="hot.now_money | number : 0 "></span></div>
-         		        <div class="green_new tr" style="border:0"><p>进度</p><p class="sp_list_end"  ng-bind="hot.schedule"></p></div> 
+         		        <div class="green_new"><p >目标金额</p><p  ng-bind="hot.target_money | number : 0"></p></div>
+         		        <div class="green_new"><p>已筹金额</p><span class="money_a" ng-bind="hot.now_money | number : 0 "></span></div>
+         		        <div class="green_new" style="border:0"><p>项目进度</p><p class="sp_list_end"  ng-bind="hot.schedule"></p></div> 
          		     </div> 
                          
                 </div>
@@ -97,31 +96,31 @@
            
         </div>
     
-        <p class="mt5 qc"><img src="/img/index_white_bar.png"></p>
-        
+        <p class="mt5 qc"><a ng-href="/jsp/white_bar.jsp"><img src="/img/index_white_bar.png"></a></p>
+         
         
          <p class="fz20 zq mt30 pr pl20" style="margin-top: 20px"><span class="index_bar1"></span>热门活动</p>
          <div class="mt10 case_poi_oi_index recommend_ac">
                    
-            <div class="case_stat bgff"  ng-repeat="hot in activity_list"  data-href="/activity/{{hot.j_id}}.httl">
-               <p class="case_img_a"><img ng-src="{{hot.activity_first_face}}"></p>
+            <div class="case_stat bgff"  ng-repeat="hot in activity_list"  >
+               <p class="case_img_a" data-href="/activity/{{hot.j_id}}.httl" data-open="1"><img ng-src="{{hot.activity_first_face}}"></p>
                 <div class="pd">
-                        <p class=" fz14 dianer mt10 case_title" ng-bind="hot.activity_title"></p>
+                        <p class=" fz14 dianer mt10 case_title" data-href="/activity/{{hot.j_id}}.httl" data-open="1" ng-bind="hot.activity_title"></p>
                         <p class="fz12 zc mt10">时间：<span ng-bind="hot.activity_time"></span></p>    
                         <p class="fz12 zc ">
-                       	 	 <span class="fl f_d dian uytr_sr" ng-bind="'地点:'+hot.activity_address"></span>
-                       		 <span class="fr" ng-bind="hot.activity_number+'人'"></span> 
+                       	 	 <span class="fl f_d dian uytr_sr" ng-bind="hot.activity_address"></span>
+                       		 <span class="fr" ng-bind="hot.browse_count+'浏览'"></span> 
                         </p>  
                         <p class="qc"></p>
                          
                         <p class="dian zc fz12 case_bottom mt10 qc">
-                         <img ng-src="{{hot.sponsorImageUrl}}" class=" case_user_icon">
+                             <img ng-src="{{hot.sponsorImageUrl}}" class=" case_user_icon mr5">
                              <span ng-bind="hot.sponsorName"></span>
                         </p>
                        <div class="sp_jd_case_a fg_index_case_act">
-         		        <div class="green_new tl"><p >目标金额</p><p  ng-bind="hot.target_money | number : 0"></p></div>
-         		        <div class="green_new"><p>已赞助</p><span class="money_a" ng-bind="hot.now_money | number : 0 "></span></div>
-         		        <div class="green_new tr" style="border:0"><p>进度</p><p class="sp_list_end"  ng-bind="hot.schedule"></p></div> 
+         		        <div class="green_new"><p >目标金额</p><p  ng-bind="hot.target_money | number : 0"></p></div>
+         		        <div class="green_new"><p>已筹金额</p><span class="money_a" ng-bind="hot.now_money | number : 0 "></span></div>
+         		        <div class="green_new" style="border:0"><p>项目进度</p><p class="sp_list_end"  ng-bind="hot.schedule"></p></div> 
          		     </div> 
                          
                 </div>
@@ -135,6 +134,7 @@
 			查看更多...
 		</a>
 	</p>
+	   <p class="qc"></p>
           <p class="fz20 zq mt20 pr pl20"><span class="index_bar1"></span>活跃主办方</p>
             <div class="mt10 case_poi_oi_index dynamic_pou"  >
         
@@ -144,13 +144,13 @@
                         <img ng-src="{{uhot.user_icon}}">
                     </p>
                     
-                    <div class=" fz14 poiuuyt_sff_q">
+                    <div class=" fz16 poiuuyt_sff_q">
                         <p class="dian zq" ng-bind="uhot.user_name"></p>
-                        <p class="dianer zc fdg_poiuyt fz12" ng-bind="uhot.user_sign"></p>
+                        <p class="dianer fdg_poiuyt fz12" style="color:#878787;"  ng-bind="uhot.user_sign"></p>
                   
                         <p>
-                            <span class="fl"><span class="ls" ng-bind="uhot.activity_sum"></span>个活动</span> 
-                            <span class="fr"><span class="ls" ng-bind="uhot.attenton_sum"></span>个关注</span>
+                            <span class="fl">活动 <span class="ls">{{uhot.activity_sum}}</span> 场</span> 
+                            <span class="fr">参与 <span class="ls">{{uhot.attenton_sum}}</span> 人</span>
                         </p>
                         <p class="qc"> </p>
                     </div>
@@ -158,9 +158,19 @@
                 </div> 
                 
              </div>
+               
     </div>
     
-    
+    <div class="bgff mt20 partner_bottom">
+      <p class="fz20 zq mt20 pr wd" style="margin-bottom: 5px;"><span class="index_bar1"></span><span class="ml20">合作伙伴</span></p>
+        <div class="wd ov">
+             <img src="/img/cooperator_a.gif" class="cooperator_img">
+              <img src="/img/cooperator_b.gif" class="cooperator_img">
+               <img src="/img/cooperator_c.gif" class="cooperator_img">
+                <img src="/img/cooperator_d.gif" class="cooperator_img">
+       </div>
+    </div> 
+
       <%@include file="/jsp/common/mml_bottom.jsp"%>
     <script src="/js/common/jquery.SuperSlide.2.1.1.js"></script>
     <script src="/js/view/index.js"></script>

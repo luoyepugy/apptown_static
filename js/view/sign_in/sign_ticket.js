@@ -1,66 +1,33 @@
 /**
  * 签到墙视图
  */
-angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router"])
-.controller('sign_ticketxController',["$scope","activity_data",function($scope,activity_data) {
+angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router","ngWebSocket"])
+.controller('sign_ticketxController',["$scope","activity_data","MyData",function($scope,activity_data,MyData) {
 	var parameter={}
 	parameter.activity_id=$("#activityId").val();
-	parameter.pageIndex=1
+	parameter.pageIndex=1 
 	parameter.pageSize=500
 	parameter.code_use=2;//1未签到 2已签到
 	parameter.sort=1;//排序  2根据签到时间倒序排
-	var arr_leg,ne_p=1  
-    $(".title_poiu").text(title_p)
+	var arr_leg,ne_p=1,q_random=Math.floor(Math.random()*99999+1) 
+    $(".title_poiu").text(title_p);
 	$scope.sign_f={
-			"sign_data":[],
+			"sign_data":[], 
 			"sopouy_le":0,
 			"sign_function":function(data_p){
-				activity_data.consumption_list_p(data_p).then(
-						function success(data) {
-							if(data.code!=0){
-								console.log(data.msg)
-								return;
-							}
-							if(data.rows.length==$scope.sign_f.sopouy_le&&data.rows.length!=0){
-								return
-							}
-							if(data.rows.length!=$scope.sign_f.sopouy_le&&data.rows.length!=0&&ne_p!=1){
-								$(".sogn_success").addClass("show")
-								setTimeout(function(){
-										$(".sogn_success").removeClass("show")
-								},6000)
-								var a=document.getElementById("player_p");
-							      a.play()//播放
-							}
-							ne_p++
-							var hg_p=[],th_o=1;
-							$scope.sign_f.sign_data=[]
-							
-							$(data.rows).map(function(x){
-								var sig_y=new consumption_list(this);
-								$scope.sign_f.sign_data.push(sig_y)
-								arr_leg=$scope.sign_f.sign_data.length;
-								$scope.sign_f.sopouy_le=x+1
-							})
-							$(".yuyt_poiu").text($scope.sign_f.sopouy_le)
-							   $(".yuyt_poiu_a").text("人签到")
-						}, function error() {
-							console.log("获取签到信息失败")
-				});
+				MyData.act_id=parameter.activity_id
+				$scope.MyData = MyData;  
+			    MyData.get() 
 			}
 	}
-
 	$scope.sign_f.sign_function(parameter);
-	 setInterval(function(){
-	    	 $scope.sign_f.sign_function(parameter)
-    },6000)
-    
 }])
 /*
  * 张晗
  * 广告屏控制器
  */
-.controller('signAdCtrl', ['$scope', 'activity_data', function($scope, activity_data) {
+.controller('signAdCtrl', ['$scope', 'activity_data',"$state", function($scope, activity_data,$state) {
+    $scope.vote_id_oio=vote_id==""?0:vote_id
 	$scope.adCarousel = {
 		'wrap': false,
 		// 'list': ['/img/bg_admin_imge.jpg', '/img/test.jpg', '/img/test.jpg', '/img/bg_admin_imge.jpg'],
@@ -96,7 +63,7 @@ angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router"])
 			var len = $scope.adCarousel.list.length - 1;
 			var active = $('.j-adCarousel .item.active');
 		    if(ev.type == 'swipeleft') {
-		    	if(active.index() == len) {
+		    	if(active.index() == len) { 
 		    		active.removeClass('active');
 		    		$('.j-adCarousel .item').eq(0).addClass('active');
 		    	} else {
@@ -114,12 +81,14 @@ angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router"])
 	    }
 	});
 	
-	
+	   $scope.stau=function(){
+	    	$state.go('polls_show', {'vote_id': $scope.vote_id_oio});	
+		}	
 }])
 .controller('polls_showController',["$scope","activity_data","$location","$stateParams",function($scope,activity_data,$location,$stateParams) {  
     var vote_id=$stateParams.vote_id;//投票ID
     var date={"id":vote_id}
-    $scope.polls_li="";
+    $scope.polls_li=""; 
     $scope.voteItemList_p=[]
     $scope.vote_p=function(date){
     	 activity_data.query_vote_p(date).then(
@@ -143,7 +112,7 @@ angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router"])
     }
     $scope.vote_p(date)
     
-        setInterval(function(){
+      setInterval(function(){
             $scope.vote_p(date)
     },50000)
  

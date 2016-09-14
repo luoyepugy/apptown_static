@@ -43,6 +43,12 @@
         style="width:100%;height:100px;padding:10px;background:#fafafa;"  
         data-options="iconCls:'icon-search',collapsible:true,border:false">  
     	<p style="display: block; line-height: 20px; height: 20px; text-align: center;">
+    		<span>是否认证:</span>
+    		<select id="is_sponsor">
+    			<option value="0" >全部</option>
+    			<option value="1" >未认证</option>
+    			<option value="2" >已认证</option>
+    		</select>
     		<span>用户昵称:</span>
     		<input id="input-sel-data" type="text"/>
     		<span>登录账号:</span>
