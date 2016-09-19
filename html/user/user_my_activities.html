@@ -63,6 +63,7 @@
                          <a data-href="/user/prepaid_phone_immediately?activityId={{ac.id_p}}">报名详情</a><br>
         <!--                  <a data-href="/jsp/user/download_qr_code.jsp">微信签到</a><br> -->
                          <a data-href="/activity/to_sponsor_activity?activityId={{ac.id_p}}">活动修改</a><br>
+                         <a ng-if="ac.tip.open==true"  data-href="/activity/activity_reward_detail?activityId={{ac.id_p}}">打赏名单</a>
                       </p>
                       
                        <p class="binhg_iiyt mt20" ng-if="act_fu.active_state==1&&ac.status==1">

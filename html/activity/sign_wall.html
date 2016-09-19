@@ -2,14 +2,14 @@
 <meta charset="UTF-8">
 
  <div class="rolling_p"  ng-controller="sign_ticketxController">
-             <div class="avatars_act"   ng-repeat="si in sign_f.sign_data">
+             <div class="avatars_act"   ng-repeat="si in MyData.collection">
                        <div class="yj ov pr">
-                          <img ng-src="{{si.user_icon}}">
+                          <img ng-src="{{si.icon}}">
                            <p class="user_nmae_hdq pt10 pm20">
                                <span class="dian fz16" ng-bind="si.name">
                                  
-                               </span>
-                             
+                               </span> 
+                              
                            </p>
                        </div> 
                  </div>
@@ -20,9 +20,9 @@
                     
                     <div class="avatars_act">
                        <div class="yj ov pr">
-                          <img ng-src="{{sign_f.sign_data[0].user_icon}}">
+                          <img ng-src="{{MyData.collection[0].icon}}">
                            <p class="user_nmae_hdq pt10 pm20">
-                               <span class="dian fz16" ng-bind="sign_f.sign_data[0].name">
+                               <span class="dian fz16" ng-bind="MyData.collection[0].name">
                                 
                                </span>
                              

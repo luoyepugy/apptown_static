@@ -384,7 +384,7 @@
    }
 }).factory('MyData', function($websocket) {
     // Open a WebSocket connection
-    var dataStream = $websocket('ws://172.16.2.104/webSocketServer');
+    var dataStream = $websocket('ws://www.apptown.cn/webSocketServer');
     var collection = [],q_random=Math.floor(Math.random()*99999+1) ;
     var hjkh=false;
     dataStream.onMessage(function(message) {
@@ -402,7 +402,7 @@
     	hjkh=true
     					
     	$(iiuyh_p).map(function(){
-    		collection.push(this)
+    		collection.unshift(this)
     	}) 
     	$(".yuyt_poiu").text(collection.length)
     });

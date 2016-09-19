@@ -53,7 +53,7 @@ uaredirect("http://m.apptown.cn/index.html#/index");//手机打开跳转到手�
        <div  class="index_data">
         <ul>
 	        <li class="index_data_text" >赞助金额</li>
-	        <li class="index_data_number"><span class="datanum j-test"  data-param="sponsor_sum"></span></li>
+	        <li class="index_data_number"><span class="datanum"  data-param="sponsor_sum"></span></li>
         </ul>
         <ul>
 	        <li class="index_data_text">会员</li>
@@ -75,13 +75,13 @@ uaredirect("http://m.apptown.cn/index.html#/index");//手机打开跳转到手�
                         <p class=" fz14 dianer mt10 case_title" ng-bind="hot.activity_title" data-href="/activity/{{hot.j_id}}.httl" data-open="1"></p>
                         <p class="fz12 zc mt10">时间：<span ng-bind="hot.activity_time"></span></p>    
                         <p class="fz12 zc ">
-                       	 	<span class="fl f_d dian uytr_sr" ng-bind="hot.activity_address"></span>
+                       	 	<span class="fl f_d dian uytr_sr" title="{{hot.activity_address}}" ng-bind="hot.activity_address"></span>
+                          <span class="fr red">{{hot.browse_count}}<i style="margin-left: 5px;font-style:normal;color:#575757;">浏览</i></span> 
                         </p>  
                         <p class="qc"></p>
                         <p class="dian zc fz12 case_bottom mt10 qc">
                             <img ng-src="{{hot.sponsorImageUrl}}" class="case_user_icon mr5">
-                            <span ng-bind="hot.sponsorName"></span>
-                            <span class="fr">{{hot.browse_count}}<i style="margin-left: 5px;font-style:normal;">浏览</i></span> 
+                            <span ng-bind="hot.sponsorName"></span>                         
                         </p>
                        <div class="sp_jd_case_a fg_index_case_act">
          		        <div class="green_new"><p >目标金额</p><p  ng-bind="hot.target_money | number : 0"></p></div>
@@ -108,8 +108,8 @@ uaredirect("http://m.apptown.cn/index.html#/index");//手机打开跳转到手�
                         <p class=" fz14 dianer mt10 case_title" data-href="/activity/{{hot.j_id}}.httl" data-open="1" ng-bind="hot.activity_title"></p>
                         <p class="fz12 zc mt10">时间：<span ng-bind="hot.activity_time"></span></p>    
                         <p class="fz12 zc ">
-                       	 	 <span class="fl f_d dian uytr_sr" ng-bind="hot.activity_address"></span>
-                       		 <span class="fr" ng-bind="hot.browse_count+'浏览'"></span> 
+                       	 	 <span class="fl f_d dian uytr_sr" title="{{hot.activity_address}}"  ng-bind="hot.activity_address"></span>
+                       		 <span class="fr red">{{hot.browse_count}}<i style="margin-left: 5px;font-style:normal;color:#575757;">浏览</i></span>
                         </p>  
                         <p class="qc"></p>
                          

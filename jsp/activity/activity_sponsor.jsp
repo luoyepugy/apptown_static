@@ -308,6 +308,19 @@
                      
                      <div class="display_show"></div>
              </li>
+             <li class="zq mt20 pr">
+                     <label class="f_d title_poi fl mt10">匿名打赏</label>
+                     <div class="ov map_poou_car">
+                          <p class="row_po_form">
+                              <i class="f_i radio_p_xz gx_xzm"></i>
+                              <span class="mr10">支持匿名打赏功能</span><span class="red">提示：</span>勾选后收到用户的现金打赏哦！
+                          </p>  
+                          <p class="row_po_form row_po_form_zdy mt10">
+                             <span >打赏提示语</span> 
+                             <input type="text" class="act_input_a ipue ml10 ipug"  value="活动不易，打赏一下组织者吧！">
+                         </p>
+                     </div>
+             </li>
         </ul>
        
     </div>
