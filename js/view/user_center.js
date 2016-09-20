@@ -2,7 +2,7 @@ $("#dataLoad").hide();
 /**
  * 个人中心
  */
-angular.module('user_center',["directive_mml",'tm.pagination',"activity_servrt","ui.router"])
+angular.module('user_center',["directive_mml",'tm.pagination',"activity_servrt","ui.router", "common", "request", "pagination"])
 .controller('user_centerController',["$scope","activity_data",function($scope,activity_data) {//帮助中心
 	try{
 		var user_left_a=$(".pull-left").offset().top;
@@ -282,8 +282,9 @@ $scope.act_fu={
 	   					}
 						$scope.act_my_p=[];
 						$(data.rows).map(function(){
-							var act_di=new query_activity_list(this)
-							$scope.act_my_p.push(act_di)
+							var act_di=new query_activity_list(this);
+							act_di.tip = this.tip;
+							$scope.act_my_p.push(act_di);
 						})
 					/*	判断有没有数据*/
 						if($scope.act_my_p.length==0){
@@ -314,8 +315,9 @@ $scope.act_fu={
 	   					}
 						$scope.act_my_p=[];
 						$(data.rows).map(function(){
-							var act_di=new query_activity_list(this)
-							$scope.act_my_p.push(act_di)
+							var act_di=new query_activity_list(this);
+							act_di.tip = this.tip;
+							$scope.act_my_p.push(act_di);
 						})
 					/*	判断有没有数据*/
 						if($scope.act_my_p.length==0){
@@ -866,7 +868,42 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
 		$(".add_poiu_m").click()
 	})
 	$scope.bank_card_p.bank_query();
-}]).controller('immediately_p',["$scope","activity_data",function($scope,activity_data) {//报名详情
+}])
+// ===================================== 打赏名单 ===================================
+.controller('activity_reward_detailCtrl', ['$scope','httpService', function($scope, httpService) {
+	var index = 1;
+	// 分页
+    $scope.paginationConf = {
+        currentPage: 1,
+        itemsPerPage: 10
+    };
+	// 活动ID
+	$scope.id = $("#activityId").val();
+	// 获取活动数据
+	httpService.getDatas('GET', '/activity/activity_detail', {'activity_id': $scope.id}).then(function(data) {
+		$scope.reward = data.info;
+	});
+	// 获取打赏总额数据
+	httpService.getDatas('GET', '/activityTip/' + $scope.id + '/info').then(function(data) {
+		$scope.rewardTotal = data.info;
+	});
+	// 获取打赏列表数据
+	var getRewardList = function(index) {
+		index = index || 1;
+		httpService.getDatas('GET', '/activityTip/' + $scope.id, {'pageIndex': index, 'pageSize': 10}).then(function(data) {
+			$scope.rewardList = data.rows;
+			$scope.paginationConf.totalItems = data.total;
+		});
+	}
+	getRewardList();
+	$scope.$watch('paginationConf.currentPage+paginationConf.itemsPerPage', function(newValue, oldValue) {
+    	if (newValue === oldValue) { 
+    		return false;  
+    	}
+	    getRewardList($scope.paginationConf.currentPage);
+    });
+}])
+.controller('immediately_p',["$scope","activity_data",function($scope,activity_data) {//报名详情
 	
 	$scope.id=$("#activityId").val();//活动ID
 	$scope.act_xq={};//获取活动的数据

@@ -15,18 +15,18 @@
 	uaredirect("http://m.apptown.cn");//手机打开跳转到手机页面
 </script>
 </head>
-<body ng-controller="immediately_p">
+<body ng-controller="activity_reward_detailCtrl">
    <%@include file="/jsp/common/mml_nav.jsp"%>
     <div class="wd bgff mt20">
        <div class="yj4 pr xq_poiuy_a" >
                        <div class="fl case_li_oiuuy">
-                         <img  ng-src="{{reward.images_po[0]}}">
+                         <img  ng-src="{{reward.cover_url[0]}}">
                        </div> 
                       <div class="ov pl20">
-                         <p class="dian ls fz18 dian mt10"><strong  ng-bind="reward.title"></strong></p>
+                         <p class="dian ls fz18 dian mt10"><strong  ng-bind="reward.name"></strong></p>
                           <p class="zc  mt50">
                              <label class="f_i time_icon"></label>
-                              <span ng-bind="reward.startDate"></span>
+                              <span ng-bind="reward.start_time_fm"></span>
                           </p>
                           
                             <p class="zc mt10">
@@ -34,8 +34,8 @@
                           <span ng-bind="reward.address"></span>
                           </p>
                          <p class="mt10">
-                            打赏总额<span class="hs"  ng-bind="reward.tip_num"></span>元
-                            打赏人数<span class="ml20 hs"  ng-bind="reward.pay_total_amount"></span>人
+                            <span class="mr10">打赏总额&nbsp;<b class="hs" ng-bind="rewardTotal.tip_num" style="font-weight:normal;"></b>&nbsp;元</span>
+                            <span>打赏人数&nbsp;<b class="hs" ng-bind="rewardTotal.pay_total_amount" style="font-weight:normal;"></b>&nbsp;人</span>
                          </p>
                     </div>
                       <p class="qc"></p>
@@ -66,16 +66,14 @@
                           </tbody>
                      
                      </table>
-                     <div><input type="checkbox" id="all_check_box" name="all_check_box" style="margin: auto;" ng-click="check_all()">选择当前页</div>    
-                      <div style="height: 60px;width: 100%" align="center">
-		                    <tm-pagination conf="paginationConf"></tm-pagination>
+		                  <pagination conf="paginationConf"></pagination>
 		              </div>
                  </div>  
                  
              </div>
              
 			
-            <input type="hidden" value="${activity.id}" id="activityId">
+            <input type="hidden" value="${activityId}" id="activityId">
             <%@include file="/jsp/common/mml_bottom.jsp"%>
             <script src="/js/common/angular-ui-router.min.js?v=10"></script>
             <script src="/js/view/user_center.js"></script> 

@@ -16,7 +16,9 @@ angular.module('activity_sponsor', [ "directive_mml","activity_servrt"])
     $scope.row_po_form=[{"name":"姓名","necessary":"y","designation":"name","random":new Date().getTime()},{"name":"手机号码","necessary":"y","designation":"tel","random":new Date().getTime()}];//表单
     $scope.activities_data={};//活动详细数据
     $scope.sp_id=-1;
-    $scope.pj_id=-1; 
+    $scope.pj_id=-1;
+    $scope.reward = {'remark': '活动不易，打赏一下组织者吧！'};
+
     $scope.upLoadImg=function(){//上传图片
     $("#iconFile").click();
     updata_icon("/activity/upload_activity_cover",function(url){
@@ -508,7 +510,8 @@ $(document).on("click",".remove_video",function(){
         $scope.activities_data.activity.sponsor=$("#main_host").val();//主办方单位
         $scope.activities_data.activity.sponsor_url=$("#upLoadImg").attr("src");//签到设置上传二维码
         $scope.activities_data.activity.live_url=$(".video_text").val()//视频直播地址
-        $scope.activities_data.vote=$scope.select_click.date_pou[0]
+        $scope.activities_data.vote=$scope.select_click.date_pou[0];
+
         $(".row_po_form_zdy").map(function(x){   
            var xz=$(this).find(".radio_p_xz").attr("data-xz");//获取是否选中
            var form_map=$(this).find(".ipuf").val();   
@@ -532,13 +535,15 @@ $(document).on("click",".remove_video",function(){
           
         }
 
-
         /*
         * 张晗
         * 签到设置—广告设置
         * ad_urls_array(广告数组参数)
         */
         $scope.activities_data.activity.ad_urls_array = $scope.adSetting.ad_urls_array;
+        // 活动打赏提示数据
+        var rewardOpen = ($('.j-rewardOpen').attr('data-xz') == 0) ? true : false; 
+        $scope.activities_data.activity.tip = {open: rewardOpen, remark: $scope.reward.remark};
 
 
         $scope.activities_data.form_config=$scope.row_po_form;//表单
@@ -580,7 +585,16 @@ $(document).on("click",".remove_video",function(){
           $scope.mml.err_pup("请选择活动结束时间");
             $("#end_time_b").focus();
             return;
+     } 
+
+
+     // 打赏提示语
+     if($scope.reward.remark.length > 20){
+          $scope.mml.err_pup("打赏提示语不能超过20个字符");
+            $('input[name="rewardRemark"]').focus();
+            return;
      }  
+     
        
       var stat_date= new Date(startDate).getTime()
       var end_date= new Date(endDate).getTime()
@@ -651,6 +665,7 @@ $(document).on("click",".remove_video",function(){
               "live_url":$(".video_text").val(),
               "support_id":$scope.sponsored_id, 
               "ad_urls_array": $scope.adSetting.ad_urls_array,
+              "tip": JSON.stringify($scope.activities_data.activity.tip),
               },"honored_guest":$scope.guest_data
             
           } 
@@ -752,7 +767,18 @@ $(document).on("click",".remove_video",function(){
                  }
                  tyt_poiu=true
                  $(".display_show").show()
-                 km=new activity_detail(data.info)
+                 km=new activity_detail(data.info);
+                  // 活动打赏数据
+                  $scope.reward.remark = data.info.tip.remark;
+
+                 
+
+                 if(data.info.tip.open) {
+                   $('.j-rewardOpen').addClass('gx_xzm').attr('data-xz', 0);
+                 } else {
+                   $('.j-rewardOpen').removeClass('gx_xzm').attr('data-xz', 1);
+                 }
+
                  $scope.status=km.status
                  if($scope.status==0){ 
                   $(".modify_disable").attr("disabled","disabled").addClass("prohibit").removeAttr("data-toggle").css("background","#cbcbcb")
@@ -897,8 +923,7 @@ $(document).on("click",".remove_video",function(){
           prov.id=this.id;//获取省份ID
           prov.province_name=this.province_name;//获取省份的名字
           $scope.province.push(prov)
-        })
-        
+        }) 
     }, function error() {
       console.log("获取省份失败")
   });

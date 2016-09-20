@@ -2842,8 +2842,8 @@ img.right_icon_a {
 	z-index: 2;
 	color: #fff;
 	cursor: default;
-	background-color: #337ab7;
-	border-color: #337ab7;
+	background-color: #4ea45d;
+	border-color: #4ea45d;
 }
 
 .pagination>li>a, .pagination>li>span {
@@ -2852,7 +2852,7 @@ img.right_icon_a {
 	padding: 6px 12px;
 	margin-left: -1px;
 	line-height: 1.42857143;
-	color: #337ab7;
+	color: #4ea45d;
 	text-decoration: none;
 	background-color: #fff;
 	border: 1px solid #ddd;

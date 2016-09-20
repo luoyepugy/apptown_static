@@ -94,9 +94,11 @@
     <script src="/js/common/bootstrap.min.js?v=7"></script>
     <script src="/js/common/angular.min.js"></script>
     <script src="/js/common/tm.pagination.js"></script>
+    <script src="/js/common/pagination.js"></script>
     <script src="/js/common/is_from.js"></script>
     <script src="/js/common/aes-min.js"></script>
     <script src="/js/common/pad-iso10126-min.js"></script>
+    <script src="/js/common/modules.js"></script>
     <script src="/js/mode/directive.js"></script>
     <!--[if IE]><script src="/js/ie.js"></script><![endif]--> 
     <script src="/js/entity/entity_activity.js?v=10"></script>
