@@ -508,7 +508,12 @@ $(document).on("click",".remove_video",function(){
         $scope.activities_data.ticket_array=$scope.ticket_array//票卷
         $scope.activities_data.activity.support_id=$scope.sponsored_id;//赞助id
         $scope.activities_data.activity.sponsor=$("#main_host").val();//主办方单位
-        $scope.activities_data.activity.sponsor_url=$("#upLoadImg").attr("src");//签到设置上传二维码
+        if($("#upLoadImg").attr("src")=="/img/upload_code.png"){
+        	$scope.activities_data.activity.sponsor_url="";
+        }else{
+        	$scope.activities_data.activity.sponsor_url=$("#upLoadImg").attr("src");//签到设置上传二维码
+        }
+        
         $scope.activities_data.activity.live_url=$(".video_text").val()//视频直播地址
         $scope.activities_data.vote=$scope.select_click.date_pou[0];
 
@@ -532,7 +537,6 @@ $(document).on("click",".remove_video",function(){
         if(form_yz){
           $scope.mml.err_pup("自定义表单不能为空");
              return;
-          
         }
 
         /*
@@ -543,7 +547,7 @@ $(document).on("click",".remove_video",function(){
         $scope.activities_data.activity.ad_urls_array = $scope.adSetting.ad_urls_array;
         // 活动打赏提示数据
         var rewardOpen = ($('.j-rewardOpen').attr('data-xz') == 0) ? true : false; 
-        $scope.activities_data.activity.tip = {open: rewardOpen, remark: $scope.reward.remark};
+        $scope.activities_data.activity.tip = JSON.stringify({open: rewardOpen, remark: $scope.reward.remark});
 
 
         $scope.activities_data.form_config=$scope.row_po_form;//表单

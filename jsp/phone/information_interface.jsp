@@ -16,21 +16,21 @@
 <body ng-controller="information_Controller">
     <nav class="pt10 pm10 pd note_nav">
         <i class="f_i note_logo"></i>
-        <a class="cf fr pt5 dd_poiuy fz16">更多<i class="f_i right_icon"></i></a>
+       <!-- <a class="cf fr pt5 dd_poiuy fz16">更多<i class="f_i right_icon"></i></a>-->
     </nav>
     <section class="note_banner bfgg">
         <section class="pt10 pd">
             <section class="fl qc_icon_note bgff">
                <img src="/img/phone/note_qc.jpg" class="df_po_icon">
-               <p class="ls cen">更多精彩活动<br>关注TA</p>   
+               <p class="green_new cen">更多精彩活动<br>关注TA</p>   
             </section>
            <section class="ov pl10 cf" ng-if="infomation.volume_details.price>=0">
                   <p class="cf fz16">票种：<span ng-bind="infomation.volume_details.ticket_name"></span></p>
-                  <p class="cf fz16 mt20">票价：<span class="hs" ng-bind="infomation.volume_details.price+'元'"></span></p>
+                  <p class="cf fz16 mt10">票价：<span class="hs" ng-bind="infomation.volume_details.price+'元'"></span></p>
                   <p class="cf fz16 mt10">张数：<span ng-bind="infomation.volume_details.entrycode_array.length+'张'"></span></p>
                   <p class="cf fz16 mt10">合计：<span ng-bind="infomation.volume_details.entrycode_array.length*infomation.volume_details.price+'元'"></span></p>
                  
-                  <p class="fz12 cf dian mt20 pt5">请保存票号，凭此券参加活动！</p>
+                  <p class="fz14 cf dian  pt5">请保存票号，凭此券参加活动！</p>
             </section>
             
            <section class="ov pl10 cf" ng-if="infomation.volume_details.price==undefined">
@@ -43,10 +43,11 @@
           </section>
     </section>
     <section class="bgff pd pt20">
-      <p class="dianer fz16 ls" ng-bind="infomation.volume_details.activity_name"></p>
+      <p class="dianer fz16 green_new" ng-bind="infomation.volume_details.activity_name"></p>
        
         <p class="fz12 mt10 pm5 brm">
             报名时间：<span ng-bind="infomation.volume_details.apply_time | date:'MM/dd EEE HH:mm'"></span>  <!--  距活动开始还剩5天 -->
+           距活动开始还剩 <span ng-bind="infomation.volume_details.activity_start_time|reduce_time:''"></span>
         </p>
         
         <section class="pt10">
@@ -55,7 +56,7 @@
             </p>
             
             <section class="exchange_shop mt10 brm"   > 
-                <p class="fz12 bgls cf pd ex_case yj4 ov pr" ng-repeat="arrp in infomation.volume_details.entrycode_array" >
+                <p class="fz12 green_bg cf pd ex_case yj4 ov pr" ng-repeat="arrp in infomation.volume_details.entrycode_array" >
                      <i class="f_b di_icon dia_left yj"></i>
                       <i class="f_b di_icon dia_right yj"></i>
                      <span class="pr10"> 票号</span>
@@ -76,7 +77,7 @@
                 <section class="mt10">
                     <a ng-href="http://map.baidu.com/mobile/webapp/search/search/qt=s&wd={{infomation.volume_details.activity_address}}">
                         <i class="map_ico f_i fl"></i>
-                        <p class="pt10 ls">查看地图</p>
+                        <p class="pt10 green_new">查看地图</p>
                     </a>
                     <p class="qc"></p>
                 </section>
@@ -91,7 +92,7 @@
             <section class="mui-collapse-content ">
                 <p class="pm20">1、本次活动凭票参加，一人一票一次性，请勿复制或 转赠他人；<br>
                     2、请保存电子票到手机或打印携带，保持条码清晰完 整；<br>
-                    3、本次活动有【e场景活动】提供票券服务；如有任何疑问，请拨打热线<a href="tel:400046-1388">400-046-1388</a></p>
+                    3、本次活动有【e场景活动】提供票券服务；如有任何疑问，请拨打热线<a class="green_new" href="tel:400046-1388">400-046-1388</a></p>
             </section>
         </li>
        
@@ -107,5 +108,6 @@
     <script src="/js/entity/entity_activity.js"></script>
     <script src="/js/phone/mui.min.js"></script>
     <script src="/js/phone/m_view/information_interface.js"></script>
+    <script src="/js/mode/directive.js"></script>
 </body>
 </html>

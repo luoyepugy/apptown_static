@@ -3,11 +3,11 @@
  * name: pagination
  * Version: 1.0.0
  */
-angular.module('pagination', []).directive('pagination',[function(){
+angular.module('pagination', []).directive('pagination',function(){
     return {
         restrict: 'EA',
         template: '<div class="page-list" style="width: 100%; height: 80px;">' +
-            '<ul class="pagination" ng-show="conf.totalItems > 0">' +
+            '<ul class="pagination" ng-show="conf.numberOfPages > 1">' +
             '<li ng-class="{disabled: conf.currentPage == 1}" ng-click="changeCurrentPage(1)"><span>首页</span></li>' +
             '<li ng-class="{disabled: conf.currentPage == 1}" ng-click="prevPage()"><span>上一页</span></li>' +
             '<li ng-repeat="item in pageList track by $index" ng-class="{active: item == conf.currentPage, separate: item == \'...\'}" ' +
@@ -75,7 +75,7 @@ angular.module('pagination', []).directive('pagination',[function(){
                 }
 
                 // jumpPageNum
-                scope.jumpPageNum = scope.conf.currentPage;
+                // scope.jumpPageNum = scope.conf.currentPage;
 
                 scope.pageList = [];
                 if(scope.conf.numberOfPages <= scope.conf.pagesLength){
@@ -119,9 +119,10 @@ angular.module('pagination', []).directive('pagination',[function(){
                     }
                 }
 
-                if(scope.conf.onChange){
-                    scope.conf.onChange();
+                if(scope.conf.onChange && scope.conf.currentPage && scope.conf.totalItems){
+                    scope.conf.onChange(scope.conf.currentPage);
                 }
+
                 scope.$parent.conf = scope.conf;
             }
 
@@ -160,4 +161,4 @@ angular.module('pagination', []).directive('pagination',[function(){
 
         }
     };
-}]);
+});

@@ -34,8 +34,8 @@
                           <span ng-bind="reward.address"></span>
                           </p>
                          <p class="mt10">
-                            <span class="mr10">打赏总额&nbsp;<b class="hs" ng-bind="rewardTotal.tip_num" style="font-weight:normal;"></b>&nbsp;元</span>
-                            <span>打赏人数&nbsp;<b class="hs" ng-bind="rewardTotal.pay_total_amount" style="font-weight:normal;"></b>&nbsp;人</span>
+                            <span class="mr10">打赏总额&nbsp;<b class="hs" ng-bind="rewardTotal.pay_total_amount" style="font-weight:normal;"></b>&nbsp;元</span>
+                            <span>打赏人数&nbsp;<b class="hs" ng-bind="rewardTotal.tip_num" style="font-weight:normal;"></b>&nbsp;人</span>
                          </p>
                     </div>
                       <p class="qc"></p>
@@ -66,7 +66,7 @@
                           </tbody>
                      
                      </table>
-		                  <pagination conf="paginationConf"></pagination>
+		                  <pagination conf="conf"></pagination>
 		              </div>
                  </div>  
                  

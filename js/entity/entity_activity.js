@@ -450,7 +450,7 @@ function query_activity_list(list_data){
     	this.phone=data.phone;//电话
     	this.ticket_name=data.ticket_name;//票种名称
     	var khg="有效票券";
-    	if(this.activity_end_time>new Date().getTime()){
+    	if(this.activity_end_time<new Date().getTime()){
     		khg="无效票券";
     	}
    

@@ -873,10 +873,9 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
 .controller('activity_reward_detailCtrl', ['$scope','httpService', function($scope, httpService) {
 	var index = 1;
 	// 分页
-    $scope.paginationConf = {
-        currentPage: 1,
-        itemsPerPage: 10
-    };
+	$scope.conf = {
+		itemsPerPage: 10
+	};
 	// 活动ID
 	$scope.id = $("#activityId").val();
 	// 获取活动数据
@@ -889,19 +888,15 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
 	});
 	// 获取打赏列表数据
 	var getRewardList = function(index) {
-		index = index || 1;
-		httpService.getDatas('GET', '/activityTip/' + $scope.id, {'pageIndex': index, 'pageSize': 10}).then(function(data) {
+		httpService.getDatas('GET', '/activityTip/' + $scope.id, {'pageIndex': index, 'pageSize': $scope.conf.itemsPerPage}).then(function(data) {
 			$scope.rewardList = data.rows;
-			$scope.paginationConf.totalItems = data.total;
+			$scope.conf.totalItems = data.total;
 		});
 	}
-	getRewardList();
-	$scope.$watch('paginationConf.currentPage+paginationConf.itemsPerPage', function(newValue, oldValue) {
-    	if (newValue === oldValue) { 
-    		return false;  
-    	}
-	    getRewardList($scope.paginationConf.currentPage);
-    });
+	getRewardList(1);
+	$scope.conf.onChange = function(page) {
+		getRewardList(page);
+	}
 }])
 .controller('immediately_p',["$scope","activity_data",function($scope,activity_data) {//报名详情
 	
