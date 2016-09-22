@@ -103,6 +103,8 @@
     <!--[if IE]><script src="/js/ie.js"></script><![endif]--> 
     <script src="/js/entity/entity_activity.js?v=10"></script>
     <script src="/js/service/service_activity.js?v=10"></script> 
+    <script src="/js/common/jquery_page.js"></script>
+    
 
 
 

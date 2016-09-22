@@ -134,14 +134,8 @@
                 </ul>
 
 
-				<div class="pagination pagination-centered pagination-large" ng-if="act_results>1">
-					<ul class="act_fr_poi">
-						<li  ng-click="list_fun.previous_page()"><span ng-href="#">&laquo;</span></li>
-						
-						<li    ng-repeat="if_p in page_row" ng-click="list_fun.act_assign(if_p)"><span ng-bind="if_p"></span></li>
-						
-						<li ng-click="list_fun.next_page()"><span>»</span></li>
-					</ul>
+				<div class="tcdPageCode" ng-click="fengye()">
+					
 				</div>
 
 

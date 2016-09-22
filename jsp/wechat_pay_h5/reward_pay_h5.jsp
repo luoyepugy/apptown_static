@@ -79,7 +79,7 @@
 				var flag = null;
 				if (res.err_msg == "get_brand_wcpay_request:ok") {
 					flag = 'success';
-					window.location.href = 'http://m.apptown.cn/#/activity_detail/${activityId}';
+					window.location.href = 'http://m.apptown.cn/index.html#/activity_detail/${activity_id}';
 				} else if (res.err_msg == "get_brand_wcpay_request:cancel") {
 					// alert("用户取消支付!");
 				} else {
@@ -91,7 +91,6 @@
 				}
 			})
 		} else {
-
 			alert("请阅读并同意e场景支付协议")
 		}
 
