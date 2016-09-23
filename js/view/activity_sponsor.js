@@ -773,15 +773,15 @@ $(document).on("click",".remove_video",function(){
                  $(".display_show").show()
                  km=new activity_detail(data.info);
                   // 活动打赏数据
-                  $scope.reward.remark = data.info.tip.remark;
+                  $scope.reward = data.info.tip;
 
                  
-
-                 if(data.info.tip.open) {
-                   $('.j-rewardOpen').addClass('gx_xzm').attr('data-xz', 0);
-                 } else {
-                   $('.j-rewardOpen').removeClass('gx_xzm').attr('data-xz', 1);
-                 }
+                  // 打赏功能开启和禁用
+                  if(data.info.tip.open) {
+                    $('.j-rewardOpen').addClass('gx_xzm').attr('data-xz', 0);
+                  } else {
+                    $('.j-rewardOpen').removeClass('gx_xzm').attr('data-xz', 1);
+                  }
 
                  $scope.status=km.status
                  if($scope.status==0){ 

@@ -119,7 +119,7 @@ angular.module('pagination', []).directive('pagination',function(){
                     }
                 }
 
-                if(scope.conf.onChange && scope.conf.currentPage && scope.conf.totalItems){
+                if(scope.conf.onChange && scope.conf.currentPage > 1 && scope.conf.totalItems){
                     scope.conf.onChange(scope.conf.currentPage);
                 }
 

@@ -134,7 +134,7 @@
                 </ul>
 
 
-				<div class="tcdPageCode" ng-click="fengye()">
+				<div class="tcdPageCode">
 					
 				</div>
 

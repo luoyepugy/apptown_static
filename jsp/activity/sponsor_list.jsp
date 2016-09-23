@@ -64,12 +64,11 @@
          		     </div>
          		  </li>        		
          		</ul>
-         		<div class="mt20">
-	                <ul class="pager">
-	                   <li><a ng-click="list_fun.previous_page(0)">上一页</a></li>
-	                   <li class="ml20"><a ng-click="list_fun.next_page(0)">下一页</a></li>
-	                </ul>
-	            </div>
+         		<!--分页开始-->
+         		<div class="tcdPageCode">
+					
+				</div>
+				<!--分页结束-->
          	</div>
          	<div class="act_list_p_right fr yj4 bgff gd">
                <div class="cen pd poiut_top_q">

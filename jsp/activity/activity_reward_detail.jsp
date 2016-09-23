@@ -50,10 +50,10 @@
                       <table class="table  table-bordered table-hover">
                           <thead>
                               <tr>
-                                 <td>时间</td>
-                                 <td>昵称</td>
-                                 <td>打赏金额</td>
-                                 <td>留言</td>
+                                 <td style="width: 175px;">时间</td>
+                                 <td style="width: 130px;">昵称</td>
+                                 <td style="width: 160px;">打赏金额</td>
+                                 <td style="width: 580px;">留言</td>
                               </tr>
                            </thead>
                           <tbody>
