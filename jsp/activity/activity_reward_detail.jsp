@@ -8,6 +8,7 @@
    <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet">
    <link href="/css/base.css" rel="stylesheet">
    <link href="/css/style.css" rel="stylesheet">
+   <link  rel="shorcut icon"  href="/img/LOGO.png" />
   <!--[if IE]>    <link href="/css/ie.css" rel="stylesheet"><![endif]-->
 <title>e场景活动--打赏详情</title>
 <script src="/js/common/uaredirect.js"></script>
@@ -66,7 +67,12 @@
                           </tbody>
                      
                      </table>
-		                  <pagination conf="conf"></pagination>
+                      <div style="text-align:center">
+                         <div style="display: inline-block;" class="tcdPageCode">
+					
+						</div>
+                      </div>
+		                 
 		              </div>
                  </div>  
                  

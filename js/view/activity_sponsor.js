@@ -550,6 +550,7 @@ $(document).on("click",".remove_video",function(){
         $scope.activities_data.activity.tip = JSON.stringify({open: rewardOpen, remark: $scope.reward.remark});
 
 
+
         $scope.activities_data.form_config=$scope.row_po_form;//表单
         $scope.activities_data.honored_guest=$scope.guest_data;//嘉宾
         $scope.activities_data.activity.status=status;//0：发布，1：保存  
@@ -669,7 +670,7 @@ $(document).on("click",".remove_video",function(){
               "live_url":$(".video_text").val(),
               "support_id":$scope.sponsored_id, 
               "ad_urls_array": $scope.adSetting.ad_urls_array,
-              "tip": JSON.stringify($scope.activities_data.activity.tip),
+              "tip": $scope.activities_data.activity.tip,
               },"honored_guest":$scope.guest_data
             
           } 
@@ -682,10 +683,8 @@ $(document).on("click",".remove_video",function(){
        }
        data_p=angular.fromJson(data_p)
 
-       // console.log($scope.activities_data);
-       // return false;
-
        activity_data.update_activity(data_p).then(
+            
             function success(data) {
                 if(data.code!=0){
                   alert(data.msg)
@@ -695,6 +694,7 @@ $(document).on("click",".remove_video",function(){
                  if(rand_a<10000){
                         rand_a+=10000
                  }
+                 // return false;
                 window.location.href='/activity/'+(rand_a+""+$scope.id+""+rand_a)+'.httl'
               
             }, function error() {

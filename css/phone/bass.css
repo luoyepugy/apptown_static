@@ -59,6 +59,12 @@ body{
             background: #0F6BAA;
             color: #fff;
         }
+.green_new {
+	color: #4ea45d;
+}
+.green_bg {
+	background: #4ea45d;
+}
 .box_a{
     -webkit-box-flex: 1;
             -moz-box-flex:1;

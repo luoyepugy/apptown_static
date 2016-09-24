@@ -56,7 +56,8 @@
                                     <li ng-if="prefsession_a==true"><a class="bor_b_6" ng-href="/user/to_user_center?v=2#/user_my_activities">我参与的活动</a></li>
                                 </ul> -->
                    </li>
-                      <li class="nav_li"><a ng-href="/support/supporList"  class="interlinkage">去赞助</a>
+                   <!-- 暂时屏蔽赞助 -->
+                      <!-- <li class="nav_li"><a ng-href="/support/supporList"  class="interlinkage">去赞助</a> -->
                    
                                <!-- <ul class="dropdown-menu padding_none act_nav_a_a"  >
                                     <li class="sj_fh_a"></li>
@@ -65,8 +66,9 @@
                                     <li ng-if="prefsession_a==true"><a ng-href="/user/to_user_center?sor=1#/hacer_mipad_rine" >我发起的赞助</a></li> 
                                     <li ng-if="prefsession_a==true"><a class="bor_b_6" ng-href="/user/to_user_center?sor=2#/hacer_mipad_rine">我参与的赞助</a></li>
                                 </ul> -->
-                   </li>
-                      <li class="nav_li"><a ng-href="/activity/launch_index"  class="interlinkage">+发起</a></li>
+                   <!-- </li> -->
+                    <!-- /暂时屏蔽赞助 -->
+                      <li class="nav_li"><a ng-href="/activity/to_sponsor_activity"  class="interlinkage">+发起</a></li>
                  
        
                       <li class="fl">
@@ -79,7 +81,9 @@
                                 <ul class="dropdown-menu dropdown-menu-pou padding_none" >
                                    <!--  <li><a ng-href="#">主办方</a></li> -->
                                     <li><a class="bor_t_6">活动</a></li> 
-                                    <li><a class="bor_b_6">赞助</a></li>
+                                    <!-- 暂时屏蔽赞助和白条 -->
+                                    <!-- <li><a class="bor_b_6">赞助</a></li> -->
+                                    <!-- /暂时屏蔽赞助和白条 -->
                                     <li><a class="bor_b_6">主办方</a></li>
                                 </ul>
                             </div>
@@ -107,7 +111,9 @@
                                     <li class="sj_fh_a"></li>
                                     <li><a class="bor_t_6" ng-href="/user/to_user_center#/personal_center">个人中心</a></li>
                                     <li><a class="bor_t_6" ng-href="/user/to_user_center?v=1#/user_my_activities">我的活动</a></li>
-                                    <li><a class="bor_t_6" ng-href="/user/to_user_center?sor=1#/hacer_mipad_rine">我的赞助</a></li>
+                                    <!-- 暂时屏蔽赞助和白条 -->
+                                    <!-- <li><a class="bor_t_6" ng-href="/user/to_user_center?sor=1#/hacer_mipad_rine">我的赞助</a></li> -->
+                                    <!-- /暂时屏蔽赞助和白条 -->
                                     <li><a ng-href="/user/to_user_center#/my_purse" >我的钱包</a></li> 
                                     <li><a ng-href="/help/menu">帮助中心</a></li>
                                     <li  ng-click="user_lo.login_out()"><a class="bor_b_6">退出</a></li>

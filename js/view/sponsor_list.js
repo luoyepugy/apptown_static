@@ -31,11 +31,18 @@ angular.module('sponsor_list', [ "directive_mml","activity_servrt"])
      }
      
       $scope.list_fun={
-	      	"demand":function(pageIndex,sort,industy,name){
+	      	"demand":function(pageIndex,sort,industy,name){	
+	      		$scope.spon_list=[];
 	      		gloabl_industy=industy;
 	      		global_name=name;
 	      		 activity_data.query_sponsor_list(pageIndex,sort,industy,name).then(
 			     	function success(data) {
+			     		$(".tcdPageCode").createPage({
+							pageCount:Math.ceil(data.results/12),//总页数
+							current:pageIndex,//当前页数
+							backFn:function(p){	//回调,p为当前页数
+						     }
+    					});	
 			     		$scope.spon_results=data.results;
 			     		$(data.rows).map(function(){
 			     			var bandata= new sponsorList(this)
@@ -46,7 +53,17 @@ angular.module('sponsor_list', [ "directive_mml","activity_servrt"])
 			   					console.log("获取列表失败")
 			   				}
 	             );
-	      	},
+	      	},"fengye":function(){ //分页
+	      		 $(".tcdPageCode").createPage({
+						pageCount:10,
+						current:oIndex,
+						backFn:function(p){	
+							oIndex=p
+						    $scope.list_fun.demand(oIndex,oSort,gloabl_industy,global_name);  
+						}
+    				});		           
+	            }
+             ,
 	      	"next_page":function(){//下一页
 	      		$scope.spon_list=[];
 	      		if(oIndex<$scope.spon_results/8){
@@ -91,7 +108,7 @@ angular.module('sponsor_list', [ "directive_mml","activity_servrt"])
       	
       } 
       $scope.list_fun.newest_sort(1,1,"","");
-    
+       $scope.list_fun.fengye()
 }])
 
 $(function(){

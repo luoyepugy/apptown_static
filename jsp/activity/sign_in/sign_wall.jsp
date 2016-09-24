@@ -43,13 +43,6 @@
         <p class="qc"> </p>
     </div>
 </div>
-                 
-                 
-                 
-                
-                 
-             
-             
              </div>
              
              
@@ -61,8 +54,8 @@
                  
                  
                  
-                   <span class="cf fz20 fl ml100 cen"  data-href="${url }">
-                   <i class="f_i poiuy_po_b"></i><br>
+                   <span class="cf fz20 fl ml100 cen"  ui-sref="streaming({act_id:8828})">
+                   <i class="f_i poiuy_po_b"></i><br> 
                     视频
                  </span>
                  
@@ -128,6 +121,7 @@
     <script src="/js/common/angular.min.js"></script> 
     <script src="/js/common/angular-websocket.min.js"></script> 
     <script src="/js/common/angular-ui-router.min.js"></script>
+    <script src="/js/common/prism-min.js"></script>
     <script src="/js/entity/entity_activity.js?v=10"></script>
     <script src="/js/mode/directive.js"></script>
     <script src="/js/service/service_activity.js?v=10"></script> 

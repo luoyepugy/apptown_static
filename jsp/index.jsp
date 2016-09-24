@@ -16,7 +16,7 @@
     <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet"> 
     <link href="/css/base.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
-    <link  rel="shorcut icon"   href="http://www.apptown.cn/img/shortCut.ico" />    
+    <link  rel="shorcut icon"   href="/img/LOGO.png" />    
     
 <!--[if IE]>    <link href="/css/ie.css" rel="stylesheet"><![endif]-->
 <title>e场景活动</title>
@@ -50,7 +50,8 @@ uaredirect("http://m.apptown.cn/index.html#/index");//手机打开跳转到手�
     </div>
 </div>
     <div class="wd pr ov ">
-       <div  class="index_data">
+      <!-- 暂时屏蔽赞助 -->
+       <!-- <div  class="index_data">
         <ul>
 	        <li class="index_data_text" >赞助金额</li>
 	        <li class="index_data_number"><span class="datanum"  data-param="sponsor_sum"></span></li>
@@ -63,7 +64,8 @@ uaredirect("http://m.apptown.cn/index.html#/index");//手机打开跳转到手�
 	        <li class="index_data_text">活动数</li>
 	        <li class="index_data_number"><span class="datanum" data-param="activity_sum"></span></li>
         </ul>
-       </div>
+       </div> -->
+       <!-- /暂时屏蔽赞助 -->
        <div style="margin-top: 60px;"></div>
        <p class="fz20 zq mt30 pr pl20" style="margin-top: 20px"><span class="index_bar1"></span>推荐活动</p>
         <p class="cen logo_ad"><img src="/img/img_icon.gif"></p> 
@@ -83,11 +85,13 @@ uaredirect("http://m.apptown.cn/index.html#/index");//手机打开跳转到手�
                             <img ng-src="{{hot.sponsorImageUrl}}" class="case_user_icon mr5">
                             <span ng-bind="hot.sponsorName"></span>                         
                         </p>
-                       <div class="sp_jd_case_a fg_index_case_act">
+                  <!-- 暂时屏蔽赞助 -->
+                       <!-- <div class="sp_jd_case_a fg_index_case_act">
          		        <div class="green_new"><p >目标金额</p><p  ng-bind="hot.target_money | number : 0"></p></div>
          		        <div class="green_new"><p>已筹金额</p><span class="money_a" ng-bind="hot.now_money | number : 0 "></span></div>
          		        <div class="green_new" style="border:0"><p>项目进度</p><p class="sp_list_end"  ng-bind="hot.schedule"></p></div> 
-         		     </div> 
+         		     </div>  -->
+                 <!-- /暂时屏蔽赞助 -->
                          
                 </div>
                 
@@ -95,9 +99,10 @@ uaredirect("http://m.apptown.cn/index.html#/index");//手机打开跳转到手�
            </div>
            
         </div>
-    
-        <p class="mt5 qc"><a ng-href="/jsp/white_bar.jsp"><img src="/img/index_white_bar.png"></a></p>
-         
+        
+        <!-- 暂时屏蔽白条 -->
+        <!-- <p class="mt5 qc"><a ng-href="/jsp/white_bar.jsp"><img src="/img/index_white_bar.png"></a></p> -->
+        <!-- /暂时屏蔽白条 -->
         
          <p class="fz20 zq mt30 pr pl20" style="margin-top: 20px"><span class="index_bar1"></span>热门活动</p>
          <div class="mt10 case_poi_oi_index recommend_ac">
@@ -117,11 +122,13 @@ uaredirect("http://m.apptown.cn/index.html#/index");//手机打开跳转到手�
                              <img ng-src="{{hot.sponsorImageUrl}}" class=" case_user_icon mr5">
                              <span ng-bind="hot.sponsorName"></span>
                         </p>
-                       <div class="sp_jd_case_a fg_index_case_act">
+                    <!-- 暂时屏蔽赞助 -->
+                       <!-- <div class="sp_jd_case_a fg_index_case_act">
          		        <div class="green_new"><p >目标金额</p><p  ng-bind="hot.target_money | number : 0"></p></div>
          		        <div class="green_new"><p>已筹金额</p><span class="money_a" ng-bind="hot.now_money | number : 0 "></span></div>
          		        <div class="green_new" style="border:0"><p>项目进度</p><p class="sp_list_end"  ng-bind="hot.schedule"></p></div> 
-         		     </div> 
+         		     </div>  -->
+                 <!-- /暂时屏蔽赞助 -->
                          
                 </div>
                 

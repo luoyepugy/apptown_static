@@ -8,7 +8,7 @@
           <link href="/css/jquery.datetimepicker.css" type="text/css" rel="stylesheet">
     <link href="/css/base.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
-    <link  rel="shorcut icon"   href="http://www.apptown.cn/img/shortCut.ico"/>
+    <link  rel="shorcut icon"    href="/img/LOGO.png"/>
     
 <!--[if IE]>    <link href="/css/ie.css" rel="stylesheet"><![endif]-->
 
@@ -42,11 +42,13 @@
                        <p class="zq fz16 pr title_user_a">我的活动 <img src="/img/rightnav.png" class="right_icon_a"></p>
      
                     </li>
-                    <li ui-sref="hacer_mipad_rine">
+                    <!-- 暂时屏蔽赞助 -->
+                    <!-- <li ui-sref="hacer_mipad_rine">
                        <p class="zq fz16 pr title_user_a" >我的赞助 <img src="/img/rightnav.png" class="right_icon_a"></p>
        
                      
-                    </li>
+                    </li> -->
+                    <!-- /暂时屏蔽赞助 -->
                     <li ui-sref="my_purse">
                        <p class="zq fz16 pr title_user_a">我的钱包 <img src="/img/rightnav.png" class="right_icon_a"></p>
             

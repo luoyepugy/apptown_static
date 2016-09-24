@@ -11,7 +11,7 @@
     <link href="/css/style.css" rel="stylesheet">
         <link href="/js/rich_text/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
       <link href="/css/jquery.datetimepicker.css" type="text/css" rel="stylesheet">
-      <link  rel="shorcut icon"   href="http://www.apptown.cn/img/shortCut.ico" />
+      <link  rel="shorcut icon"  href="/img/LOGO.png" />
 
 <!--[if IE]>    <link href="/css/ie.css" rel="stylesheet"><![endif]-->
 <title>e场景活动</title>
@@ -32,7 +32,8 @@
         </p>
     </div>
     <div class="wd mt20 loan_wrap" >
-    	<div class="loan_top clearfix" >
+      <!-- 暂时屏蔽白条 -->
+    	<!-- <div class="loan_top clearfix" >
     		<a  class="loan_close" ng-click="closeLoan($event.target)"></a>
     		<img class="pull-left loan_top_img" src="/img/loan_img.png" width="420" height="240" />
     		<div class="pull-left loan_top_content loan_uncheck">
@@ -79,7 +80,8 @@
     			</p>	
     		</div>
     		
-    	</div>
+    	</div> -->
+      <!-- /暂时屏蔽白条 -->
     	<ul class="loan_tip clearfix" style="display: none;position:relative;">
     	<a class="loan_close" ng-click="closeLoan($event.target)"></a>
     		<li class="pull-left">

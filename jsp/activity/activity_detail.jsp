@@ -9,7 +9,7 @@
     <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="/css/base.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
-    <link  rel="shorcut icon"   href="http://www.apptown.cn/img/shortCut.ico" />
+    <link  rel="shorcut icon"   href="/img/LOGO.png" />
 <!--[if IE]>    <link href="/css/ie.css" rel="stylesheet"><![endif]-->
 <title>e场景活动</title>
 <script src="/js/common/uaredirect.js"></script>

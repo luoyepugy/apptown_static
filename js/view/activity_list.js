@@ -3,8 +3,9 @@
  */
 angular.module('activity_list', [ "directive_mml","activity_servrt"])
 .controller('listController',["$scope","activity_data",function($scope,activity_data) {
+	
 	$scope.activity_cla=[{"title":"分类","maker_title":[{"id":"0","name":"全部"},{"id":"1","name":"路演场馆"},{"id":"2","name":"置业装修"},{"id":"3","name":"汽车活动"},{"id":"4","name":"商家促销"},{"id":"5","name":"精品课程"},{"id":"6","name":"户外运动"},{"id":"7","name":"保险投资"}]},{"title":"行业","maker_title":[{"id":"0","name":"全部"},{"id":"1","name":"孵化器"},{"id":"2","name":"房产"},{"id":"3","name":"互联网"},{"id":"4","name":"公益"},{"id":"5","name":"培训"},{"id":"6","name":"汽车"},{"id":"7","name":"旅游"},{"id":"8","name":"酒店"},{"id":"9","name":"家装"},{"id":"10","name":"卖场"},{"id":"11","name":"明星"},{"id":"12","name":"商会"},{"id":"13","name":"社区"},{"id":"14","name":"展会"},{"id":"15","name":"大健康"},{"id":"16","name":"校园"},{"id":"17","name":"媒体"},{"id":"18","name":"趣味"},{"id":"19","name":"金融"},{"id":"20","name":"其他"}]},{"title":"城市","maker_title":[{"id":"0","name":"全部 "},{"id":"1","name":"北京 "},{"id":"2","name":"天津 "},{"id":"3","name":"上海 "},{"id":"4","name":"重庆 "},{"id":"51","name":"大连 "},{"id":"86","name":"南京 "},{"id":"99","name":"杭州 "},{"id":"128","name":"厦门 "},{"id":"418","name":"武汉 "},{"id":"435","name":"长沙 "},{"id":"449","name":"广州 "},{"id":"450","name":"深圳 "},{"id":"556","name":"西安 "},{"id":"627","name":"香港特别行政区"}]}];
-
+    
 	 $scope.act_list=[];//活动列表数据
      $scope.activity_hot=[];//推荐活动 
      $scope.act_results;//活动总数
@@ -30,7 +31,17 @@ angular.module('activity_list', [ "directive_mml","activity_servrt"])
   	    	   $scope.act_list_sarg.pageIndex-=1
   	       }
     	   $scope.list_fun.demand($scope.act_list_sarg);
-        },"next_page":function(){//下一页
+     },"fengye":function(){ //分页
+            $(".tcdPageCode").createPage({
+						pageCount:10,
+						current:$scope.act_list_sarg.pageIndex,
+						backFn:function(p){	
+							$scope.act_list_sarg.pageIndex=p
+						    $scope.list_fun.demand($scope.act_list_sarg);  
+						}
+    				});	
+            }
+        ,"next_page":function(){//下一页
     	    if( $scope.act_list_sarg.pageIndex<$scope.act_results){
     		    $scope.act_list_sarg.pageIndex+=1
     		}
@@ -77,7 +88,8 @@ angular.module('activity_list', [ "directive_mml","activity_servrt"])
     	  $scope.list_fun.demand($scope.act_list_sarg);
     	  
       },"demand":function(sarg){
-    	/* 查询活动列表控制器*/    	  
+    	/* 查询活动列表控制器*/  
+    	  
     	  try{
     	    	 var act_s=window.location.search;//获取问号后面的值
     	         var mpv_a=act_s.split("?")[1].split("=")[0],text_ac=act_s.split("?")[1].split("=")[1];
@@ -87,16 +99,22 @@ angular.module('activity_list', [ "directive_mml","activity_servrt"])
     	        	   $("#suosuo_p").val($scope.act_list_sarg.name);
     	         }
     	     }catch(e){
-    	    	 console.log("搜索框没有内容")
+    	    	 
     	     }
     	     
     	 activity_data.query_activity_list(sarg.pageIndex, sarg.pageSize, sarg.activity_type, sarg.industry_id, sarg.startDate,sarg.endDate,sarg.is_free, sarg.name,sarg.city,sarg.sort ).then(
-   				function success(data) {
+   				function success(data) {  
+   					
    					if(data.code!=0){
    						console.log(data.msg)
    						return;
    					}
-   				
+   					$(".tcdPageCode").createPage({
+						pageCount:Math.ceil(data.results/8),//总页数
+						current:$scope.act_list_sarg.pageIndex,//当前页数
+						backFn:function(p){	//回调,p为当前页数												      
+						}
+    				});	  					
    					$scope.act_results=data.results/8;
    				    $scope.act_list=[];
    				    $("html,body").animate({scrollTop:0},200);
@@ -137,11 +155,12 @@ angular.module('activity_list', [ "directive_mml","activity_servrt"])
         	   $("#suosuo_p").val($scope.act_list_sarg.name);
          }
      }catch(e){
-    	 console.log("搜索框没有内容")
+    	
      }
     
 	
      $scope.list_fun.demand($scope.act_list_sarg);
+     $scope.list_fun.fengye()
    
      $scope.actlist=function(){
     	  activity_data.query_activity_list(1,10).then(

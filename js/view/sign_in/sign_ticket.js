@@ -111,16 +111,32 @@ angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router","n
     		});
     }
     $scope.vote_p(date)
-    
       setInterval(function(){
             $scope.vote_p(date)
     },50000)
- 
-    
-    
-    
-    
-}]).config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+}]).controller('streamingCtrl',function($scope,activity_data,$location,$stateParams) {  
+
+
+
+  var player=""
+		  activity_data.getDatas('GET', '/Live/query_live_info?activity_id='+$stateParams.act_id)
+		  .then(function(data) {
+			 if(data.code!=0){
+				 return
+			 }
+			   // 初始化播放器
+			      player = new prismplayer({
+			        id: "J_prismPlayer", // 容器id
+			        source: data.info.live_url_str.liveurl_m3u8,// 视频地址 
+			        autoplay: false,    //自动播放：否
+			        isLive:true,  //是否是直播
+			        width: "100%",       // 播放器宽度
+			        height: "500px"      // 播放器高度
+			    });
+		 }); 
+	
+})
+	.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
 
     $urlRouterProvider.when('polls_show','/polls_show')  // 收藏活动
     				 .otherwise('/sign_wall');  //首页    默认项
@@ -128,8 +144,12 @@ angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router","n
     	url: '/sign_wall', //首页
     	templateUrl: '/html/activity/sign_wall.html'
     }).state('polls_show',{
-    	url: '/polls_show/:vote_id', //首页
+    	url: '/polls_show/:vote_id', //投票
     	templateUrl: '/html/activity/polls_show.html'
+    }).state('streaming',{
+    	url: '/streaming/:act_id', //直播
+    	templateUrl: '/html/activity/streaming.html',
+    	controller: 'streamingCtrl'
     })
 
 

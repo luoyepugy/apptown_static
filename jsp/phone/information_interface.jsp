@@ -46,8 +46,7 @@
       <p class="dianer fz16 green_new" ng-bind="infomation.volume_details.activity_name"></p>
        
         <p class="fz12 mt10 pm5 brm">
-            报名时间：<span ng-bind="infomation.volume_details.apply_time | date:'MM/dd EEE HH:mm'"></span>  <!--  距活动开始还剩5天 -->
-           距活动开始还剩 <span ng-bind="infomation.volume_details.activity_start_time|reduce_time:''"></span>
+            报名时间：<span ng-bind="infomation.volume_details.apply_time | date:'MM/dd EEE HH:mm'"></span>
         </p>
         
         <section class="pt10">

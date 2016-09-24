@@ -1,7 +1,7 @@
 /**
  * 票券详情
  */
-angular.module('information_interface', ["activity_servrt"])
+angular.module('information_interface', ["directive_mml","activity_servrt"])
 .controller('information_Controller',["$scope","activity_data",function($scope,activity_data) {
 	$scope.infomation={
 			"in_data":{"order_id":$("#order_id").val()},

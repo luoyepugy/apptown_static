@@ -10,7 +10,7 @@
    <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="/css/base.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
-    <link  rel="shorcut icon"   href="http://www.apptown.cn/img/shortCut.ico" />
+    <link  rel="shorcut icon"   href="/img/LOGO.png" />
 <!--[if IE]>    <link href="/css/ie.css" rel="stylesheet"><![endif]-->
 <title>e场景活动-活动列表</title>
 <script src="/js/common/uaredirect.js"></script>
@@ -110,14 +110,16 @@
                              <span class="green_new mr5" ng-bind="list.browseCount"></span>浏览
                              <span class="ml20 green_new mr5" ng-bind="list.activity_number">47</span>参与
                           </p>
-                          
-                       <a class="btn btn-primary act_sub_poiu act_sub_poiu_o" data-href="/support/12282{{list.support_id}}12282.httl" ng-if="list.support_id!=null">我要赞助</a>
-                       <a style="background:#a9a9a9" class="btn btn-primary act_sub_poiu act_sub_poiu_o disable_href"    ng-if="list.support_id==null">我要赞助</a>
+                      <!-- 暂时屏蔽赞助 -->
+                       <!-- <a class="btn btn-primary act_sub_poiu act_sub_poiu_o" data-href="/support/12282{{list.support_id}}12282.httl" ng-if="list.support_id!=null">我要赞助</a> -->
+                       <!-- <a style="background:#a9a9a9" class="btn btn-primary act_sub_poiu act_sub_poiu_o disable_href"    ng-if="list.support_id==null">我要赞助</a> -->
+                      <!-- /暂时屏蔽赞助 -->
                       <a class="btn btn-primary act_sub_poiu" ng-href="/activity/{{list.id}}.httl">我要报名</a>
                       
                       </div>
                       <p class="qc"></p>
-                      <div style="border-top: 1px solid #f1f1f1; margin-top: 10px;padding-top:5px;">
+                      <!-- 暂时屏蔽赞助 -->
+                      <!-- <div style="border-top: 1px solid #f1f1f1; margin-top: 10px;padding-top:5px;">
                          <p class="d_inline cen fz16" style="width:32%;line-height:30px;color:#a9a9a9">
                             目标金额 {{list.target_money}}
                          </p>
@@ -127,17 +129,18 @@
                          <p class="d_inline cen fz16" style="width:33%;line-height:30px;color:#a9a9a9">
                           项目进度 {{list.schedule}}
                          </p>
-                       </div>
+                       </div> -->
+                      <!-- /暂时屏蔽赞助 -->
                    </li>
                      
                   
                 </ul>
 
-
+                <!--分页开始-->
 				<div class="tcdPageCode">
 					
 				</div>
-
+                 <!--分页结束-->
 
 
 

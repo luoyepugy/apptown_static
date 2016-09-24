@@ -10,7 +10,7 @@
     <link href="/css/style.css" rel="stylesheet">
         <link href="/js/rich_text/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
       <link href="/css/jquery.datetimepicker.css" type="text/css" rel="stylesheet">
-      <link  rel="shorcut icon"   href="http://www.apptown.cn/img/shortCut.ico" />
+      <link  rel="shorcut icon"   href="/img/LOGO.png" />
 
 <!--[if IE]>    <link href="/css/ie.css" rel="stylesheet"><![endif]-->
 <title>赞助编辑</title>

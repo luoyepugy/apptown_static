@@ -2,6 +2,7 @@ $("#dataLoad").hide();
 /**
  * 个人中心
  */
+
 angular.module('user_center',["directive_mml",'tm.pagination',"activity_servrt","ui.router", "common", "request", "pagination"])
 .controller('user_centerController',["$scope","activity_data",function($scope,activity_data) {//帮助中心
 	try{
@@ -219,8 +220,10 @@ angular.module('user_center',["directive_mml",'tm.pagination',"activity_servrt",
  	 			     $scope.my_act.user_id=data.info.user_id
  	 			   if( $scope.act_fu.active_state==1){
  	 				  $scope.act_fu.list_a();
+ 	 				  $scope.act_fu.fengye();
  	 			  }else  if( $scope.act_fu.active_state==2){
  	 				  $scope.act_fu.activities_the();
+ 	 				  $scope.act_fu.fengye();
  	 				  
  	 				 
  	 				  
@@ -270,7 +273,22 @@ $scope.act_fu={
 			  $scope.act_fu.activities_the();
 		  }
 		  $("html,body").animate({scrollTop:0},200);
-	  },"list_a":function (){
+	  },"fengye":function(){ //分页
+            $(".tcdPageCode").createPage({
+						pageCount:10,
+						current:$scope.my_act.pageIndex,
+						backFn:function(p){	
+							$scope.my_act.pageIndex=p
+							if($scope.act_fu.active_state==1){
+								$scope.act_fu.list_a()
+							}else{
+								$scope.act_fu.activities_the()
+							}						    
+						}
+    				});	
+            }
+        ,
+	  "list_a":function (){
 		  $(".user_poiy_er li").removeClass("active");
 		  $(".user_poiy_er li").eq(0).addClass("active");
 		  $scope.act_fu.active_state=1;//初始化划活动状态
@@ -280,6 +298,12 @@ $scope.act_fu={
 	   						console.log(data.msg)
 	   						return;
 	   					}
+						$(".tcdPageCode").createPage({
+								pageCount:Math.ceil(data.results/10),//总页数
+								current:$scope.my_act.pageIndex,//当前页数
+								backFn:function(p){	//回调,p为当前页数												      
+								}
+    					});
 						$scope.act_my_p=[];
 						$(data.rows).map(function(){
 							var act_di=new query_activity_list(this);
@@ -313,6 +337,12 @@ $scope.act_fu={
 	   						console.log(data.msg)
 	   						return;
 	   					}
+						$(".tcdPageCode").createPage({
+								pageCount:Math.ceil(data.results/10),//总页数
+								current:$scope.my_act.pageIndex,//当前页数
+								backFn:function(p){	//回调,p为当前页数												      
+								}
+    					});
 						$scope.act_my_p=[];
 						$(data.rows).map(function(){
 							var act_di=new query_activity_list(this);
@@ -391,7 +421,12 @@ $scope.act_fu={
 	
 }]).controller('my_sponsor',["$scope","activity_data",function($scope,activity_data) {//个人中心我发起的赞助
 	$(".user_list_left li").css({"background":"#fff"}).eq(2).css({"background":"#f1f1f1"});
+	$("body").on("click",".tioiy_po_po span",function(){
+		$(".tioiy_po_po span").css("color","#333333")
+		$(this).css("color","#4ea45d")
+	})
 	$scope.clickmysponsor=function(){
+		  	$('.tcdPageCode').off("click");
 		    var mySp_pageIndex=1;//初始化页数
 			var mySp_status="";// 0:保存、1:通过、2:拒绝、3:待审核、4:预热中、5:赞助中、6:赞助成功、7:赞助失败
 			var mySp_timeStatus="";//1.未开始 2:进行中 3：已结束
@@ -413,7 +448,8 @@ $scope.act_fu={
 		 	 			    }		 			    
 		 	 			     mySp_userId=data.info.user_id;
 		 	 			     $scope.mySp_userId=data.info.user_id;
-		 	 			   $scope.list_person_sponsor.allsponspor(mySp_pageIndex,mySp_userId,mySp_status,mySp_timeStatus)	 			    
+		 	 			   $scope.list_person_sponsor.allsponspor(mySp_pageIndex,mySp_userId,mySp_status,mySp_timeStatus)
+		 	 			   $scope.list_person_sponsor.fengye1()
 		 				}, function error() {
 		 					console.log("获取用户信息失败")
 		 			});			
@@ -421,10 +457,18 @@ $scope.act_fu={
 				"allsponspor":function(mySp_pageIndex,mySp_userId,mySp_status,mySp_timeStatus){
 					activity_data.query_person_my_sponsor(mySp_pageIndex,mySp_userId,mySp_status,mySp_timeStatus).then(
 		 			    function success(data) {
+		 			    		$scope.mySp_list=[];
 		                    if(data.code!=0){
 								alert(data.msg);
 								return;
 							}
+		                    $(".tcdPageCode").createPage({
+								pageCount:Math.ceil(data.results/10),//总页数
+								current:mySp_pageIndex,//当前页数
+								backFn:function(p){	//回调,p为当前页数												      
+								}
+    						});
+    							$scope.mySp_list=[];
 		                    $(data.rows).map(function(){
 		                    	var spon=new personMySponsor(this);
 		                    	$scope.mySp_list.push(spon);
@@ -434,7 +478,17 @@ $scope.act_fu={
 		 				}, function error() {
 		 					console.log("获取个人中心我的赞助列表失败")
 		 			});   
-				},
+				},"fengye1":function(){ //分页
+			            $(".tcdPageCode").createPage({
+									pageCount:10,
+									current:mySp_pageIndex,
+									backFn:function(p){	
+										mySp_pageIndex=p;
+										$scope.list_person_sponsor.allsponspor(mySp_pageIndex,mySp_userId,mySp_status,mySp_timeStatus)
+									}
+			    				});	
+			            }
+        		,
 				"next_page":function(){		//上一页
 					$scope.mySp_list=[];
 					if(mySp_pageIndex<person_sp_result/10){
@@ -450,31 +504,38 @@ $scope.act_fu={
 			      	$scope.list_person_sponsor.allsponspor(mySp_pageIndex,mySp_userId,mySp_status,mySp_timeStatus)	 
 				},
 				"all":function(){  //赞助中
+					mySp_pageIndex=1;
 					$scope.mySp_list=[];
 					mySp_status=5;
 					$scope.list_person_sponsor.allsponspor(mySp_pageIndex,mySp_userId,'','')
 				},
 				"sponsoring":function(){  //赞助中
+					mySp_pageIndex=1;
 					$scope.mySp_list=[];
 					mySp_status=5;
 					$scope.list_person_sponsor.allsponspor(mySp_pageIndex,mySp_userId,mySp_status,mySp_timeStatus)
 				},"success_sponsor":function(){  //已成功
+					mySp_pageIndex=1;
 					$scope.mySp_list=[];
 					mySp_status=6;
 					$scope.list_person_sponsor.allsponspor(mySp_pageIndex,mySp_userId,mySp_status,mySp_timeStatus)
 				},"fail_sponsor":function(){    //已失败
+					mySp_pageIndex=1;
 					$scope.mySp_list=[];
 					mySp_status=7;
 					$scope.list_person_sponsor.allsponspor(mySp_pageIndex,mySp_userId,mySp_status,mySp_timeStatus)
 				},"future_sponsor":function(){   //预热中
+					mySp_pageIndex=1;
 					$scope.mySp_list=[];
 					mySp_status=4;
 					$scope.list_person_sponsor.allsponspor(mySp_pageIndex,mySp_userId,mySp_status,mySp_timeStatus)
 				},"checking_sponsor":function(){   //审核中
+					mySp_pageIndex=1;
 					$scope.mySp_list=[];
 					mySp_status=3;
 					$scope.list_person_sponsor.allsponspor(mySp_pageIndex,mySp_userId,mySp_status,mySp_timeStatus)
 				},"unpublish_sponsor":function(){   //未发布
+					mySp_pageIndex=1;
 					$scope.mySp_list=[];
 					mySp_status=0;
 					$scope.list_person_sponsor.allsponspor(mySp_pageIndex,mySp_userId,mySp_status,mySp_timeStatus)
@@ -484,6 +545,7 @@ $scope.act_fu={
 	}
     //	我参与的赞助开始
     $scope.clickmyattentsponsor=function(){
+    		$('.tcdPageCode').off("click");
 		    var mySp_pageIndex=1;//初始化页数
 			var mySp_status="";// 6:赞助成功、7:赞助失败
 			var mySp_timeStatus="";//1:预热中、2:赞助中、
@@ -530,6 +592,13 @@ $scope.act_fu={
 								alert(data.msg);
 								return;
 							}
+		                     $(".tcdPageCode").createPage({
+								pageCount:Math.ceil(data.results/10),//总页数
+								current:mySp_pageIndex,//当前页数
+								backFn:function(p){	//回调,p为当前页数												      
+								}
+    						});
+    							$scope.mySp_list=[];
 		                    $(data.rows).map(function(){
 		                    	var spon=new personMyAttentSponsor(this);
 		                    	$scope.mySp_list.push(spon);
@@ -540,6 +609,17 @@ $scope.act_fu={
 		 					console.log("获取个人中心我的赞助列表失败")
 		 			});   
 				},
+				"fengye2":function(){ //分页
+			            $(".tcdPageCode").createPage({
+									pageCount:10,
+									current:mySp_pageIndex,
+									backFn:function(p){	
+										mySp_pageIndex=p;
+										$scope.list_personattent_sponsor.allsponspor(mySp_pageIndex,mySp_status,mySp_timeStatus)
+									}
+			    				});	
+			            }
+        		,
 				"next_page_a":function(){		//上一页
 					$scope.mySp_list=[];
 					if(mySp_pageIndex<person_sp_result/10){
@@ -555,24 +635,30 @@ $scope.act_fu={
 			      	$scope.list_personattent_sponsor.allsponspor(mySp_pageIndex,mySp_status,mySp_timeStatus)	 
 				},
 				"all_a":function(){  //全部
+					mySp_pageIndex=1;
 					$scope.mySp_list=[];
 					$scope.list_personattent_sponsor.allsponspor(mySp_pageIndex,'','')
 				},
 				"sponsoring_a":function(){  //赞助中
+					mySp_pageIndex=1;
 					$scope.mySp_list=[];
 					$scope.list_personattent_sponsor.allsponspor(mySp_pageIndex,mySp_status,2)
 				},"success_sponsor_a":function(){  //已成功
+					mySp_pageIndex=1;
 					$scope.mySp_list=[];
 					$scope.list_personattent_sponsor.allsponspor(mySp_pageIndex,6,mySp_timeStatus)
 				},"fail_sponsor_a":function(){    //已失败
+					mySp_pageIndex=1;
 					$scope.mySp_list=[];
 					$scope.list_personattent_sponsor.allsponspor(mySp_pageIndex,7,mySp_timeStatus)
 				},"future_sponsor_a":function(){   //预热中
+					mySp_pageIndex=1;
 					$scope.mySp_list=[];
 					$scope.list_personattent_sponsor.allsponspor(mySp_pageIndex,mySp_status,1)
 				}
 			}
 		$scope.list_personattent_sponsor.allsponspor(mySp_pageIndex,mySp_status,mySp_timeStatus)
+		$scope.list_personattent_sponsor.fengye2()
 	}
     
 	//	我参与的赞助结束
@@ -872,10 +958,7 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
 // ===================================== 打赏名单 ===================================
 .controller('activity_reward_detailCtrl', ['$scope','httpService', function($scope, httpService) {
 	var index = 1;
-	// 分页
-	$scope.conf = {
-		itemsPerPage: 10
-	};
+	// 分页	
 	// 活动ID
 	$scope.id = $("#activityId").val();
 	// 获取活动数据
@@ -888,15 +971,27 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
 	});
 	// 获取打赏列表数据
 	var getRewardList = function(index) {
-		httpService.getDatas('GET', '/activityTip/' + $scope.id, {'pageIndex': index, 'pageSize': $scope.conf.itemsPerPage}).then(function(data) {
+		httpService.getDatas('GET', '/activityTip/' + $scope.id, {'pageIndex': index, 'pageSize':10}).then(function(data) {
 			$scope.rewardList = data.rows;
-			$scope.conf.totalItems = data.total;
+			$(".tcdPageCode").createPage({
+						pageCount:Math.ceil(data.total/10),
+						current:index,
+						backFn:function(p){	
+						}
+    		});	
+			
 		});
 	}
 	getRewardList(1);
-	$scope.conf.onChange = function(page) {
-		getRewardList(page);
-	}
+	$(".tcdPageCode").createPage({
+						pageCount:10,
+						current:index,
+						backFn:function(p){	
+							index=p
+						   getRewardList(index);  
+						}
+    });	
+   
 }])
 .controller('immediately_p',["$scope","activity_data",function($scope,activity_data) {//报名详情
 	

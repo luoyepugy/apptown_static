@@ -1140,3 +1140,52 @@ border-bottom: 16px solid #f1f1f1;
 .point {
 	cursor:pointer;
 }
+
+/*分页*/
+.tcdPageCode {
+	padding: 15px 0px;
+	text-align: left;
+	color: #ccc;
+	}
+.tcdPageCode a {
+	display: inline-block;
+	color: #4EA45D;
+	display: inline-block;
+	height: 35px;	
+	line-height: 35px;	
+	padding: 0 15px;
+	border: 1px solid #ddd;
+	margin: 0 2px;
+	border-radius: 4px;
+	vertical-align: middle;
+	}
+.tcdPageCode a:hover {
+	text-decoration: none;
+	border: 1px solid #4ea45d;
+	color:#4EA45D;
+	}
+.tcdPageCode span.current {
+	display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    padding: 0 15px;
+    margin: 0 2px;
+    color: #fff;
+    background-color: #4ea45d;
+    border: 1px solid #4ea45d;
+    border-radius: 4px;
+    vertical-align: middle;
+	}
+.tcdPageCode span.disabled {
+	display: inline-block;
+	height: 35px;
+	line-height: 35px;
+	padding: 0 15px;
+	margin: 0 2px;
+	color: #bfbfbf;
+	background: #f2f2f2;
+	border: 1px solid #bfbfbf;
+	border-radius: 4px;
+	vertical-align: middle;
+	cursor: not-allowed;
+	}
