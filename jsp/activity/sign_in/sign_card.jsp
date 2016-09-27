@@ -20,27 +20,29 @@
     <link rel="stylesheet" href="/css/activity/sign_in/sign_ticket.css?v=13"/>
     <link href="/css/common/mui.min.css" rel="stylesheet">
 </head>
-<body style="background:#462365;">
+<body class="sign_bg_2">
+	
      <input type="hidden" value="${activityId}" id="activityId">
-     <section class="bgf_5">
-          <h1 class="ticket_title" id="title">${title}</h1>
-	   	  <p class="ticket_horner">
+     <section class="ticket_padd">
+          <h1 class="ticket_title zq cen" id="title">${title}</h1>
+	   	  <p class="ticket_horner zq cen">
 	   	  	主办方：<span id="sponsor">${sponsor}</span>
 	   	  </p>
 	   	  
 	   	  	<img class="ticket_middle_left" src="${user_icon}" id="user_icon" width="104" height="107">
-	   	  		<p class="ticket_middle_right_t1" style="margin-top:6%"><span id="name">${name}</span></p>
+	   	  		<p class="ticket_middle_right_t1 zq cen" style="margin-top:6%"><span id="name">姓名：${name}</span></p>
 	   	  		<%-- <p class="ticket_middle_right_t2 fff_i">手机：<span id="tel">${tel}</span></p> --%>
-	   	  		<p class="ticket_middle_right_t2 ">票号：<span id="entry_code">${entry_code}</span></p>
+	   	  		<p class="ticket_middle_right_t2 zq cen">票号：<span id="entry_code">${entry_code}</span></p>
 	
 	   	  
-	   	  <section class="wechat_ico">
-	   	  	<img id="qr_code_url" data-src="${sponsor_url}" src="http://resource.apptown.cn/imageModel/activity_qrcode.jpg" width="133" height="132"/>
-	   	  </section>
+	   	 
      </section>
+     <section class="wechat_ico">
+	   	  	<img id="qr_code_url" data-src="${sponsor_url}" src="http://resource.apptown.cn/imageModel/activity_qrcode.jpg" width="133" height="132"/>
+	 </section>
 	     
 
-   	  	<a class="vote_comfirm bottom_print" id="button_print">打印签到卡</a>
+   	  	<a class="vote_comfirm bottom_print" style="bottom:12%" id="button_print">打印签到卡</a>
    	  	<ul class="vote_nav">
   <li class="vote_nav_list  active"> 
   <a >

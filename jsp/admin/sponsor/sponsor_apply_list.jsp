@@ -99,7 +99,7 @@ function uploadImage(){
        data:{id:$("#id_edit").val()},
        success: function (data,status){
            if(data.code == 0){
-            $("#sponsor_icon_edit").attr("src",data.img_path);   
+            $("#sponsor_icon_edit").attr("src",data.msg);   
            }else{
                alert("文件上传过程中出错!请重试!");
            }

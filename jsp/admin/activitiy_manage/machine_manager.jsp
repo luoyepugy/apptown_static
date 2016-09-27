@@ -176,10 +176,6 @@ function shenhe_cancel(){
 //主办方申请查询
 function reload() {
 	var _grid = $('#machine_manager');
-	/* var queryParams = _grid .datagrid('options').queryParams;
-	queryParams.phone = $('#phone').val();
-	queryParams.contact_status = $("#contact_status").combobox('getValue'); 
-	queryParams.id=$("#id").val(); */
 	_grid .datagrid('reload');
 }
 </script>	

@@ -31,9 +31,9 @@
              <a ng-href="#" class="zc">发起活动</a>
         </p>
     </div>
-    <div class="wd mt20 loan_wrap" >
-      <!-- 暂时屏蔽白条 -->
-    	<!-- <div class="loan_top clearfix" >
+    <!-- 暂时屏蔽赞助白条 -->
+    <!-- <div class="wd mt20 loan_wrap" >
+    	<div class="loan_top clearfix" >
     		<a  class="loan_close" ng-click="closeLoan($event.target)"></a>
     		<img class="pull-left loan_top_img" src="/img/loan_img.png" width="420" height="240" />
     		<div class="pull-left loan_top_content loan_uncheck">
@@ -80,9 +80,9 @@
     			</p>	
     		</div>
     		
-    	</div> -->
-      <!-- /暂时屏蔽白条 -->
-    	<ul class="loan_tip clearfix" style="display: none;position:relative;">
+    	</div>
+      
+    	<ul class=赞助设置"loan_tip clearfix" style="display: none;position:relative;">
     	<a class="loan_close" ng-click="closeLoan($event.target)"></a>
     		<li class="pull-left">
     			<p class="loan_tip_1st">
@@ -119,7 +119,9 @@
     			</p>
     		</li>
     	<ul>
-    </div>
+    </div> -->
+    <!-- /暂时屏蔽赞助白条 -->
+
     
     <div class="wd mt20 bgff sponsor_div gji_poi">
          <p class="fz18 act_title_a">基本信息</p>
@@ -459,8 +461,8 @@
              </li>
              
              
-          
-              <li class="zq mt20 ">
+              <!-- 暂时屏蔽赞助 -->
+              <!-- <li class="zq mt20 ">
                   <label class="f_d title_poi fl mt10">赞助设置</label>
                      <div class="ov map_poou_car map_poou_car_poi">
                          <div class="pwu_table">
@@ -481,8 +483,8 @@
                                          <i class="f_i  choice" ng-click="ct_check(mlist.id,$event.target)" data-xz="0"></i>
                                                                             
                                      </span>
-                                   <!--   <input type="radio" name="setting" ng-model="x"   >
-                                     </span> -->
+                                     <input type="radio" name="setting" ng-model="x"   >
+                                     </span>
                                      </td>
                                      <td ng-bind="mlist.title"></td>
                                      <td ng-bind="mlist.create_date|date:'yyyy-MM-dd EEE  HH:mm:ss'"></td>
@@ -504,8 +506,8 @@
                          	 </p>
                         <p class="fz16 mt10"><span class="hs">发起赞助项目：{{mySp_list.length}}个</span><a class="ml20" ng-href="/jsp/activity/launch_sponsor.jsp"  target="_blank">立即发起</a></p> 
                       </div>
-              </li>
-     
+              </li> -->
+              <!-- /暂时屏蔽赞助 -->
             </ul>
             <p class="slideUp j-accordionUp">收起选项<i class="iconfont icon-arrowup fz12" style="margin: 3px 0 0 5px;font-size: 14px;"></i></p>
          </div>
