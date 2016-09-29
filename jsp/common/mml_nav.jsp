@@ -26,7 +26,7 @@
 
 	<!-- 菜单栏 -->
 <link href="/css/common/font-awesome.css" rel="stylesheet"> 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1473825271_925848.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1475116748_320295.css">
 <div ng-controller="navigation_mml">
  <div class="men_nav">
          <div class="wd">
@@ -68,7 +68,7 @@
                                 </ul> -->
                    <!-- </li> -->
                     <!-- /暂时屏蔽赞助 -->
-                      <li class="nav_li"><a ng-href="/activity/to_sponsor_activity"  class="interlinkage">+发起</a></li>
+                      <li class="nav_li"><a ng-click="act_index.promotional_activities()"  class="interlinkage">+发起</a></li>
                  
        
                       <li class="fl">

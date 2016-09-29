@@ -280,7 +280,7 @@
                          </div>
                         </div>
              </li>
-              <li class="zq mt20 pr">
+              <li class="zq mt20 pr modify_disable_par ">
                      <label class="f_d title_poi fl mt20">报名表单设置</label>
                      <div class="ov map_poou_car"   >
                           <div ng-repeat="fo in row_po_form">
@@ -297,7 +297,7 @@
                              <span >必填</span>  |  &nbsp; 
                              <input type="text" class="act_input_a ml10 ipuf" value="{{fo.name}}"> 
                              <input type="text" class="act_input_a ipue ml10 ipug" placeholder="提示信息写在这里" readonly>
-                             <i class="f_i delect_icon"  title="删除" ng-click="select_click.delect_fom_p($index)"></i>
+                             <i class="f_i delect_icon modify_disa"  title="删除" ng-click="select_click.delect_fom_p($index)"></i>
                          </p>
                          
                          
@@ -305,12 +305,12 @@
                             
              
           
-                         <p class="mt20">
+                         <p class="mt20 modify_disa">
                              <a class="btn btn-primary add_form_p add_form_p_fpr modify_disable" ng-click="select_click.add_fom_p()">+ 添加更多表单</a>
                          </p>
                      </div>
-                     
-                     <div class="display_show"></div>
+                     <div class="display_show" ></div>
+                   
              </li>
              <li class="zq mt20 pr">
                      <label class="f_d title_poi fl mt10">匿名打赏</label>
@@ -373,7 +373,7 @@
                             <a class="btn btn-primary add_form_p" ng-href="#honored_guest" data-toggle="modal">+ 添加活动嘉宾</a>
                       </div>
              </li>
-                   <li class="zq mt20 ">
+                   <li class="zq mt20 pr modify_disable_par">
                      <label class="f_d title_poi fl mt10">票务设置</label>
                      <div class="ov map_poou_car map_poou_car_poi">
                          <div class="pwu_table">
@@ -400,7 +400,7 @@
                                      <td width="80" ng-bind="ty.sum_num+'张'"></td>
                                     <td width="360"><p class="dian" style="width:360px;" ng-bind="ty.remark">  </p></td>
                                      <td>
-                                         <p class="bj_icon_a">
+                                         <p class="bj_icon_a modify_disa">
                                            <span title="修改">  <i class="f_i bj_poi_p mr10" ng-click="select_click.volume_change($index)"></i></span> |
                                            <span title="删除">  <i class="f_i delect_icon" alt="删除" ng-click="select_click.delec_volume($index+1)"></i></span>
                                          </p>
@@ -409,14 +409,15 @@
                                  </tr>
                              </tbody>
                          </table>
-                             <div class="display_show"></div>
+                           
                       </div>
                          </div>
                            
                          
                          <p class="qc"></p>
-                            <a class="btn btn-primary add_form_p modify_disable" ng-href="#ticket_set" data-toggle="modal">+  添加新的票种</a><span class="ml30 zc fz12">(免费活动时，无需设置票种。)</span>
+                            <a class="btn btn-primary add_form_p modify_disa " ng-href="#ticket_set" data-toggle="modal">+  添加新的票种</a><span class="ml30 zc fz12">(免费活动时，无需设置票种。)</span>
                       </div>
+                      <div class="display_show" ></div>
              </li>
              
              
@@ -569,15 +570,15 @@
          <span>阅读并同意e场景活动的</span>
          <a ng-href="/jsp/common/e_active.jsp">《e场景平台服务协议》 </a>
      </p>
-        <p class="mt50 cen bottom_button" ng-if="id==0">
+        <p class="mt50 cen bottom_button" ng-if="id==0"><!-- 创建的情况 -->
             <a class="btn btn-primary" ng-click="select_click.submit_data(0)"> 发布</a>
              <a class="btn btn-primary ml60 baocun_button" ng-click="select_click.submit_data(1)">保存</a>
         </p>
-         <p class="mt50 cen bottom_button" ng-if="id>0&&status==0">  
+         <p class="mt50 cen bottom_button" ng-if="id>0&&status==0"> <!-- 已发布的情况 --> 
              <a class="btn btn-primary ml60 baocun_button" ng-click="select_click.submit_data(3)">修改</a>
         </p>
-          <p class="mt50 cen bottom_button" ng-if="id>0&&status==1">
-      <a class="btn btn-primary" ng-click="select_click.submit_data(0)"> 发布</a>
+          <p class="mt50 cen bottom_button" ng-if="id>0&&status==1"><!-- 保存未发布的情况 --> 
+      <a class="btn btn-primary" ng-click="select_click.submit_data(6)"> 发布</a>
              <a class="btn btn-primary ml60 baocun_button" ng-click="select_click.submit_data(4)">修改</a>
         </p> 
     </div>

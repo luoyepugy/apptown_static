@@ -109,14 +109,16 @@
 						                                     <span class="green_new mr5" ng-bind="z.browse_count"></span>浏览
 						                                     <span class="ml20 green_new mr5" ng-bind="z.person_count"></span>参与
 						                                  </p>
-						                                  
-						                               <a class="btn btn-primary act_sub_poiu act_sub_poiu_o" data-href="/support/12282{{z.support_id}}12282.httl" ng-if="z.support_id!=null">我要赞助</a>
-						                               <a style="background:#a9a9a9" class="btn btn-primary act_sub_poiu act_sub_poiu_o disable_href"    ng-if="z.support_id==null">我要赞助</a>
+						                                 <!-- 暂时屏蔽赞助 -->  
+						                              <!-- <a class="btn btn-primary act_sub_poiu act_sub_poiu_o" data-href="/support/12282{{z.support_id}}12282.httl" ng-if="z.support_id!=null">我要赞助</a>
+						                               <a style="background:#a9a9a9" class="btn btn-primary act_sub_poiu act_sub_poiu_o disable_href"    ng-if="z.support_id==null">我要赞助</a>-->
+						                               <!-- 暂时屏蔽赞助 -->
 						                              <a class="btn btn-primary act_sub_poiu" ng-href="/activity/12282{{z.id}}12282.httl">我要报名</a>
 						                              
 						                              </div>
 						                              <p class="qc"></p>
-						                              <div style="border-top: 1px solid #f1f1f1; margin-top: 10px;padding-top:5px;">
+						                               <!-- 暂时屏蔽赞助 -->
+						                              <!--<div style="border-top: 1px solid #f1f1f1; margin-top: 10px;padding-top:5px;">
 						                                 <p class="d_inline cen fz16" style="width:32%;line-height:30px;color:#a9a9a9">
 						                                    目标金额 {{z.target_money}}
 						                                 </p>
@@ -126,7 +128,8 @@
 						                                 <p class="d_inline cen fz16" style="width:33%;line-height:30px;color:#a9a9a9">
 						                                  项目进度 {{z.schedule}}
 						                                 </p>
-						                               </div>
+						                               </div>-->
+						                                <!-- 暂时屏蔽赞助 -->
             								</li>
 		   			 	        <!--  <li class="yj4   bgff ov pt10 pl5 mb10" style="border:1px #e0e0e0 solid;" ng-repeat="z in perList">
 		   			 	           <div class="pr" style="border-bottom:1px #e0e0e0 solid; ">
@@ -205,20 +208,21 @@
 						                                
 						                                         <span class="green_new mr5" ng-bind="d.sponsor_name"></span>主办
 						                                          <span style="padding:2px 10px;" class="yj4  cf fr green_new" ng-if="d.is_free==0">免费</span>
-						                                          <span style="padding:2px 10px;color:#fe4e58"  class="yj4 cf fr" ng-if="d.is_free!=0">￥{{z.activity_money}}&nbsp;起</span>
+						                                          <span style="padding:2px 10px;color:#fe4e58"  class="yj4 cf fr" ng-if="d.is_free!=0">￥{{d.activity_money}}&nbsp;起</span>
 						                                  </p>
 						                                 <p class="mt15">
 						                                     <span class="green_new mr5" ng-bind="d.browse_count"></span>浏览
 						                                     <span class="ml20 green_new mr5" ng-bind="d.person_count"></span>参与
 						                                  </p>
-						                                  
-						                               <a class="btn btn-primary act_sub_poiu act_sub_poiu_o" data-href="/support/12282{{d.support_id}}12282.httl" ng-if="d.support_id!=null">我要赞助</a>
-						                               <a style="background:#a9a9a9" class="btn btn-primary act_sub_poiu act_sub_poiu_o disable_href"    ng-if="d.support_id==null">我要赞助</a>
+						                                 <!-- 暂时屏蔽赞助 -->
+						                              <!-- <a class="btn btn-primary act_sub_poiu act_sub_poiu_o" data-href="/support/12282{{d.support_id}}12282.httl" ng-if="d.support_id!=null">我要赞助</a>
+						                               <a style="background:#a9a9a9" class="btn btn-primary act_sub_poiu act_sub_poiu_o disable_href"    ng-if="d.support_id==null">我要赞助</a>-->
+						                               <!-- 暂时屏蔽赞助 -->
 						                              <a class="btn btn-primary act_sub_poiu" ng-href="/activity/12282{{d.id}}12282.httl">我要报名</a>
 						                              
 						                              </div>
 						                              <p class="qc"></p>
-						                              <div style="border-top: 1px solid #f1f1f1; margin-top: 10px;padding-top:5px;">
+						                             <!-- <div style="border-top: 1px solid #f1f1f1; margin-top: 10px;padding-top:5px;">
 						                                 <p class="d_inline cen fz16" style="width:32%;line-height:30px;color:#a9a9a9">
 						                                    目标金额 {{d.target_money}}
 						                                 </p>
@@ -228,11 +232,11 @@
 						                                 <p class="d_inline cen fz16" style="width:33%;line-height:30px;color:#a9a9a9">
 						                                  项目进度 {{d.schedule}}
 						                                 </p>
-						                               </div>
+						                               </div>-->
             								</li>
 		                   		          
    			 	     		    </ul>
-   			 	     			<p class="qc bgff pt10 pm10 cen paging_list mt10 check_overdate" ng-click="check_overdate()">
+   			 	     			<p ng-if="Resulted>0" class="qc bgff pt10 pm10 cen paging_list mt10 check_overdate" ng-click="check_overdate()">
 									<a class="ls clkh_po">
 										查看过期活动
 									</a>

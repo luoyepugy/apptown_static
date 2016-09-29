@@ -33,13 +33,22 @@
     	<p style="display: block; line-height: 20px; height: 20px; text-align: center;">
     		<span> <label>账号ID:</label></span>
     		<input class="easyui-validatebox" type="text" id="user_id" />
+    		<span> <label>审核状态:</label></span>
     		<select  class="easyui-combobox" style="width: 160px;" id="status" panelHeight="100" >
 				<option value="">全部</option>
 				<option value="3">待审核</option>
 				<option value="1">通过</option>
 				<option value="2">拒绝</option>
 			</select>
-    		<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="position: relative;bottom: 3px;" onclick="selectSponsorApply()">查询</a>
+    		<!-- <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="position: relative;bottom: 3px;" onclick="selectSponsorApply()">查询</a>  -->
+    		<span> <label>申请类型:</label></span>
+    		<select  class="easyui-combobox" style="width: 160px;" id="type" panelHeight="100" >
+				<option value="">全部</option>
+				<option value="0">活动号</option>
+				<option value="1">嘉宾号</option>
+				<option value="2">媒体号</option>
+			</select>
+    		<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="position: relative;bottom: 3px;" onclick="selectSponsorApplyByType()">查询</a>
     	</p>  
 	</div>
 	
@@ -73,7 +82,8 @@
 		<ul class="shenhe_ul">
 			<li>
 				<span>状态:
-				<input id='id_shenhe' type=hidden>
+				<input id='id_shenhe' type='hidden'/>
+				<input id='type_id' type='hidden'/>
 				</span>
 				<input name="status" type="radio" value="N" checked="checked"/>拒绝 &nbsp;&nbsp;&nbsp;&nbsp;
 				<input name="status" type="radio" value="Y" />通过
