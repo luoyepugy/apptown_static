@@ -303,7 +303,7 @@
             <div class="act_list_p_right fr  bgff">
             <c:if test="${support_id<0||support_id==undefined}">  
             	<div class="cen pd poiut_top_q">
-            	<div class="raise_right fl">
+            	<!-- <div class="raise_right fl">
                           <p class="zc dian fz16 b" >￥0</p>
                           <p>目标金额</p>
                     </div>
@@ -318,7 +318,7 @@
                     <div class="raise_right fl mt10">
                       <p class="zc dian fz16 b" >0天</p>
                           <p>剩余时间</p>
-                    </div>
+                    </div> -->
                     
                      <!--<div class="raise_right fl mt10 raise_right_qc pr"  ng-init="qcode('raise_right_qc','http://m.apptown.cn/activity_support/support_detail?activity_support_id=${support_id}',97,100)" >
                        <img src="/img/share_activity.png" class="logo_p_act">
@@ -328,13 +328,13 @@
                         <p class="fz12 mt20">扫描左侧二维码</p>
                         <p>"<span class="fz20 hs">马上赞助</span>"</p>
                     </div>-->
-                    <p class="qc"></p>
+                    <!-- <p class="qc"></p>
                     
                     <p class="mt10 cen">
                      <a class="btn   want_sponsor"   target="_blank">我要赞助</a> 
                    
                      
-                    </p>
+                    </p> -->
                    <!-- <p class="mt10">  <span class="hs b " ng-bind="detail_o.join_count"></span>已赞助</p>-->
                <!--<div class="cen pd poiut_top_q">
                    <p class="fz18 zq mt10"><strong>便捷的活动发布平台${support_id }</strong></p>
@@ -347,7 +347,7 @@
                 </c:if>
                      <c:if test="${support_id>0&&status}">   
                 <div class="cen pd poiut_top_q">
-                    <div class="raise_right fl">
+                    <!-- <div class="raise_right fl">
                           <p class="hs dian fz16 b" ng-bind="'￥'+detail_o.target_amount"></p>
                           <p>目标金额</p>
                     </div>
@@ -362,7 +362,7 @@
                     <div class="raise_right fl mt10">
                       <p class="hs dian fz16 b" ng-bind="detail_o.end_time|reduce_time:''"></p>
                           <p>剩余时间</p>
-                    </div>
+                    </div> -->
                     
                      <div class="raise_right fl mt10 raise_right_qc pr"  ng-init="qcode('raise_right_qc','http://m.apptown.cn/activity_support/support_detail?activity_support_id=${support_id}',97,100)" >
                        <img src="/img/share_activity.png" class="logo_p_act">

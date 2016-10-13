@@ -422,7 +422,7 @@
              
              
              
-                            <li class="zq mt20 ">
+                            <!-- <li class="zq mt20 ">
                      <label class="f_d title_poi fl mt10">设置投票</label>
                      <div class="ov map_poou_car map_poou_car_poi">
                          <div class="pwu_table">
@@ -459,7 +459,7 @@
                          
                             <a class="btn btn-primary vote_padd"   ng-click="select_click.vote_initialization()" ng-if="select_click.date_pou[0].end_time==null">+  添加投票</a>
                       </div>
-             </li>
+             </li> -->
              
              
               <!-- 暂时屏蔽赞助 -->
@@ -517,49 +517,150 @@
       <div class="wd mt20 bgff sponsor_div">
       	<p class="fz24 j-accordionDown accordion-title">签到设置<i class="j-addSign">+</i><img style="margin-left: 35px;" src="/img/minus.png" class="none" /></p>
         <div class="j-accordionContent none">
-        	<p class="atten_set">
-        		<span style="float:left">二维码关注设置</span>
-        		<input style="float:left;margin-left: 20px;"  id="atten_set_off" checked="checked"  type="radio"  name="onOff" /><label style="float:left" for="atten_set_off">关闭</label>	
-        	    <input style="float:left;margin-left: 20px;"   id="atten_set_on" type="radio"  name="onOff" /><label style="float:left" for="atten_set_on">显示</label>	
-        	    <span style="float:left;margin-left: 40px;">提示：扫码签到的时候关注的微信公众号</span>   	    
-        	</p>
-        	<div class="upload_deminmnection clearfix" >
-        		<img class="pull-left" id="upLoadImg" width="113" height="113" src="/img/upload_code.png"  />
-        		<div class="pull-left" style="margin-left: 15px;">
-        			<a class="btn btn-primary" ng-click="upLoadImg()">上传图片</a>
-        			<p>
-        				二维码图片<br />
-                                            请上传jpg、png格式的图片
-        			</p>
-        		</div>
-        		
-        	</div>
-        	 <div class="zq mt20 " style="height:40px;">
-                       <label class="f_d title_poi fl mt20">视频直播 </label>
-                       <div class="ov map_poou_car">
-                            <div class="pr poiuy_poiu_q fl">
-                               <input type="url" class="act_input_a ipua video_text" placeholder="请输入视频直播链接地址" >
-                                
-                           </div>
-                          </div>
-                       <p class="qc"></p>
+          <ul class="nav nav-tabs user_poiy_er">
+             <li class="active"><a ng-href="#lottery" data-toggle="tab" class="zc">抽奖设置</a></li>
+             <li><a class="zc" ng-href="#ad" data-toggle="tab">广告设置</a></li>
+             <li><a class="zc" ng-href="#vote" data-toggle="tab">投票设置</a></li>
+             <li><a class="zc" ng-href="#follow" data-toggle="tab">关注设置</a></li>
+          </ul>
+            
+          <div class="tab-content">
+            <div class="tab-pane active" id="lottery">
+                fdgdfg
             </div>
-
-            <div class="sign-adSetting j-signAdSetting">
-              <div class="left">广告设置</div>
-              <div class="right">
-                <ul class="list db j-list">
-                  <li ng-repeat="item in adSetting.ad_urls_array">
-                    <img class="icon216x128 j-img" ng-src="{{item}}" alt="">
-                    <img src="/img/close.png" class="deleteBtn" ng-click="adSetting.deleteImg($index)" />
-                    <!-- <img class="hoverOut" ng-src="{{item}}" alt=""> -->
-                  </li>
-                  <div class="db addBtn icon216x128" ng-click="adSetting.uploadImg()" ng-if="adSetting.isShow">+</div>
-                </ul>
-                <p class="gray">提示：请上传至少<span style="color:#4ea45d;">1080*640</span>尺寸的图片, 最多上传6张。</p>
-              </div>
+            <div class="tab-pane" id="ad">
+                <div class="sign-adSetting j-signAdSetting">
+                    <ul class="list db j-list">
+                      <li ng-repeat="item in adSetting.ad_urls_array">
+                        <img class="icon216x128 j-img" ng-src="{{item}}" alt="">
+                        <img src="/img/close.png" class="deleteBtn" ng-click="adSetting.deleteImg($index)" />
+                        <!-- <img class="hoverOut" ng-src="{{item}}" alt=""> -->
+                      </li>
+                      <div class="db addBtn icon216x128" ng-click="adSetting.uploadImg()" ng-if="adSetting.isShow">+</div>
+                    </ul>
+                    <p class="gray">提示：请上传至少<span style="color:#4ea45d;">1080*640</span>尺寸的图片, 最多上传6张。</p>
+                </div>
             </div>
-           <p class="slideUp j-accordionUp">收起选项<i class="iconfont icon-arrowup fz12" style="margin: 3px 0 0 5px;font-size: 14px;"></i></p>
+            <div class="tab-pane" id="vote">
+                <div class="voite_poiu_a pr">
+                 <ul class="form_poiu_q_m mt20 form_poiu_q_m_o pr form_poiu_q_m_o_poo"> 
+                    <li class="zq mt10 ">
+                     <label class="f_d title_poi fl mt20 title_poi_poi">投票名称<span class="hs">*</span></label>
+                     <div class="ov map_poou_car">
+                          <div class="pr poiuy_poiu_q fl">  
+                             <input type="text" class="act_input_a ipue" placeholder="请输入投票名称" id="vote_title" maxlength="20" value="{{select_click.date_pou.title}}">
+                              
+                         </div>
+                        </div>
+                     </li>
+                     <li class="zq mt10 "> 
+                        <label class="f_d title_poi fl mt20 title_poi_poi">截止时间<span class="hs">*</span></label>
+                         <p class="ty_poi_q">
+                                        <span class="pr time_poiu"><i class="f_i tri_icon"></i> 
+                                        <input type="text" class="act_input_a ipub" id="stat_time_q" ></span>
+                                        <span class="pr ml10 time_poiu"><label class="f_i data_icon_a"></label>
+                                        <input type="text" class="act_input_a ipuc" id="stat_time_w" ></span>
+                                      
+                                      </p>
+                                      <p class="qc"></p>
+                     </li>
+                     
+                        <li class="zq  mt10"> 
+                              
+                                <label class="f_d title_poi fl  title_poi_poi title_poi_poi_pooi">投票类型<span class="hs">*</span></label>
+                                 <div class="ov map_poou_car">
+                                 <p class="zc">最多可添加20项</p>
+                                  
+                                </div>
+                                   <p class="qc"></p>
+                         </li>
+                         
+                         <li class="zq"   ng-repeat="List in select_click.voteItemList">    
+                      
+                           <label class="f_d title_poi fl mt20 title_poi_poi">选项{{$index+1}}<span class="hs"></span></label>
+                            <div class="ov map_poou_car act_input_a_voge_ws">
+                               <div class="pr poiuy_poiu_q fl mt10 pr"> 
+                                     <input type="text" class="act_input_a ipue act_input_a_voge" placeholder="请输入投票的标题（不大于30字）"  maxlength="20" value="{{List.item_name}}">
+                                      <p class="pupu_oiuuy_icon">
+                                         <img ng-src="{{List.image_urls}}" class="browse_maps">|
+                                         <i class="f_i piytr_a_b" title="点击上传图片" ng-click="select_click.up_icon_b($event.target)"></i>|
+                                         <i class="f_i delect_icon_c" title="删除" ng-click="select_click.voteIte_w($index)"></i>
+                                      </p>
+                                 </div>
+                            </div>
+                        </li>
+                              
+                             
+                              <li class="zq  "> 
+                                 <label class="f_d title_poi fl mt20 title_poi_poi">&nbsp;<span class="hs"></span></label>
+                                  <div class="ov map_poou_car">
+                                    <a class="btn btn-primary add_form_p " ng-click="select_click.polling_data(1)">+  增加投票选项</a>
+                                  </div>
+                              </li>
+                               
+                              <li class="zq  mt20"> 
+                              
+                                <label class="f_d title_poi fl mt20 title_poi_poi">投票类型<span class="hs">*</span></label>
+                             <div class="ov map_poou_car">
+                                  <div class="pr poiuy_poiu_q fl">
+                                        <select class="sp_pull_down" id="type_vote">
+                                  <option value="1">单选</option>
+                                    <option value="2">多选</option> 
+                           </select>
+                                 </div>
+                                </div>
+                        
+                        </li>           
+                      <li class="zq mt10 ">
+                             <label class="f_d title_poi fl mt20 title_poi_poi">  投票介绍<span class="hs">*</span></label>
+                             <div class="ov map_poou_car"> 
+                                  <div class="pr poiuy_poiu_q fl">
+                                       <textarea class="ipue jiap_po_c" placeholder="请填写投票说明，不大于60字" maxlength="60" id="vote_detail" ></textarea>
+                                       <p class="qc"></p>
+                     <p  class=" pup_icon_bottom poiuyt_ouy poiuyt_ouy_nmjh_a">
+                            <a class="btn btn-primary sub_poiy_a" ng-click="select_click.voted_add(1)">保存</a>
+                        </p>
+                                 </div>
+                            </div>
+                     </li>
+           
+                        
+                      </ul>
+                    <div class="amplification gd">
+                     <img src="" class="gd">
+                   </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="follow">
+                <p class="atten_set">
+                    <span style="float:left">二维码关注设置</span>
+                    <input style="float:left;margin-left: 20px;"  id="atten_set_off" checked="checked"  type="radio"  name="onOff" /><label style="float:left" for="atten_set_off">关闭</label>   
+                    <input style="float:left;margin-left: 20px;"   id="atten_set_on" type="radio"  name="onOff" /><label style="float:left" for="atten_set_on">显示</label>   
+                    <span style="float:left;margin-left: 40px;">提示：扫码签到的时候关注的微信公众号</span>           
+                </p>
+                <div class="upload_deminmnection clearfix" >
+                    <img class="pull-left" id="upLoadImg" width="113" height="113" src="/img/upload_code.png"  />
+                    <div class="pull-left" style="margin-left: 15px;">
+                        <a class="btn btn-primary" ng-click="upLoadImg()">上传图片</a>
+                        <p>
+                            二维码图片<br />
+                                                请上传jpg、png格式的图片
+                        </p>
+                    </div>
+                    
+                </div>
+                 <div class="zq mt20 " style="height:40px;">
+                           <label class="f_d title_poi fl mt20">视频直播 </label>
+                           <div class="ov map_poou_car">
+                                <div class="pr poiuy_poiu_q fl">
+                                   <input type="url" class="act_input_a ipua video_text" placeholder="请输入视频直播链接地址" >
+                                    
+                               </div>
+                              </div>
+                           <p class="qc"></p>
+                </div>
+            </div>
+          <p class="slideUp j-accordionUp">收起选项<i class="iconfont icon-arrowup fz12" style="margin: 3px 0 0 5px;font-size: 14px;"></i></p>
         </div>
           
       </div>

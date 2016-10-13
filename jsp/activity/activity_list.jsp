@@ -136,11 +136,14 @@
                   
                 </ul>
 
-                <!--分页开始-->
-				<div class="tcdPageCode">
-					
-				</div>
-                 <!--分页结束-->
+              <!--分页开始--页面居中-->
+			       <div style="text-align: center;">
+			       	   <div style="display: inline-block;" class="tcdPageCode" >
+								
+								</div>
+			       </div>   	    
+				<!--分页结束--页面居中-->
+
 
 
 

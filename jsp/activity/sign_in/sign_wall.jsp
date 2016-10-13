@@ -54,7 +54,7 @@
                  
                  
                  
-                   <span class="cf fz20 fl ml100 cen"  ui-sref="streaming({act_id:8828})">
+                   <span class="cf fz20 fl ml100 cen"  ui-sref="streaming({act_id:activityId})"> 
                    <i class="f_i poiuy_po_b"></i><br> 
                     视频
                  </span>

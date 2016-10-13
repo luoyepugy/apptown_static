@@ -103,8 +103,8 @@ uaredirect("http://m.apptown.cn/index.html#/index");//手机打开跳转到手�
         <!-- 暂时屏蔽白条 -->
         <!-- <p class="mt5 qc"><a ng-href="/jsp/white_bar.jsp"><img src="/img/index_white_bar.png"></a></p> -->
         <!-- /暂时屏蔽白条 -->
-        
-         <p class="fz20 zq mt30 pr pl20" style="margin-top: 20px"><span class="index_bar1"></span>热门活动</p>
+    
+         <p class="fz20 zq mt30 pr pl20 qc" style="margin-top: 20px"><span class="index_bar1"></span>热门活动</p>
          <div class="mt10 case_poi_oi_index recommend_ac">
                    
             <div class="case_stat bgff"  ng-repeat="hot in activity_list"  >

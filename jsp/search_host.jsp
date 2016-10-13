@@ -34,13 +34,13 @@
         <div class="search_host_wrap pt20">
         	<div class="search_host_left fl" ng-if="pResult>0">
         		<ul>
-        			<li class="search_host_list bgff" ng-repeat="x in person" data-x="{{x.user_id}}" data-href="/activity/to_host_list?sponsor_id={{x.user_id}}">
+        			<li class="search_host_list bgff mb10" ng-repeat="x in person" data-x="{{x.user_id}}" data-href="/activity/to_host_list?sponsor_id={{x.user_id}}">
         				<img ng-src="{{x.sponsor_icon}}" class="fl search_host_icon" src="" width="127" height="127">
         				<div class="search_host_content fl pl10">
         					<p class="pt10 pb20 green dian fz18" ng-bind="x.name">
         						
         					</p>
-        					<p class="dianer fz16" ng-bind="x.introduction">
+        					<p class="dianer fz16" style="line-height:24px;" ng-bind="x.introduction">
         					
         					</p>
         					<div class="pt20 fz14">        						

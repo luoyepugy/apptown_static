@@ -26,7 +26,7 @@
 
 	<!-- 菜单栏 -->
 <link href="/css/common/font-awesome.css" rel="stylesheet"> 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1475116748_320295.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1476067041_9680448.css">
 <div ng-controller="navigation_mml">
  <div class="men_nav">
          <div class="wd">
@@ -84,7 +84,7 @@
                                     <!-- 暂时屏蔽赞助和白条 -->
                                     <!-- <li><a class="bor_b_6">赞助</a></li> -->
                                     <!-- /暂时屏蔽赞助和白条 -->
-                                    <li><a class="bor_b_6">主办方</a></li>
+                                    <li><a class="bor_b_6">活动号</a></li>
                                 </ul>
                             </div>
                              <input class="span2"  type="text" placeholder="输入搜索内容" id="suosuo_p" value="${seach_content}" />

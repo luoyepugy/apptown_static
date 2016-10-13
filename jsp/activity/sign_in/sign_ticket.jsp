@@ -20,6 +20,7 @@
     <link href="/css/activity/sign_in/sign_ticket.css?v=12" rel="stylesheet">
     </head>
 <input type="hidden" value="${activity.id}" id="activityId" >
+<input type="hidden" value="${flag}" id="flag" >
 <body >
     <section class="nav_sign_w">
       <section class="nav_sign_n">
@@ -41,6 +42,21 @@
     	 </li>    
     </ul>
     
+    <!-- modify by scott 2016-10-12 提示用户票号不存在  begin -->
+    <div id="sign-prompt" class="mui-popup mui-popup-in" style="display: none;top:55%">
+        <div class="mui-popup-inner">
+            <div class="mui-popup-title">提示</div>
+            <div class="mui-popup-text">票号不存在</div>
+        </div>
+        <div class="mui-popup-buttons mui-popup-buttons-mml">
+          <span class="mui-popup-button-mml" id="sign_in_error">输入错误!重新输入</span>
+        </div>
+        <div class="mui-popup-buttons">
+          <span class="mui-popup-button-mml" id="sign_in_report">没有报名!马上报名</span>
+        </div>
+   </div>
+   <!-- modify by scott 2016-10-12 提示用户票号不存在 end -->
+    
     <section id="apply" class="mui-popover mui-popover-bottom mui-popover-action sign_pup apply_win">
        	 <p class="mt20 cen fz18 zd">报名签到</p>
      		<p class="apply_close">x</p>
@@ -58,7 +74,7 @@
     	
     <c:if test="${activity.end_time.time-nowDate>=0}">
            <c:if test="${isFree==1}"> <!-- 收费活动没有立即报名  -->
-               <p class="tip_baoming mt30">提示：如果您还没报名？<a class="to_enroll">立刻报名</a></p>
+               <p class="tip_baoming mt30">提示：如果您还没报名？<a class="to_enroll">马上报名</a></p>
            </c:if>
            <p class="pd"><button class="confirm_enroll">确认签到</button></p>
     </c:if>	
