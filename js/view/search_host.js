@@ -1,6 +1,6 @@
 angular.module('searchHostMain',["directive_mml",'tm.pagination',"activity_servrt"])
 .controller('searchHost',["$scope","activity_data",function($scope,activity_data) {//主办方搜索
-	
+	 $(".dropdown_toggle_o").html('活动号'+' <span class="caret"></span>')
 	var form_json={};//传过去的json
 	form_json.pageIndex=1;//初始化页码
 	form_json.name=decodeURI(window.location.search.split("host_title=")[1]);//搜索的关键词
@@ -10,7 +10,7 @@ angular.module('searchHostMain',["directive_mml",'tm.pagination',"activity_servr
 	$scope.person;
 	$scope.activity_hot=[];//推荐活动 
 	$scope.page_row=[];
-	$("#seach_type").attr("data-type",2);
+	$("#seach_type").attr("data-type",1);
     for(var i=1;i<10;i++){
    	 $scope.page_row.push(i);
     }

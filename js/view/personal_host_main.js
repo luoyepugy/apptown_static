@@ -18,6 +18,15 @@ angular.module('personal_host_main',["directive_mml",'tm.pagination',"activity_s
 				}, function error() {
 					console.log("获取主办方详情失败")
 		});
+	
+	    var data_pass={"sponsor_id":$scope.user_id,"time_status":2,"pageIndex":1,"pageSize":20}
+		activity_data.person_li(data_pass).then(//主办方发起的结束活动列表
+				function success(data) {
+					
+					$scope.Resulted=data.results;
+				}, function error() {
+					console.log("获取主办方发起的结束活动列表失败")
+		});
 
 	
 	

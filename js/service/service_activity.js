@@ -257,7 +257,7 @@ angular.module('activity_servrt', []).
            } 
            console.info(code_use);
            $http.get('/consumption/activity_id_by_consumption_list',
-        		   {params:{"activity_id":activity_id,"status":"1","pageIndex":pageIndex,"pageSize":pageSize,"content_detail":text,"code_use":code_use,"order_id":order_id}
+        		   {params:{"activity_id":activity_id,"status":"1","pageIndex":pageIndex,"pageSize":pageSize,"content_detail":text,"sort":"2","code_use":code_use,"order_id":order_id}
         		   }).success(function(data){
         	   console.info(data);
         	   consumption_list.resolve(data);

@@ -28,6 +28,8 @@ angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router","n
  */
 .controller('signAdCtrl', ['$scope', 'activity_data',"$state", function($scope, activity_data,$state) {
     $scope.vote_id_oio=vote_id==""?0:vote_id
+    $scope.activityId=$("#activityId").val()	 
+    
 	$scope.adCarousel = {
 		'wrap': false,
 		// 'list': ['/img/bg_admin_imge.jpg', '/img/test.jpg', '/img/test.jpg', '/img/bg_admin_imge.jpg'],
@@ -115,8 +117,6 @@ angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router","n
             $scope.vote_p(date)
     },50000)
 }]).controller('streamingCtrl',function($scope,activity_data,$location,$stateParams) {  
-
-
 
   var player=""
 		  activity_data.getDatas('GET', '/Live/query_live_info?activity_id='+$stateParams.act_id)

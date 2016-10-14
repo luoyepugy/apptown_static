@@ -19,7 +19,7 @@
     		    },3000)
     	 }}
     	   /*分类*/ 
-    	  $rootScope.classify=[{"title":"分类","maker_title":[{"id":"1","name":"路演场馆"},{"id":"2","name":"置业装修"},{"id":"3","name":"汽车活动"},{"id":"4","name":"商家促销"},{"id":"5","name":"精品课程"},{"id":"6","name":"户外运动"},{"id":"7","name":"保险投资"}]},{"title":"行业","maker_title":[{"id":"1","name":"孵化器"},{"id":"2","name":"房产"},{"id":"3","name":"互联网"},{"id":"4","name":"公益"},{"id":"5","name":"培训"},{"id":"6","name":"汽车"},{"id":"7","name":"旅游"},{"id":"8","name":"酒店"},{"id":"9","name":"家装"},{"id":"10","name":"卖场"},{"id":"11","name":"明星"},{"id":"12","name":"商会"},{"id":"13","name":"社区"},{"id":"14","name":"展会"},{"id":"15","name":"大健康"},{"id":"16","name":"校园"},{"id":"17","name":"媒体"},{"id":"18","name":"趣味"},{"id":"19","name":"金融"},{"id":"20","name":"其他"}]},{"title":"城市","maker_title":[{"id":"1","name":"北京 "},{"id":"2","name":"天津 "},{"id":"3","name":"上海 "},{"id":"4","name":"重庆 "},{"id":"51","name":"大连 "},{"id":"86","name":"南京 "},{"id":"99","name":"杭州 "},{"id":"128","name":"厦门 "},{"id":"418","name":"武汉 "},{"id":"435","name":"长沙 "},{"id":"449","name":"广州 "},{"id":"450","name":"深圳 "},{"id":"556","name":"西安 "},{"id":"627","name":"香港特别行政区"}]}];
+    	  $rootScope.classify=[{"title":"分类","maker_title":[{"id":"1","name":"商会场馆"},{"id":"2","name":"创业投资"},{"id":"3","name":"亲子教育"},{"id":"4","name":"金融财经"},{"id":"5","name":"精品课程"},{"id":"6","name":"休闲户外"},{"id":"7","name":"娱乐艺术"}]},{"title":"行业","maker_title":[{"id":"1","name":"孵化器"},{"id":"2","name":"房产"},{"id":"3","name":"互联网"},{"id":"4","name":"公益"},{"id":"5","name":"培训"},{"id":"6","name":"汽车"},{"id":"7","name":"旅游"},{"id":"8","name":"酒店"},{"id":"9","name":"家装"},{"id":"10","name":"卖场"},{"id":"11","name":"明星"},{"id":"12","name":"商会"},{"id":"13","name":"社区"},{"id":"14","name":"展会"},{"id":"15","name":"大健康"},{"id":"16","name":"校园"},{"id":"17","name":"媒体"},{"id":"18","name":"趣味"},{"id":"19","name":"金融"},{"id":"20","name":"其他"}]},{"title":"城市","maker_title":[{"id":"1","name":"北京 "},{"id":"2","name":"天津 "},{"id":"3","name":"上海 "},{"id":"4","name":"重庆 "},{"id":"51","name":"大连 "},{"id":"86","name":"南京 "},{"id":"99","name":"杭州 "},{"id":"128","name":"厦门 "},{"id":"418","name":"武汉 "},{"id":"435","name":"长沙 "},{"id":"449","name":"广州 "},{"id":"450","name":"深圳 "},{"id":"556","name":"西安 "},{"id":"627","name":"香港特别行政区"}]}];
          /* 赞助分类*/
     	  $rootScope.classification={"title":"行业","maker_title":[{"id":"0","name":"全部"},{"id":"1","name":"孵化器"},{"id":"2","name":"房产"},{"id":"3","name":"互联网"},{"id":"4","name":"公益"},{"id":"5","name":"培训"},{"id":"6","name":"汽车"},{"id":"7","name":"旅游"},{"id":"8","name":"酒店"},{"id":"9","name":"家装"},{"id":"10","name":"卖场"},{"id":"11","name":"明星"},{"id":"12","name":"商会"},{"id":"13","name":"社区"},{"id":"14","name":"展会"},{"id":"15","name":"大健康"},{"id":"16","name":"校园"},{"id":"17","name":"媒体"},{"id":"18","name":"趣味"},{"id":"19","name":"金融"},{"id":"20","name":"其他"}]}
     	
@@ -52,6 +52,13 @@
     	  
     	 
     }]).controller('navigation_mml',["$scope","activity_data",function($scope,activity_data ) {  //导航控制器
+	       $scope.act_index={"promotional_activities":function(){//发起活动判断是否登录
+			  if(!$scope.prefsession_a){//判读用户是否登录
+				  $('#log_in').modal('toggle');
+				  return;
+			  }	 
+				 window.open("/activity/to_sponsor_activity" )  
+		  }}
     	$scope.check_remenber=function(tar){
     		if($(tar).attr("data-x")==1){
     			$(tar).removeClass("fa-check-square");
@@ -246,8 +253,10 @@
   			var inde_x=$(this).attr("data-type")
   			switch(inde_x){
   			   case '0':window.location.href="/activity/to_activity_page?act="+suosuo_p;break;
-  			   case '1':window.location.href="/support/supporList?sponsor_title="+suosuo_p ;break;
-  			   case '2':window.location.href="/activity/to_host_page?host_title="+suosuo_p;break;
+  			   /*case '1':window.location.href="/support/supporList?sponsor_title="+suosuo_p ;break;
+  			   case '2':window.location.href="/activity/to_host_page?host_title="+suosuo_p;break;*/
+  			  case '1':window.location.href="/activity/to_host_page?host_title="+suosuo_p;break;
+  			  
   			}
  		 })
  		
@@ -384,7 +393,7 @@
    }
 }).factory('MyData', function($websocket) {
     // Open a WebSocket connection
-    var dataStream = $websocket('ws://www.apptown.cn/webSocketServer');
+    var dataStream = $websocket('ws://'+window.location.hostname+'/webSocketServer');
     var collection = [],q_random=Math.floor(Math.random()*99999+1) ;
     var hjkh=false;
     dataStream.onMessage(function(message) {

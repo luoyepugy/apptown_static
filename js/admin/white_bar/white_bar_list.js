@@ -206,7 +206,6 @@ $(document).ready(function(){
 		var contacter_email = $('#contacter_email_edit').val().trim();
 		var introduction = $('#introduction_edit').val().trim();
 		var home_page= $('#home_page_edit').val().trim();
-		console.log("3");
 		$.ajax({ 
 	        type: "POST", 
 	        contentType : 'application/x-www-form-urlencoded; charset=UTF-8',

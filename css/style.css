@@ -1662,6 +1662,9 @@ margin-right: 10px;
 .loan_wrap input,.loan_wrap input{
 padding:0;
 }
+.modify_disable_none .modify_disa{
+	display:none
+}
 /*视频直播*/
 .video_content {
 	padding:20px 20px 30px 20px;
@@ -3313,6 +3316,9 @@ background-position:-318px -1035px;
 .vt {
     vertical-align: top;
 }
+.vm * {
+    vertical-align: middle;
+}
 .db {
     display: inline-block;
     *display: inline;
@@ -3320,6 +3326,9 @@ background-position:-318px -1035px;
 }
 .mr5 {
     margin-right: 5px;
+}
+.mb5 {
+    margin-bottom: 5px;
 }
 .mt15 {
     margin-top: 15px;
@@ -3362,6 +3371,11 @@ background-position:-318px -1035px;
 }
 .tc {
     text-align: center;
+}
+.form-label {
+    width: 75px;
+    display: inline-block;
+    text-align: right;
 }
 /* 
  * 张晗
@@ -3664,6 +3678,7 @@ border-bottom:2px solid #e0e0e0;
 }
 .person_signa {
 width:880px;
+line-height:22px;
 }
 .person_de_left {
 width:830px;
@@ -3703,3 +3718,4 @@ height:127px;
 .search_host_content  {
 width:660px;
 }
+

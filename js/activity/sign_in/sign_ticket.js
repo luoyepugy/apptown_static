@@ -30,6 +30,11 @@ function print_time() {
 }
 
 $(function() {
+	// 空降授权后 跳转到该页面
+	if($("#flag").val()=='1'){
+		mui('#apply').popover('show');
+	}
+	
 	$(".bg_print,.print_prompt").css({
 		"width" : screen.width,
 		"height" : screen.height
@@ -111,7 +116,9 @@ if($("#entry_code").attr("data-src")==0){
 
 /** 点击立即报名  **/
 $(".to_enroll").on("click",function(){
-	mui('#apply').popover('show');
+	// 免费报名需要微信授权
+	var activity_id   = $("#activityId").val();  // activityId
+	window.location.href = "/user/h5_wechat_login_page?key=sign"+activity_id ;
 }) 
 
 /** 关闭窗口 **/
@@ -199,7 +206,19 @@ if (entry_code == "") {
 	return;
 }
  
+// 输入错误!重新输入  add by scott 2016-10-12
+$("#sign_in_error").on("click",function(){
+	 $("#entry_code").val("");
+	 $("#sign-prompt").css('display','none');
+})
 
+// 没有报名!马上报名 add by scott 2016-10-12
+$("#sign_in_report").on("click",function(){
+	$("#sign-prompt").css('display','none');
+	// 免费报名需要微信授权
+	var activity_id   = $("#activityId").val();  // activityId
+	window.location.href = "/user/h5_wechat_login_page?key=sign"+activity_id ;
+})
  
  
 // 处理签到
@@ -219,8 +238,8 @@ $.ajax({
 				+"&entry_code="
 				+entry_code+"&time="+new Date()});
 		} else if(result.code ==-1){
-			mui.alert( "票号不存在","","重新输入",function(){$("#entry_code").val("")});
-	    } else if(result.code ==-2){
+			$("#sign-prompt").css('display','block');
+		} else if(result.code ==-2){
 			mui.alert( "已签到","","进入活动现场",function(){
 				window.location.href = "/scan/to_ticket_info?activity_id="
 					+activity_id

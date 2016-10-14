@@ -18,7 +18,14 @@ angular.module('activity_sponsor', [ "directive_mml","activity_servrt"])
     $scope.sp_id=-1;
     $scope.pj_id=-1;
     $scope.reward = {'remark': '活动不易，打赏一下组织者吧！'};
-
+     activity_data.getDatas('GET', '/sponsor/get_sponsorapply')//如果是认证主办方，自动填充主办方和联系方式表单
+    .then(function(data) {
+    	if(data.code==0&&data.info.status==1){
+    		$("#contact_information").val(data.info.contacter_phone)
+    		$("#main_host").val(data.info.name)
+    		
+    	}
+    });
     $scope.upLoadImg=function(){//上传图片
     $("#iconFile").click();
     updata_icon("/activity/upload_activity_cover",function(url){
@@ -547,7 +554,13 @@ $(document).on("click",".remove_video",function(){
         $scope.activities_data.activity.ad_urls_array = $scope.adSetting.ad_urls_array;
         // 活动打赏提示数据
         var rewardOpen = ($('.j-rewardOpen').attr('data-xz') == 0) ? true : false; 
-        $scope.activities_data.activity.tip = JSON.stringify({open: rewardOpen, remark: $scope.reward.remark});
+        
+        var tip_remark="";
+        if(!($scope.reward==null||$scope.reward==""||$scope.reward.remark=="")){
+        	tip_remark=$scope.reward.remark;
+        }
+        
+        $scope.activities_data.activity.tip = JSON.stringify({open: rewardOpen, remark: tip_remark});
 
 
 
@@ -592,9 +605,8 @@ $(document).on("click",".remove_video",function(){
             return;
      } 
 
-
      // 打赏提示语
-     if($scope.reward.remark.length > 20){
+     if(tip_remark.length > 20){
           $scope.mml.err_pup("打赏提示语不能超过20个字符");
             $('input[name="rewardRemark"]').focus();
             return;
@@ -645,13 +657,13 @@ $(document).on("click",".remove_video",function(){
        if($("#fuy_poi_a").attr("data-xz")!=0){
          $scope.mml.err_pup("请勾选e场景平台服务协议！ ");
          return;
-       }  
-       if(status==3||status==4){
+       } 
+       if(status==3||status==4||status==6){//修改的情况
        var sty=status==3?1:0;
        $scope.activities_data.activity.status=1
        var data_p;
 
-       if(status==3){
+       if(status==3){//已发布的修改情况
               data_p={"activity":{"id":$scope.id,
               "status":0,
               "address":$("#detailed_address").val(),
@@ -677,12 +689,17 @@ $(document).on("click",".remove_video",function(){
       }
 
        
-       if(status==4){
+       if(status==4){//未发布修改
         $scope.activities_data.activity.id=$scope.id
         data_p=$scope.activities_data
        }
+       if(status==6){//未发布的情况下发布
+    	   $scope.activities_data.activity.id=$scope.id;
+    	   $scope.activities_data.activity.status=0;
+           data_p=$scope.activities_data
+       }
        data_p=angular.fromJson(data_p)
-
+  
        activity_data.update_activity(data_p).then(
             
             function success(data) {
@@ -772,20 +789,23 @@ $(document).on("click",".remove_video",function(){
                  tyt_poiu=true
                  $(".display_show").show()
                  km=new activity_detail(data.info);
-                  // 活动打赏数据
-                  $scope.reward = data.info.tip;
-
                  
-                  // 打赏功能开启和禁用
-                  if(data.info.tip.open) {
-                    $('.j-rewardOpen').addClass('gx_xzm').attr('data-xz', 0);
-                  } else {
-                    $('.j-rewardOpen').removeClass('gx_xzm').attr('data-xz', 1);
-                  }
+                  // 活动打赏数据
+                  $scope.reward = data.info.tip==null?"":data.info.tip;
 
+                  
+                  // 打赏功能开启和禁用
+                  if(data.info.tip==null||!data.info.tip.open) {
+                	  $('.j-rewardOpen').removeClass('gx_xzm').attr('data-xz', 1);
+                  } else {
+                	  $('.j-rewardOpen').addClass('gx_xzm').attr('data-xz', 0);
+                  }
+                  // 修改和保存后编辑状态报名表单和票务设置不能够修改
+                   $('.modify_disable_par').addClass('modify_disable_none')	
                  $scope.status=km.status
                  if($scope.status==0){ 
-                  $(".modify_disable").attr("disabled","disabled").addClass("prohibit").removeAttr("data-toggle").css("background","#cbcbcb")
+                 
+                 $(".modify_disable").attr("disabled","disabled").addClass("prohibit").removeAttr("data-toggle").css("background","#cbcbcb")
                       
                  }
                  $("#name_event").val(km.title);//活动名称
@@ -793,9 +813,21 @@ $(document).on("click",".remove_video",function(){
                  var stdate=new Date(km.sDate_time);//开始时间
                  var end_date=new Date(km.eDate);//结束时间
                  $("#stat_time_a").val(stdate.getFullYear()+"/"+(stdate.getMonth()+1)+"/"+stdate.getDate())
-                 $("#stat_time_b").val(stdate.getHours()+":"+stdate.getMinutes());//开始时间的您时分 
+                 var a_min; //活动修改时分钟为个数的时候后面加一个0
+                 if(stdate.getMinutes()<9){
+                 	a_min="0"+stdate.getMinutes()
+                 }else{
+                 	a_min=stdate.getMinutes()
+                 }
+                 $("#stat_time_b").val(stdate.getHours()+":"+a_min);//开始时间的您时分 
                  $("#end_time_a").val(end_date.getFullYear()+"/"+(end_date.getMonth()+1)+"/"+end_date.getDate());//结束时间的您月日
-                     $("#end_time_b").val(end_date.getHours()+":"+end_date.getMinutes());//结束时间的您时分
+                  var b_min; //活动修改时分钟为个数的时候后面加一个0
+                 if(end_date.getMinutes()<9){
+                 	b_min=end_date.getMinutes()+"0"
+                 }else{
+                 	b_min=end_date.getMinutes()
+                 }
+                     $("#end_time_b").val(end_date.getHours()+":"+b_min);//结束时间的您时分
                      $("#detailed_address").val(km.address);//获取详细地址
                      $("#city_p").attr("data-id",km.city);//城市id
                      $("#provinces_p").val(km.province_name);//省份
@@ -931,6 +963,19 @@ $(document).on("click",".remove_video",function(){
     }, function error() {
       console.log("获取省份失败")
   });
+
+    /*
+     * 张晗
+     * 抽奖设置
+     */
+    $scope.lotteryItem = {};
+    $scope.lotteryList = [];
+    $scope.lotterySetting = {
+        add: function() {
+            $scope.lotteryList.push($scope.lotteryItem);
+            console.log($scope.lotteryItem);
+        }
+    }
 
 
     /*
@@ -1105,6 +1150,10 @@ $(document).on("click",".remove_video",function(){
                     $(kl).parent().find(".xl_oiu").hide()
                     $(kl).parents("li").css({"z-index":"1"})
                 },300)
+                                
+             })
+             $("#provinces_p").on("blur",function(){
+                    $("#city_p").val("")//省份失去焦点的时候清空城市val
                                 
              })
                 /*输入框只能输入数字*/
