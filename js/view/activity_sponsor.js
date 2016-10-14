@@ -1,11 +1,11 @@
 /**
  * 发起活动
  */
-angular.module('activity_sponsor', [ "directive_mml","activity_servrt"])
-.controller('activity_sponsor_centerController',["$scope","activity_data",function($scope,activity_data) {
+angular.module('activity_sponsor', ["directive_mml","activity_servrt","common","form","request", "ui.router"])
+.controller('activity_sponsor_centerController', function($scope,activity_data) {
     $scope.province=[];//省份
     $scope.id=$("#act_id").val().trim();//获取活动ID
-    $scope.id==""?$scope.id=0: $("#act_id").val() 
+    $scope.id==""?$scope.id=0: $("#act_id").val();
     $scope.user_id=$("#user_id").val();//用户的id    
     $scope.caty_a=[];//城市 
     $scope.status=0;//发布状态
@@ -968,12 +968,42 @@ $(document).on("click",".remove_video",function(){
      * 张晗
      * 抽奖设置
      */
-    $scope.lotteryItem = {};
-    $scope.lotteryList = [];
+
     $scope.lotterySetting = {
-        add: function() {
-            $scope.lotteryList.push($scope.lotteryItem);
-            console.log($scope.lotteryItem);
+        list: [],
+        itemIndex: 0,
+        status: 'add',
+        addItem: function(data) {
+            $('#lotteryModal').modal('hide');
+            if(this.status == "save") {
+                var index = this.itemIndex;
+                $scope.$apply(function() {
+                    $scope.lotterySetting.list[index] = data;
+                });
+                this.status = 'add';
+            } else {
+                $scope.$apply(function() {
+                    $scope.lotterySetting.list.push(data);
+                });
+            }
+            console.log($scope.lotterySetting.list);
+        },
+        'deleteItem': function(index) {
+            $scope.lotterySetting.list.splice(index,1);
+        },
+        'editItem': function(index) {
+            this.itemIndex = index;
+            this.status = 'save';
+            $('#lotteryModal').modal('show');
+            $.each($scope.lotterySetting.list[index], function(k, v) {
+                $('.j-lotteryForm').find('input[name='+k+']').val(v);
+            });
+        },
+        'uploadImg': function() {
+            $("#iconFile").click();
+            updata_icon("/sponsor/sponsor_icon_upload_byuser",function(url){
+                $('#lotteryGift').attr('src', url).next('input[type="hidden"]').val(url);
+            });
         }
     }
 
@@ -1044,7 +1074,7 @@ $(document).on("click",".remove_video",function(){
       $(this).closest('.j-accordionContent').prev('.j-accordionDown').find('.j-addSign').removeClass('none').next('img').addClass('none');
     });
     
-}])
+})
 
        $(function(){
            var um = UM.getEditor('myEditor');

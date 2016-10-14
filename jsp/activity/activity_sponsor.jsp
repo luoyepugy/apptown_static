@@ -494,7 +494,7 @@
                 <div class="mt15">
                     <span class="form-label">奖项设置</span>
                     <div class="vt" style="display: inline-block;">
-                        <table class="table case_poiou_cb">
+                        <table class="table case_poiou_cb" ng-show="lotterySetting.list.length>0">
                              <thead class="table_top_poiiu">
                                 <tr>
                                      <td width="200">奖项名称</td>
@@ -505,15 +505,15 @@
                                  </tr>
                              </thead>
                              <tbody>
-                                <tr ng-repeat="item in lotteryList">
+                                <tr ng-repeat="item in lotterySetting.list track by $index">
                                      <td width="200"><p class="dian" style="width:200px;" ng-bind="item.draw_name">  </p></td>
                                      <td width="80" ng-bind="item.quota"></td>
-                                     <td width="80" ng-bind="item.prize_image"></td>
+                                     <td width="80" ><img style="width: 68px;height: 42px;" ng-src="{{item.prize_image}}" alt="奖品图"></td>
                                     <td width="360"><p class="dian" style="width:360px;" ng-bind="item.prize_remark"></p></td>
                                      <td>
                                          <p class="bj_icon_a modify_disa">
-                                           <span title="修改">  <i class="f_i bj_poi_p mr10" ng-click="select_click.volume_change($index)"></i></span> |
-                                           <span title="删除">  <i class="f_i delect_icon" alt="删除" ng-click="select_click.delec_volume($index+1)"></i></span>
+                                           <span title="修改">  <i class="f_i bj_poi_p mr10" ng-click="lotterySetting.editItem($index)"></i></span> |
+                                           <span title="删除">  <i class="f_i delect_icon" alt="删除" ng-click="lotterySetting.deleteItem($index)"></i></span>
                                          </p>
                                        
                                     </td>
@@ -526,7 +526,7 @@
                 </div>
                 <p class="row_po_form mt10">
                     <span class="form-label">客服电话</span> 
-                    <input type="text" name="tel" class="act_input_a ipue ml10 ipug" style="margin-left: 0;" />
+                    <input type="text" name="tel" class="act_input_a ipua ml10" style="margin-left: 0;" />
                 </p>
             </div>
             <div class="tab-pane" id="ad">
@@ -812,36 +812,42 @@
         <h4 class="modal-title" id="myModalLabel">奖项设置</h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal j-lotteryForm" role="form">
           <div class="form-group">
             <label for="name" class="col-xs-2 control-label" style="width: 120px;">奖项名称</label>
             <div class="col-xs-10">
-              <input type="text" class="form-control ml20" ng-model="lotteryItem.draw_name" style="width: 300px; margin-bottom: 15px;" id="name" max-length="20" >
+              <input name="draw_name" type="text" class="form-control ml20" style="width: 300px; margin-bottom: 15px;" id="name" maxLength="20" data-empty="请输入奖项名称" >
             </div>
           </div>
           <div class="form-group">
             <label for="num" class="col-xs-2 control-label" style="width: 120px;">名额</label>
             <div class="col-xs-10">
-              <input type="number" class="form-control ml20" ng-model="lotteryItem.quota" style="width: 300px; margin-bottom: 15px;" id="num" >
+              <input name="quota" type="text" class="form-control ml20"  style="width: 300px; margin-bottom: 15px;" id="num" data-empty="请输入名额" format-number number >
             </div>
           </div>
           <div class="form-group">
-            <label for="pic" class="col-xs-2 control-label" style="width: 120px;">奖品图</label>
+            <label for="pic" class="col-xs-2 control-label" style="width: 120px;margin-right: 20px;">奖品图</label>
             <div class="col-xs-10">
-              <input type="text" class="form-control ml20" ng-model="lotteryItem.prize_image" style="width: 300px; margin-bottom: 15px;" id="pic" >
+              <div class="vt" style="margin-bottom: 20px;" ng-click="lotterySetting.uploadImg()">
+                <img id="lotteryGift" style="width: 136px;height: 85px;border: 1px solid #ccc;" src="/img/activity/gift.png" alt="礼品默认图片">
+                <input type="hidden" name="prize_image" value="/img/activity/gift.png" >
+                <a class="btn btn-primary pr fz16">上传图片</a>
+              </div>
+              <!-- <input name="prize_image" type="text" class="form-control ml20" style="width: 300px; margin-bottom: 15px;" id="pic" data-empty="请输入奖品图" > -->
             </div>
           </div>
           <div class="form-group">
             <label for="summary" class="col-xs-2 control-label" style="width: 120px;">奖品说明</label>
             <div class="col-xs-10">
-              <textarea class="form-control ml20" ng-model="lotteryItem.prize_remark" style="width: 300px; margin-bottom: 15px;" id="summary" max-length="100"></textarea> 
+              <textarea name="prize_remark" rows="5" class="form-control ml20" style="width: 300px; margin-bottom: 15px;" id="summary" maxLength="100" data-empty="请输入奖品说明"></textarea> 
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <p  class=" pup_icon_bottom poiuyt_ouy poiuyt_ouy_nmjh_a">
-            <a class="btn btn-primary sub_poiy_a" ng-click="lotterySetting.add()">确认</a>
+            <save-button style="height: 45px;" btn-class="btn btn-primary sub_poiy_a" form=".j-lotteryForm" callback="lotterySetting.addItem(arg1)" text="确认"></save-button>
+            <!-- <a class="btn btn-primary sub_poiy_a" ng-click="lotterySetting.addItem()">确认</a> -->
             <a  class="btn btn-primary rese_button_a ml20" data-dismiss="modal">取消</a>
         </p>
       </div>
@@ -1051,7 +1057,9 @@
       <script src="/js/rich_text/umeditor.min.js"></script>
       <script src="/js/common/jquery.datetimepicker.js"></script>
       <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=KIpwmISmRtIMMssrIQ4NF9ji"></script>
+      <script src="/js/common/angular-ui-router.min.js"></script>
       <script src="/js/view/activity_sponsor.js?v=8"></script>
+
       
   
 </body>
