@@ -146,7 +146,7 @@ function query_activity_list(list_data){
 	  this.support_id=info.support_id//赞助关联ID
 	  this.type=info.type;
 	  this.sponsor_auth=info.sponsor_auth;//是否关注主办方，0为未关注，1为已关注
-	  
+	  this.label=info.label;//活动标签
 	  
 	  
   }

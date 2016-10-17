@@ -1079,9 +1079,7 @@ p.zhng_poi_a {
 .form_poiu_q_m{
     list-style: none;
 }
-.form_poiu_q_m li{
-    margin-bottom: px;
-}
+
 .title_poi{
     width: 110px;
     text-align: right;
@@ -1664,6 +1662,88 @@ padding:0;
 }
 .modify_disable_none .modify_disa{
 	display:none
+}
+.release_type_wrap {
+	
+}
+.release_type {
+	padding:7px 20px;
+	border: 1px solid #CCCCCC;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.release_type_list {
+	margin-left:-20px
+}
+.release_type_list .active {
+	background: #4ea45d;
+	color: #fff;
+	border:1px solid #fff;
+}
+.re_type_wrap {
+	width:45px;
+	height:45px;
+	border:1px solid #e5e5e5;
+	background:#f6f6f6;
+	display:table-cell;
+	vertical-align:middle; 
+	text-align: center;
+}
+.re_type_plus {
+	color:#a0a0a0;
+	font-size:50px  !important;
+	margin-top: 8px;
+	display: inline-block;
+}
+.re_type_content {
+	width:800px;
+	position: absolute;
+	top:47px;
+	border: 1px solid #e5e5e5;
+	background: #fff;
+	padding-bottom: 20px;
+	display: none;
+}
+.re_type_list {
+	margin-left: 10px ;
+	margin-top: 20px;
+	float:left;
+	cursor: pointer;	
+}
+.re_type_content li p {
+	color: #a0a0a0;
+    border: 1px dashed #a0a0a0;
+    padding: 4px 20px;
+}
+.re_type_content li p:hover {
+	background-color: #eee  !important;
+}
+.re_type_show_list {
+	color: #a0a0a0;
+    border: 1px dashed #a0a0a0;
+    padding: 4px 20px;
+    background:#eee;
+}
+.close_ty {
+	position: absolute;
+    right: -10px;
+    top: -12px;
+    font-size: 22px !important;
+    background: #fff;
+    border-radius:50%;
+    cursor: pointer;
+    transition:transform 1s;
+-moz-transition:transform 1s; /* Firefox 4 */
+-webkit-transition:transform 1s; /* Safari and Chrome */
+-o-transition:transform 1s; /* Opera */
+}
+.close_ty_duration {
+	transform:rotate(90deg);
+-ms-transform:rotate(90deg); 	/* IE 9 */
+-moz-transform:rotate(90deg); 	/* Firefox */
+-webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+-o-transform:rotate(90deg); 	/* Opera */
+
 }
 /*视频直播*/
 .video_content {

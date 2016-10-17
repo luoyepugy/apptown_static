@@ -150,7 +150,7 @@ angular.module('common',[])
 (function() {
 
     validateService.$inject = ["messageService", "encryptService"];
-    saveButton.$inject = ["httpService", "messageService", "validateService", "$state", "$window"];
+    saveButton.$inject = ["httpService", "messageService", "validateService", "$window"];
 angular.module('form', ['request', 'common'])
     .factory('validateService', validateService)
     .directive('saveButton', saveButton);
@@ -395,7 +395,7 @@ angular.module('form', ['request', 'common'])
 
     // ======================== 保存按钮 ========================
     /* @ngInject */
-    function saveButton(httpService, messageService, validateService, $state, $window) {
+    function saveButton(httpService, messageService, validateService, $window) {
         var directive = {
             restrict: 'E',
             template: '<button name="saveBtn" class="btn btn-primary" ng-class="btnClass">{{text}}</button>',

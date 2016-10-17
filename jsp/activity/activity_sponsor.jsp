@@ -213,18 +213,45 @@
                   <p class="qc"></p>
              </li>
              
-                <li class="zq mt20 " style="z-index:9">
+                <li class="zq mt20 mb30" style="z-index:9">
                      <label class="f_d title_poi fl mt20">活动类型 <span class="hs">*</span></label>
-                     <div class=" map_poou_car">
-                          <div class="pr poiuy_poiu_q fl">
-                             <input type="text" class="act_input_a ipue"  placeholder="" value="{{classify[0].maker_title[0].name}}" id="activity_type" data-id="1" readonly>
-                              <label class="f_i xjt_icon"></label>
-                                  <ul class="xl_oiu">
-                                   <li ng-repeat="pe in classify[0].maker_title" ng-bind="pe.name" data-id="{{pe.id}}"></li>
-                                  
-                              </ul>
-                         </div>
-                        </div>
+                     <div class="map_poou_car fl release_type_wrap mt10">
+                            <ul class="release_type_list">
+                            	<input type="hidden" id="release_type_value" value="" />
+                            	<li ng-repeat="z in ty_list_a" data-x="{{$index+1}}" ng-bind="z.name" ng-click="select_click.add_type_aa($index)"  class="fl release_type ml20"></li>
+                            	<li class="qc"></li>
+                            </ul>                            	                            
+                     </div>
+                    <p class="qc"></p>
+             </li>
+             <li class="zq mt20 mb30" style="z-index:9999">
+                     <label class="f_d title_poi fl mt20">活动标签 <span class="hs">*</span></label>
+                     <div class="map_poou_car fl release_type_wrap mt10 pr">
+                            <div class="re_type_wrap fl" >
+                            	<span class="re_type_plus">+</span>
+                            </div>
+                            <div class="re_type_show fl mt10">
+                            	<ul>                          		
+                            		<li class="re_type_show_list fl pr ml20" ng-repeat="op in labelArr">
+                            			<span ng-bind="op.label_name"></span>
+                            			<i class="fa fa-times-circle close_ty" ng-click="select_click.delete_label($index)" ></i>
+                            		</li>
+                            		
+                            		<li class="qc"></li>
+                            	</ul>
+                            	
+                            </div>
+                            <div class="re_type_content">
+                            	  <ul>
+                            	  	
+                            	    <div ng-repeat="x in ty_list_a">
+                            	    	
+                            	     	 <li ng-repeat="y in x.child_list"   class="re_type_list" ng-click="select_click.add_label(y,$index)"><p ng-bind="y.label_name"></p></li>
+                            	    </div>
+                            	  	 <li class="qc"></li>
+                            	  </ul>
+                            </div> 
+                     </div>
                     <p class="qc"></p>
              </li>
              <li class="zq mt20 " style="z-index:8">
@@ -415,7 +442,7 @@
                            
                          
                          <p class="qc"></p>
-                            <a class="btn btn-primary add_form_p modify_disa " ng-href="#ticket_set" data-toggle="modal">+  添加新的票种</a><span class="ml30 zc fz12">(免费活动时，无需设置票种。)</span>
+                            <a class="btn btn-primary add_form_p " ng-href="#ticket_set" data-toggle="modal">+  添加新的票种</a><span class="ml30 zc fz12">(免费活动时，无需设置票种。)</span>
                       </div>
                       <div class="display_show" ></div>
              </li>
@@ -488,13 +515,13 @@
             <div class="tab-pane active" id="lottery" style="padding-left: 35px;">
                 <p>
                     <span>参与抽奖用户</span>
-                    <label style="display: inline;"><input style="margin: 0 5px 3px" type="radio" name="user" checked="checked" />已签到用户</label>
-                    <label style="display: inline;"><input style="margin: 0 5px 3px" type="radio" name="user" />已报名用户</label>
+                    <label style="display: inline;"><input ng-model="lotterySetting.datas.limit_type" style="margin: 0 5px 3px" type="radio" name="user" ng-value="2" checked="checked" />已签到用户</label>
+                    <label style="display: inline;"><input ng-model="lotterySetting.datas.limit_type" style="margin: 0 5px 3px" type="radio" ng-value="1" name="user" />已报名用户</label>
                 </p>
                 <div class="mt15">
                     <span class="form-label">奖项设置</span>
                     <div class="vt" style="display: inline-block;">
-                        <table class="table case_poiou_cb" ng-show="lotterySetting.list.length>0">
+                        <table class="table case_poiou_cb" ng-show="lotterySetting.datas.draw_detail_array.length>0">
                              <thead class="table_top_poiiu">
                                 <tr>
                                      <td width="200">奖项名称</td>
@@ -505,10 +532,10 @@
                                  </tr>
                              </thead>
                              <tbody>
-                                <tr ng-repeat="item in lotterySetting.list track by $index">
+                                <tr ng-repeat="item in lotterySetting.datas.draw_detail_array track by $index">
                                      <td width="200"><p class="dian" style="width:200px;" ng-bind="item.draw_name">  </p></td>
                                      <td width="80" ng-bind="item.quota"></td>
-                                     <td width="80" ><img style="width: 68px;height: 42px;" ng-src="{{item.prize_image}}" alt="奖品图"></td>
+                                     <td width="80" ><img style="width: 68px;height: 42px;" src="/img/activity/gift.png" ng-src="{{item.prize_image}}" alt="奖品图"></td>
                                     <td width="360"><p class="dian" style="width:360px;" ng-bind="item.prize_remark"></p></td>
                                      <td>
                                          <p class="bj_icon_a modify_disa">
@@ -526,7 +553,7 @@
                 </div>
                 <p class="row_po_form mt10">
                     <span class="form-label">客服电话</span> 
-                    <input type="text" name="tel" class="act_input_a ipua ml10" style="margin-left: 0;" />
+                    <input type="text" nsame="service_tel" ng-model="lotterySetting.datas.service_tel" class="act_input_a ipua ml10" style="margin-left: 0;" />
                 </p>
             </div>
             <div class="tab-pane" id="ad">
@@ -548,8 +575,7 @@
                      <label class="f_d title_poi fl mt20 title_poi_poi">投票名称<span class="hs">*</span></label>
                      <div class="ov map_poou_car">
                           <div class="pr poiuy_poiu_q fl">  
-                             <input type="text" class="act_input_a ipue" placeholder="请输入投票名称" id="vote_title" maxlength="20" value="{{select_click.date_pou.title}}">
-                              
+                             <input type="text" class="act_input_a ipue" ng-model="voteSetting.datas.title" placeholder="请输入投票名称" id="vote_title" maxlength="20">
                          </div>
                         </div>
                      </li>
@@ -557,9 +583,9 @@
                         <label class="f_d title_poi fl mt20 title_poi_poi">截止时间<span class="hs">*</span></label>
                          <p class="ty_poi_q">
                                         <span class="pr time_poiu"><i class="f_i tri_icon"></i> 
-                                        <input type="text" class="act_input_a ipub" id="stat_time_q" ></span>
+                                        <input type="text" class="act_input_a ipub" id="stat_time_q" ng-model="voteSetting.datas.end_date"></span>
                                         <span class="pr ml10 time_poiu"><label class="f_i data_icon_a"></label>
-                                        <input type="text" class="act_input_a ipuc" id="stat_time_w" ></span>
+                                        <input type="text" class="act_input_a ipuc" id="stat_time_w" ng-model="voteSetting.datas.end_time2"></span>
                                       
                                       </p>
                                       <p class="qc"></p>
@@ -575,7 +601,7 @@
                                    <p class="qc"></p>
                          </li>
                          
-                         <li class="zq"   ng-repeat="List in select_click.voteItemList">    
+                         <li class="zq"   ng-repeat="List in voteSetting.datas.voteItemList">    
                       
                            <label class="f_d title_poi fl mt20 title_poi_poi">选项{{$index+1}}<span class="hs"></span></label>
                             <div class="ov map_poou_car act_input_a_voge_ws">
@@ -594,7 +620,7 @@
                               <li class="zq  "> 
                                  <label class="f_d title_poi fl mt20 title_poi_poi">&nbsp;<span class="hs"></span></label>
                                   <div class="ov map_poou_car">
-                                    <a class="btn btn-primary add_form_p " ng-click="select_click.polling_data(1)">+  增加投票选项</a>
+                                    <a class="btn btn-primary add_form_p " ng-click="select_click.polling_data()">+  增加投票选项</a>
                                   </div>
                               </li>
                                
@@ -603,7 +629,7 @@
                                 <label class="f_d title_poi fl mt20 title_poi_poi">投票类型<span class="hs">*</span></label>
                              <div class="ov map_poou_car">
                                   <div class="pr poiuy_poiu_q fl">
-                                        <select class="sp_pull_down" id="type_vote">
+                                        <select class="sp_pull_down" id="type_vote" ng-modal="voteSetting.datas.type">
                                   <option value="1">单选</option>
                                     <option value="2">多选</option> 
                            </select>
@@ -615,10 +641,10 @@
                              <label class="f_d title_poi fl mt20 title_poi_poi">  投票介绍<span class="hs">*</span></label>
                              <div class="ov map_poou_car"> 
                                   <div class="pr poiuy_poiu_q fl">
-                                       <textarea class="ipue jiap_po_c" placeholder="请填写投票说明，不大于60字" maxlength="60" id="vote_detail" ></textarea>
+                                       <textarea class="ipue jiap_po_c" placeholder="请填写投票说明，不大于60字" maxlength="60" id="vote_detail" ng-model="voteSetting.datas.detail" ></textarea>
                                        <p class="qc"></p>
                      <p  class=" pup_icon_bottom poiuyt_ouy poiuyt_ouy_nmjh_a">
-                            <!-- <a class="btn btn-primary sub_poiy_a" ng-click="select_click.voted_add(1)">保存</a> -->
+                            <a class="btn btn-primary sub_poiy_a" ng-click="select_click.voted_add()">保存</a>
                         </p>
                                  </div>
                             </div>
@@ -804,7 +830,7 @@
        </div>
        
 <!-- 奖项设置弹窗  -->
-<div class="modal fade" id="lotteryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade hide" id="lotteryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -830,16 +856,15 @@
             <div class="col-xs-10">
               <div class="vt" style="margin-bottom: 20px;" ng-click="lotterySetting.uploadImg()">
                 <img id="lotteryGift" style="width: 136px;height: 85px;border: 1px solid #ccc;" src="/img/activity/gift.png" alt="礼品默认图片">
-                <input type="hidden" name="prize_image" value="/img/activity/gift.png" >
+                <input type="hidden" name="prize_image" value="" >
                 <a class="btn btn-primary pr fz16">上传图片</a>
               </div>
-              <!-- <input name="prize_image" type="text" class="form-control ml20" style="width: 300px; margin-bottom: 15px;" id="pic" data-empty="请输入奖品图" > -->
             </div>
           </div>
           <div class="form-group">
             <label for="summary" class="col-xs-2 control-label" style="width: 120px;">奖品说明</label>
             <div class="col-xs-10">
-              <textarea name="prize_remark" rows="5" class="form-control ml20" style="width: 300px; margin-bottom: 15px;" id="summary" maxLength="100" data-empty="请输入奖品说明"></textarea> 
+              <textarea name="prize_remark" rows="5" class="form-control ml20" style="width: 300px; margin-bottom: 15px;" maxlength="100" data-empty="请输入奖品说明"></textarea> 
             </div>
           </div>
         </form>
@@ -847,7 +872,6 @@
       <div class="modal-footer">
         <p  class=" pup_icon_bottom poiuyt_ouy poiuyt_ouy_nmjh_a">
             <save-button style="height: 45px;" btn-class="btn btn-primary sub_poiy_a" form=".j-lotteryForm" callback="lotterySetting.addItem(arg1)" text="确认"></save-button>
-            <!-- <a class="btn btn-primary sub_poiy_a" ng-click="lotterySetting.addItem()">确认</a> -->
             <a  class="btn btn-primary rese_button_a ml20" data-dismiss="modal">取消</a>
         </p>
       </div>
@@ -858,7 +882,7 @@
        
 <!--        投票设置 -->
        
-              <div id="ticket_set_vode" class="modal hide fade pd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <!-- <div id="ticket_set_vode" class="modal hide fade pd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <p class="form_title_a cen pt10">投票设置  <button type="button" class="close clase_pup_s" data-dismiss="modal">×</button></p>
              <div class="voite_poiu_a pr">
                  <ul class="form_poiu_q_m mt20 form_poiu_q_m_o pr form_poiu_q_m_o_poo"> 
@@ -912,7 +936,7 @@
                       <li class="zq  "> 
                          <label class="f_d title_poi fl mt20 title_poi_poi">&nbsp;<span class="hs"></span></label>
                           <div class="ov map_poou_car">
-                            <a class="btn btn-primary add_form_p " ng-click="select_click.polling_data(1)">+  增加投票选项</a>
+                            <a class="btn btn-primary add_form_p " ng-click="select_click.polling_data()">+  增加投票选项</a>
                           </div>
                       </li>
                        
@@ -1044,7 +1068,7 @@
            	 <img src="" class="gd">
            </div>
              </div>
-       </div>
+       </div> -->
        
      
         

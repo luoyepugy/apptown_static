@@ -1,8 +1,8 @@
 /**
  * 发起活动
  */
-angular.module('activity_sponsor', ["directive_mml","activity_servrt","common","form","request", "ui.router"])
-.controller('activity_sponsor_centerController', function($scope,activity_data) {
+angular.module('activity_sponsor', ["directive_mml","activity_servrt","common","form","request"])
+.controller('activity_sponsor_centerController', function($scope,activity_data, httpService, messageService) {
     $scope.province=[];//省份
     $scope.id=$("#act_id").val().trim();//获取活动ID
     $scope.id==""?$scope.id=0: $("#act_id").val();
@@ -18,6 +18,7 @@ angular.module('activity_sponsor', ["directive_mml","activity_servrt","common","
     $scope.sp_id=-1;
     $scope.pj_id=-1;
     $scope.reward = {'remark': '活动不易，打赏一下组织者吧！'};
+    $scope.labelArr=[];//活动标签数据
      activity_data.getDatas('GET', '/sponsor/get_sponsorapply')//如果是认证主办方，自动填充主办方和联系方式表单
     .then(function(data) {
     	if(data.code==0&&data.info.status==1){
@@ -25,6 +26,10 @@ angular.module('activity_sponsor', ["directive_mml","activity_servrt","common","
     		$("#main_host").val(data.info.name)
     		
     	}
+    });
+     activity_data.getDatas('GET', '/label/group')//获取活动标签
+    .then(function(data) {
+    	$scope.ty_list_a=data;
     });
     $scope.upLoadImg=function(){//上传图片
     $("#iconFile").click();
@@ -120,7 +125,14 @@ $(document).on("click",".remove_video",function(){
         $(this).find(".gx_icon_a").show()
   })  
 
-    var tyt_poiu=false,lj_it=false
+    var tyt_poiu=false,lj_it=false;
+
+     $scope.voteSetting = {'datas': {'voteItemList': [
+        {"item_name":"","image_urls":"http://resource.apptown.cn/image/userIcon.jpg"},
+        {"item_name":"","image_urls":"http://resource.apptown.cn/image/userIcon.jpg"}
+        ]
+    }};
+    console.log($scope.voteSetting.datas.voteItemList);
     $scope.select_click={
         "default_cover":[
                           {"id":"1","name":"创客活动","img":"http://resource.apptown.cn/poster/3-3.jpg"},
@@ -182,11 +194,13 @@ $(document).on("click",".remove_video",function(){
     "voteItemList":[{"item_name":"","image_urls":"http://resource.apptown.cn/image/userIcon.jpg"},{"item_name":"","image_urls":"http://resource.apptown.cn/image/userIcon.jpg"}],
      "polling_data":function(tyepe){//添加更多投票选项  
        var oiu={"item_name":"","image_urls":"http://resource.apptown.cn/image/userIcon.jpg"}
-       if(tyepe==1){
-         $scope.select_click.voteItemList.push(oiu)
-       }else{
-         $scope.select_click.date_pou[0].voteItemList.push(oiu)
-       }
+       // if(tyepe==1){
+        console.log($scope.voteSetting);
+        console.log($scope.voteSetting.datas);
+         $scope.voteSetting.datas.voteItemList.push(oiu)
+       // }else{
+       //   $scope.select_click.date_pou[0].voteItemList.push(oiu)
+       // }
       
      },"voteIte_w":function(x){
        $scope.select_click.voteItemList.splice(x,1)
@@ -215,7 +229,7 @@ $(document).on("click",".remove_video",function(){
        lj_it=true;
           $('#ticket_set_vode').modal('toggle');
         $("#ticket_set_vode input").val("") 
-        $scope.select_click.voteItemList=[{"item_name":"","image_urls":"http://resource.apptown.cn/image/userIcon.jpg"},{"item_name":"","image_urls":"http://resource.apptown.cn/image/userIcon.jpg"}]
+        $scope.voteSetting.datas.voteItemList=[{"item_name":"","image_urls":"http://resource.apptown.cn/image/userIcon.jpg"},{"item_name":"","image_urls":"http://resource.apptown.cn/image/userIcon.jpg"}]
      },"delete_poll":function(id){//删除投票
        if(!confirm("您真的要删除该投票吗？(删除无法恢复)")){
          return
@@ -248,20 +262,21 @@ $(document).on("click",".remove_video",function(){
       });
      },"voted_add":function(type){
         var data_po={}
-        if(type==1){
+        // if(type==1){
           data_po.title=$("#vote_title").val()
             data_po.stat_time_q=$("#stat_time_q").val()
             data_po.stat_time_w=$("#stat_time_w").val()
             data_po.vote_detail=$("#vote_detail").val()
             data_po.type_vote=$("#type_vote").val()
             
-        }else if(type==2){
-          data_po.title=$("#vote_title_mf").val()
-            data_po.stat_time_q=$("#stat_time_q_mf").val()
-            data_po.stat_time_w=$("#stat_time_w_mf").val()
-            data_po.vote_detail=$("#vote_detail_mf").val()
-            data_po.type_vote=$("#type_vote_mf").val()
-        }
+        // }else if(type==2){
+        //   data_po.title=$("#vote_title_mf").val()
+        //     data_po.stat_time_q=$("#stat_time_q_mf").val()
+        //     data_po.stat_time_w=$("#stat_time_w_mf").val()
+        //     data_po.vote_detail=$("#vote_detail_mf").val()
+        //     data_po.type_vote=$("#type_vote_mf").val()
+        // }
+
         $scope.select_click.pup_vote_a(data_po,type)
        
      },"pup_vote_a":function(data,type){//投票完成按钮触发
@@ -290,36 +305,38 @@ $(document).on("click",".remove_video",function(){
           $("#stat_time_w").focus();
           return;
          }
-        if(type==1){
+        // if(type==1){
           for(var i=0;i<$(".act_input_a_voge").length;i++){
               if(!form_mm.isnull($(".act_input_a_voge").eq(i).val())){
                 $scope.mml.err_pup("请输入投票选项");
                 return
               }
             }
+
             $(".act_input_a_voge_ws input").map(function(){
               var url_po=$(this).parents(".map_poou_car").find(".browse_maps").attr("src");
               voytr_ou.push({"item_name":$(this).val(),"image_urls":url_po})
             })
-        }else if(type==2&&!tyt_poiu){
-          for(var i=0;i<$(".act_input_a_voge_pooi").length;i++){
-              if(!form_mm.isnull($(".act_input_a_voge_pooi").eq(i).val())){
-                $scope.mml.err_pup("请输入投票选项");
-                return
-              }
-            }
-            $(".act_input_a_voge_ws_s input").map(function(){
-              var url_po=$(this).parents(".map_poou_car").find(".browse_maps").attr("src");
-              voytr_ou.push({"item_name":$(this).val(),"image_urls":url_po})
-            })
-        }
+
+        // }else if(type==2&&!tyt_poiu){
+        //   for(var i=0;i<$(".act_input_a_voge_pooi").length;i++){
+        //       if(!form_mm.isnull($(".act_input_a_voge_pooi").eq(i).val())){
+        //         $scope.mml.err_pup("请输入投票选项");
+        //         return
+        //       }
+        //     }
+        //     $(".act_input_a_voge_ws_s input").map(function(){
+        //       var url_po=$(this).parents(".map_poou_car").find(".browse_maps").attr("src");
+        //       voytr_ou.push({"item_name":$(this).val(),"image_urls":url_po})
+        //     })
+        // }
 
         if(!form_mm.isnull(vote_detail)){
             $scope.mml.err_pup("投票说明不能为空");
             $("#vote_detail").focus();
             return;
            }
-        if(!tyt_poiu){
+        // if(!tyt_poiu){
           date_p_a.title=vote_title
             date_p_a.end_time=startDate
             date_p_a.type=type_vote 
@@ -330,24 +347,31 @@ $(document).on("click",".remove_video",function(){
               $scope.select_click.date_pou[0].activity_id=$scope.id
               $scope.select_click.update_vote($scope.select_click.date_pou[0])
             }
-        }else{
-          $scope.select_click.date_pou[0].title=vote_title
-          $scope.select_click.date_pou[0].end_time=startDate
-          $scope.select_click.date_pou[0].type=type_vote
-          $scope.select_click.date_pou[0].detail=vote_detail
-          for(var i=0;i<$scope.select_click.date_pou[0].voteItemList.length;i++){
-                $scope.select_click.date_pou[0].voteItemList[i].item_name=$(".act_input_a_voge_pooi").eq(i).val()
-                $scope.select_click.date_pou[0].voteItemList[i].image_urls=$(".browse_maps_poii").eq(i).attr("src")
-          }
-          $scope.select_click.update_vote($scope.select_click.date_pou[0])
-        }
+
+        $scope.voteSetting.datas = date_p_a;
+        $scope.voteSetting.datas.end_date = stat_time_q;
+        $scope.voteSetting.datas.end_time2 = stat_time_w;
+        alert('投票设置保存成功');
+        console.log($scope.voteSetting.datas);
+
+        // }else{
+        //   $scope.select_click.date_pou[0].title=vote_title
+        //   $scope.select_click.date_pou[0].end_time=startDate
+        //   $scope.select_click.date_pou[0].type=type_vote
+        //   $scope.select_click.date_pou[0].detail=vote_detail
+        //   for(var i=0;i<$scope.select_click.date_pou[0].voteItemList.length;i++){
+        //         $scope.select_click.date_pou[0].voteItemList[i].item_name=$(".act_input_a_voge_pooi").eq(i).val()
+        //         $scope.select_click.date_pou[0].voteItemList[i].image_urls=$(".browse_maps_poii").eq(i).attr("src")
+        //   }
+        //   $scope.select_click.update_vote($scope.select_click.date_pou[0])
+        // }
     
-        if(type==1){
-            $('#ticket_set_vode').modal('toggle');
-        }else  if(type==2){
+        // if(type==1){
+        //     $('#ticket_set_vode').modal('toggle');
+        // }else  if(type==2){
         
-          $('#modification_vode').modal('toggle');
-        }
+        //   $('#modification_vode').modal('toggle');
+        // }
        
         
      },"date_pou":[],
@@ -486,10 +510,30 @@ $(document).on("click",".remove_video",function(){
     },"delec_volume":function(idx){
        var idx_a=idx-1
       $scope.ticket_array.splice(idx_a,1);
+    },"add_label":function(sai,uuu){//添加标签    	
+    	for(var i=0;i<$scope.labelArr.length;i++){
+    		if(sai.id==$scope.labelArr[i].id){
+    			return
+    		}
+    	}
+    	if($scope.labelArr.length<5){
+    		 $scope.labelArr.push(sai)
+    	}else{
+    		 $scope.mml.err_pup("活动标签最多只能选择5个");
+    	}
+             
+    },"delete_label":function(id){
+      $scope.labelArr.splice(id,1) 
+    },"add_type_aa":function(ssss){
+      $(".release_type").removeClass("active")
+      $(".release_type").eq(ssss).addClass("active")
+      $("#release_type_value").val(ssss)
+      
     },"submit_data":function(status){//发布活动
+
         var usr_oc="";//图片地址
         var stat_time_a=$("#stat_time_a").val();//开始时间的您月日
-          var stat_time_b=$("#stat_time_b").val();//开始时间的您时分
+        var stat_time_b=$("#stat_time_b").val();//开始时间的您时分
         var end_time_a=$("#end_time_a").val();//结束时间的您月日
         var end_time_b=$("#end_time_b").val();//结束时间的您时分
         
@@ -497,8 +541,16 @@ $(document).on("click",".remove_video",function(){
         var endDate=end_time_a+" "+end_time_b;//开始时间
         var provinces_p=$("#provinces_p").val();//获取省份
         var city_p=$("#city_p").val();//获取城市
-        var activity_type=$("#activity_type").val();//活动类型
-        var m_industry=$("#m_industry").val();//行业
+        var m_industry=$("#m_industry").val();//行业       
+        var activity_type=$("#release_type_value").val()//活动标签
+        var activity_label="";
+        if($scope.labelArr.length>0){
+        	for(var i=0;i<$scope.labelArr.length;i++){
+        	activity_label=activity_label+$scope.labelArr[i].id+","
+        	}
+         activity_label=activity_label.substring(0,activity_label.length-1);
+        }
+       
         
         var form_yz=false; 
         $scope.activities_data.activity={};
@@ -507,7 +559,8 @@ $(document).on("click",".remove_video",function(){
         $scope.activities_data.activity.end_date= new Date(endDate).getTime();//活动时间开始的时间戳4
         $scope.activities_data.activity.city=$("#city_p").attr("data-id");//城市id5
         $scope.activities_data.activity.address=$("#detailed_address").val().trim();//获取详细地址6
-        $scope.activities_data.activity.type=$("#activity_type").attr("data-id");//活动类型id7
+        $scope.activities_data.activity.type=activity_type;//活动类型id7
+        $scope.activities_data.activity.label=activity_label;//活动标签
         $scope.activities_data.activity.industry_id= $("#m_industry").attr("data-id").trim();//行业id8
         $scope.activities_data.activity.contact_way=$("#contact_information").val().trim();//联系方式9
         $scope.activities_data.activity.details=$("#myEditor").html().trim();//富文本编辑器10       
@@ -554,13 +607,14 @@ $(document).on("click",".remove_video",function(){
         $scope.activities_data.activity.ad_urls_array = $scope.adSetting.ad_urls_array;
         // 活动打赏提示数据
         var rewardOpen = ($('.j-rewardOpen').attr('data-xz') == 0) ? true : false; 
-        
         var tip_remark="";
         if(!($scope.reward==null||$scope.reward==""||$scope.reward.remark=="")){
         	tip_remark=$scope.reward.remark;
         }
-        
         $scope.activities_data.activity.tip = JSON.stringify({open: rewardOpen, remark: tip_remark});
+        // 签到设置—抽奖设置数据
+        $scope.activities_data.draw = $scope.lotterySetting.datas;
+        $scope.activities_data.vote = $scope.voteSetting.datas;
 
 
 
@@ -637,6 +691,14 @@ $(document).on("click",".remove_video",function(){
             $("#provinces_p").focus();
             return;
      }
+       if(!form_mm.isnull(activity_type)){
+          $scope.mml.err_pup("请选择活动类型");           
+            return;
+     }
+        if(!form_mm.isnull(activity_label)){
+          $scope.mml.err_pup("请选择活动标签");           
+            return;
+     }
       if(!form_mm.isnull($scope.activities_data.activity.sponsor)){
           $scope.mml.err_pup("请输入主办方单位");
             $("#main_host").focus();
@@ -658,10 +720,12 @@ $(document).on("click",".remove_video",function(){
          $scope.mml.err_pup("请勾选e场景平台服务协议！ ");
          return;
        } 
+
        if(status==3||status==4||status==6){//修改的情况
        var sty=status==3?1:0;
        $scope.activities_data.activity.status=1
        var data_p;
+
 
        if(status==3){//已发布的修改情况
               data_p={"activity":{"id":$scope.id,
@@ -674,7 +738,7 @@ $(document).on("click",".remove_video",function(){
               "end_date":new Date(endDate).getTime(),
               "city":$("#city_p").attr("data-id"),
               "type":$("#activity_type").attr("data-id"),
-              "industry_id":$("#m_industry").attr("data-id").trim(),
+              "industry_id":$("#release_type_value").val().trim(),
               "contact_way":$("#contact_information").val().trim(),
               "person_limit":$("#number_online").val().trim(),
               "sponsor":$("#main_host").val(), 
@@ -683,22 +747,30 @@ $(document).on("click",".remove_video",function(){
               "support_id":$scope.sponsored_id, 
               "ad_urls_array": $scope.adSetting.ad_urls_array,
               "tip": $scope.activities_data.activity.tip,
+              "label":activity_label
               },"honored_guest":$scope.guest_data
-            
           } 
       }
 
-       
        if(status==4){//未发布修改
-        $scope.activities_data.activity.id=$scope.id
-        data_p=$scope.activities_data
+        $scope.activities_data.activity.id=$scope.id;
+        data_p=$scope.activities_data;
        }
        if(status==6){//未发布的情况下发布
     	   $scope.activities_data.activity.id=$scope.id;
     	   $scope.activities_data.activity.status=0;
            data_p=$scope.activities_data
        }
-       data_p=angular.fromJson(data_p)
+       data_p.draw = $scope.lotterySetting.datas;
+       data_p.vote = $scope.voteSetting.datas;
+       // data_p.vote.end_time = new Date(data_p.vote.end_date + ' ' + data_p.vote.end_time).getTime();
+       data_p=angular.fromJson(data_p);
+        
+        
+
+       console.log(data_p);
+       // return false;
+
   
        activity_data.update_activity(data_p).then(
             
@@ -720,6 +792,10 @@ $(document).on("click",".remove_video",function(){
        
          return
       }
+
+
+    console.log($scope.activities_data);
+    // return false;
 
       activity_data.create_activity($scope.activities_data).then(
         function success(data) {
@@ -759,8 +835,8 @@ $(document).on("click",".remove_video",function(){
             })
          activities_data.city_p=$("#city_p").val();//城市
          activities_data.address=$("#detailed_address").val();//获取详细地址
-         activities_data.type=$("#activity_type").attr("data-id");//活动类型id
-         activities_data.type_text=$("#activity_type").val();//活动类型
+         activities_data.type_text=$("#release_type_value").val();//活动类型
+         activities_data.label_arr=JSON.stringify($scope.labelArr);//活动标签
          activities_data.industry_id= $("#m_industry").attr("data-id");//行业id
          activities_data.industry_text= $("#m_industry").val();//行业
          activities_data.contact_way=$("#contact_information").val();//联系方式
@@ -787,24 +863,35 @@ $(document).on("click",".remove_video",function(){
                    return
                  }
                  tyt_poiu=true
-                 $(".display_show").show()
+                 
                  km=new activity_detail(data.info);
+                 console.log(km);
                  
                   // 活动打赏数据
                   $scope.reward = data.info.tip==null?"":data.info.tip;
-
-                  
                   // 打赏功能开启和禁用
                   if(data.info.tip==null||!data.info.tip.open) {
                 	  $('.j-rewardOpen').removeClass('gx_xzm').attr('data-xz', 1);
                   } else {
                 	  $('.j-rewardOpen').addClass('gx_xzm').attr('data-xz', 0);
                   }
-                  // 修改和保存后编辑状态报名表单和票务设置不能够修改
-                   $('.modify_disable_par').addClass('modify_disable_none')	
+
+                // 投票数据
+                $scope.voteSetting.datas = km.vote;
+                // 截止时间处理
+                if($scope.voteSetting.datas) {
+                    var time = new Date($scope.voteSetting.datas.end_time);
+                    $scope.voteSetting.datas.end_date = time.getFullYear() + '/' + (time.getMonth()+1) + '/' + time.getDate();
+                    var end_minute = (time.getMinutes() <=9) ? ('0'+ time.getMinutes()) : time.getMinutes();
+                    $scope.voteSetting.datas.end_time2 = time.getHours() + ':' + end_minute;
+                }
+                
+
                  $scope.status=km.status
-                 if($scope.status==0){ 
-                 
+                 if($scope.status==0){
+                 // 修改和保存后编辑状态报名表单和票务设置不能够修改
+                 $(".display_show").show()
+                   $('.modify_disable_par').addClass('modify_disable_none')	
                  $(".modify_disable").attr("disabled","disabled").addClass("prohibit").removeAttr("data-toggle").css("background","#cbcbcb")
                       
                  }
@@ -838,6 +925,9 @@ $(document).on("click",".remove_video",function(){
                      $("#activity_type").attr("data-id",km.type);//活动类型id
                        $("#activity_type").val($scope.classify[0].maker_title[(km.type-1)].name);
                          $("#m_industry").attr("data-id",km.industry_id);//活动类型id
+                          $("#release_type_value").val(km.industry_id);//活动类型
+                         setTimeout(function(){$(".release_type").eq(km.industry_id).addClass("active")},100)
+                       $scope.labelArr=km.label;//活动标签
                          $("#m_industry").val($scope.classify[1].maker_title[(km.industry_id-1)].name);
                          $("#myEditor").html(km.details);
                          $("#contact_information").val(km.contact_way);
@@ -848,7 +938,7 @@ $(document).on("click",".remove_video",function(){
                          $scope.ticket_array=km.ticket_list==null?[]:km.ticket_list;//票卷
                          $scope.row_po_form= km.detail_config==null?[]:km.detail_config;//表单
                          $scope.guest_data= km.honored_guest==null?[]:km.honored_guest;//嘉宾 
-                         $scope.select_click.date_pou[0]=km.vote
+                         // $scope.select_click.date_pou[0]=km.vote
                         var pattern = /upload_code/; //二维码关注设置进来传值      
                     if(!pattern.test(km.sponsor_url)){ //二维码关注设置进来传值   
                       $(".atten_set input").removeAttr("checked");
@@ -886,7 +976,9 @@ $(document).on("click",".remove_video",function(){
                   $("#provinces_p").val(km.provinces_p);//省份
                   $("#city_p").val(km.city_p);//城市
                   $("#activity_type").attr("data-id",km.type);//活动类型id
-                  $("#activity_type").val(km.type_text)
+                  $("#release_type_value").val(km.type_text);//活动类型
+                  $scope.labelArr=JSON.parse(km.label_arr)//活动标签		
+                  setTimeout(function(){$(".release_type").eq(km.type_text).addClass("active")},100)
                   $("#m_industry").attr("data-id", km.industry_id);//行业id
                   $("#m_industry").val(km.industry_text);
                   $("#contact_information").val(km.contact_way);//联系方式
@@ -899,6 +991,7 @@ $(document).on("click",".remove_video",function(){
                   $scope.row_po_form= km.form_config;//表单
                   $scope.guest_data= km.honored_guest;//嘉宾
                   $scope.select_click.date_pou[0]=km.vote_oiu
+                  $scope.voteSetting.datas = km.vote_oiu;
                   $($scope.row_po_form).map(function(x){
                     if(this.name==""){
                       $scope.row_po_form.splice(x,1)
@@ -963,40 +1056,42 @@ $(document).on("click",".remove_video",function(){
     }, function error() {
       console.log("获取省份失败")
   });
+    
+
 
     /*
      * 张晗
      * 抽奖设置
      */
-
     $scope.lotterySetting = {
-        list: [],
+        draw_detail_array: [],
         itemIndex: 0,
         status: 'add',
+        datas: {'limit_type': 2, 'draw_detail_array': []},
         addItem: function(data) {
             $('#lotteryModal').modal('hide');
+            var list = this.datas.draw_detail_array;
             if(this.status == "save") {
                 var index = this.itemIndex;
                 $scope.$apply(function() {
-                    $scope.lotterySetting.list[index] = data;
+                    list[index] = data;
                 });
                 this.status = 'add';
             } else {
                 $scope.$apply(function() {
-                    $scope.lotterySetting.list.push(data);
+                    list.push(data);
                 });
             }
-            console.log($scope.lotterySetting.list);
         },
         'deleteItem': function(index) {
-            $scope.lotterySetting.list.splice(index,1);
+            this.datas.draw_detail_array.splice(index,1);
         },
         'editItem': function(index) {
             this.itemIndex = index;
             this.status = 'save';
             $('#lotteryModal').modal('show');
-            $.each($scope.lotterySetting.list[index], function(k, v) {
-                $('.j-lotteryForm').find('input[name='+k+']').val(v);
+            $.each(this.datas.draw_detail_array[index], function(k, v) {
+                $('.j-lotteryForm').find('input[name='+k+'],textarea[name='+k+']').val(v);
             });
         },
         'uploadImg': function() {
@@ -1006,6 +1101,10 @@ $(document).on("click",".remove_video",function(){
             });
         }
     }
+    // 获取抽奖设置数据
+    httpService.getDatas('GET', '/activity/query_draw_by_activity_id/' + $scope.id).then(function(data) {
+        if(data.info) $scope.lotterySetting.datas = data.info;
+    });
 
 
     /*
@@ -1225,6 +1324,20 @@ $(function(){//签到设置页面显示隐藏
         }
   })
   
+  $("body").on("mouseover",".close_ty",function(){//活动标签关闭按钮旋转
+  	$(this).addClass("close_ty_duration")
+  })
+  $("body").on("mouseout",".close_ty",function(){//活动标签关闭按钮旋转
+  	$(this).removeClass("close_ty_duration")
+  })
+  
+  $("body").on("click",function(){
+  	$(".re_type_content").css("display","none")
+  })
+  $(".re_type_wrap,.re_type_content").on("click",function(e){
+  	 e.stopPropagation()//如果夫级用了点击事件，子节点也有点击事件用此方法可以阻止夫节点的点击方法
+  	$(".re_type_content").css("display","block")
+  })
     
 })
 $('.j-navCity').addClass('none').prev('a').removeClass('none');
