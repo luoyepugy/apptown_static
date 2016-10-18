@@ -127,12 +127,6 @@ $(document).on("click",".remove_video",function(){
 
     var tyt_poiu=false,lj_it=false;
 
-     $scope.voteSetting = {'datas': {'voteItemList': [
-        {"item_name":"","image_urls":"http://resource.apptown.cn/image/userIcon.jpg"},
-        {"item_name":"","image_urls":"http://resource.apptown.cn/image/userIcon.jpg"}
-        ]
-    }};
-    console.log($scope.voteSetting.datas.voteItemList);
     $scope.select_click={
         "default_cover":[
                           {"id":"1","name":"创客活动","img":"http://resource.apptown.cn/poster/3-3.jpg"},
@@ -190,200 +184,6 @@ $(document).on("click",".remove_video",function(){
         updata_icon("/activity/upload_activity_cover",function(url){
            $(".case_poiuy_i").append(' <p class="pr fl case_icon">  <img src="'+url+'" class="case_poiu_a">    <img src="/img/close.png" class="icon_close_a"  data-dismiss="alert">   </p>')
         })
-    },"vote_date":[],//投票表单数据
-    "voteItemList":[{"item_name":"","image_urls":"http://resource.apptown.cn/image/userIcon.jpg"},{"item_name":"","image_urls":"http://resource.apptown.cn/image/userIcon.jpg"}],
-     "polling_data":function(tyepe){//添加更多投票选项  
-       var oiu={"item_name":"","image_urls":"http://resource.apptown.cn/image/userIcon.jpg"}
-       // if(tyepe==1){
-        console.log($scope.voteSetting);
-        console.log($scope.voteSetting.datas);
-         $scope.voteSetting.datas.voteItemList.push(oiu)
-       // }else{
-       //   $scope.select_click.date_pou[0].voteItemList.push(oiu)
-       // }
-      
-     },"voteIte_w":function(x){
-       $scope.select_click.voteItemList.splice(x,1)
-     },"voteIte_p":function(x,id){//投票删除按钮
-       if(!confirm("您真的要删除该投票吗？(删除无法恢复)")){
-         return
-       }
-      
-       if(tyt_poiu){
-        var data={}
-        data.id=id
-        activity_data.deltet_voteitem(data).then(
-            function success(data) {
-              if(data.code!=0){
-                return
-              }
-            }, function error() {
-              console.log("投票删除失败")
-        });
-       }
-       $scope.select_click.date_pou[0].voteItemList.splice(x,1)
-       
-       
-     },"vote_initialization":function(){//初始化弹出来 的投票表单
-       tyt_poiu=false
-       lj_it=true;
-          $('#ticket_set_vode').modal('toggle');
-        $("#ticket_set_vode input").val("") 
-        $scope.voteSetting.datas.voteItemList=[{"item_name":"","image_urls":"http://resource.apptown.cn/image/userIcon.jpg"},{"item_name":"","image_urls":"http://resource.apptown.cn/image/userIcon.jpg"}]
-     },"delete_poll":function(id){//删除投票
-       if(!confirm("您真的要删除该投票吗？(删除无法恢复)")){
-         return
-       }
-       if(tyt_poiu){
-          var data={}
-          data.id=id
-          activity_data.vote_delete_p(data).then(
-              function success(data) {
-                if(data.code!=0){
-                  return
-                }
-              }, function error() {
-                console.log("投票删除失败")
-          });
-       }
-       $scope.select_click.date_pou=[]
-       
-       
-       
-       
-     },"update_vote":function(data){//修改投票信息
-       activity_data.update_vote(data).then(
-          function success(data) {
-            if(data.code!=0){
-              return
-            }
-          }, function error() {
-            console.log("投票删除失败")
-      });
-     },"voted_add":function(type){
-        var data_po={}
-        // if(type==1){
-          data_po.title=$("#vote_title").val()
-            data_po.stat_time_q=$("#stat_time_q").val()
-            data_po.stat_time_w=$("#stat_time_w").val()
-            data_po.vote_detail=$("#vote_detail").val()
-            data_po.type_vote=$("#type_vote").val()
-            
-        // }else if(type==2){
-        //   data_po.title=$("#vote_title_mf").val()
-        //     data_po.stat_time_q=$("#stat_time_q_mf").val()
-        //     data_po.stat_time_w=$("#stat_time_w_mf").val()
-        //     data_po.vote_detail=$("#vote_detail_mf").val()
-        //     data_po.type_vote=$("#type_vote_mf").val()
-        // }
-
-        $scope.select_click.pup_vote_a(data_po,type)
-       
-     },"pup_vote_a":function(data,type){//投票完成按钮触发
-      
-        var vote_title=data.title,//投票标题
-        stat_time_q=data.stat_time_q,//投票截止时间
-        stat_time_w=data.stat_time_w,//投票截止时间
-        vote_detail=data.vote_detail,//活动介绍
-        type_vote=data.type_vote,//投票类型
-        voytr_ou=[],
-        date_p_a={},
-        startDate=stat_time_q+" "+stat_time_w;//开始时间
-        startDate=new Date(startDate).getTime()
-        if(!form_mm.isnull(vote_title)){
-            $scope.mml.err_pup("投票标题不能为空");
-            $("#vote_title").focus();
-            return;
-           }
-        if(!form_mm.isnull(stat_time_q)){
-          $scope.mml.err_pup("请选择投票截止时间");
-          $("#stat_time_q").focus();
-          return;
-         }
-        if(!form_mm.isnull(stat_time_w)){
-          $scope.mml.err_pup("请选择投票截止时间");
-          $("#stat_time_w").focus();
-          return;
-         }
-        // if(type==1){
-          for(var i=0;i<$(".act_input_a_voge").length;i++){
-              if(!form_mm.isnull($(".act_input_a_voge").eq(i).val())){
-                $scope.mml.err_pup("请输入投票选项");
-                return
-              }
-            }
-
-            $(".act_input_a_voge_ws input").map(function(){
-              var url_po=$(this).parents(".map_poou_car").find(".browse_maps").attr("src");
-              voytr_ou.push({"item_name":$(this).val(),"image_urls":url_po})
-            })
-
-        // }else if(type==2&&!tyt_poiu){
-        //   for(var i=0;i<$(".act_input_a_voge_pooi").length;i++){
-        //       if(!form_mm.isnull($(".act_input_a_voge_pooi").eq(i).val())){
-        //         $scope.mml.err_pup("请输入投票选项");
-        //         return
-        //       }
-        //     }
-        //     $(".act_input_a_voge_ws_s input").map(function(){
-        //       var url_po=$(this).parents(".map_poou_car").find(".browse_maps").attr("src");
-        //       voytr_ou.push({"item_name":$(this).val(),"image_urls":url_po})
-        //     })
-        // }
-
-        if(!form_mm.isnull(vote_detail)){
-            $scope.mml.err_pup("投票说明不能为空");
-            $("#vote_detail").focus();
-            return;
-           }
-        // if(!tyt_poiu){
-          date_p_a.title=vote_title
-            date_p_a.end_time=startDate
-            date_p_a.type=type_vote 
-            date_p_a.voteItemList=voytr_ou
-            date_p_a.detail=vote_detail
-            $scope.select_click.date_pou[0]=date_p_a
-            if(lj_it){
-              $scope.select_click.date_pou[0].activity_id=$scope.id
-              $scope.select_click.update_vote($scope.select_click.date_pou[0])
-            }
-
-        $scope.voteSetting.datas = date_p_a;
-        $scope.voteSetting.datas.end_date = stat_time_q;
-        $scope.voteSetting.datas.end_time2 = stat_time_w;
-        alert('投票设置保存成功');
-        console.log($scope.voteSetting.datas);
-
-        // }else{
-        //   $scope.select_click.date_pou[0].title=vote_title
-        //   $scope.select_click.date_pou[0].end_time=startDate
-        //   $scope.select_click.date_pou[0].type=type_vote
-        //   $scope.select_click.date_pou[0].detail=vote_detail
-        //   for(var i=0;i<$scope.select_click.date_pou[0].voteItemList.length;i++){
-        //         $scope.select_click.date_pou[0].voteItemList[i].item_name=$(".act_input_a_voge_pooi").eq(i).val()
-        //         $scope.select_click.date_pou[0].voteItemList[i].image_urls=$(".browse_maps_poii").eq(i).attr("src")
-        //   }
-        //   $scope.select_click.update_vote($scope.select_click.date_pou[0])
-        // }
-    
-        // if(type==1){
-        //     $('#ticket_set_vode').modal('toggle');
-        // }else  if(type==2){
-        
-        //   $('#modification_vode').modal('toggle');
-        // }
-       
-        
-     },"date_pou":[],
-     "editors_vote":function(de){//编辑投票
-        $scope.select_click.date_pou[0]=de
-        $('#modification_vode').modal('toggle');
-     },
-     "up_icon_b":function(x){//投票弹出层图片上传
-      $("#iconFile").click();
-    updata_icon("/activity/upload_activity_cover",function(url){
-      $(x).parent().find(".browse_maps").attr("src",url)
-    })
     },"add_fom_p":function(){//添加表单按钮
         if($scope.id>0&&$scope.status==0){
           return
@@ -763,12 +563,12 @@ $(document).on("click",".remove_video",function(){
        }
        data_p.draw = $scope.lotterySetting.datas;
        data_p.vote = $scope.voteSetting.datas;
-       // data_p.vote.end_time = new Date(data_p.vote.end_date + ' ' + data_p.vote.end_time).getTime();
+
        data_p=angular.fromJson(data_p);
         
-        
+       
 
-       console.log(data_p);
+       // console.log(data_p);
        // return false;
 
   
@@ -793,9 +593,6 @@ $(document).on("click",".remove_video",function(){
          return
       }
 
-
-    console.log($scope.activities_data);
-    // return false;
 
       activity_data.create_activity($scope.activities_data).then(
         function success(data) {
@@ -865,7 +662,6 @@ $(document).on("click",".remove_video",function(){
                  tyt_poiu=true
                  
                  km=new activity_detail(data.info);
-                 console.log(km);
                  
                   // 活动打赏数据
                   $scope.reward = data.info.tip==null?"":data.info.tip;
@@ -991,7 +787,7 @@ $(document).on("click",".remove_video",function(){
                   $scope.row_po_form= km.form_config;//表单
                   $scope.guest_data= km.honored_guest;//嘉宾
                   $scope.select_click.date_pou[0]=km.vote_oiu
-                  $scope.voteSetting.datas = km.vote_oiu;
+
                   $($scope.row_po_form).map(function(x){
                     if(this.name==""){
                       $scope.row_po_form.splice(x,1)
@@ -1057,11 +853,79 @@ $(document).on("click",".remove_video",function(){
       console.log("获取省份失败")
   });
     
+    /*
+     * 张晗
+     * 投票设置
+     *
+     */
+    $scope.voteSetting = {
+        defaultOption: {"item_name":"","image_urls":"http://resource.apptown.cn/image/userIcon.jpg"},
+        datas: {'type': '1','voteItemList': [this.defaultOption]},
+        addOption: function() {
+            console.log(this);
+            console.log(this.datas);
+            console.log(this.datas.voteItemList);
+            this.datas.voteItemList.push(this.defaultOption);
+        },
+        deleteOption: function(i, id) {
+            this.datas.voteItemList.splice(i, 1);
+        },
+        uploadImg: function(x) {
+            $("#iconFile").click();
+            updata_icon("/activity/upload_activity_cover",function(url){
+              $(x).parent().find(".browse_maps").attr("src",url)
+            });
+        },
+        clear: function() {
+            this.datas = {'type': '1', 'activity_id': $scope.id},
+            console.log($scope.voteSetting.datas);
+        },
+        save: function() {
+            this.datas.end_date = $('#stat_time_q').val();
+            this.datas.end_time2 = $('#stat_time_w').val();
+            this.datas.end_time = this.datas.end_date + ' ' + this.datas.end_time2;
+            this.datas.end_time =new Date(this.datas.end_time).getTime();
+            if(!form_mm.isnull(this.datas.title)){
+                $scope.mml.err_pup("投票标题不能为空");
+                $("#vote_title").focus();
+                return;
+               }
+            if(!form_mm.isnull(this.datas.end_date)){
+              $scope.mml.err_pup("请选择投票截止时间");
+              $("#stat_time_q").focus();
+              return;
+             }
+            if(!form_mm.isnull(this.datas.end_time2)){
+              $scope.mml.err_pup("请选择投票截止时间");
+              $("#stat_time_w").focus();
+              return;
+             }
+            if(this.datas.voteItemList.length < 1) {
+                $scope.mml.err_pup("请输入投票选项");
+                return
+            }
+            if(!form_mm.isnull(this.datas.detail)){
+                $scope.mml.err_pup("投票说明不能为空");
+                $("#vote_detail").focus();
+                return;
+            }
+            var array = [];
+            $(".act_input_a_voge_ws input").map(function(){
+                var img_url =$(this).parents(".map_poou_car").find(".browse_maps").attr("src"); 
+                array.push({"item_name":$(this).val(),"image_urls":img_url})
+            });
+            this.datas.voteItemList = array;
+            alert('投票设置保存成功');
+            console.log($scope.voteSetting.datas);
+        }
+    }
+
 
 
     /*
      * 张晗
      * 抽奖设置
+     *
      */
     $scope.lotterySetting = {
         draw_detail_array: [],

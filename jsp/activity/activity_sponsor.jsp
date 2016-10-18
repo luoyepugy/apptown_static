@@ -593,7 +593,7 @@
                      
                         <li class="zq  mt10"> 
                               
-                                <label class="f_d title_poi fl  title_poi_poi title_poi_poi_pooi">投票类型<span class="hs">*</span></label>
+                                <label style="width:80px;" class="f_d title_poi fl  title_poi_poi title_poi_poi_pooi">投票选项<span class="hs">*</span></label>
                                  <div class="ov map_poou_car">
                                  <p class="zc">最多可添加20项</p>
                                   
@@ -601,16 +601,16 @@
                                    <p class="qc"></p>
                          </li>
                          
-                         <li class="zq"   ng-repeat="List in voteSetting.datas.voteItemList">    
+                         <li class="zq"   ng-repeat="List in voteSetting.datas.voteItemList track by $index">    
                       
                            <label class="f_d title_poi fl mt20 title_poi_poi">选项{{$index+1}}<span class="hs"></span></label>
                             <div class="ov map_poou_car act_input_a_voge_ws">
                                <div class="pr poiuy_poiu_q fl mt10 pr"> 
                                      <input type="text" class="act_input_a ipue act_input_a_voge" placeholder="请输入投票的标题（不大于30字）"  maxlength="20" value="{{List.item_name}}">
                                       <p class="pupu_oiuuy_icon">
-                                         <img ng-src="{{List.image_urls}}" class="browse_maps">|
-                                         <i class="f_i piytr_a_b" title="点击上传图片" ng-click="select_click.up_icon_b($event.target)"></i>|
-                                         <i class="f_i delect_icon_c" title="删除" ng-click="select_click.voteIte_w($index)"></i>
+                                         <img src="http://resource.apptown.cn/image/userIcon.jpg" ng-src="{{List.image_urls}}" class="browse_maps">|
+                                         <i class="f_i piytr_a_b" title="点击上传图片" ng-click="voteSetting.uploadImg($event.target)"></i>|
+                                         <i class="f_i delect_icon_c" title="删除" ng-click="voteSetting.deleteOption($index, List.id)"></i>
                                       </p>
                                  </div>
                             </div>
@@ -620,7 +620,7 @@
                               <li class="zq  "> 
                                  <label class="f_d title_poi fl mt20 title_poi_poi">&nbsp;<span class="hs"></span></label>
                                   <div class="ov map_poou_car">
-                                    <a class="btn btn-primary add_form_p " ng-click="select_click.polling_data()">+  增加投票选项</a>
+                                    <a class="btn btn-primary add_form_p " ng-click="voteSetting.addOption()">+  增加投票选项</a>
                                   </div>
                               </li>
                                
@@ -629,7 +629,7 @@
                                 <label class="f_d title_poi fl mt20 title_poi_poi">投票类型<span class="hs">*</span></label>
                              <div class="ov map_poou_car">
                                   <div class="pr poiuy_poiu_q fl">
-                                        <select class="sp_pull_down" id="type_vote" ng-modal="voteSetting.datas.type">
+                                        <select class="sp_pull_down" id="type_vote" ng-model="voteSetting.datas.type">
                                   <option value="1">单选</option>
                                     <option value="2">多选</option> 
                            </select>
@@ -643,8 +643,9 @@
                                   <div class="pr poiuy_poiu_q fl">
                                        <textarea class="ipue jiap_po_c" placeholder="请填写投票说明，不大于60字" maxlength="60" id="vote_detail" ng-model="voteSetting.datas.detail" ></textarea>
                                        <p class="qc"></p>
-                     <p  class=" pup_icon_bottom poiuyt_ouy poiuyt_ouy_nmjh_a">
-                            <a class="btn btn-primary sub_poiy_a" ng-click="select_click.voted_add()">保存</a>
+                        <p  class=" pup_icon_bottom poiuyt_ouy poiuyt_ouy_nmjh_a">
+                            <a class="btn btn-primary sub_poiy_a mr20" ng-click="voteSetting.save()">保存</a>
+                            <a class="btn btn-primary rese_button_a" style="width: 120px;" ng-click="voteSetting.clear()">清空</a>
                         </p>
                                  </div>
                             </div>
@@ -879,199 +880,7 @@
   </div>
 </div>
 <!-- /奖项设置弹窗  -->
-       
-<!--        投票设置 -->
-       
-              <!-- <div id="ticket_set_vode" class="modal hide fade pd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <p class="form_title_a cen pt10">投票设置  <button type="button" class="close clase_pup_s" data-dismiss="modal">×</button></p>
-             <div class="voite_poiu_a pr">
-                 <ul class="form_poiu_q_m mt20 form_poiu_q_m_o pr form_poiu_q_m_o_poo"> 
-                                   <li class="zq mt10 ">
-                     <label class="f_d title_poi fl mt20 title_poi_poi">投票名称<span class="hs">*</span></label>
-                     <div class="ov map_poou_car">
-                          <div class="pr poiuy_poiu_q fl">  
-                             <input type="text" class="act_input_a ipue" placeholder="请输入投票名称" id="vote_title" maxlength="20" value="{{select_click.date_pou.title}}">
-                              
-                         </div>
-                        </div>
-             </li>
-             <li class="zq mt10 "> 
-                <label class="f_d title_poi fl mt20 title_poi_poi">截止时间<span class="hs">*</span></label>
-            		 <p class="ty_poi_q">
-                                <span class="pr time_poiu"><i class="f_i tri_icon"></i> 
-                                <input type="text" class="act_input_a ipub" id="stat_time_q" ></span>
-                                <span class="pr ml10 time_poiu"><label class="f_i data_icon_a"></label>
-                                <input type="text" class="act_input_a ipuc" id="stat_time_w" ></span>
-                              
-                              </p>
-                              <p class="qc"></p>
-             </li>
-             
-                <li class="zq  mt10"> 
-                      
-                        <label class="f_d title_poi fl  title_poi_poi title_poi_poi_pooi">投票类型<span class="hs">*</span></label>
-                         <div class="ov map_poou_car">
-                         <p class="zc">最多可添加20项</p>
-                          
-                        </div>
-                           <p class="qc"></p>
-                 </li>
-                 
-                 <li class="zq"   ng-repeat="List in select_click.voteItemList">    
-              
-               		 <label class="f_d title_poi fl mt20 title_poi_poi">选项{{$index+1}}<span class="hs"></span></label>
-               		  <div class="ov map_poou_car act_input_a_voge_ws">
-               		     <div class="pr poiuy_poiu_q fl mt10 pr"> 
-                             <input type="text" class="act_input_a ipue act_input_a_voge" placeholder="请输入投票的标题（不大于30字）"  maxlength="20" value="{{List.item_name}}">
-                              <p class="pupu_oiuuy_icon">
-                              	 <img ng-src="{{List.image_urls}}" class="browse_maps">|
-                              	 <i class="f_i piytr_a_b" title="点击上传图片" ng-click="select_click.up_icon_b($event.target)"></i>|
-                               	 <i class="f_i delect_icon_c" title="删除" ng-click="select_click.voteIte_w($index)"></i>
-                              </p>
-                         </div>
-               		  </div>
-                </li>
-                      
-                     
-                      <li class="zq  "> 
-                         <label class="f_d title_poi fl mt20 title_poi_poi">&nbsp;<span class="hs"></span></label>
-                          <div class="ov map_poou_car">
-                            <a class="btn btn-primary add_form_p " ng-click="select_click.polling_data()">+  增加投票选项</a>
-                          </div>
-                      </li>
-                       
-                      <li class="zq  mt20"> 
-                      
-                        <label class="f_d title_poi fl mt20 title_poi_poi">投票类型<span class="hs">*</span></label>
-                     <div class="ov map_poou_car">
-                          <div class="pr poiuy_poiu_q fl">
-                                <select class="sp_pull_down" id="type_vote">
-             		    		  <option value="1">单选</option>
-             		            <option value="2">多选</option> 
-             		   </select>
-                         </div>
-                        </div>
-                
-                </li>           
-              <li class="zq mt10 ">
-                     <label class="f_d title_poi fl mt20 title_poi_poi">  投票介绍<span class="hs">*</span></label>
-                     <div class="ov map_poou_car"> 
-                          <div class="pr poiuy_poiu_q fl">
-                             	 <textarea class="ipue jiap_po_c" placeholder="请填写投票说明，不大于60字" maxlength="60" id="vote_detail" ></textarea>
-                               <p class="qc"></p>
-             <p  class=" pup_icon_bottom poiuyt_ouy poiuyt_ouy_nmjh_a">
-                    <a class="btn btn-primary sub_poiy_a" ng-click="select_click.voted_add(1)">确认</a>
-                    <a  class="btn btn-primary rese_button_a ml20" data-dismiss="modal">取消</a>
-                </p>
-                         </div>
-                    </div>
-             </li>
-   
-                
-              </ul>
-            <div class="amplification gd">
-           	 <img src="" class="gd">
-           </div>
-             </div>
-       </div>
-       
-       
-       
-       
-        <div id="modification_vode" class="modal hide fade pd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <p class="form_title_a cen pt10">投票设置  <button type="button" class="close clase_pup_s" data-dismiss="modal">×</button></p>
-             <div class="voite_poiu_a pr">
-                 <ul class="form_poiu_q_m mt20 form_poiu_q_m_o pr form_poiu_q_m_o_poo"> 
-                                   <li class="zq mt10 ">
-                     <label class="f_d title_poi fl mt20 title_poi_poi">投票名称<span class="hs">*</span></label>
-                     <div class="ov map_poou_car">
-                          <div class="pr poiuy_poiu_q fl">  
-                             <input type="text" class="act_input_a ipue" placeholder="请输入投票名称" id="vote_title_mf" maxlength="20" value="{{select_click.date_pou[0].title}}">
-                              
-                         </div>
-                        </div>
-             </li>
-             <li class="zq mt10 "> 
-                <label class="f_d title_poi fl mt20 title_poi_poi">截止时间<span class="hs">*</span></label>
-            		 <p class="ty_poi_q">
-                                <span class="pr time_poiu"><i class="f_i tri_icon"></i> 
-                                <input type="text" class="act_input_a ipub" id="stat_time_q_mf" value="{{select_click.date_pou[0].end_time|date:'yyyy/MM/dd'}}"></span>
-                                <span class="pr ml10 time_poiu"><label class="f_i data_icon_a"></label>
-                                <input type="text" class="act_input_a ipuc" id="stat_time_w_mf" value="{{select_click.date_pou[0].end_time|date:'HH:mm'}}"></span>
-                              
-                              </p>
-                              <p class="qc"></p>
-             </li>
-             
-                <li class="zq  mt10"> 
-                      
-                        <label class="f_d title_poi fl  title_poi_poi title_poi_poi_pooi">投票类型<span class="hs">*</span></label>
-                         <div class="ov map_poou_car">
-                         <p class="zc">最多可添加20项</p>
-                          
-                        </div>
-                           <p class="qc"></p>
-                 </li>
-                 <li class="zq"   ng-repeat="List in select_click.date_pou[0].voteItemList">    
-              
-               		 <label class="f_d title_poi fl mt20 title_poi_poi">选项{{$index+1}}<span class="hs"></span></label>
-               		  <div class="ov map_poou_car act_input_a_voge_ws_s">
-               		     <div class="pr poiuy_poiu_q fl mt10 pr"> 
-                             <input type="text" class="act_input_a ipue act_input_a_voge_pooi" placeholder="请输入投票的标题（不大于30字）"  maxlength="20" value="{{List.item_name}}">
-                              <p class="pupu_oiuuy_icon">
-                              	<img ng-src="{{List.image_urls}}" class="browse_maps browse_maps_poii">|
-                              	 <i class="f_i piytr_a_b" title="点击上传图片" ng-click="select_click.up_icon_b($event.target)"></i>|
-                               	 <i class="f_i delect_icon_c" title="删除" ng-click="select_click.voteIte_p($index,List.id)"></i>
-                              </p>
-                         </div>
-               		  </div>
-                </li>
-                      
-                     
-                      <li class="zq  "> 
-                         <label class="f_d title_poi fl mt20 title_poi_poi">&nbsp;<span class="hs"></span></label>
-                          <div class="ov map_poou_car">
-                            <a class="btn btn-primary add_form_p " ng-click="select_click.polling_data(2)">+  增加投票选项</a>
-                          </div>
-                      </li>
-                       
-                      <li class="zq  mt20"> 
-                      
-                        <label class="f_d title_poi fl mt20 title_poi_poi">投票类型<span class="hs">*</span></label>
-                     <div class="ov map_poou_car">
-                          <div class="pr poiuy_poiu_q fl">
-                                <select class="sp_pull_down" id="type_vote_mf">
-             		    		  <option value="1">单选</option>
-             		              <option value="2">多选</option> 
-             		   </select>
-                         </div>
-                        </div>
-                
-                </li>           
-              <li class="zq mt10 ">
-                     <label class="f_d title_poi fl mt20 title_poi_poi">  投票介绍<span class="hs">*</span></label>
-                     <div class="ov map_poou_car"> 
-                          <div class="pr poiuy_poiu_q fl">
-                             	 <textarea class="ipue jiap_po_c" placeholder="请填写投票说明，不大于60字" maxlength="60" id="vote_detail_mf">{{select_click.date_pou[0].detail}}</textarea>
-                               <p class="qc"></p>
-             <p  class=" pup_icon_bottom poiuyt_ouy poiuyt_ouy_nmjh_a">
-                    <a class="btn btn-primary sub_poiy_a" ng-click="select_click.voted_add(2)">确认</a>
-                    <a  class="btn btn-primary rese_button_a ml20" data-dismiss="modal">取消</a>
-                </p>
-                         </div>
-                    </div>
-             </li>
-   
-                
-              </ul>
-            <div class="amplification gd">
-           	 <img src="" class="gd">
-           </div>
-             </div>
-       </div> -->
-       
-     
-        
+      
        <input type="hidden" value="${activityId }" id="act_id">
        <input type="hidden" value="${user_id }" id="user_id">
        <input type="file" name="uploadCode" id="uploadCode" style="display:none" capture="camera" accept="image/*">
