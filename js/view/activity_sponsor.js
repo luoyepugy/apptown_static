@@ -19,13 +19,20 @@ angular.module('activity_sponsor', ["directive_mml","activity_servrt","common","
     $scope.pj_id=-1;
     $scope.reward = {'remark': '活动不易，打赏一下组织者吧！'};
     $scope.labelArr=[];//活动标签数据
-     activity_data.getDatas('GET', '/sponsor/get_sponsorapply')//如果是认证主办方，自动填充主办方和联系方式表单
+    activity_data.getDatas('GET', '/sponsor/get_sponsorapply')//如果是认证主办方，自动填充主办方和联系方式表单
     .then(function(data) {
     	if(data.code==0&&data.info.status==1){
     		$("#contact_information").val(data.info.contacter_phone)
     		$("#main_host").val(data.info.name)
-    		
     	}
+        // 认证活动号提示是否显示
+        if(data.code == 0 && data.info) {
+            if(data.info.status == 1 || data.info.status == 2) {
+                $scope.showHostTip = true;
+            } else {
+                $scope.showHostTip = false;
+            }
+        }
     });
      activity_data.getDatas('GET', '/label/group')//获取活动标签
     .then(function(data) {
@@ -375,7 +382,7 @@ $(document).on("click",".remove_video",function(){
         }
         
         $scope.activities_data.activity.live_url=$(".video_text").val()//视频直播地址
-        $scope.activities_data.vote=$scope.select_click.date_pou[0];
+        $scope.activities_data.vote=$scope.voteSetting.datas;
 
         $(".row_po_form_zdy").map(function(x){   
            var xz=$(this).find(".radio_p_xz").attr("data-xz");//获取是否选中
@@ -495,10 +502,7 @@ $(document).on("click",".remove_video",function(){
           $scope.mml.err_pup("请选择活动类型");           
             return;
      }
-        if(!form_mm.isnull(activity_label)){
-          $scope.mml.err_pup("请选择活动标签");           
-            return;
-     }
+        
       if(!form_mm.isnull($scope.activities_data.activity.sponsor)){
           $scope.mml.err_pup("请输入主办方单位");
             $("#main_host").focus();
@@ -561,21 +565,26 @@ $(document).on("click",".remove_video",function(){
     	   $scope.activities_data.activity.status=0;
            data_p=$scope.activities_data
        }
+       // 抽奖和投票数据提交
        data_p.draw = $scope.lotterySetting.datas;
-       data_p.vote = $scope.voteSetting.datas;
+       if($scope.voteSetting.datas.voteItemList.length == 0) {
+            data_p.vote = null;
+       } else {
+            data_p.vote = $scope.voteSetting.datas;
+       }
 
        data_p=angular.fromJson(data_p);
         
        
 
-       // console.log(data_p);
+       console.log(data_p);
        // return false;
 
   
        activity_data.update_activity(data_p).then(
-            
             function success(data) {
                 if(data.code!=0){
+
                   alert(data.msg)
                   return;
                 }
@@ -589,9 +598,8 @@ $(document).on("click",".remove_video",function(){
             }, function error() {
               console.log("活动发布失败")
             });
-       
-         return
-      }
+        return
+    }
 
 
       activity_data.create_activity($scope.activities_data).then(
@@ -673,14 +681,21 @@ $(document).on("click",".remove_video",function(){
                   }
 
                 // 投票数据
+                console.log(km.vote);
                 $scope.voteSetting.datas = km.vote;
                 // 截止时间处理
                 if($scope.voteSetting.datas) {
                     var time = new Date($scope.voteSetting.datas.end_time);
-                    $scope.voteSetting.datas.end_date = time.getFullYear() + '/' + (time.getMonth()+1) + '/' + time.getDate();
-                    var end_minute = (time.getMinutes() <=9) ? ('0'+ time.getMinutes()) : time.getMinutes();
-                    $scope.voteSetting.datas.end_time2 = time.getHours() + ':' + end_minute;
+                    if(!km.vote.end_time) {
+                        $scope.voteSetting.datas.end_time2 = '';
+                        $scope.voteSetting.datas.end_date = '';
+                    } else {
+                        $scope.voteSetting.datas.end_date = time.getFullYear() + '/' + (time.getMonth()+1) + '/' + time.getDate();
+                        var end_minute = (time.getMinutes() <=9) ? ('0'+ time.getMinutes()) : time.getMinutes();
+                        $scope.voteSetting.datas.end_time2 = time.getHours() + ':' + end_minute;
+                    }
                 }
+                console.log($scope.voteSetting.datas);
                 
 
                  $scope.status=km.status
@@ -862,12 +877,13 @@ $(document).on("click",".remove_video",function(){
         defaultOption: {"item_name":"","image_urls":"http://resource.apptown.cn/image/userIcon.jpg"},
         datas: {'type': '1','voteItemList': [this.defaultOption]},
         addOption: function() {
-            console.log(this);
-            console.log(this.datas);
-            console.log(this.datas.voteItemList);
             this.datas.voteItemList.push(this.defaultOption);
         },
-        deleteOption: function(i, id) {
+        init: function() {
+            this.datas = {'type': '1','voteItemList': []};
+            console.log(this.datas);
+        },
+        deleteOption: function(i) {
             this.datas.voteItemList.splice(i, 1);
         },
         uploadImg: function(x) {
@@ -877,8 +893,10 @@ $(document).on("click",".remove_video",function(){
             });
         },
         clear: function() {
-            this.datas = {'type': '1', 'activity_id': $scope.id},
-            console.log($scope.voteSetting.datas);
+            httpService.getDatas('GET', '/vote/delete', {id: this.datas.id}).then(function(data) {
+                $scope.voteSetting.init();
+                console.log($scope.voteSetting.datas);
+            });
         },
         save: function() {
             this.datas.end_date = $('#stat_time_q').val();
@@ -909,12 +927,12 @@ $(document).on("click",".remove_video",function(){
                 $("#vote_detail").focus();
                 return;
             }
-            var array = [];
-            $(".act_input_a_voge_ws input").map(function(){
+            var list = this.datas.voteItemList;
+            $(".act_input_a_voge_ws input[type='text']").map(function(i){
                 var img_url =$(this).parents(".map_poou_car").find(".browse_maps").attr("src"); 
-                array.push({"item_name":$(this).val(),"image_urls":img_url})
+                list[i]['image_urls'] = img_url;
+                list[i]['item_name'] = $(this).val();
             });
-            this.datas.voteItemList = array;
             alert('投票设置保存成功');
             console.log($scope.voteSetting.datas);
         }
@@ -942,9 +960,11 @@ $(document).on("click",".remove_video",function(){
                 });
                 this.status = 'add';
             } else {
+                list = (list == null) ? [] : list;
                 $scope.$apply(function() {
                     list.push(data);
                 });
+                console.log(list);
             }
         },
         'deleteItem': function(index) {
@@ -1196,11 +1216,14 @@ $(function(){//签到设置页面显示隐藏
   })
   
   $("body").on("click",function(){
-  	$(".re_type_content").css("display","none")
+  	$(".re_type_content").css("display","none");
+  	$(".activity_label_list").css("z-index","9")
+  	
   })
   $(".re_type_wrap,.re_type_content").on("click",function(e){
   	 e.stopPropagation()//如果夫级用了点击事件，子节点也有点击事件用此方法可以阻止夫节点的点击方法
   	$(".re_type_content").css("display","block")
+  	$(".activity_label_list").css("z-index","9999")
   })
     
 })

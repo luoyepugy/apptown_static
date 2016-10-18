@@ -131,7 +131,8 @@ angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router","n
 			        autoplay: false,    //自动播放：否
 			        isLive:true,  //是否是直播
 			        width: "100%",       // 播放器宽度
-			        height: "500px"      // 播放器高度
+			        height: "500px" ,     // 播放器高度
+			        waterMark:"/img/sylogo.png|TL|0.15|0.5" 
 			    });
 		 }); 
 	
