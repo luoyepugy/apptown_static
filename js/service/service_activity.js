@@ -780,6 +780,6 @@ angular.module('activity_servrt', []).
           });
           return authorize.promise;
         }
-	
+ 
 	  
  })

@@ -1664,7 +1664,7 @@ padding:0;
 	display:none
 }
 .release_type_wrap {
-	
+	cursor:pointer;
 }
 .release_type {
 	padding:7px 20px;
@@ -1713,7 +1713,9 @@ padding:0;
 .re_type_content li p {
 	color: #a0a0a0;
     border: 1px dashed #a0a0a0;
-    padding: 4px 20px;
+    width:98px;
+    text-align:center;
+    line-height:30px;
 }
 .re_type_content li p:hover {
 	background-color: #eee  !important;
@@ -3808,3 +3810,41 @@ height:127px;
 width:660px;
 }
 
+
+
+    .case_ico{
+             width: 130px;
+             height: 80px;
+         }
+         .aasd_poos{
+             height: 30px;
+             line-height: 1.2;
+             margin-top: 10px;
+         }
+         .hjmd_po{
+             background: #E8E6C3;
+             padding-top: 20px;
+             padding-bottom: 20px;
+         }
+         .zjmd_icon{
+           position: absolute;
+             top: -18px;
+         }
+         .zj_user_icon{
+             width: 50px;
+             height: 50px;
+         }
+         .mt14{
+             margin-top: 14px;
+         }
+         .zjmd_row{
+             margin-top: 10px;
+         }
+         .xiahhg_as{
+             color: #ff6600;
+             font-size: 12px;
+         }
+         .xiahhg_as i{
+              font-size: 18px;
+         }
+         

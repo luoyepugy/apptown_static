@@ -349,7 +349,7 @@ $(document).on("click",".remove_video",function(){
         var provinces_p=$("#provinces_p").val();//获取省份
         var city_p=$("#city_p").val();//获取城市
         var m_industry=$("#m_industry").val();//行业       
-        var activity_type=$("#release_type_value").val()//活动标签
+        var activity_type=parseInt($("#release_type_value").val())+1//活动标签
         var activity_label="";
         if($scope.labelArr.length>0){
         	for(var i=0;i<$scope.labelArr.length;i++){
@@ -382,7 +382,7 @@ $(document).on("click",".remove_video",function(){
         }
         
         $scope.activities_data.activity.live_url=$(".video_text").val()//视频直播地址
-        $scope.activities_data.vote=$scope.voteSetting.datas;
+        // $scope.activities_data.vote=$scope.voteSetting.datas;
 
         $(".row_po_form_zdy").map(function(x){   
            var xz=$(this).find(".radio_p_xz").attr("data-xz");//获取是否选中
@@ -419,9 +419,6 @@ $(document).on("click",".remove_video",function(){
         	tip_remark=$scope.reward.remark;
         }
         $scope.activities_data.activity.tip = JSON.stringify({open: rewardOpen, remark: tip_remark});
-        // 签到设置—抽奖设置数据
-        $scope.activities_data.draw = $scope.lotterySetting.datas;
-        $scope.activities_data.vote = $scope.voteSetting.datas;
 
 
 
@@ -525,13 +522,12 @@ $(document).on("click",".remove_video",function(){
          return;
        } 
 
+        var data_p = {};
        if(status==3||status==4||status==6){//修改的情况
-       var sty=status==3?1:0;
-       $scope.activities_data.activity.status=1
-       var data_p;
-
-
-       if(status==3){//已发布的修改情况
+           var sty=status==3?1:0;
+           $scope.activities_data.activity.status=1
+        
+            if(status==3){//已发布的修改情况
               data_p={"activity":{"id":$scope.id,
               "status":0,
               "address":$("#detailed_address").val(),
@@ -541,8 +537,8 @@ $(document).on("click",".remove_video",function(){
               "start_date":new Date(startDate).getTime(),
               "end_date":new Date(endDate).getTime(),
               "city":$("#city_p").attr("data-id"),
-              "type":$("#activity_type").attr("data-id"),
-              "industry_id":$("#release_type_value").val().trim(),
+              "type":$("#release_type_value").val().trim(),
+             "industry_id":$("#m_industry").attr("data-id").trim(),
               "contact_way":$("#contact_information").val().trim(),
               "person_limit":$("#number_online").val().trim(),
               "sponsor":$("#main_host").val(), 
@@ -554,33 +550,31 @@ $(document).on("click",".remove_video",function(){
               "label":activity_label
               },"honored_guest":$scope.guest_data
           } 
-      }
+        }
 
-       if(status==4){//未发布修改
-        $scope.activities_data.activity.id=$scope.id;
-        data_p=$scope.activities_data;
+           if(status==4){//未发布修改
+            $scope.activities_data.activity.id=$scope.id;
+            data_p=$scope.activities_data;
+           }
+           if(status==6){//未发布的情况下发布
+        	   $scope.activities_data.activity.id=$scope.id;
+        	   $scope.activities_data.activity.status=0;
+               data_p=$scope.activities_data;
+           }
+
+       data_p=angular.fromJson(data_p);
+        // 抽奖和投票数据提交
+       if($scope.lotterySetting.datas.draw_detail_array.length == 0) {
+            data_p.draw = null;
+       } else {
+            data_p.draw = $scope.lotterySetting.datas;
        }
-       if(status==6){//未发布的情况下发布
-    	   $scope.activities_data.activity.id=$scope.id;
-    	   $scope.activities_data.activity.status=0;
-           data_p=$scope.activities_data
-       }
-       // 抽奖和投票数据提交
-       data_p.draw = $scope.lotterySetting.datas;
        if($scope.voteSetting.datas.voteItemList.length == 0) {
             data_p.vote = null;
        } else {
             data_p.vote = $scope.voteSetting.datas;
        }
-
-       data_p=angular.fromJson(data_p);
-        
        
-
-       console.log(data_p);
-       // return false;
-
-  
        activity_data.update_activity(data_p).then(
             function success(data) {
                 if(data.code!=0){
@@ -592,7 +586,6 @@ $(document).on("click",".remove_video",function(){
                  if(rand_a<10000){
                         rand_a+=10000
                  }
-                 // return false;
                 window.location.href='/activity/'+(rand_a+""+$scope.id+""+rand_a)+'.httl'
               
             }, function error() {
@@ -601,8 +594,19 @@ $(document).on("click",".remove_video",function(){
         return
     }
 
+    // 抽奖和投票数据提交
+   if($scope.lotterySetting.datas.draw_detail_array.length == 0) {
+        $scope.activities_data.draw = null;
+   } else {
+        $scope.activities_data.draw = $scope.lotterySetting.datas;
+   }
+   if($scope.voteSetting.datas.voteItemList.length == 0) {
+        $scope.activities_data.vote = null;
+   } else {
+        $scope.activities_data.vote = $scope.voteSetting.datas;
+   }
 
-      activity_data.create_activity($scope.activities_data).then(
+    activity_data.create_activity($scope.activities_data).then(
         function success(data) {
           if(data.code!=0){
              $scope.mml.err_pup(data.msg)
@@ -681,7 +685,6 @@ $(document).on("click",".remove_video",function(){
                   }
 
                 // 投票数据
-                console.log(km.vote);
                 $scope.voteSetting.datas = km.vote;
                 // 截止时间处理
                 if($scope.voteSetting.datas) {
@@ -695,7 +698,6 @@ $(document).on("click",".remove_video",function(){
                         $scope.voteSetting.datas.end_time2 = time.getHours() + ':' + end_minute;
                     }
                 }
-                console.log($scope.voteSetting.datas);
                 
 
                  $scope.status=km.status
@@ -736,8 +738,8 @@ $(document).on("click",".remove_video",function(){
                      $("#activity_type").attr("data-id",km.type);//活动类型id
                        $("#activity_type").val($scope.classify[0].maker_title[(km.type-1)].name);
                          $("#m_industry").attr("data-id",km.industry_id);//活动类型id
-                          $("#release_type_value").val(km.industry_id);//活动类型
-                         setTimeout(function(){$(".release_type").eq(km.industry_id).addClass("active")},100)
+                          $("#release_type_value").val(km.type);//活动类型
+                         setTimeout(function(){$(".release_type").eq(km.type-1).addClass("active")},100)
                        $scope.labelArr=km.label;//活动标签
                          $("#m_industry").val($scope.classify[1].maker_title[(km.industry_id-1)].name);
                          $("#myEditor").html(km.details);
@@ -789,7 +791,7 @@ $(document).on("click",".remove_video",function(){
                   $("#activity_type").attr("data-id",km.type);//活动类型id
                   $("#release_type_value").val(km.type_text);//活动类型
                   $scope.labelArr=JSON.parse(km.label_arr)//活动标签		
-                  setTimeout(function(){$(".release_type").eq(km.type_text).addClass("active")},100)
+                  setTimeout(function(){$(".release_type").eq(km.type_text-1).addClass("active")},100)
                   $("#m_industry").attr("data-id", km.industry_id);//行业id
                   $("#m_industry").val(km.industry_text);
                   $("#contact_information").val(km.contact_way);//联系方式
@@ -875,13 +877,11 @@ $(document).on("click",".remove_video",function(){
      */
     $scope.voteSetting = {
         defaultOption: {"item_name":"","image_urls":"http://resource.apptown.cn/image/userIcon.jpg"},
-        datas: {'type': '1','voteItemList': [this.defaultOption]},
         addOption: function() {
             this.datas.voteItemList.push(this.defaultOption);
         },
         init: function() {
             this.datas = {'type': '1','voteItemList': []};
-            console.log(this.datas);
         },
         deleteOption: function(i) {
             this.datas.voteItemList.splice(i, 1);
@@ -895,7 +895,6 @@ $(document).on("click",".remove_video",function(){
         clear: function() {
             httpService.getDatas('GET', '/vote/delete', {id: this.datas.id}).then(function(data) {
                 $scope.voteSetting.init();
-                console.log($scope.voteSetting.datas);
             });
         },
         save: function() {
@@ -937,6 +936,7 @@ $(document).on("click",".remove_video",function(){
             console.log($scope.voteSetting.datas);
         }
     }
+    $scope.voteSetting.init();
 
 
 

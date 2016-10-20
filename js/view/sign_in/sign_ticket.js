@@ -116,7 +116,7 @@ angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router","n
       setInterval(function(){
             $scope.vote_p(date)
     },50000)
-}]).controller('streamingCtrl',function($scope,activity_data,$location,$stateParams) {  
+}]).controller('streamingCtrl',function($scope,activity_data,$location,$stateParams) { //直播 
 
   var player=""
 		  activity_data.getDatas('GET', '/Live/query_live_info?activity_id='+$stateParams.act_id)
@@ -136,8 +136,75 @@ angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router","n
 			    });
 		 }); 
 	
-})
-	.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+}).controller('lotteryraffleCtrl',function($scope,activity_data,$location,$stateParams) { //抽奖
+   $scope.act_id=$stateParams.act_id;
+   activity_data.getDatas('GET', '/activity/query_draw_by_activity_id/'+  $scope.act_id)
+	  .then(function(data) {
+		 if(data.code!=0){
+			 return
+		 }
+		 $scope.detail=JSON.parse(data.info.draw_detail)
+		 $scope.kmnb=$scope.detail[0]
+	 }); 
+   
+   activity_data.getDatas('GET', '/draw/query_draw_list/?activity_id='+  $scope.act_id)
+	  .then(function(data) {
+		 if(data.code!=0){
+			 return
+		 }
+		 $scope.draw_data=data
+		 $scope.random_p=data.info
+		 
+	 }); 
+   
+   
+   $(".lottery_raffle_se").on("click",function(){
+	   $(this).toggleClass("lkjh_a");
+   })
+   $scope.d_bs=function(e,y){
+	   $(e).parents(".lottery_raffle_se").find(".draw_name_q").text($(e).text().trim())
+	   $scope.kmnb=y
+   }
+   var time_in;
+    $scope.lottery_raffle={"began_draw":function(e){
+    	if($(e).attr("data-ty")=="0"){
+    		$(e).text("停止")
+    		time_in=setInterval(function(){
+    			$scope.winning_numbers=$scope.random_p[Math.floor(Math.random()*$scope.random_p.length)]
+    			
+    			var kmg=$scope.winning_numbers.entry_code,hjh;
+    			if(kmg.length<=6){
+    				 hjh=kmg.substring(0,1)+"****"+kmg.substring(kmg.length-1,kmg.length); 
+    			}else{
+    				 hjh=kmg.substring(0,3)+"****"+kmg.substring(kmg.length-3,kmg.length); 
+    			}
+    			$(".input_sj").val(hjh).attr("consumption_id",$scope.winning_numbers.consumption_id); 
+    		},40)
+    		$(e).attr("data-ty","1")
+    	}else if($(e).attr("data-ty")=="1"){
+    		clearTimeout(time_in)
+    		$(e).text("开始抽奖")
+    		$(e).attr("data-ty","0")
+    		
+    		var data_lk={}
+    		data_lk.draw_id=$scope.draw_data.msg
+    		data_lk.consumption_id=$(".input_sj").attr("consumption_id")
+    		data_lk.prize_name=$(".draw_name_q").text()
+    		this.win_draw(data_lk)
+    	}
+    },"win_draw":function(da){
+    	activity_data.getDatas('POST', '/draw/add_win_draw',da)
+  	  .then(function(data) {
+  		 if(data.code!=0){
+  			 return
+  		 }
+  		 
+  	 }); 
+    }
+    
+    }
+ 
+}).config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
 
     $urlRouterProvider.when('polls_show','/polls_show')  // 收藏活动
     				 .otherwise('/sign_wall');  //首页    默认项
@@ -151,10 +218,14 @@ angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router","n
     	url: '/streaming/:act_id', //直播
     	templateUrl: '/html/activity/streaming.html',
     	controller: 'streamingCtrl'
+    }).state('lotteryraffle',{
+    	url: '/lotteryraffle/:act_id', //抽奖
+    	templateUrl: '/html/activity/lottery_raffle.html',
+    	controller: 'lotteryraffleCtrl'
     })
 
 
-}])
+}]) 
 
 
 $(".full_screen").on("click",function(){

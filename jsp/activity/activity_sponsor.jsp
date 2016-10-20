@@ -214,8 +214,8 @@
              </li>
              
                 <li class="zq mt20 mb30" style="z-index:9">
-                     <label class="f_d title_poi fl mt20">活动类型 <span class="hs">*</span></label>
-                     <div class="map_poou_car fl release_type_wrap mt10">
+                     <label class="f_d title_poi fl mt20">活动类型 </label>
+                     <div class="map_poou_car fl mt10">
                             <ul class="release_type_list">
                             	<input type="hidden" id="release_type_value" value="" />
                             	<li ng-repeat="z in ty_list_a" data-x="{{$index+1}}" ng-bind="z.name" ng-click="select_click.add_type_aa($index)"  class="fl release_type ml20"></li>
@@ -224,8 +224,8 @@
                      </div>
                     <p class="qc"></p>
              </li>
-             <li class="zq mt20 mb30" style="z-index:9999">
-                     <label class="f_d title_poi fl mt20">活动标签 <span class="hs">*</span></label>
+             <li class="zq mt20 mb30 activity_label_list" style="z-index:9">
+                     <label class="f_d title_poi fl mt20">活动标签 </label>
                      <div class="map_poou_car fl release_type_wrap mt10 pr">
                             <div class="re_type_wrap fl" >
                             	<span class="re_type_plus">+</span>
@@ -272,7 +272,7 @@
                      <div class="ov map_poou_car">
                           <div class="pr poiuy_poiu_q fl">
                              <input type="text" class="act_input_a ipue" placeholder="请输入您的主办方单位" id="main_host" maxlength="20">
-                              
+                            <span ng-if="showHostTip"><a target="_blank" href="/user/to_user_center#/personal_center">认证活动号</a>将获得更多高级功能</span>
                          </div>
                         </div>
                      <p class="qc"></p>
@@ -427,7 +427,7 @@
                                      <td width="80" ng-bind="ty.sum_num+'张'"></td>
                                     <td width="360"><p class="dian" style="width:360px;" ng-bind="ty.remark">  </p></td>
                                      <td>
-                                         <p class="bj_icon_a modify_disa">
+                                         <p class="bj_icon_a">
                                            <span title="修改">  <i class="f_i bj_poi_p mr10" ng-click="select_click.volume_change($index)"></i></span> |
                                            <span title="删除">  <i class="f_i delect_icon" alt="删除" ng-click="select_click.delec_volume($index+1)"></i></span>
                                          </p>
@@ -444,7 +444,7 @@
                          <p class="qc"></p>
                             <a class="btn btn-primary add_form_p " ng-href="#ticket_set" data-toggle="modal">+  添加新的票种</a><span class="ml30 zc fz12">(免费活动时，无需设置票种。)</span>
                       </div>
-                      <div class="display_show" ></div>
+                      <!-- <div class="display_show" ></div> -->
              </li>
              
              
@@ -606,11 +606,12 @@
                            <label class="f_d title_poi fl mt20 title_poi_poi">选项{{$index+1}}<span class="hs"></span></label>
                             <div class="ov map_poou_car act_input_a_voge_ws">
                                <div class="pr poiuy_poiu_q fl mt10 pr"> 
+                                     <input type="hidden" value="{{List.id}}">
                                      <input type="text" class="act_input_a ipue act_input_a_voge" placeholder="请输入投票的标题（不大于30字）"  maxlength="20" value="{{List.item_name}}">
                                       <p class="pupu_oiuuy_icon">
                                          <img src="http://resource.apptown.cn/image/userIcon.jpg" ng-src="{{List.image_urls}}" class="browse_maps">|
                                          <i class="f_i piytr_a_b" title="点击上传图片" ng-click="voteSetting.uploadImg($event.target)"></i>|
-                                         <i class="f_i delect_icon_c" title="删除" ng-click="voteSetting.deleteOption($index, List.id)"></i>
+                                         <i class="f_i delect_icon_c" title="删除" ng-click="voteSetting.deleteOption($index)"></i>
                                       </p>
                                  </div>
                             </div>
@@ -781,7 +782,7 @@
        </div>
     
         <!--票务设置-->
-       <div id="ticket_set" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+       <div id="ticket_set" div class="modal fade hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <p class="form_title_a cen pt10">票务设置   <button type="button" class="close clase_pup_s" data-dismiss="modal">×</button></p>
            
                  <ul class="form_poiu_q_m mt20 form_poiu_q_m_o">

@@ -482,6 +482,9 @@ input,textarea{
     z-index: 1;
 
 }
+.zd{
+    color: #141414
+}
 .pup_submit{
     font-size: 14px;
 }
@@ -1189,3 +1192,6 @@ border-bottom: 16px solid #f1f1f1;
 	vertical-align: middle;
 	cursor: not-allowed;
 	}
+.w100{
+    width: 100%;
+}
