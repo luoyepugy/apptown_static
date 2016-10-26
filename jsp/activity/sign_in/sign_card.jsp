@@ -42,7 +42,7 @@
 	 </section>
 	     
 
-   	  	<a class="vote_comfirm bottom_print" style="bottom:12%" id="button_print">打印签到卡</a>
+   	  	<!-- <a class="vote_comfirm bottom_print" style="bottom:12%" id="button_print">打印签到卡</a> -->
    	  	<ul class="vote_nav">
   <li class="vote_nav_list  active"> 
   <a >

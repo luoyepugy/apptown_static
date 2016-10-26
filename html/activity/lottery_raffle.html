@@ -1,0 +1,68 @@
+
+<meta charset="UTF-8">
+ <div class="cj_left_qe ">
+             <div class="lottter_row mt20">
+              <div class="lottery_raffle_se pr">
+                  <span class="draw_name_q" ng-bind="detail[0].draw_name"></span>
+                  <i class="f_i xia_dow_e"></i>
+                   <ul class="poiuyt_ssf" > 
+                        <li ng-repeat="di in detail" data-id="{{$index}}" ng-click="d_bs($event.target,di)">
+                        
+                          {{di.draw_name}}
+                        </li> 
+                   </ul>
+                   
+              </div>
+              <p class="cf fz26 fr mt20 mr20">
+                  名额 <span class="surplus_quota">{{kmnb.quota-kmnb.surplus_quota}}</span>/<span class="quota_me">{{kmnb.quota}}</span> 名
+              </p>
+              <p class="qc"></p>
+            </div>
+            <div class="lotter_prize mt30 cen">
+                    <img ng-src="kmnb.prize_image">
+                    <p class="fz28 cf mt20" ng-bind="kmnb.draw_name"></p>
+                    <p class="cf fz18 mt10" ng-bind="kmnb.prize_remark"></p>
+                    <p class="mt20">
+                        <input type="text" placeholder="票卷号" class="cen input_sj" readonly   >
+                        
+                    </p>
+                    <p class="mt10">
+                        <button class="prize_btn" ng-click="lottery_raffle.began_draw($event.target)" data-ty="0">开始抽奖</button>
+                    </p>
+              </div>
+            
+        </div>
+        
+        
+        <div class="cj_right_qe">
+          <div class="ssd_poi_se">
+           <p class="cj_bk"></p>   
+           <div class="pd">
+               <div class="bgff pd pt10 pm10">
+                   <p class="pd">
+                       <span class="fz20">获奖名单({{win_prize_data.length}})</span>
+                       <span class="fr fz16">
+                           奖项
+                       </span>
+                       
+                   </p>
+                   <div class="cl_row_w mt10 pd" ng-repeat="win in win_prize_data">
+                       <div class="cl_td_a dian">
+                             <img ng-src="{{win.user_icon}}" class="yj">
+                             <span class="fz18 ml10" ng-bind="win.name"></span>
+                       </div>
+                        <div class="cl_td_b fz18" ng-bind="win.entry_code">
+                            
+                        </div>
+                        <div class="cl_td_c fz18 tr" ng-bind="win.prize_name"> </div>
+                        <p class="qc"></p>
+                   </div>
+                    
+                      
+                   
+                   
+               </div>
+               
+           </div> 
+           </div>
+        </div>

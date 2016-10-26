@@ -161,7 +161,7 @@
                <div class="liuy_tipye_top bgff ">
                       <p class="liuy_tipye_top_n fl act" data-hf="#activity_details">活动详情</p>
                       <p class="liuy_tipye_top_n fl" data-hf="#act_mentors" ng-if="detail.honored_guest.length>0">活动嘉宾 <span class="hs" ng-bind="'('+detail.honored_guest.length+'人)'"></span></p>
-                      <p class="liuy_tipye_top_n fl" data-hf="#participants" ng-if="mess_cy.length>0">参与人数 <span class="hs" ng-bind="'('+mess_cy.length+'人)'"></span></p>
+                      <p class="liuy_tipye_top_n fl" data-hf="#participants" ng-if="results>0">参与人数 <span class="hs" ng-bind="'('+results+'人)'"></span></p>
                       <p class="qc"></p>
                 </div>  
                 

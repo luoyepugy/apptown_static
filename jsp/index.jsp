@@ -8,18 +8,15 @@
 <meta charset="utf-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta charset="UTF-8">
-<title>e场景--首页</title>
+<title>e场景活动</title>
 <meta name="baidu-site-verification" content="VoUwjzsjO4" />
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=0.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-
-    <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet"> 
-    <link href="/css/base.css" rel="stylesheet">
-    <link href="/css/style.css" rel="stylesheet">
-    <link  rel="shorcut icon"   href="/img/LOGO.png" />    
-    
+<link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet"> 
+<link href="/css/base.css" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link  rel="shorcut icon"   href="/img/LOGO.png" />       
 <!--[if IE]>    <link href="/css/ie.css" rel="stylesheet"><![endif]-->
-<title>e场景活动</title>
 <script src="http://apptown.cn/js/common/uaredirect.js"></script>
 <script>
 uaredirect("http://m.apptown.cn/index.html#/index");//手机打开跳转到手机页面

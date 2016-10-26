@@ -199,6 +199,7 @@ angular.module('activity_detail', [ "directive_mml","activity_servrt"])
          },"sign_up":function(id,page,size){
         	     activity_data.activity_id_by_consumption_list(id,page,size).then(
        				function success(data) {
+       					$scope.results=data.results
        					$(data.rows).map(function(){
        						var kmes=new activity_id_by_consumption_list(this)
        						$scope.mess_cy.push(kmes)
@@ -261,7 +262,7 @@ angular.module('activity_detail', [ "directive_mml","activity_servrt"])
 	  
 	    		
 	     $scope.act_detail.mess_po();//初始化留言数据
-	     $scope.act_detail.sign_up($scope.id,1,1000);//初始化参数人的数据
+	     $scope.act_detail.sign_up($scope.id,1,10000);//初始化参数人的数据
 	    /* 活动详情数据*/
 	     activity_data.activity_detail($scope.id).then(
 	    		

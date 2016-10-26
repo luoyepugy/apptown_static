@@ -19,6 +19,7 @@ angular.module('activity_sponsor', ["directive_mml","activity_servrt","common","
     $scope.pj_id=-1;
     $scope.reward = {'remark': '活动不易，打赏一下组织者吧！'};
     $scope.labelArr=[];//活动标签数据
+    var submitNumber = 0;
     activity_data.getDatas('GET', '/sponsor/get_sponsorapply')//如果是认证主办方，自动填充主办方和联系方式表单
     .then(function(data) {
     	if(data.code==0&&data.info.status==1){
@@ -27,10 +28,10 @@ angular.module('activity_sponsor', ["directive_mml","activity_servrt","common","
     	}
         // 认证活动号提示是否显示
         if(data.code == 0 && data.info) {
-            if(data.info.status == 1 || data.info.status == 2) {
-                $scope.showHostTip = true;
-            } else {
+            if(data.info.status == 1 || data.info.status == 3) {
                 $scope.showHostTip = false;
+            } else {
+                $scope.showHostTip = true;
             }
         }
     });
@@ -537,7 +538,7 @@ $(document).on("click",".remove_video",function(){
               "start_date":new Date(startDate).getTime(),
               "end_date":new Date(endDate).getTime(),
               "city":$("#city_p").attr("data-id"),
-              "type":$("#release_type_value").val().trim(),
+              "type":parseInt($("#release_type_value").val().trim())+1,
              "industry_id":$("#m_industry").attr("data-id").trim(),
               "contact_way":$("#contact_information").val().trim(),
               "person_limit":$("#number_online").val().trim(),
@@ -574,8 +575,12 @@ $(document).on("click",".remove_video",function(){
        } else {
             data_p.vote = $scope.voteSetting.datas;
        }
-       
-       activity_data.update_activity(data_p).then(
+        
+        // 发布活动提交次数限定
+        if(submitNumber > 0) {
+            return false;
+        }
+        activity_data.update_activity(data_p).then(
             function success(data) {
                 if(data.code!=0){
 
@@ -591,6 +596,8 @@ $(document).on("click",".remove_video",function(){
             }, function error() {
               console.log("活动发布失败")
             });
+
+        submitNumber++;
         return
     }
 
@@ -605,7 +612,11 @@ $(document).on("click",".remove_video",function(){
    } else {
         $scope.activities_data.vote = $scope.voteSetting.datas;
    }
-
+    
+    // 发布活动提交次数限定
+    if(submitNumber > 0) {
+        return false;
+    }
     activity_data.create_activity($scope.activities_data).then(
         function success(data) {
           if(data.code!=0){
@@ -623,6 +634,8 @@ $(document).on("click",".remove_video",function(){
         }, function error() {
           console.log("发起活动失败")
     });
+    submitNumber++;
+
     },"hc_sess_a":function(){
       /*  缓存
     页面离开执行 缓存赋值*/
@@ -656,8 +669,6 @@ $(document).on("click",".remove_video",function(){
          activities_data.honored_guest=$scope.guest_data;//嘉宾
          activities_data.main_host=$("#main_host").val();//主办方单位
          activities_data.live_url=$(".video_text").val();//视频直播地址
-
-         activities_data.vote_oiu=$scope.select_click.date_pou[0];
 
          activities_data.sponsor_url=$("#upLoadImg").attr("src");//二维码地址
          sessionStorage.a_name=JSON.stringify(activities_data);
@@ -803,7 +814,6 @@ $(document).on("click",".remove_video",function(){
                   $scope.ticket_array=km.ticket_array//票卷
                   $scope.row_po_form= km.form_config;//表单
                   $scope.guest_data= km.honored_guest;//嘉宾
-                  $scope.select_click.date_pou[0]=km.vote_oiu
 
                   $($scope.row_po_form).map(function(x){
                     if(this.name==""){

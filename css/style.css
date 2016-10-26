@@ -2569,9 +2569,8 @@ img.right_icon_a {
 .poiu_xq_p{
     padding-bottom: 10px;
     margin-bottom: 10px;
-    border: 1px solid #f1f1f1
+    border: 1px solid #f1f1f1;
 }
-
 
 
 
@@ -3103,6 +3102,9 @@ img.right_icon_a {
 .poiuy_po_d{
     background-position: -290px -334px;
 }
+.poiuy_po_e{
+ background-position: -30px -413px;	
+}
 .sign_code{
     width: 240px;
     position: absolute;
@@ -3412,8 +3414,14 @@ background-position:-318px -1035px;
 .mb5 {
     margin-bottom: 5px;
 }
+.mb15 {
+    margin-bottom: 15px;
+}
 .mt15 {
     margin-top: 15px;
+}
+.mt25 {
+    margin-top: 25px;
 }
 .mt18 {
     margin-top: 18px;
@@ -3454,6 +3462,12 @@ background-position:-318px -1035px;
 .tc {
     text-align: center;
 }
+.dib {
+    display: inline-block;
+    *display: inline-block;
+    *zoom: 1;
+    vertical-align: top;
+}
 .form-label {
     width: 75px;
     display: inline-block;
@@ -3467,6 +3481,13 @@ background-position:-318px -1035px;
     padding: 10px 30px;
     font-size: 16px;
     transform: translateX(-50%);
+}
+/*
+ * 活动助手
+ */
+.searchHotel {
+    padding: 25px 0;
+    background: #ccc;
 }
 /* 
  * 张晗
@@ -3848,3 +3869,111 @@ width:660px;
               font-size: 18px;
          }
          
+
+
+/*抽奖*/
+
+.cj_left_qe{
+    width: 49%;
+    float: left;
+   background-color: rgba(255,255,255,.3);
+    height: 500px;
+}
+.cj_right_qe{
+    width: 49%;
+    float: right;
+    max-height: 500px;
+   
+}
+.ssd_poi_se{
+    width: 104%;
+  height: 500px;
+     overflow: scroll;
+    overflow: auto;
+    
+    background: #fff;
+}
+.lottery_raffle_se{
+background: #fff;
+    font-size: 28px;
+    height: 54px;
+    line-height: 54px;
+    min-width:  160px;
+    padding-left: 10px;
+    padding-right: 10px;
+    float: left;
+    text-align: center;
+    cursor: pointer;
+}
+.xia_dow_e{
+    width: 15px;
+    height: 7px;
+    background-position: -367px -360px;
+    position: absolute;
+    bottom: 22px;
+    right: 15px; 
+}
+.lkjh_a .poiuyt_ssf{
+	display: block !important;
+}
+.poiuyt_ssf{ 
+    list-style: none;
+    width: 100%; 
+    left: 0px;
+    position: absolute;
+    background: #fff;
+    display: none;
+   
+}
+.poiuyt_ssf li{
+    font-size: 20px;
+    height: 54px;
+    line-height: 54px;
+    border-top: 1px solid #e0e0e0
+}
+.lotter_prize img{
+    width: 240px;
+}
+.input_sj{
+    width: 300px;
+    height: 44px !important;
+    font-size: 28px !important;
+    border: 2px solid #E74655 !important;
+}
+.prize_btn{
+    width: 200px;
+    height: 48px;
+    font-size: 22px;
+     border: 2px solid #E74655 !important;
+    background: #FADE34;
+    color:  #E74655
+        
+}
+.cj_bk{
+    background: #CAB325;
+    height: 10px;
+}
+.cl_row_w  div{
+        float: left;
+    height: 76px;
+    line-height: 70px;
+    
+}
+.cl_td_a{
+    width: 50%;
+}
+.cl_td_b{
+    width: 25%;
+}
+
+.cl_td_c{
+    width: 25%;
+}
+.cl_td_a img{
+    width: 70px;
+    height: 70px;
+    border: 2px solid #CC91A8
+}
+.lotter_prize img {
+    max-height: 190px;
+}

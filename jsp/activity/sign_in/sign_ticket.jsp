@@ -27,7 +27,7 @@
           <section class="sign_in tl pd">
                <p class="fz16 cf tl dianer mt20" ><strong style="color:#ff0">${activity.name}</strong><br>
                <p class="fz14 cf sign_info"  >主办方:${activity.sponsor}</p><br>
-               <p class="fz14 cf sign_time_info"   >时间:<fmt:formatDate value="${activity.start_time}" pattern="yyyy年MM月dd日 E HH:mm"/></p>
+               <p class="fz14 cf sign_time_info">时间:<fmt:formatDate value="${activity.start_time}" pattern="yyyy年MM月dd日 E HH:mm"/></p>
                <p class="fz14 cf sign_time_info" >地点:${activity.address}</p>
           </section>
        </section>
@@ -38,8 +38,7 @@
                 <input type="text" data-src="${ticket_count}"   placeholder="输入6位数字的票券号码" class="entry_code" id="entry_code">
          </li>
          <li>
-
-    	 </li>    
+         </li>    
     </ul>
     
     <!-- modify by scott 2016-10-12 提示用户票号不存在  begin -->
@@ -51,9 +50,12 @@
         <div class="mui-popup-buttons mui-popup-buttons-mml">
           <span class="mui-popup-button-mml" id="sign_in_error">输入错误!重新输入</span>
         </div>
-        <div class="mui-popup-buttons">
-          <span class="mui-popup-button-mml" id="sign_in_report">没有报名!马上报名</span>
-        </div>
+        <!-- 收费的不用这个功能  -->
+        <c:if test="${isFree==1}">
+	        <div class="mui-popup-buttons">
+	          <span class="mui-popup-button-mml" id="sign_in_report">没有报名!马上报名</span>
+	        </div>
+        </c:if>
    </div>
    <!-- modify by scott 2016-10-12 提示用户票号不存在 end -->
     
@@ -71,7 +73,6 @@
      </section>
     <c:set var="nowDate" value="<%=System.currentTimeMillis()%>"></c:set>
     
-    	
     <c:if test="${activity.end_time.time-nowDate>=0}">
            <c:if test="${isFree==1}"> <!-- 收费活动没有立即报名  -->
                <p class="tip_baoming mt30">提示：如果您还没报名？<a class="to_enroll">马上报名</a></p>

@@ -11,7 +11,7 @@
         <p class="qc"></p>
       </div>
        <p class="pt10 pm10 tioiy_po_po" ng-if="typeStatus==1">
-          <span ng-click="list_person_sponsor.all()">全部</span>|  
+          <span style="color:#4EA45D" ng-click="list_person_sponsor.all()">全部</span>|  
           <span ng-click="list_person_sponsor.sponsoring()">赞助中</span>|  
           <span ng-click="list_person_sponsor.success_sponsor()">已成功</span>|  
           <span ng-click="list_person_sponsor.fail_sponsor()">已失败</span>|  
@@ -20,7 +20,7 @@
           <span ng-click="list_person_sponsor.unpublish_sponsor()">未发布</span>                
        </p>
        <p class="pt10 pm10 tioiy_po_po" ng-if="typeStatus==2">
-          <span ng-click="list_personattent_sponsor.all_a()">全部</span>|  
+          <span style="color:#4EA45D" ng-click="list_personattent_sponsor.all_a()">全部</span>|  
           <span ng-click="list_personattent_sponsor.sponsoring_a()">赞助中</span>|  
           <span ng-click="list_personattent_sponsor.success_sponsor_a()">已成功</span>|  
           <span ng-click="list_personattent_sponsor.fail_sponsor_a()">已失败</span>|  
@@ -78,16 +78,11 @@
                              </tbody>
                        
                </table>
-               <div class="mt20" >
-					<ul class="pager" ng-if="typeStatus==1&&person_sp_result/10>1">
-					  <li><a ng-click="list_person_sponsor.previous_page()">上一页</a></li>
-					  <li><a ng-click="list_person_sponsor.next_page()">下一页</a></li>
-					</ul>
-					<ul class="pager" ng-if="typeStatus==2&&person_sp_result/10>1">
-					  <li><a ng-click="list_personattent_sponsor.previous_page_a()">上一页</a></li>
-					  <li><a ng-click="list_personattent_sponsor.next_page_a()">下一页</a></li>
-					</ul>
+              	<!--分页开始-->
+        		<div class="tcdPageCode">
+					
 				</div>
+				<!--分页结束-->
                
                
                  <!--赞助详情弹框开始-->

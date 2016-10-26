@@ -72,8 +72,25 @@ angular.module('ticket_volume_list', [ "directive_mml","activity_servrt"])
 						console.log("执行投票失败");
 		    });
 	 })
-	 
-	 
-	 
-	}])
+	}]).controller('draw_lotteryctl',function($scope,activity_data) {
+		 activity_data.getDatas('GET', '/activity/query_draw_by_activity_id/'+ act_id)
+		  .then(function(data) {
+			 if(data.code!=0){
+				 alert(data.msg);
+				 return
+			 }
+			 $scope.detail=data.info.draw_detail_array
+		 }); 
+		 activity_data.getDatas('GET', '/draw/get_win_prize?activity_id='+ act_id)
+		  .then(function(data) {
+			 if(data.code!=0){
+				 alert(data.msg)
+				 return
+			 }
+			 $scope.win_prize_data=data.info
+		 }); 
+		 
+		 $scope.start_time=start_time
+   	   	$scope.end_time=end_time
+	})
 

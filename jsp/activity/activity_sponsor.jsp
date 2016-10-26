@@ -214,11 +214,11 @@
              </li>
              
                 <li class="zq mt20 mb30" style="z-index:9">
-                     <label class="f_d title_poi fl mt20">活动类型 </label>
+                     <label class="f_d title_poi fl mt20">活动类型 <span class="hs">*</span></label>
                      <div class="map_poou_car fl mt10">
                             <ul class="release_type_list">
                             	<input type="hidden" id="release_type_value" value="" />
-                            	<li ng-repeat="z in ty_list_a" data-x="{{$index+1}}" ng-bind="z.name" ng-click="select_click.add_type_aa($index)"  class="fl release_type ml20"></li>
+                            	<li ng-repeat="z in ty_list_a" data-x="{{$index+1}}" ng-bind="z.name" ng-click="select_click.add_type_aa($index+1)"  class="fl release_type ml20"></li>
                             	<li class="qc"></li>
                             </ul>                            	                            
                      </div>
@@ -272,16 +272,16 @@
                      <div class="ov map_poou_car">
                           <div class="pr poiuy_poiu_q fl">
                              <input type="text" class="act_input_a ipue" placeholder="请输入您的主办方单位" id="main_host" maxlength="20">
-                            <span ng-if="showHostTip"><a target="_blank" href="/user/to_user_center#/personal_center">认证活动号</a>将获得更多高级功能</span>
+                            <span ng-if="showHostTip"><a target="_blank" ng-href="/user/to_user_center#/personal_center">认证活动号</a>将获得更多高级功能</span>
                          </div>
                         </div>
                      <p class="qc"></p>
              </li>
                 <li class="zq mt20 " >
-                     <label class="f_d title_poi fl mt20">联系方式 <span class="hs">*</span></label>
+                     <label class="f_d title_poi fl mt20">联系电话 <span class="hs">*</span></label>
                      <div class="ov map_poou_car">
                           <div class="pr poiuy_poiu_q fl">
-                             <input type="text" class="act_input_a ipue" placeholder="手机/电话/邮箱" id="contact_information">
+                             <input type="text" class="act_input_a ipue" placeholder="请输入联系电话" id="contact_information">
                               
                          </div>
                         </div>
@@ -610,7 +610,7 @@
                                      <input type="text" class="act_input_a ipue act_input_a_voge" placeholder="请输入投票的标题（不大于30字）"  maxlength="20" value="{{List.item_name}}">
                                       <p class="pupu_oiuuy_icon">
                                          <img src="http://resource.apptown.cn/image/userIcon.jpg" ng-src="{{List.image_urls}}" class="browse_maps">|
-                                         <i class="f_i piytr_a_b" title="点击上传图片" ng-click="voteSetting.uploadImg($event.target)"></i>|
+                                         <i class="f_i piytr_a_b" title="点击上传图片" ng-click="voteSetting.uploadImg($event)"></i>| 
                                          <i class="f_i delect_icon_c" title="删除" ng-click="voteSetting.deleteOption($index)"></i>
                                       </p>
                                  </div>

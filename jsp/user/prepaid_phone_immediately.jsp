@@ -184,7 +184,7 @@
            <div id="import_win" class="modal hide fade in" style="display: none; ">
 				<div class="modal-header" style="text-align: center;">
 				<a class="close" data-dismiss="modal">×</a>
-				<h4>导入报名数据</h4>
+				<h4>导入报名数据(<font color="red">每次导入行数限制在500行内</font>)</h4>
 				<hr>
 				<p style="text-align:center;">活动名称:${activity.name}</p>
 				</div>

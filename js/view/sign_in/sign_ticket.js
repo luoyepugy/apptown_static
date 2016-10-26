@@ -141,23 +141,37 @@ angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router","n
    activity_data.getDatas('GET', '/activity/query_draw_by_activity_id/'+  $scope.act_id)
 	  .then(function(data) {
 		 if(data.code!=0){
+			 alert(data.msg);
 			 return
 		 }
-		 $scope.detail=JSON.parse(data.info.draw_detail)
+		 $scope.detail=data.info.draw_detail_array
 		 $scope.kmnb=$scope.detail[0]
 	 }); 
-   
-   activity_data.getDatas('GET', '/draw/query_draw_list/?activity_id='+  $scope.act_id)
-	  .then(function(data) {
-		 if(data.code!=0){
-			 return
-		 }
-		 $scope.draw_data=data
-		 $scope.random_p=data.info
-		 
-	 }); 
-   
-   
+
+   $scope.draw_list=function(){
+	   activity_data.getDatas('GET', '/draw/query_draw_list/?activity_id='+  $scope.act_id)
+		  .then(function(data) {
+			 if(data.code!=0){
+				 alert(data.msg);
+				 return;
+			 }
+			 $scope.draw_data=data
+			 $scope.random_p=data.info
+		 }); 
+   }
+   $scope.winners_p=function(){
+	   activity_data.getDatas('GET', '/draw/get_win_prize?activity_id='+  $scope.act_id)
+		  .then(function(data) {
+			 if(data.code!=0){
+				 alert(data.msg)
+				 return
+			 }
+			 $scope.win_prize_data=data.info
+		 }); 
+   }
+
+   $scope.draw_list();
+   $scope.winners_p()
    $(".lottery_raffle_se").on("click",function(){
 	   $(this).toggleClass("lkjh_a");
    })
@@ -165,13 +179,24 @@ angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router","n
 	   $(e).parents(".lottery_raffle_se").find(".draw_name_q").text($(e).text().trim())
 	   $scope.kmnb=y
    }
-   var time_in;
+   var time_in,quto=$(".surplus_quota").text();
     $scope.lottery_raffle={"began_draw":function(e){
+    	quto=parseInt($(".surplus_quota").text().trim())+1
+    	var quota_me=$(".quota_me").text().trim()
+    	console.log(quto+"   "+quota_me);
+    	if(quto>=$scope.kmnb.quota){
+    		alert($(".draw_name_q").text()+"名额已满")
+    		return
+    	}
+    	if($scope.random_p.length<=1){
+    		alert("抽奖人数不够")
+    		return;
+    	}
+    	
     	if($(e).attr("data-ty")=="0"){
     		$(e).text("停止")
     		time_in=setInterval(function(){
     			$scope.winning_numbers=$scope.random_p[Math.floor(Math.random()*$scope.random_p.length)]
-    			
     			var kmg=$scope.winning_numbers.entry_code,hjh;
     			if(kmg.length<=6){
     				 hjh=kmg.substring(0,1)+"****"+kmg.substring(kmg.length-1,kmg.length); 
@@ -185,20 +210,25 @@ angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router","n
     		clearTimeout(time_in)
     		$(e).text("开始抽奖")
     		$(e).attr("data-ty","0")
-    		
-    		var data_lk={}
-    		data_lk.draw_id=$scope.draw_data.msg
-    		data_lk.consumption_id=$(".input_sj").attr("consumption_id")
-    		data_lk.prize_name=$(".draw_name_q").text()
-    		this.win_draw(data_lk)
+    		var data_lk={};
+    		data_lk.draw_id=$scope.draw_data.msg;
+    		data_lk.consumption_id=$(".input_sj").attr("consumption_id");
+    		data_lk.prize_name=$(".draw_name_q").text();
+    		this.win_draw(data_lk);
+    	
     	}
     },"win_draw":function(da){
+		
+    	
     	activity_data.getDatas('POST', '/draw/add_win_draw',da)
   	  .then(function(data) {
   		 if(data.code!=0){
   			 return
   		 }
-  		 
+  		$scope.draw_list();
+		$scope.winners_p();
+		$(".surplus_quota").text(++quto)
+		
   	 }); 
     }
     

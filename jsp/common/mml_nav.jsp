@@ -94,6 +94,7 @@
                           </div>
                       </li>
                     <li class="nav_li"><a class="interlinkage" target="_blank" ng-href="/jsp/appdownload.jsp">App下载</a></li>
+                    <li class="nav_li"><a class="interlinkage" target="_blank" ng-href="/activity/hotel_list">活动助手</a></li>
                     
                     <li class="fr user_logo  fz16 user_logo_a">
                       

@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
     <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/common/font-awesome.css" rel="stylesheet">
     <link href="/css/base.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
 <!--[if IE]>    <link href="/style/ie.css" rel="stylesheet"><![endif]-->
@@ -73,6 +74,12 @@
                  <span class="cf fz20 fl ml100 cen" ng-click="adCarousel.show()">
                    <img src="/img/icon-ad.png" alt="广告屏图标">
                    <p class="mt5">广告屏</p>
+                 </span>
+                 
+                 
+                           <span class="cf fz20 fl ml100 cen"  ui-sref="lotteryraffle({act_id:activityId})"> 
+                   <i class="f_i poiuy_po_e"></i><br> 
+                    抽奖
                  </span>
                  
              <p class="qc"></p>
