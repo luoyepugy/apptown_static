@@ -34,6 +34,16 @@
 		height: 170px;
 		margin-left: 20px;
 	}
+	.star {
+		display: block;
+		overflow: hidden;
+		color: #ff6600;
+	}
+	.star:after {
+		content: '\e611 \e611 \e611 \e611 \e611';
+		display: block;
+	}
+
 </style>
 </head>
 <body ng-controller="hotel_listCtrl">
@@ -64,7 +74,7 @@
 						<div class="left dib"><img src="/img/cj_banner.jpg" ng-src="{{item.icon}}" alt="酒店图片"></div>
 						<div class="right dib">
 							<p class="mt25 mb10">{{item.name}}</p>
-							<p class="mt10 mb10">{{item.star}}</p>
+							<p class="mt10 mb10"><i class="iconfont star" style="width: calc({{item.star}} * 16px)"></i></p>
 							<p class="mt10 mb10">{{item.address}}</p>
 							<p class="mt10 mb10"><a target="_blank" ng-href="/activity/hotel_detail/?hotelId={{item.id}}">详细介绍&gt;&gt;&gt;</a></p>
 						</div>

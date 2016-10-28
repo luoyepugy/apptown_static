@@ -30,10 +30,10 @@ angular.module('ticket_volume_list', [ "directive_mml","activity_servrt"])
   	   }else if(type_po==2){
   		   if( $(this).attr("data-i")==1){
   			   $(this).css("background-position","-26px -1160px"); 
-  			   $(this).attr("data-i",2)
+  			   $(this).attr("data-i",2);
   		   }else {
   			   $(this).css("background-position","-26px -1119px"); 
-  			   $(this).attr("data-i",1)
+  			   $(this).attr("data-i",1);
   		   }
   		   
   	   }

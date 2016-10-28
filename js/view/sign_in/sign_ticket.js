@@ -89,38 +89,37 @@ angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router","n
 }])
 .controller('polls_showController',["$scope","activity_data","$location","$stateParams",function($scope,activity_data,$location,$stateParams) {  
     var vote_id=$stateParams.vote_id;//投票ID
-    var date={"id":vote_id}
+    var date={"id":vote_id};
     $scope.polls_li=""; 
-    $scope.voteItemList_p=[]
+    $scope.voteItemList_p=[];
     $scope.vote_p=function(date){
     	 activity_data.query_vote_p(date).then(
     				function success(data) {
     					if(data.info==null){
-    						return
+    						return;
     					}
-    					 $scope.voteItemList_p=[]
-    					  $scope.polls_li=new query_vote(data.info)
+    					 $scope.voteItemList_p=[];
+    					  $scope.polls_li=new query_vote(data.info);
     					  $($scope.polls_li.voteItemList).map(function(){
-    						 var hjh= new voteItemList(this)
-    						 $scope.voteItemList_p.push(hjh)
+    						 var hjh= new voteItemList(this);
+    						 $scope.voteItemList_p.push(hjh);
     					  })
     					  
-    					   $(".title_poiu").text($scope.polls_li.title) 
-    					   $(".yuyt_poiu").text($scope.polls_li.total_vote)
-    					   $(".yuyt_poiu_a").text("总投票")
+    					   $(".title_poiu").text($scope.polls_li.title) ;
+    					   $(".yuyt_poiu").text($scope.polls_li.total_vote);
+    					   $(".yuyt_poiu_a").text("总投票");
     				}, function error() {
-    					console.log("获取投票信息失败")
+    					console.log("获取投票信息失败");
     		});
     }
     $scope.vote_p(date)
       setInterval(function(){
-            $scope.vote_p(date)
+            $scope.vote_p(date);
     },50000)
 }]).controller('streamingCtrl',function($scope,activity_data,$location,$stateParams) { //直播 
 
-  var player=""
-		  activity_data.getDatas('GET', '/Live/query_live_info?activity_id='+$stateParams.act_id)
-		  .then(function(data) {
+  var player="";
+		  activity_data.getDatas('GET', '/Live/query_live_info?activity_id='+$stateParams.act_id).then(function(data) {
 			 if(data.code!=0){
 				 return
 			 }
@@ -136,99 +135,128 @@ angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router","n
 			    });
 		 }); 
 	
-}).controller('lotteryraffleCtrl',function($scope,activity_data,$location,$stateParams) { //抽奖
+})
+/*============================================抽奖======================*/
+.controller('lotteryraffleCtrl',function($scope,activity_data,$location,$stateParams) { 
    $scope.act_id=$stateParams.act_id;
-   activity_data.getDatas('GET', '/activity/query_draw_by_activity_id/'+  $scope.act_id)
-	  .then(function(data) {
-		 if(data.code!=0){
-			 alert(data.msg);
-			 return
-		 }
-		 $scope.detail=data.info.draw_detail_array
-		 $scope.kmnb=$scope.detail[0]
-	 }); 
-
+   
+   $scope.draw_by_activity=function(){
+	   activity_data.getDatas('GET', '/activity/query_draw_by_activity_id/'+  $scope.act_id).then(function(data) {//根据活动ID活动抽奖信息
+			 if(data.code!=0){
+				 alert(data.msg);
+				 return
+			 }
+			 $scope.detail=data.info.draw_detail_array;
+			 $scope.kmnb=$scope.detail[0];
+			 console.log( $scope.detail);
+		 }); 
+   }
+  
+ 
    $scope.draw_list=function(){
-	   activity_data.getDatas('GET', '/draw/query_draw_list/?activity_id='+  $scope.act_id)
-		  .then(function(data) {
+	   activity_data.getDatas('GET', '/draw/query_draw_list/?activity_id='+  $scope.act_id).then(function(data) {//获取待抽奖票号
 			 if(data.code!=0){
 				 alert(data.msg);
 				 return;
 			 }
-			 $scope.draw_data=data
-			 $scope.random_p=data.info
+			 $scope.draw_data=data;
+			 $scope.random_p=data.info;
 		 }); 
    }
    $scope.winners_p=function(){
-	   activity_data.getDatas('GET', '/draw/get_win_prize?activity_id='+  $scope.act_id)
-		  .then(function(data) {
+	   activity_data.getDatas('GET', '/draw/get_win_prize?activity_id='+  $scope.act_id).then(function(data) {//根据活动ID获得中奖信息
 			 if(data.code!=0){
-				 alert(data.msg)
-				 return
+				 alert(data.msg);
+				 return;
 			 }
-			 $scope.win_prize_data=data.info
+			 $scope.win_prize_data=data.info;
+			 if(draw_ty_po){
+				 $scope.lottery_name=data.info[0].name
+				 $scope.prize_name_js=data.info[0].prize_name
+				 $(".lottery_pup").addClass("show")
+				 setTimeout(function(){ 
+					 $(".lottery_pup").removeClass("show")
+				 },4000);
+				 
+			 }
+			
 		 }); 
    }
 
    $scope.draw_list();
-   $scope.winners_p()
-   $(".lottery_raffle_se").on("click",function(){
-	   $(this).toggleClass("lkjh_a");
+   $scope.winners_p();
+   $scope.draw_by_activity();
+   var down_section=true,
+   	   draw_button="",
+   	   draw_ty_po=false
+   $(".lottery_raffle_se").on("click",function(){//下拉框点击
+	   if(down_section){
+		   $(this).toggleClass("lkjh_a");
+	   }
+	   
    })
-   $scope.d_bs=function(e,y){
-	   $(e).parents(".lottery_raffle_se").find(".draw_name_q").text($(e).text().trim())
-	   $scope.kmnb=y
+   $scope.d_bs=function(e,y){//下拉框点击选择并赋值
+	   $(e).parents(".lottery_raffle_se").find(".draw_name_q").text($(e).text().trim());
+	   $scope.kmnb=y;
+	   console.log(y.quota+"   "+(y.quota-y.surplus_quota));
    }
-   var time_in,quto=$(".surplus_quota").text();
-    $scope.lottery_raffle={"began_draw":function(e){
-    	quto=parseInt($(".surplus_quota").text().trim())+1
-    	var quota_me=$(".quota_me").text().trim()
+   var time_in,quto=$(".surplus_quota").text(),btn_click=true;
+    $scope.lottery_raffle={"began_draw":function(e){//开始抽奖点击触发事件
+    	quto=parseInt($(".surplus_quota").text().trim());//获取当前名额
+    	var quota_me=$(".quota_me").text().trim();//名额限制
     	console.log(quto+"   "+quota_me);
+    	
     	if(quto>=$scope.kmnb.quota){
-    		alert($(".draw_name_q").text()+"名额已满")
-    		return
-    	}
-    	if($scope.random_p.length<=1){
-    		alert("抽奖人数不够")
+    		alert($(".draw_name_q").text()+"名额已满");
     		return;
     	}
-    	
+    	if($scope.random_p.length<=0){
+    		alert("抽奖人数不够");
+    		return;
+    	}
+    	draw_button=$(e)
+    	if(!btn_click){
+    		return
+    	}
+    
     	if($(e).attr("data-ty")=="0"){
-    		$(e).text("停止")
+    		$(e).text("停止");
+    		down_section=false
     		time_in=setInterval(function(){
-    			$scope.winning_numbers=$scope.random_p[Math.floor(Math.random()*$scope.random_p.length)]
+    			$scope.winning_numbers=$scope.random_p[Math.floor(Math.random()*$scope.random_p.length)];
     			var kmg=$scope.winning_numbers.entry_code,hjh;
     			if(kmg.length<=6){
     				 hjh=kmg.substring(0,1)+"****"+kmg.substring(kmg.length-1,kmg.length); 
     			}else{
-    				 hjh=kmg.substring(0,3)+"****"+kmg.substring(kmg.length-3,kmg.length); 
+    				 hjh=kmg.substring(0,3)+"****"+kmg.substring(kmg.length-4,kmg.length); 
     			}
     			$(".input_sj").val(hjh).attr("consumption_id",$scope.winning_numbers.consumption_id); 
     		},40)
     		$(e).attr("data-ty","1")
+    		
     	}else if($(e).attr("data-ty")=="1"){
-    		clearTimeout(time_in)
-    		$(e).text("开始抽奖")
-    		$(e).attr("data-ty","0")
+    		btn_click=false
+    		clearTimeout(time_in);
     		var data_lk={};
     		data_lk.draw_id=$scope.draw_data.msg;
     		data_lk.consumption_id=$(".input_sj").attr("consumption_id");
     		data_lk.prize_name=$(".draw_name_q").text();
-    		this.win_draw(data_lk);
+    		this.win_draw(data_lk); 
     	
     	}
     },"win_draw":function(da){
-		
-    	
-    	activity_data.getDatas('POST', '/draw/add_win_draw',da)
-  	  .then(function(data) {
+    	activity_data.getDatas('POST', '/draw/add_win_draw',da).then(function(data) {//传入中奖信息
   		 if(data.code!=0){
-  			 return
+  			 return;
   		 }
+  		draw_ty_po=true
   		$scope.draw_list();
 		$scope.winners_p();
-		$(".surplus_quota").text(++quto)
-		
+		$scope.kmnb.surplus_quota--
+		$(draw_button).text("开始抽奖").attr("data-ty","0");
+		down_section=true
+		btn_click=true
+		console.log($scope.kmnb);
   	 }); 
     }
     
@@ -279,8 +307,7 @@ $(".full_screen").on("click",function(){
                  }
          }
 
-
-function exitFullscreen() {
+    function exitFullscreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
     }

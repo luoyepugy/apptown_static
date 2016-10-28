@@ -26,7 +26,7 @@
 
 	<!-- 菜单栏 -->
 <link href="/css/common/font-awesome.css" rel="stylesheet"> 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1476067041_9680448.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1477531881_361757.css">
 <div ng-controller="navigation_mml">
  <div class="men_nav">
          <div class="wd">

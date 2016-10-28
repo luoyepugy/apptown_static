@@ -29,7 +29,7 @@
 		<div>
 			<h3>{{hotelDetail.name}}</h3>
 			<div>
-				<img style="width: 450px;height: 250px;margin-right: 20px" src="/img/cj_banner.jpg" alt="酒店图片">
+				<img style="width: 450px;height: 250px;margin-right: 20px" ng-src="{{hotelDetail.icon}}" src="/img/cj_banner.jpg" alt="酒店图片">
 				<div class="dib fz16">
 					<p style="margin-top: 50px;">场地地址：{{hotelDetail.address}}</p>
 					<p class="mt20">联系人：{{hotelDetail.contacter}}</p>

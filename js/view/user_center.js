@@ -380,18 +380,28 @@ $scope.act_fu={
 		  
 	  },"post_activity":function(id){//发布活动
 		//发布活动
-     	 var data_p={"activity":{"id":id,"status":0}}
-     	 activity_data.update_activity(data_p).then(
-     				function success(data) {
-     					  if(data.code!=0){
-     						  alert(data.msg)
-     						  return;
-     					  }
-     					  location.reload();
-     					
-     				}, function error() {
-     					console.log("活动发布失败")
-     				});
+		  var data_p={"activity":{"id":id,"status":0}}
+     	 $.ajax({ 
+     	        type: "POST", 
+     	        contentType : 'application/json;charset=UTF-8',
+     	         url:  "/activity/release_activity", 
+     	         data: JSON.stringify(data_p), 
+     	         dataType: 'json', 
+     	         success: function(result) {
+     	        	 if(result.code!=0){
+     	        		alert(result.msg)
+						  	return;
+     	        	 }else{
+     	        		 location.reload();
+     	        	 }
+     	         },
+     	         error: function(res){
+     	        	 console.log("活动发布失败")
+     	         }, 
+     	         complete:function(){
+     	        	 console.log("活动发布失败")
+     			} 
+     	      }); 
       
 	  },"the_ticket":function(activity_id,order_id){//取票按钮方法
 

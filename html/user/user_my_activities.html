@@ -12,7 +12,7 @@
               <a class="btn btn-primary  noiiuy_po_mn" ng-href="/jsp/launch_index.jsp">发起活动</a>
           <p class="qc"></p>
       </div>
-       <p class="pt10 pm10 tioiy_po_po">
+       <p class="pt10 pm10 tioiy_po_po fz12">
           <span class="zb" ng-click=" act_fu.ac_tyoe($event.target,'')">全部</span>| 
            <span ng-click=" act_fu.ac_tyoe($event.target,1)">未开始  </span>|  
            <span ng-click=" act_fu.ac_tyoe($event.target,2)" ng-if="act_fu.active_state==1">进行中  | </span> 
@@ -52,19 +52,21 @@
                   
                   </td>
                   <td data-href="/activity/{{ac.id}}.httl">
-                    <p class="mt40" ng-bind="ac.activity_number+'人'"></p> 
+                    <p class="mt40 fz12" ng-bind="ac.activity_number+'人'"></p> 
                   </td>
                   <td>
-                    <p class="mt40" ng-bind="act_fu.more_time(ac.start_time,ac.end_time)" ng-if="ac.status==0"></p>
-                    <p class="mt40"  ng-if="ac.status==1">未发布</p>
+                    <p class="mt40 fz12" ng-bind="act_fu.more_time(ac.start_time,ac.end_time)" ng-if="ac.status==0"></p>
+                    <p class="mt40 fz12"  ng-if="ac.status==1">未发布</p>
                   </td>
                   <td >
-                      <p class="binhg_iiyt mt20" ng-if="act_fu.active_state==1&&ac.status==0">
-                         <a data-href="/user/prepaid_phone_immediately?activityId={{ac.id_p}}">报名详情</a><br>
-        <!--                  <a data-href="/jsp/user/download_qr_code.jsp">微信签到</a><br> -->
-                         <a data-href="/activity/to_sponsor_activity?activityId={{ac.id_p}}">活动修改</a><br>
-                         <a ng-if="ac.tip.open==true"  data-href="/activity/activity_reward_detail?activityId={{ac.id_p}}">打赏名单</a>
-                      </p>
+                      <div class="binhg_iiyt fz12" ng-if="act_fu.active_state==1&&ac.status==0">
+                        <p style="height: 20px;"><a data-href="/activity/to_sponsor_activity?activityId={{ac.id_p}}">关闭报名</a></p>
+                        <p style="height: 20px;"><a data-href="/activity/to_sponsor_activity?activityId={{ac.id_p}}&republish=1">再次发布</a></p>
+                        <p style="height: 20px;"><a data-href="/user/prepaid_phone_immediately?activityId={{ac.id_p}}">报名详情</a></p>
+        <!--            <a data-href="/jsp/user/download_qr_code.jsp">微信签到</a><br> -->
+                        <p style="height: 20px;"><a data-href="/activity/to_sponsor_activity?activityId={{ac.id_p}}&republish=0">活动修改</a></p>
+                        <p style="height: 20px;"><a ng-if="ac.tip.open==true"  data-href="/activity/activity_reward_detail?activityId={{ac.id_p}}">打赏名单</a></p>
+                      </div>
                       
                        <p class="binhg_iiyt mt20" ng-if="act_fu.active_state==1&&ac.status==1">
                          <a data-href="/activity/to_sponsor_activity?activityId={{ac.id_p}}">编辑</a><br>

@@ -222,8 +222,33 @@ angular.module('activity_detail', [ "directive_mml","activity_servrt"])
         	 }
         	 $scope.ticket_price= $scope.ticket_price*$scope.p_num;
          },"release_po":function(){//发布活动
+        	 
         	 var data_p={"activity":{"id":$scope.id,"status":0}}
-        	 activity_data.update_activity(data_p).then(
+        	 $.ajax({ 
+        	        type: "POST", 
+        	        contentType : 'application/json;charset=UTF-8',
+        	         url:  "/activity/release_activity", 
+        	         data: JSON.stringify(data_p), 
+        	         dataType: 'json', 
+        	         success: function(result) {
+        	        	 if(result.code!=0){
+        	        		alert(data.msg)
+   						  	return;
+        	        	 }else{
+        	        		 location.reload();
+        	        	 }
+        	         },
+        	         error: function(res){
+        	        	 console.log("活动发布失败")
+        	         }, 
+        	         complete:function(){
+        	        	 console.log("活动发布失败")
+        			} 
+        	      }); 
+        	 
+        	 
+        	 
+        	/* activity_data.update_activity(data_p).then(
         				function success(data) {
         					  if(data.code!=0){
         						  alert(data.msg)
@@ -233,7 +258,7 @@ angular.module('activity_detail', [ "directive_mml","activity_servrt"])
         					
         				}, function error() {
         					console.log("活动发布失败")
-        				});
+        				});*/
          },"qd_sign_in":function(url){//活动签到点击
            var vote_p=0;
            try{
@@ -241,7 +266,7 @@ angular.module('activity_detail', [ "directive_mml","activity_servrt"])
            }catch(e){
         	   
            }
-        	 window.location.href='/scan/sign_wall?activityId='+$("#activityId").val()+"&url="+url+"&vote_id="+vote_p
+        	 open('/scan/sign_wall?activityId='+$("#activityId").val()+"&url="+url+"&vote_id="+vote_p)
          },"load_poi":function(){
         	 location.reload();
          }
@@ -411,8 +436,10 @@ $(function(){
 		 var  max_top=$(".act_list_p_lefy").height()-$(".act_list_p_right").height()//最多滚动的距离
 		 if($(this).scrollTop()>tipye){
 			 $(".liuy_tipye_top").css({"position":"fixed","top":"0","z-index":1000})
+			 $(".men_nav").hide()
 		 }else{
 			 $(".liuy_tipye_top").css({"position":"relative","top":"0"})
+			  $(".men_nav").show()
 		 }
 		 if($(this).scrollTop()>top_s){
 			 if(top_po_l<max_top){

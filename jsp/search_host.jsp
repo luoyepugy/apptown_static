@@ -32,8 +32,8 @@
         	e场景为您找到<span class="green" ng-bind="pResult"></span>个
         </p>
         <div class="search_host_wrap pt20">
-        	<div class="search_host_left fl" ng-if="pResult>0">
-        		<ul>
+        	<div class="search_host_left fl" >
+        		<ul ng-if="pResult>0">
         			<li class="search_host_list bgff mb10" ng-repeat="x in person" data-x="{{x.user_id}}" data-href="/activity/to_host_list?sponsor_id={{x.user_id}}">
         				<img ng-src="{{x.sponsor_icon}}" class="fl search_host_icon" src="" width="127" height="127">
         				<div class="search_host_content fl pl10">
@@ -52,15 +52,13 @@
         				</div>
         			</li>
         		</ul>
-        		<div class="pagination pagination-centered pagination-large" ng-if="pResult>9">
-					<ul class="act_fr_poi">
-						<li  ng-click="searchList.previous_page()"><span ng-href="#">&laquo;</span></li>
-						
-						<li    ng-repeat="if_p in page_row" ng-click="searchList.act_assign(if_p)"><span ng-bind="if_p"></span></li>
-						
-						<li ng-click="searchList.next_page()"><span>»</span></li>
-					</ul>
-				</div>
+        		 <!--分页开始--页面居中-->
+			       <div style="text-align: center;">
+			       	   <div style="display: inline-block;" class="tcdPageCode" >
+								
+								</div>
+			       </div>   	    
+				<!--分页结束--页面居中-->
         	</div>
         	<div class="search_host_left fl" ng-if="pResult==0">
         	     <p class="zhng_poi_a" style="display: block;">找不到主办方</p>

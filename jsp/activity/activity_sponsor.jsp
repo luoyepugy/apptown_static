@@ -704,12 +704,15 @@
             <a class="btn btn-primary" ng-click="select_click.submit_data(0)"> 发布</a>
              <a class="btn btn-primary ml60 baocun_button" ng-click="select_click.submit_data(1)">保存</a>
         </p>
-         <p class="mt50 cen bottom_button" ng-if="id>0&&status==0"> <!-- 已发布的情况 --> 
+         <p class="mt50 cen bottom_button" ng-if="id>0&&status==0&&republish==0"> <!-- 已发布的情况 --> 
              <a class="btn btn-primary ml60 baocun_button" ng-click="select_click.submit_data(3)">修改</a>
         </p>
           <p class="mt50 cen bottom_button" ng-if="id>0&&status==1"><!-- 保存未发布的情况 --> 
       <a class="btn btn-primary" ng-click="select_click.submit_data(6)"> 发布</a>
              <a class="btn btn-primary ml60 baocun_button" ng-click="select_click.submit_data(4)">修改</a>
+        </p> 
+        <p class="mt50 cen bottom_button" ng-if="id>0&&status==0&&republish==1"><!-- 再次发布的情况 --> 
+            <a class="btn btn-primary" ng-click="select_click.submit_data(0)"> 再次发布</a>
         </p> 
     </div>
     
@@ -884,6 +887,7 @@
       
        <input type="hidden" value="${activityId }" id="act_id">
        <input type="hidden" value="${user_id }" id="user_id">
+       <input type="hidden" value="${republish }" id="republish">
        <input type="file" name="uploadCode" id="uploadCode" style="display:none" capture="camera" accept="image/*">
       <%@include file="/jsp/common/mml_bottom.jsp"%>
       <!-- <script src="/libs/jcrop/jquery.Jcrop.min.js"></script> -->

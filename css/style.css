@@ -3886,11 +3886,10 @@ width:660px;
    
 }
 .ssd_poi_se{
-    width: 104%;
-  height: 500px;
-     overflow: scroll;
+    width: 100%;
+    height: 500px;
+    overflow: scroll;
     overflow: auto;
-    
     background: #fff;
 }
 .lottery_raffle_se{
@@ -3931,14 +3930,13 @@ background: #fff;
     line-height: 54px;
     border-top: 1px solid #e0e0e0
 }
-.lotter_prize img{
-    width: 240px;
-}
+
 .input_sj{
-    width: 300px;
-    height: 44px !important;
+    width: 278px;
+    height: 40px !important;
     font-size: 28px !important;
     border: 2px solid #E74655 !important;
+    cursor: pointer !important;
 }
 .prize_btn{
     width: 200px;
@@ -3975,5 +3973,33 @@ background: #fff;
     border: 2px solid #CC91A8
 }
 .lotter_prize img {
-    max-height: 190px;
+    max-height: 180px;
+     width: 192px;
+}
+
+/* 中奖弹出层 */
+.lottery_pup{
+	position: fixed;
+	width: 100%;
+	height:100%;
+	background-color: rgba(0,0,0,.6);
+	left:0px;
+	top:0px;
+	display:none
+}
+.lottery_window{
+	width:425px;
+	height:261px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:200px;
+	background: url(/img/win_lottery.png);
+	background-size:100% 100%;
+}
+.pt70{
+	padding-top:70px;
+}
+.close_p_iytyw{
+	    padding-right: 65px;
+    padding-top: 14px;
 }

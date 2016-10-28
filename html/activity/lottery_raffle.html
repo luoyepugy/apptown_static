@@ -1,7 +1,7 @@
 
 <meta charset="UTF-8">
  <div class="cj_left_qe ">
-             <div class="lottter_row mt20">
+             <div class="lottter_row mt10">
               <div class="lottery_raffle_se pr">
                   <span class="draw_name_q" ng-bind="detail[0].draw_name"></span>
                   <i class="f_i xia_dow_e"></i>
@@ -19,11 +19,11 @@
               <p class="qc"></p>
             </div>
             <div class="lotter_prize mt30 cen">
-                    <img ng-src="kmnb.prize_image">
-                    <p class="fz28 cf mt20" ng-bind="kmnb.draw_name"></p>
-                    <p class="cf fz18 mt10" ng-bind="kmnb.prize_remark"></p>
-                    <p class="mt20">
-                        <input type="text" placeholder="票卷号" class="cen input_sj" readonly   >
+                    <img ng-src="{{kmnb.prize_image}}">
+                    <p class="fz26 cf mt20" ng-bind="kmnb.draw_name"></p>
+                    <p class="cf fz16 mt10" ng-bind="kmnb.prize_remark"></p>
+                    <p class="mt10">
+                        <input type="text" placeholder="票券号" class="cen input_sj" disabled      >
                         
                     </p>
                     <p class="mt10">
@@ -66,3 +66,14 @@
            </div> 
            </div>
         </div>
+        
+        
+<!--         中奖弹出层 -->
+           <div class="lottery_pup">
+               <div class="lottery_window cen">
+                 <p class="tr close_p_iytyw"> <i class="fa fa-times-circle-o zc fz22"></i></p>
+                    <p class="fz12 zc pt70">恭喜！{{lottery_name}}</p>
+                    
+                    <p class="zd fz16 mt10">获得{{prize_name_js}}</p>
+               </div>
+           </div>        

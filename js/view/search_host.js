@@ -1,4 +1,4 @@
-angular.module('searchHostMain',["directive_mml",'tm.pagination',"activity_servrt"])
+angular.module('searchHostMain',["directive_mml","activity_servrt"])
 .controller('searchHost',["$scope","activity_data",function($scope,activity_data) {//主办方搜索
 	 $(".dropdown_toggle_o").html('活动号'+' <span class="caret"></span>')
 	var form_json={};//传过去的json
@@ -18,6 +18,7 @@ angular.module('searchHostMain',["directive_mml",'tm.pagination',"activity_servr
     $scope.searchList={
     		"base":function(form_json){
     			$scope.page_row=[];
+    			user_P=[];
 		    	for(var i=form_json.pageIndex;i<(form_json.pageIndex+9);i++){
 		    		$scope.page_row.push(i);
 		    	}
@@ -27,6 +28,12 @@ angular.module('searchHostMain',["directive_mml",'tm.pagination',"activity_servr
     							var ar= new search_host(this);
     							user_P.push(ar)
     						})
+    						$(".tcdPageCode").createPage({
+								pageCount:Math.ceil(data.results/12),//总页数
+								current:form_json.pageIndex,//当前页数
+								backFn:function(p){	//回调,p为当前页数												      
+								}
+    						});	 
     						$scope.person=user_P;
     						$scope.pResult=data.results;
     					}, function error() {
@@ -36,7 +43,17 @@ angular.module('searchHostMain',["directive_mml",'tm.pagination',"activity_servr
     		"act_assign":function(page_number){
     			 form_json.pageIndex=page_number;
     	    	   $scope.searchList.base(form_json);
-    		},
+    		},"fengye":function(){ //分页
+                $(".tcdPageCode").createPage({
+					pageCount:10,
+					current:form_json.pageIndex,
+					backFn:function(p){	
+						form_json.pageIndex=p
+						$scope.searchList.base(form_json) 
+					}
+				});	
+        }
+            ,
     		"next_page":function(){
     			form_json.pageIndex+=1
 	    	   $scope.searchList.base(form_json);
@@ -47,6 +64,7 @@ angular.module('searchHostMain',["directive_mml",'tm.pagination',"activity_servr
 	  		   }
     }
     $scope.searchList.base(form_json)
+     $scope.searchList.fengye()
 	
 	 activity_data.getActivityHot().then(//推荐活动
 				function success(data) {

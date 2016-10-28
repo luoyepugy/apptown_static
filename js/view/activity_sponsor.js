@@ -19,6 +19,10 @@ angular.module('activity_sponsor', ["directive_mml","activity_servrt","common","
     $scope.pj_id=-1;
     $scope.reward = {'remark': '活动不易，打赏一下组织者吧！'};
     $scope.labelArr=[];//活动标签数据
+    $scope.republish = $('#republish').val();
+
+    console.log($scope.republish);
+
     var submitNumber = 0;
     activity_data.getDatas('GET', '/sponsor/get_sponsorapply')//如果是认证主办方，自动填充主办方和联系方式表单
     .then(function(data) {
@@ -334,7 +338,7 @@ $(document).on("click",".remove_video",function(){
       $scope.labelArr.splice(id,1) 
     },"add_type_aa":function(ssss){
       $(".release_type").removeClass("active")
-      $(".release_type").eq(ssss).addClass("active")
+      $(".release_type").eq(ssss-1).addClass("active")
       $("#release_type_value").val(ssss)
       
     },"submit_data":function(status){//发布活动
@@ -350,7 +354,7 @@ $(document).on("click",".remove_video",function(){
         var provinces_p=$("#provinces_p").val();//获取省份
         var city_p=$("#city_p").val();//获取城市
         var m_industry=$("#m_industry").val();//行业       
-        var activity_type=parseInt($("#release_type_value").val())+1//活动标签
+        var activity_type=parseInt($("#release_type_value").val())//活动标签
         var activity_label="";
         if($scope.labelArr.length>0){
         	for(var i=0;i<$scope.labelArr.length;i++){
@@ -538,7 +542,7 @@ $(document).on("click",".remove_video",function(){
               "start_date":new Date(startDate).getTime(),
               "end_date":new Date(endDate).getTime(),
               "city":$("#city_p").attr("data-id"),
-              "type":parseInt($("#release_type_value").val().trim())+1,
+              "type":parseInt($("#release_type_value").val().trim()),
              "industry_id":$("#m_industry").attr("data-id").trim(),
               "contact_way":$("#contact_information").val().trim(),
               "person_limit":$("#number_online").val().trim(),
@@ -895,11 +899,11 @@ $(document).on("click",".remove_video",function(){
         },
         deleteOption: function(i) {
             this.datas.voteItemList.splice(i, 1);
-        },
-        uploadImg: function(x) {
+        },uploadImg: function($event) {
+        	
             $("#iconFile").click();
             updata_icon("/activity/upload_activity_cover",function(url){
-              $(x).parent().find(".browse_maps").attr("src",url)
+              $($event.target).parent().find(".browse_maps").attr("src",url) 
             });
         },
         clear: function() {
@@ -1128,10 +1132,13 @@ $(document).on("click",".remove_video",function(){
               $(".amplification").addClass("ampl")
             
             })
-            $("body").on("mouseout",".browse_maps",function(){ 
+             $("body").on("mouseenter",".amplification",function(){ 
+            	   $(".amplification").addClass("ampl")
+             })
+            $("body").on("mouseout",".browse_maps,.amplification",function(){ 
               $(".amplification").removeClass("ampl")
             })
-            
+        
             $("body").on("click",".radio_p_xz",function(){
                 $(this).toggleClass("gx_xzm");
                 if($(this).hasClass("gx_xzm")){
