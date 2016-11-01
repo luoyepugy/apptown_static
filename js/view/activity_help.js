@@ -52,6 +52,6 @@ angular.module('activity_help', [ "directive_mml","activity_servrt", "common","r
 		// 	'detail': 'dfswafoiefoewifoeodu'
 		// }
 		httpService.getDatas('GET', '/hotel/details', {'id': hotelId}).then(function(data) {
-			$scope.hotelDetail = data.info[0];
+			$scope.hotelDetail = data.info;
 		});
 	})

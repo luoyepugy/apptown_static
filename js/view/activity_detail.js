@@ -297,8 +297,10 @@ angular.module('activity_detail', [ "directive_mml","activity_servrt"])
 					 alert(data.msg)
 					 return
 				 }
-				
-				 $scope.detail=new activity_detail(data.info)
+					
+				 $scope.detail=new activity_detail(data.info);
+				 $scope.detail.apply_switch = data.info.apply_switch;
+				 
 				 var ntime=new Date().getTime();//获取当前的时间
 			
 				 if($scope.detail.eDate<ntime){

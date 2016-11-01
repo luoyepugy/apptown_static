@@ -22,9 +22,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 <style>
-	.hotelList {
-
-	}
 	.hotelList .left {
 		width: 270px;
 		height: 170px;
@@ -61,17 +58,8 @@
 		<div class="bgff" style="padding-top:20px;min-height: 600px;">
 			<div class="j-hotelList">
 				<ul class="hotelList dib">
-					<!-- <li class="mb15">
-						<div class="left dib"><img src="/img/cj_banner.jpg" alt="酒店图片"></div>
-						<div class="right dib">
-							<p class="mt25 mb10">名称</p>
-							<p class="mt10 mb10">星级</p>
-							<p class="mt10 mb10">地址</p>
-							<p class="mt10 mb10"><a target="_blank" ng-href="/activity/hotel_detail?hotelId=1">详细介绍&gt;&gt;&gt;</a></p>
-						</div>
-					</li> -->
 					<li class="mb15" ng-repeat="item in hotelList">
-						<div class="left dib"><img src="/img/cj_banner.jpg" ng-src="{{item.icon}}" alt="酒店图片"></div>
+						<div class="left dib"><img style="width:270px;height: 160px;" src="/img/cj_banner.jpg" ng-src="{{item.icon}}" alt="酒店图片"></div>
 						<div class="right dib">
 							<p class="mt25 mb10">{{item.name}}</p>
 							<p class="mt10 mb10"><i class="iconfont star" style="width: calc({{item.star}} * 16px)"></i></p>
@@ -80,10 +68,10 @@
 						</div>
 					</li>
 				</ul>
-				<div class="dib"><img style="width: 270px;height: 170px;" src="/img/cj_banner.jpg" alt="酒店图片"></div>
+				<div class="dib"><img style="width: 270px;height: 170px;" src="/img/activity/help_card.png" alt="联系名片"></div>
 				<div class="tcdPageCode"></div>
 			</div>
-			<div class="j-card" style="display: none;"><img src="/img/cj_banner.jpg" alt="酒店图片"></div>
+			<div class="j-card" style="display: none;"><img src="/img/activity/help_card.png" alt="酒店图片"></div>
 		</div>
 	</div>
 	

@@ -60,7 +60,10 @@
                   </td>
                   <td >
                       <div class="binhg_iiyt fz12" ng-if="act_fu.active_state==1&&ac.status==0">
-                        <p style="height: 20px;"><a data-href="/activity/to_sponsor_activity?activityId={{ac.id_p}}">关闭报名</a></p>
+                        <p style="height: 20px;" ng-click="switchEnroll($index, ac.id_p, ac.apply_switch)">
+                          <a ng-show="ac.apply_switch==0">开启报名</a>
+                          <a ng-show="ac.apply_switch==1">关闭报名</a>
+                        </p>
                         <p style="height: 20px;"><a data-href="/activity/to_sponsor_activity?activityId={{ac.id_p}}&republish=1">再次发布</a></p>
                         <p style="height: 20px;"><a data-href="/user/prepaid_phone_immediately?activityId={{ac.id_p}}">报名详情</a></p>
         <!--            <a data-href="/jsp/user/download_qr_code.jsp">微信签到</a><br> -->

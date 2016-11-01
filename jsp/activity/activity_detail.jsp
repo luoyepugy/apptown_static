@@ -134,8 +134,8 @@
                      
                       </div> 
                    <p class="act_list_right_a mt10 act_list_right_p" ng-if="detail.status==0">
-                
-                         <a class="btn btn-primary apply_button " id="apply_button_poi" ng-click="act_detail.sign_up_p()" ng-if="active_state==1&&detail.is_applay!=true"> 我要报名 </a>
+                        <a class="btn btn-primary apply_button" ng-if="detail.apply_switch==0" style="background:#f4f4f4;color:#575757">报名已结束</a>
+                         <a class="btn btn-primary apply_button " id="apply_button_poi" ng-click="act_detail.sign_up_p()" ng-if="active_state==1&&detail.is_applay!=true&&detail.apply_switch==1"> 我要报名 </a>
                          <a class="btn btn-primary apply_button " ng-if="active_state==2&&detail.is_applay!=true" style="background:#f4f4f4;color:#575757"> 活动已结束</a>
                    	 <a class="btn btn-primary apply_button " ng-if="detail.is_applay==true" style="background:#f4f4f4;color:#575757"> 活动已报名</a>
                    	

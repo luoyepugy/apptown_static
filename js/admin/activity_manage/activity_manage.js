@@ -3,8 +3,9 @@ $(document).ready(function(){
 	$('#activity_list_tab').datagrid({   
 	    url:'/activity_manage/activity_data?time='+new Date(),   
 	    columns:[[   
+	        {field:'ck',checkbox:true},      
 	        {field:'id',title:'活动ID',width:100,align:'center'},
-	        {field:'name',title:'活动名称',width:200,align:'center'},   
+	        {field:'activity_title',title:'活动名称',width:200,align:'center'},   
 	        {field:'user_id',title:'用户ID',width:200,align:'center',hidden:true},
 	        {field:'user_name',title:'用户名称',width:200,align:'center'},
 	        {field:'create_time',title:'创建时间',width:300,align:'center',formatter:function(value){
@@ -35,19 +36,19 @@ $(document).ready(function(){
     	    },
 	        {field:'type',title:'活动类别',width:100,align:'center',formatter:function(value){
 		        	if(value == '1'){
-		        		return '路演场馆';
+		        		return '商会场馆';
 		        	}else if(value == '2'){
-		        		return '置业装修';
+		        		return '创业投资';
 		        	}else if(value == '3'){
-		        		return '汽车活动';
+		        		return '亲子教育';
+		        	}else if(value == '4'){
+		        		return '金融财经';
 		        	}else if(value == '5'){
-		        		return '商家促销';
-		        	}else if(value == '6'){
 		        		return '精品课程';
+		        	}else if(value == '6'){
+		        		return '休闲户外';
 		        	}else if(value == '7'){
-		        		return '户外运动';
-		        	}else if(value == '9'){
-		        		return '保险投资';
+		        		return '娱乐艺术';
 		        }
 	          }
 	        },
@@ -80,7 +81,7 @@ $(document).ready(function(){
 	          }
 	          
             },
-	        {field:'cityName',title:'所在城市',width:200,align:'center'},
+	        {field:'city_name',title:'所在城市',width:200,align:'center'},
 	        {field:'contact_way',title:'联系方式',width:200,align:'center'},
 	        {field:'activity_status',title:'活动状态',width:200,align:'center',formatter:function(value,rowData,rowIndex){
 	        	   // 0--未开始   1--已过期   2--正在进行中  
@@ -93,11 +94,11 @@ $(document).ready(function(){
 	        	   }
 	          }
 	        },
-	        {field:'numbers',title:'报名人数',width:200,align:'center',formatter:function(value,rowData,rowIndex){
+	        {field:'activity_number',title:'报名人数',width:200,align:'center',formatter:function(value,rowData,rowIndex){
 	        	return '<a name="exportData"  data-id="'+rowData.id+'" onclick="exportData(this)">'+value+"</a>";
 	          }
 	        },
-	        {field:'scan',title:'浏览量',width:200,align:'center',formatter:function(value,rowData,rowIndex){
+	        {field:'browse_count',title:'浏览量',width:200,align:'center',formatter:function(value,rowData,rowIndex){
 	        	return '<a name="exportData"  data-id="'+rowData.id+'" onclick="exportData(this)">'+value+"</a>";
 	          }
 	        },
@@ -129,11 +130,12 @@ $(document).ready(function(){
 	        	}
 	        	return '<input class="banner_activity" '+str+' name="hot" type="checkbox" value="2" data-type="3" data-id="'+rowData.id+'" onclick="onLoadDataGid(this)" />';
 	        }},
+	        {field:'labels',title:'活动标签',align:'center',hidden:true},
 	    ]],
 	    loadMsg:"数据加载中请稍后!",
 	    fitColumns:true,
 	    striped:true,
-	    singleSelect:true,
+	    singleSelect:false,
 	    pagination:true,
 	    border:false,
 	    fit:true,
@@ -152,27 +154,87 @@ $(document).ready(function(){
                 text:'修改活动',iconCls:'icon-edit',handler:editActivity
                 },'-',{
                 text:'查看活动',iconCls:'icon-view',handler:viewActivity
+                },'-',{
+                text:'标签设置',iconCls:'icon-view',handler:setlabelWindow
                 }
 		]
 	});
 	
+	function setlabelWindow(){
+		var rows = $('#activity_list_tab').datagrid("getSelections");
+		if(rows==null||rows.length==0){
+			$.messager.alert('提示','请选择需要打标签的活动!');
+			return;
+		}
+		
+		$.ajax({
+			type : 'GET',
+			url : '/label/group',
+			contentType : 'application/json; charset=UTF-8',
+			dataType : 'json',
+			success : function(data) {
+				var group_labels="";
+				for (var i = 0; i < data.length; i++) {
+					var dl_dt="<dl style='padding: 5px 10px' >"+
+						"<dt>"+data[i].name+"</dt>";
+					group_labels+=dl_dt;
+					var dd="";
+					for (var j = 0; j < data[i].child_list.length; j++) {
+						dd+="<dd id='"+data[i].child_list[j].id+"' onclick='selected_label(this)'  >"+data[i].child_list[j].label_name+"</dd>"
+					}
+					group_labels+=dd;
+					group_labels+="</dl>";
+				}
+				$("#label_list").append(group_labels);
+			}
+		});
+		
+		var activityids="";//要打标签的活动id
+		var label_ac_ids="";//以有标签的活动id
+		for (var i = 0; i < rows.length; i++) {
+			activityids+=rows[i].id+",";
+			if(rows[i].labels!=null&&""!=rows[i].labels){
+				label_ac_ids+=rows[i].id+",";
+			}
+		}
+		$("#activityids").val(activityids);
+		$("#label_ac_ids").val(label_ac_ids);
+		$("#labelWindow").window("open");
+		
+		
+		var doms = $(".checked_dd");
+		for(var i=0;i<doms.length;i++){
+			doms[i].className=null;
+		}
+	}
+	
+	
 	/** 修改活动 **/
 	function editActivity(){
-		var obj = $('#activity_list_tab').datagrid("getSelected");//获取表格选中行数据
-		if(obj == null){
+		var objs = $('#activity_list_tab').datagrid("getSelections");//获取表格选中行数据
+		if(objs == null){
 			$.messager.alert('消息框','请在表格中选中需要查看的活动!');
 		}else{
-			window.open('/activity_manage/activity_edit?activity_id='+obj.id)
+			
+			if(objs.length>1){
+				$.messager.alert('提示','不能同时同时关联多条!');
+				return;
+			}
+			window.open('/activity_manage/activity_edit?activity_id='+objs[0].id)
 		}
 	}
 	
 	/** 查看活动详情 **/
 	function viewActivity(){
-		var obj = $('#activity_list_tab').datagrid("getSelected");//获取表格选中行数据
-		if(obj == null){
+		var objs = $('#activity_list_tab').datagrid("getSelections");//获取表格选中行数据
+		if(objs == null){
 			$.messager.alert('消息框','请在表格中选中需要查看的活动!');
 		}else{
-			window.open("/activity/91181"+obj.id+"91181.httl", "", "height='100%', width='100%', toolbar =no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+			if(objs.length>1){
+				$.messager.alert('提示','一次只能查看一条！');
+				return;
+			}
+			window.open("/activity/91181"+objs[0].id+"91181.httl", "", "height='100%', width='100%', toolbar =no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
 		}
 	}
 	
@@ -180,14 +242,19 @@ $(document).ready(function(){
 	
 	/** 关联item **/
 	function setItem(){
-		var obj = $('#activity_list_tab').datagrid("getSelected");//获取表格选中行数据
-		if(obj == null){
+		var objs = $('#activity_list_tab').datagrid("getSelections");//获取表格选中行数据
+		if(objs == null){
 			$.messager.alert('消息框','请在表格中选中需要关联item的活动!');
 		}else{
+			if(objs.length>1){
+				$.messager.alert('提示','不能同时同时关联多条!');
+				return;
+			}
+			
 			$.ajax({
 				type : 'POST',
 				url : '/activity_manage/queryActivityItem?time='+new Date(),
-				data : {'activityId' : obj.id},
+				data : {'activityId' : objs[0].id},
 				contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 				dataType : 'json',
 				success : function(data) {
@@ -197,7 +264,7 @@ $(document).ready(function(){
 					}else{
 					   $("#itemId").val('');		
 					}
-					$('#activityId').val(obj.id);
+					$('#activityId').val(objs[0].id);
 					$('#setItem_win').window('open');
 				}
 			});
@@ -256,21 +323,28 @@ $(document).ready(function(){
 	
 	/** 上传活动轮播图片 **/
 	function uploadImageDiv(){
-		var obj = $('#activity_list_tab').datagrid("getSelected");//获取表格选中行数据
-		if(obj==null){
+		var objs = $('#activity_list_tab').datagrid("getSelections");//获取表格选中行数据
+		if(objs==null){
 			$.messager.alert('消息框','请在表格中选中需要上传banner图片的数据!');
 			return ;
-		}else if(!obj.hot_banner){
+		}else if(!objs.hot_banner){
 			$.messager.alert('消息框','请在表格中选中已经设置活动轮播的数据!');
 			return ;
 		}else{
-			$("#activity_name").text(obj.name);
-			$("#activity_id").text(obj.id);
+			
+			if(objs.length>1){
+				$.messager.alert('提示','一次只能删除一行！');
+				return;
+			}
+			
+			
+			$("#activity_name").text(objs[0].name);
+			$("#activity_id").text(objs[0].id);
 			$.ajax({
 				type:'POST',
 				url:'/activity_manage/queryActivityBanner',
 				data:{
-					'activityId':obj.id
+					'activityId':objs[0].id
 			    },
 			    dataType : 'json',
 			    success : function(data) {
@@ -297,9 +371,6 @@ $(document).ready(function(){
 	    maximizable:false
 	});
 	
-	
-	
-	
 	/** 初始化设置item窗口 **/
 	$('#setItem_win').window({ 
 		title:"关联item窗口",
@@ -311,19 +382,37 @@ $(document).ready(function(){
 	    minimizable:false,
 	    maximizable:false
 	});
+	$('#labelWindow').window({ 
+		title:"标签选择窗口",
+	    width:500,   
+	    height:500,   
+	    modal:true,
+	    closed:true,
+	    shadow:true,
+	    minimizable:false,
+	    maximizable:false
+	});
+	
+	
 	
 	
 	/** 删除活动 **/
 	function deteleActivity(){
-		var obj = $('#activity_list_tab').datagrid("getSelected");//获取表格选中行数据
-		if(obj == null){
+		//var obj = $('#activity_list_tab').datagrid("getSelected");//获取表格选中行数据
+		var objs = $('#activity_list_tab').datagrid("getSelections");
+		
+		if(objs == null){
 			$.messager.alert('消息框','请在表格中选中需要删除的数据!');
 		}else{
+			if(objs.length>1){
+				$.messager.alert('提示','一次只能删除一行！');
+				return;
+			}
 			$.ajax({
 				type : 'POST',
 				url : '/activity_manage/delActivity',
 				data : {
-					'activityId' : obj.id
+					'activityId' : objs[0].id
 				},
 				contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 				dataType : 'json',
@@ -402,7 +491,9 @@ function queryActivityByName(){
 	$('#activity_list_tab').datagrid('load',{
 		id:$("#activity_id").val().trim(),
 		name: $("#input-sel-data").val().trim(),
-		typeId:$("#select-hd-status").val()
+		typeId:$("#select-hd-status").val(),
+		timeStatus:$("#timeStatus").val(),
+		type:$("#type").val()
 	});
 }
 

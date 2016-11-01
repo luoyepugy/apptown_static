@@ -780,6 +780,27 @@ angular.module('activity_servrt', []).
           });
           return authorize.promise;
         }
- 
+        
+        /* 添加或修改酒店 */
+ 	   this.save_or_update_hotel = function(data){
+            var te_a = $q.defer();
+           $http.post('/hotel/update',data).success(function(data){
+         	  te_a.resolve(data);
+           }).error(function () {
+         	  te_a.reject();
+           });
+           return te_a.promise;
+         }
+ 	   
+ 	   	/* 酒店详情*/
+	    this.hotel_detail = function(hotel_id){
+           var detail = $q.defer();
+          $http.get('/hotel/details',{params:{"id":hotel_id}}).success(function(data){
+       	   detail.resolve(data);
+          }).error(function () {
+       	   detail.reject();
+          })
+          return detail.promise;
+        }
 	  
  })

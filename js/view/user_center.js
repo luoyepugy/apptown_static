@@ -120,7 +120,7 @@ angular.module('user_center',["directive_mml",'tm.pagination',"activity_servrt",
     });
     // 提交主办方认证信息表单
     $scope.sponsorAuthForm = function() {  	
-    	if(!form_mm.isnull(vm.sponsor.sponsor_icon)) {
+    	if(vm.sponsor.sponsor_icon == '/img/userIcon.jpg') {
     		alert('主办方头像必须上传');
     		return;
     	}
@@ -197,7 +197,7 @@ angular.module('user_center',["directive_mml",'tm.pagination',"activity_servrt",
 	});
     
 	
-}]).controller('my_activities',["$scope","activity_data",function($scope,activity_data) {//我的活动
+}]).controller('my_activities', function($scope,activity_data, httpService, messageService) {//我的活动
 
 	  $(".user_list_left li").css({"background":"#fff"}).eq(1).css({"background":"#f1f1f1"});
 	
@@ -308,6 +308,7 @@ $scope.act_fu={
 						$(data.rows).map(function(){
 							var act_di=new query_activity_list(this);
 							act_di.tip = this.tip;
+							act_di.apply_switch = this.apply_switch;
 							$scope.act_my_p.push(act_di);
 						})
 					/*	判断有没有数据*/
@@ -347,6 +348,7 @@ $scope.act_fu={
 						$(data.rows).map(function(){
 							var act_di=new query_activity_list(this);
 							act_di.tip = this.tip;
+							act_di.apply_switch = this.apply_switch;
 							$scope.act_my_p.push(act_di);
 						})
 					/*	判断有没有数据*/
@@ -425,11 +427,20 @@ $scope.act_fu={
 	  
 	  
 	  }
-	 
-   
 	
+	// 切换报名状态
+	$scope.closeEnroll = [];
+	$scope.switchEnroll = function(index, id, status) {
+		status = (status == 1) ? 0 : 1;
+		httpService.getDatas('POST', '/activity/apply_switch?activityid=' + id + '&apply_switch=' + status).then(function(data) {
+			$scope.act_my_p[index].apply_switch = status;
+			var tip = (status == 0) ? '报名已关闭': '报名已开启';
+			alert(tip);
+	  	});
+	}
+
 	
-}]).controller('my_sponsor',["$scope","activity_data",function($scope,activity_data) {//个人中心我发起的赞助
+}).controller('my_sponsor',["$scope","activity_data",function($scope,activity_data) {//个人中心我发起的赞助
 	$(".user_list_left li").css({"background":"#fff"}).eq(2).css({"background":"#f1f1f1"});
 	$("body").on("click",".tioiy_po_po span",function(){
 		$(".tioiy_po_po span").css("color","#333333")
