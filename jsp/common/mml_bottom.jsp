@@ -98,12 +98,14 @@
     <script src="/js/common/is_from.js"></script>
     <script src="/js/common/aes-min.js"></script>
     <script src="/js/common/pad-iso10126-min.js"></script>
+    <script src="/js/common/toastr/toastr.js"></script>
     <script src="/js/common/modules-pc.js"></script>
     <script src="/js/mode/directive.js"></script>
     <!--[if IE]><script src="/js/ie.js"></script><![endif]--> 
     <script src="/js/entity/entity_activity.js?v=10"></script>
     <script src="/js/service/service_activity.js?v=10"></script> 
     <script src="/js/common/jquery_page.js"></script>
+
     
 
 

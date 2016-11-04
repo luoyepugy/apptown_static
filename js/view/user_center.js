@@ -22,7 +22,7 @@ angular.module('user_center',["directive_mml",'tm.pagination',"activity_servrt",
 
 
 	
-}]).controller('personal_center',["$scope","activity_data",function($scope,activity_data) {//个人中心控制层
+}]).controller('personal_center',function($scope,activity_data, messageService, httpService) {//个人中心控制层
 	
 	$(".user_list_left li").css({"background":"#fff"}).eq(0).css({"background":"#f1f1f1"});
 	$scope.user_detail;//获取用户基本信息
@@ -38,11 +38,11 @@ angular.module('user_center',["directive_mml",'tm.pagination',"activity_servrt",
 		var user_sign=$("#personal_user_signature").val();//用户签名
 		var form_json={'user_name':user_name,'user_icon':user_icon,'user_id':user_id,'user_phone':user_phone,'user_sex':user_sex,'user_sign':user_sign}
 		if(!form_mm.isnull(user_name)){
-			alert("用户姓名不能为空")
+			messageService.show("用户姓名不能为空")
 			return;
 		}
 		if(!form_mm.tel(user_phone)){
-			alert("用户手机号码为空或者格式错误")
+			messageService.show("用户手机号码为空或者格式错误")
 			return;
 		}
 		/*个人中心修改基本信息*/
@@ -64,27 +64,135 @@ angular.module('user_center',["directive_mml",'tm.pagination',"activity_servrt",
 		var user_id=parseFloat($("#personal_user_id").text());//用户ID
 		var real_json={'real_name':real_name,'contact_info':contact_info,'identity_id':identity_id,'user_id':user_id};
 		if(!form_mm.isnull(real_name)){
-			alert("用户姓名不能为空")
+			messageService.show("用户姓名不能为空")
 			return;
 		}
 		if(!form_mm.tel(contact_info)){
-			alert("用户手机号码为空或者格式错误")
+			messageService.show("用户手机号码为空或者格式错误")
 			return;
 		}
 		if(!form_mm.isCardNo(identity_id)){
-			alert("用户身份证不能为空或者格式错误")
+			messageService.show("用户身份证不能为空或者格式错误")
 			return;
 		}		
 		/*个人中心修改基本信息*/
 		activity_data.person_upDateRealDetail(real_json).then(
 				function success(data) {
 					if(data.code==0){
-					  alert("您的个人实名认证提交成功");
+					  messageService.show("您的个人实名认证提交成功");
 					}
 				}, function error() {
 					console.log("您的个人实名认证提交失败");
 		});
     }
+
+	
+	// 默认头像选择
+    $scope.userIcon = {
+        "default_cover": [{
+            "id": "1",
+            "name": "创客活动",
+            "img": "http://172.16.2.250/headImage/tx_01.png"
+        },
+        {
+            "id": "2",
+            "name": "活动赞助",
+            "img": "http://172.16.2.250/headImage/tx_02.png"
+        },
+        {
+            "id": "3",
+            "name": "户外交友",
+            "img": "http://172.16.2.250/headImage/tx_03.png"
+        },
+        {
+            "id": "4",
+            "name": "活动赞助",
+            "img": "http://172.16.2.250/headImage/tx_04.png"
+        },
+        {
+            "id": "5",
+            "name": "创客活动",
+            "img": "http://172.16.2.250/headImage/tx_05.png"
+        },
+        {
+            "id": "6",
+            "name": "户外交友",
+            "img": "http://172.16.2.250/headImage/tx_06.png"
+        },
+        {
+            "id": "7",
+            "name": "活动课程",
+            "img": "http://172.16.2.250/headImage/tx_07.png"
+        },
+        {
+            "id": "8",
+            "name": "活动课程",
+            "img": "http://172.16.2.250/headImage/tx_08.png"
+        },
+        {
+            "id": "9",
+            "name": "活动投票",
+            "img": "http://172.16.2.250/headImage/tx_09.png"
+        },
+        {
+            "id": "10",
+            "name": "场馆票务",
+            "img": "http://172.16.2.250/headImage/tx_10.png"
+        },
+        {
+            "id": "11",
+            "name": "户外交友",
+            "img": "http://172.16.2.250/headImage/tx_11.png"
+        },
+        {
+            "id": "12",
+            "name": "户外交友",
+            "img": "http://172.16.2.250/headImage/tx_12.png"
+        },
+        {
+            "id": "13",
+            "name": "活动聚会",
+            "img": "http://172.16.2.250/headImage/tx_13.png"
+        },
+        {
+            "id": "14",
+            "name": "活动聚会",
+            "img": "http://172.16.2.250/headImage/tx_14.png"
+        },
+        {
+            "id": "15",
+            "name": "科技创客",
+            "img": "http://172.16.2.250/headImage/tx_15.png"
+        },
+        {
+            "id": "16",
+            "name": "票务场馆",
+            "img": "http://172.16.2.250/headImage/tx_16.png"
+        },
+        {
+            "id": "17",
+            "name": "活动投票",
+            "img": "http://172.16.2.250/headImage/tx_17.png"
+        }] //默认封面
+        ,
+        "confirm": function() { //弹出层确认按钮触发
+            $('#myModal').modal('toggle');
+            var src = $('.userIconSelected').attr('src');
+            httpService.getDatas('POST', '/user/update_user_icon?user_icon='+src).then(function(data) {
+            	if(data.code!=0){
+                        $scope.mml.err_pup(data.msg)
+                        return
+                }
+                $('.userIcon').attr('src', src);
+                $scope.user_detail.user_icon  = src;
+            });
+        }
+	}
+	// 选择图片
+	$('body').on('click', '.j-userIcon', function() {
+		$('.j-userIcon').removeClass('userIconSelected');
+		$(this).addClass('userIconSelected');
+	});
 
 
 
@@ -121,27 +229,27 @@ angular.module('user_center',["directive_mml",'tm.pagination',"activity_servrt",
     // 提交主办方认证信息表单
     $scope.sponsorAuthForm = function() {  	
     	if(vm.sponsor.sponsor_icon == '/img/userIcon.jpg') {
-    		alert('主办方头像必须上传');
+    		messageService.show('请上传主办方头像');
     		return;
     	}
     	if(!form_mm.isnull(vm.sponsor.name)) {
-    		alert('主办方名称不能为空');
+    		messageService.show('主办方名称不能为空');
     		return;
     	}
     	if(!form_mm.isnull(vm.sponsor.contacter)) {
-    		alert('联系人不能为空');
+    		messageService.show('联系人不能为空');
     		return;
     	}
     	if(!form_mm.tel(vm.sponsor.contacter_phone)) {
-    		alert('联系电话不能为空或格式错误');
+    		messageService.show('联系电话不能为空或格式错误');
     		return;
     	}
     	if(!form_mm.isnull(vm.sponsor.introduction)) {
-    		alert('主办方简介不能为空');
+    		messageService.show('主办方简介不能为空');
     		return;
     	}
     	if((vm.sponsor.introduction).length > 150) {
-    		alert('主办方简介不能超过150字');
+    		messageService.show('主办方简介不能超过150字');
     		return;
     	}
   
@@ -151,7 +259,7 @@ angular.module('user_center',["directive_mml",'tm.pagination',"activity_servrt",
 	    	if(data.code == 0){
 				vm.status.editForm = false;
 				vm.status.waiting = true;
-				alert("您的主办方认证申请成功");
+				messageService.show("您的主办方认证申请成功", 'info');
 			}
 	    });
     };
@@ -197,7 +305,7 @@ angular.module('user_center',["directive_mml",'tm.pagination',"activity_servrt",
 	});
     
 	
-}]).controller('my_activities', function($scope,activity_data, httpService, messageService) {//我的活动
+}).controller('my_activities', function($scope,activity_data, httpService, messageService) {//我的活动
 
 	  $(".user_list_left li").css({"background":"#fff"}).eq(1).css({"background":"#f1f1f1"});
 	
@@ -391,7 +499,7 @@ $scope.act_fu={
      	         dataType: 'json', 
      	         success: function(result) {
      	        	 if(result.code!=0){
-     	        		alert(result.msg)
+     	        		messageService.show(result.msg)
 						  	return;
      	        	 }else{
      	        		 location.reload();
@@ -412,7 +520,7 @@ $scope.act_fu={
 		     activity_data.buy_ticket_info({"order_id":order_id}).then(
 				function success(data) {
 					 if(data.code!=0){
-						 alert(data.msg)
+						 messageService.show(data.msg)
 						 return
 					 }
 					 $('#the_ticket').modal('toggle');
@@ -435,7 +543,7 @@ $scope.act_fu={
 		httpService.getDatas('POST', '/activity/apply_switch?activityid=' + id + '&apply_switch=' + status).then(function(data) {
 			$scope.act_my_p[index].apply_switch = status;
 			var tip = (status == 0) ? '报名已关闭': '报名已开启';
-			alert(tip);
+			messageService.show(tip, 'info');
 	  	});
 	}
 
@@ -480,7 +588,7 @@ $scope.act_fu={
 		 			    function success(data) {
 		 			    		$scope.mySp_list=[];
 		                    if(data.code!=0){
-								alert(data.msg);
+								messageService.show(data.msg);
 								return;
 							}
 		                    $(".tcdPageCode").createPage({
@@ -600,7 +708,7 @@ $scope.act_fu={
 			$scope.sponsor_form_support_peoson=support_peoson;//赞助人姓名
 			$scope.sponsor_form_support_phone=support_phone;//赞助人手机
 			$scope.sponsor_form_support_address=support_address;//赞助人地址
-			alert(support_peoson)
+			messageService.show(support_peoson)
 				$("#change_password").modal('toggle') 
 				    $("div[class='modal-backdrop fade in']").css({"position":"static"})		*/		
 			}	
@@ -610,7 +718,7 @@ $scope.act_fu={
 					activity_data.query_person_my_attentsponsor(mySp_pageIndex,mySp_status,mySp_timeStatus).then(
 		 			    function success(data) {
 		                    if(data.code!=0){
-								alert(data.msg);
+								messageService.show(data.msg);
 								return;
 							}
 		                     $(".tcdPageCode").createPage({
@@ -718,15 +826,15 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
 			        	this.data_up.startDate=this.gettime(st_tme+" 00:00");//初始化开始时间
 			            this.data_up.endDate=this.gettime(end_tme+" 23:59");//初始化结束时间
                         if(isNaN(this.data_up.startDate)){
-                        	alert("请选择查询账户历史记录的开始时间");
+                        	messageService.show("请选择查询账户历史记录的开始时间");
                         	return;                     
                         }
                         if(isNaN(this.data_up.endDate)){
-                        	alert("请选择查询账户历史记录的结束时间");
+                        	messageService.show("请选择查询账户历史记录的结束时间");
                         	return;                     
                         }
                         if(this.data_up.startDate>this.data_up.endDate){
-                        	alert("查询账户历史记录的开始时间不能大于结束时间");
+                        	messageService.show("查询账户历史记录的开始时间不能大于结束时间");
                         	return;                     
                         }
 			            this.data_up.pageSize=10;
@@ -757,7 +865,7 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
 			        	 activity_data.trade_record(data).then(
 			     				function success(data) {
 			     					if(data.code!=0){
-			     						alert(data.msg);
+			     						messageService.show(data.msg);
 			     						return;
 			     					}
 			     					$scope.ecoin.recorded_data=[]
@@ -786,7 +894,7 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
 						activity_data.bank_query().then(
 								function success(data) {
 									if(data.code!=0){
-										alert(data.msg);
+										messageService.show(data.msg);
 										return;
 									}
 									$scope.ecoin.bank_query_arr=[];
@@ -800,12 +908,12 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
 			        },"draw_cash_apply":function(){
 			        	var apply_data={};//提现提交后台的数据
 			        	if($(".monery_oiiu").val().trim()==0||$(".monery_oiiu").val().trim()==""){
-			        		alert("提现金额大于0");
+			        		messageService.show("提现金额大于0");
 			        		$(".monery_oiiu").focus();
 			        		return;
 			        	}
 			        	if(this.account_id_a==0){
-			        		alert("请选择银行卡");
+			        		messageService.show("请选择银行卡");
 			        		return;
 			        	}
 			        	apply_data.amount=$(".monery_oiiu").val().trim();//获取提现金额
@@ -813,10 +921,10 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
 			        	activity_data.cash_apply(apply_data).then(
 								function success(data) {
 									if(data.code!=0){
-										alert(data.msg);
+										messageService.show(data.msg);
 										return;
 									}
-									alert("提现申请成功，你所输入的金额将会在7个工作日内打到你的账户");
+									messageService.show("提现申请成功，你所输入的金额将会在7个工作日内打到你的账户");
 									 location.reload(); 
 								}, function error() {
 									console.log("提现失败")
@@ -835,7 +943,7 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
 			        	activity_data.wxpay_topup(Price).then(
 								function success(data) {
 									if(data.code!=0){
-										alert(data.msg);
+										messageService.show(data.msg);
 										return;
 									}
 									var qc_url=data.info.code_url
@@ -869,7 +977,7 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
 	   activity_data.user_ecoin().then(
 				function success(data) {
 					if(data.code!=0){
-						alert(data.msg);
+						messageService.show(data.msg);
 						return;
 					}
 					$scope.ecoin.balance=data.info;
@@ -927,7 +1035,7 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
 				activity_data.bank_account(this.bank_add_data).then(
 						function success(data) {
 							if(data.code!=0){
-								alert(data.msg);
+								messageService.show(data.msg);
 								return;
 							}
 							 $(".df_poiu").click();
@@ -941,7 +1049,7 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
 				activity_data.bank_query().then(
 						function success(data) {
 							if(data.code!=0){
-								alert(data.msg);
+								messageService.show(data.msg);
 								return;
 							}
 							$(data.info).map(function(){
@@ -958,7 +1066,7 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
 				activity_data.bank_delete(account_id).then(
 						function success(data) {
 							if(data.code!=0){
-								alert(data.msg);
+								messageService.show(data.msg);
 								return;
 							}
 							
@@ -1058,11 +1166,11 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
     	var extStart = data.lastIndexOf(".");
         var ext = data.substring(extStart, data.length).toUpperCase();
     	if(data==''){
-    		alert('请选择需要上传的文件!');
+    		messageService.show('请选择需要上传的文件!');
     		return ;
     	}
     	if(ext!=".XLS"){
-    		alert("上传文件类型错误,请上传excel格式文件！");
+    		messageService.show("上传文件类型错误,请上传excel格式文件！");
     		return ;	
     	}
     	
@@ -1137,19 +1245,19 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
 	    				getConsumptionList();
 	    				$("#import_win").modal('hide'); 
         			}else{
-        				alert("导入数据格式错误 !");
+        				messageService.show("导入数据格式错误 !");
         			}
         			submit_flag = true ;
         		},
         		error : function(data, status, e)//服务器响应失败处理函数
         		{
         			submit_flag = true ;
-        			alert(e);
+        			messageService.show(e);
         		}
         	})
         	return false;
     	}else{
-    		alert('请不要重新提交');
+    		messageService.show('请不要重新提交');
     		return ;
     	}
     	
@@ -1165,11 +1273,11 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
     	var extStart = data.lastIndexOf(".");
         var ext = data.substring(extStart, data.length).toUpperCase();
     	if(data==''){
-    		alert('请选择需要上传的文件!');
+    		messageService.show('请选择需要上传的文件!');
     		return ;
     	}
     	if(ext!=".XLS"){
-    		alert("上传文件类型错误,请上传excel格式文件！");
+    		messageService.show("上传文件类型错误,请上传excel格式文件！");
     		return ;	
     	}
     	if(_submit_flag){
@@ -1239,20 +1347,20 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
         				$("#import_win").modal('hide'); 
         				getConsumptionList();
         			}else{
-        				alert("导入数据格式错误 !");
+        				messageService.show("导入数据格式错误 !");
         			}
         			_submit_flag = true ;
         		},
         		error : function(data, status, e)//服务器响应失败处理函数
         		{
         			_submit_flag = true ;
-        			alert(e);
+        			messageService.show(e);
         		}
         		
         	})
         	return false;
     	}else{
-    		alert('请不要重新提交');
+    		messageService.show('请不要重新提交');
     		return ;
     	}
     	
@@ -1264,7 +1372,7 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
     $scope.sendMassSms = function(){
     	var _length =   $("input[name='ms_check']:checked").length ;
     	if(_length<2){
-    		alert("请至少选择2条记录进行批量短信发送!");
+    		messageService.show("请至少选择2条记录进行批量短信发送!");
     		return ;
     	}
     	$scope.mass_sms=[] ;
@@ -1324,10 +1432,10 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
        				 if(data.code==0){
        					getConsumptionList();
        					$("#sms_win").modal('hide');  
-       					 alert(data.msg);
+       					 messageService.show(data.msg);
        					 return
        				 }else{
-       					 alert(data.msg);
+       					 messageService.show(data.msg);
        					 return 
        				 }
        				send_sms_flag = true ; 
@@ -1336,7 +1444,7 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
        			    }
        		);
     	}else{
-    		alert('请不要重新提交');
+    		messageService.show('请不要重新提交');
     		return ;
     	}
     	
@@ -1347,7 +1455,7 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
     $scope.send_mass_sms = function(obj){
     	var consumptionIds ="" ;
     	if(obj.length<=0){
-    		alert("您选择中报名信息的早已发送,请批量选择没有发送短信的报名信息!");
+    		messageService.show("您选择中报名信息的早已发送,请批量选择没有发送短信的报名信息!");
     		return ;
     	}
     	for(var i=0 ; i<obj.length;i++){
@@ -1363,10 +1471,10 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
     	    	    	  if(data.code==0){
     	    	    		  getConsumptionList();
     	     					$("#mass_send_win").modal('hide');  
-    	    					 alert(data.msg);
+    	    					 messageService.show(data.msg);
     	    					 return
     	    				 }else{
-    	    					 alert(data.msg);
+    	    					 messageService.show(data.msg);
     	    					 return 
     	    				 }
     	    	    	  send_mass_sms_flag = true ;
@@ -1375,7 +1483,7 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
     	       			    }
     	       	)
     	}else{
-    		alert('请不要重新提交');
+    		messageService.show('请不要重新提交');
     		return ;
     	}
      }
@@ -1385,7 +1493,7 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
 	activity_data.activity_detail($scope.id).then(
 			function success(data) {
 				 if(data.code!=0){
-					 alert(data.msg)
+					 messageService.show(data.msg)
 					 return
 				 }
 				 $scope.act_xq=new activity_detail(data.info);

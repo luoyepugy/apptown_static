@@ -342,13 +342,11 @@ $(document).on("click",".remove_video",function(){
       $("#release_type_value").val(ssss)
       
     },"submit_data":function(status){//发布活动
-
         var usr_oc="";//图片地址
         var stat_time_a=$("#stat_time_a").val();//开始时间的您月日
         var stat_time_b=$("#stat_time_b").val();//开始时间的您时分
         var end_time_a=$("#end_time_a").val();//结束时间的您月日
         var end_time_b=$("#end_time_b").val();//结束时间的您时分
-        
         var startDate=stat_time_a+" "+stat_time_b;//开始时间
         var endDate=end_time_a+" "+end_time_b;//开始时间
         var provinces_p=$("#provinces_p").val();//获取省份
@@ -517,10 +515,15 @@ $(document).on("click",".remove_video",function(){
             return;
      }
       if(!form_mm.isnull($scope.activities_data.activity.contact_way)){
-       $scope.mml.err_pup("请输入联系方式");
+       $scope.mml.err_pup("请输入手机号码");
             $("#contact_information").focus();
             return;
      }
+      if(!form_mm.tel($scope.activities_data.activity.contact_way)){
+          $scope.mml.err_pup("手机号码格式错误");
+               $("#contact_information").focus();
+               return;
+        }
    
        if($("#fuy_poi_a").attr("data-xz")!=0){
          $scope.mml.err_pup("请勾选e场景平台服务协议！ ");
@@ -595,6 +598,7 @@ $(document).on("click",".remove_video",function(){
                  if(rand_a<10000){
                         rand_a+=10000
                  }
+           
                 window.location.href='/activity/'+(rand_a+""+$scope.id+""+rand_a)+'.httl'
               
             }, function error() {
@@ -630,7 +634,14 @@ $(document).on("click",".remove_video",function(){
           var rand_a= Math.floor(Math.random()*100000)
            if(rand_a<10000){
                   rand_a+=10000
-           }
+           } 
+
+          if(status==0){
+              window.location.href='/activity/release_success?actId='+data.msg+"&title="+$("#name_event").val()+"&details="+$("#myEditor").text().trim().substring(0,50)
+              return;
+          } 
+          
+          
           var id_p=rand_a+data.msg+rand_a
           sessionStorage.a_name="";//初始化缓存
           sessionStorage.removeItem("a_name");
@@ -680,13 +691,16 @@ $(document).on("click",".remove_video",function(){
          
     }
      if($scope.id>0){
-           activity_data.activity_detail($scope.id).then(
-              function success(data) {
+           // activity_data.activity_detail($scope.id).then(
+           var republish = ($scope.republish == 0) ? null : 1;
+           httpService.getDatas('GET', '/activity/activity_detail', {activity_id: $scope.id , republish: republish}).then(function(data) {
+              // function success(data) {
                  if(data.code!=0){
                    alert(data.msg)
                    return
                  }
                  tyt_poiu=true
+                 console.log(data.info);
                  
                  km=new activity_detail(data.info);
                  
@@ -718,9 +732,9 @@ $(document).on("click",".remove_video",function(){
                  $scope.status=km.status
                  if($scope.status==0){
                  // 修改和保存后编辑状态报名表单和票务设置不能够修改
-                 $(".display_show").show()
+                   $(".display_show").show()
                    $('.modify_disable_par').addClass('modify_disable_none')	
-                 $(".modify_disable").attr("disabled","disabled").addClass("prohibit").removeAttr("data-toggle").css("background","#cbcbcb")
+                   $(".modify_disable").attr("disabled","disabled").addClass("prohibit").removeAttr("data-toggle").css("background","#cbcbcb")
                       
                  }
                  $("#name_event").val(km.title);//活动名称
@@ -780,10 +794,11 @@ $(document).on("click",".remove_video",function(){
                        }
                        })
                     
-                        console.log( $scope.row_po_form)
-              }, function error() {
-                console.log("获取活动详情失败")
-              });
+                        console.log( $scope.row_po_form);
+        });
+       //        }, function error() {
+       //          console.log("获取活动详情失败")
+       //        });
        }
     if(sessionStorage.p){  
       $scope.img_icon

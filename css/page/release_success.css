@@ -1,0 +1,144 @@
+@CHARSET "UTF-8";
+
+.success_qs{
+    width: 40px;
+    height: 39px;
+    background-position: -48px -165px;
+    position: relative;
+    top: 4px;
+}
+.title_poioisd{
+    margin-left: 6px;
+    position: relative;
+    bottom: 6px;
+}
+.release_left{
+    width: 340px;
+    float: left
+}
+.shoukuuyty_w{
+    width: 285px;
+    margin: auto
+}
+.shuaxing_a{
+    width: 29px;
+    height: 27px;
+    background-position: -126px -177px;
+    position: relative;
+    top: 8px;
+    margin-right: 6px;
+}
+.phone_bg{
+    height: 565px;
+    background:url(../../img/phone.png);
+    background-size: 100% 100%
+}
+.success_btn{
+    background: #4EA45D;
+    color: #fff;
+    border: 1px solid #4EA45D;
+    padding: 8px 10px 6px 10px;
+    font-size: 16px;
+}
+#qc_down_er{
+ width: 197px;
+    height: 197px;
+}
+.down_icon_w{
+    width: 15px;
+    height: 15px;
+    background-position: -288px -187px;
+    position: relative;
+    top: 2px;
+}
+.fengxiang_i p{
+    float: left;
+    margin-right: 20px;
+    cursor: pointer;
+    
+}
+.wx_icon_a{
+    width: 63px;
+    height: 61px;
+    background-position: -30px -46px;
+}
+.wx_icon_b{
+     background-position: -133px -46px;
+}
+
+
+.wx_icon_c{
+     background-position: -235px -46px;
+}
+.wx_icon_d{
+     background-position: -339px -46px;
+}
+.jhgh_inf_a input{
+    width: 84%
+}
+.wwer_ert{
+    float: right;
+    padding: 4px  16px;
+    border: 1px solid #4EA45D
+}
+.tuoguang_q{
+    width: 46px;
+    height: 46px;
+    background-position: -204px -158px;
+}
+.dfdf_bhggfr{
+    background: #4EA45D;
+    color: #fff
+}
+.poiu_pup_p{
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+    left: 0px;
+    top: 260px;
+    text-align: center;
+    display:none
+}
+.poiu_pup_p span {
+    font-size: 16px;
+    padding: 10px 38px;
+    background: rgba(0,0,0,0.5) !important;
+    color: #fff;
+}
+.fengxiang_i p:hover img{
+	display:block
+}
+.werouy_swr {
+    position: absolute;
+    min-width: 170px !important;
+    height: 170px;
+    left: 0;
+    display: none;
+}
+.lx_tel_a {
+    position: absolute;
+    left: 90px;
+    top: -150px;
+    width: 143px;
+    display:none
+}
+.ggtgh{
+   cursor: pointer;	
+}
+.ggtgh:hover .lx_tel_a{
+	display:block
+}
+
+
+.yqh_img_q {
+    width: 257px;
+    height: 402px;
+    margin-top: 71px;
+    margin-left: 14px;
+}
+.hyy_btn{
+	cursor: pointer;
+}
+a:hover{
+	color:#fff
+}

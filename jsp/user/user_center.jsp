@@ -20,13 +20,13 @@
 	uaredirect("http://m.apptown.cn");//手机打开跳转到手机页面
 </script>
 </head>
-<body ng-controller="user_centerController">
+<body ng-controller="user_centerController" style="position: relative;">
     
   <%@include file="/jsp/common/mml_nav.jsp"%>
-    <div class="mt20 wd" >
+    <div class="mt20 wd" style="position: initial;" >
         <div class="user_left_a fl">
              <div class="user_icon_a bgff">
-                 <p class="cen pt20 pm20"><img  class="yj4 user_icon_left" ng-src="{{user_con.user_icon}}"><!-- {{user_detail.user_icon}} -->
+                 <p class="cen pt20 pm20"><img  class="yj4 user_icon_left userIcon" ng-src="{{user_con.user_icon}}"><!-- {{user_detail.user_icon}} -->
                    <br>
                      <span class="zq fz18" ng-bind="user_con.user_name"></span>
                  </p>  
@@ -35,7 +35,7 @@
             <div class="mt10 yj4 bgff dfd_poiuy ">
                 <ul class="user_list_left">
                     <li ui-sref="personal_center">
-                       <p class="zq fz16 pr title_user_a" >个人中心 <img src="/img/rightnav.png" class="right_icon_a"></p>   
+                       <p class="zq fz16 pr title_user_a" >个人中心<img src="/img/rightnav.png" class="right_icon_a"></p>   
                     </li>
   
                     <li  ui-sref="user_my_activities">

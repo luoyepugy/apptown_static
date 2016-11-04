@@ -27,6 +27,7 @@
 	<!-- 菜单栏 -->
 <link href="/css/common/font-awesome.css" rel="stylesheet"> 
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1477531881_361757.css">
+<link rel="stylesheet" href="/js/common/toastr/toastr.css">
 <div ng-controller="navigation_mml">
  <div class="men_nav">
          <div class="wd">
@@ -105,7 +106,7 @@
                    </li>
                 
                    <li class="fr user_logo user_logo_b" finish >
-                            <img ng-src="{{user_con.user_icon}}" class="user_icon_index yj fl" data-user={{user_con.user_id}}>
+                            <img ng-src="{{user_con.user_icon}}" class="user_icon_index yj fl userIcon" data-user={{user_con.user_id}}>
                        <p class="fr"  data-href="/user/to_user_center">个人中心 <span data-brackets-id="3633" class="caret city_caret"></span></p>
           
                            <ul class="dropdown-menu act_nav_a_a padding_none"  >

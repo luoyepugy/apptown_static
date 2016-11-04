@@ -13,9 +13,17 @@
                                  <li>
                                      <label class="f_d title_poi fl">头像</label>
                                      
-                                     <img id="personal_user_icon" ng-src="{{user_detail.user_icon}}" class="yj4 user_oiyty_qe fl" >
+                                     <img id="personal_user_icon " ng-src="{{user_detail.user_icon}}" class="yj4 user_oiyty_qe fl userIcon" >
                                      <div class="ov pl20">
                                         <p><button class="btn fz12 btn-primary" ng-click="uoicon()">本地上传</button></p>
+                                        <a ng-href="#myModal" data-toggle="modal">没有准备头像?</a>
+                                        <div class="case_poiuy_i"> 
+					                        <p class="qc"></p>					                        
+					                        <p class="pr fl case_icon"  ng-repeat="img in img_icon">  
+					                            <img ng-src="{{img}}" class="case_poiu_a">  
+					                            <img src="/img/close.png" class="icon_close_a" ng-click="select_click.delect_icon($index)" >  
+					                        </p>
+					                    </div>
                                          <p class="fz12 zc mt30"> 
                                          提示：上传图片尺寸最佳为100*100px，<br> 如果不是该尺寸系统会自动生成头像缩略图。
                                          
@@ -145,7 +153,32 @@
                             </div>
                         </div>
                     </div>
-            
-            
-            </div>
-            <input id="personal_icon" name="personal_icon" type="file" style="display:none"/>
+           
+           <!--   默认活动封面图片-->
+          <div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="pup_te_p ov">
+                 <div class="ptp_icon_n" style="width: 580px;">
+                     <div class="fl case_icon" style="width: 150px;" ng-repeat="sdcove in userIcon.default_cover" >
+                            <img class="j-userIcon" ng-class="{true: 'userIconSelected', false: ''}[$index==0]" style="width: 120px;height: 120px;" ng-src="{{sdcove.img}}" class="case_poiu_a">
+                     </div>
+                     
+                     <p class="qc"></p>
+                     
+                     
+                </div>
+                
+                <p class="pup_icon_bottom cen">
+                    <a class="btn btn-primary sub_poiy_a sub_poiy_a_icon" ng-click="userIcon.confirm()">确认</a>
+                    <a class="btn btn-primary rese_button_a ml20"  data-dismiss="modal">取消</a>
+                </p>
+           </div>
+           </div>
+
+
+           
+        </div>
+             
+
+        <input id="personal_icon" name="personal_icon" type="file" style="display:none"/>
+
+

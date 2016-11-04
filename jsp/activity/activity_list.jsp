@@ -82,7 +82,7 @@
                <ul class="act_poiuy_case">
                   <li class="yj4 pr" ng-repeat="list in act_list" >
                        <div class="fl case_li_oiuuy">
-                         <img style="cursor:pointer;" ng-src="{{list.activity_first_face}}" data-href="/activity/{{list.id}}.httl" data-open="1">
+                         <img style="cursor:pointer;" src="/img/activity/default.png" ng-src="{{list.activity_first_face}}" data-href="/activity/{{list.id}}.httl" data-open="1">
                        </div> 
                       <div class="ov pl20">
                          <p class="dian fz18" style="width:97%;cursor:pointer;" data-href="/activity/{{list.id}}.httl" data-open="1"><strong ng-bind="list.activity_title"></strong></p>

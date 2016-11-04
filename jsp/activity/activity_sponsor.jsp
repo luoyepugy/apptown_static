@@ -700,18 +700,18 @@
          <span>阅读并同意e场景活动的</span>
          <a ng-href="/jsp/common/e_active.jsp">《e场景平台服务协议》 </a>
      </p>
-        <p class="mt50 cen bottom_button" ng-if="id==0"><!-- 创建的情况 -->
+        <p class="mt50 cen bottom_button" ng-if="id==0&&republish==0"><!-- 创建的情况 -->
             <a class="btn btn-primary" ng-click="select_click.submit_data(0)"> 发布</a>
              <a class="btn btn-primary ml60 baocun_button" ng-click="select_click.submit_data(1)">保存</a>
         </p>
          <p class="mt50 cen bottom_button" ng-if="id>0&&status==0&&republish==0"> <!-- 已发布的情况 --> 
              <a class="btn btn-primary ml60 baocun_button" ng-click="select_click.submit_data(3)">修改</a>
         </p>
-          <p class="mt50 cen bottom_button" ng-if="id>0&&status==1"><!-- 保存未发布的情况 --> 
+          <p class="mt50 cen bottom_button" ng-if="id>0&&status==1&&republish==0"><!-- 保存未发布的情况 --> 
       <a class="btn btn-primary" ng-click="select_click.submit_data(6)"> 发布</a>
              <a class="btn btn-primary ml60 baocun_button" ng-click="select_click.submit_data(4)">修改</a>
         </p> 
-        <p class="mt50 cen bottom_button" ng-if="id>0&&status==0&&republish==1"><!-- 再次发布的情况 --> 
+        <p class="mt50 cen bottom_button" ng-if="id>0&&republish==1"><!-- 再次发布的情况 --> 
             <a class="btn btn-primary" ng-click="select_click.submit_data(0)"> 再次发布</a>
         </p> 
     </div>

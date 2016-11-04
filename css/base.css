@@ -174,14 +174,20 @@ li {
     display:inline-block;
     *display:inline;
     *zoom:1;
-    background: url(../img/outline-bg.png);
+    background: url(/img/outline-bg.png);
 
 }
 .f_b{
     display:inline-block;
     *display:inline;
     *zoom:1;
- background: url(../img/icon-base.png);
+ background: url(/img/icon-base.png);
+}
+.f_q{
+    display:inline-block;
+    *display:inline;
+    *zoom:1;
+ background: url(/img/xbt2.png);
 }
 .f_d{
     display:inline-block;
@@ -189,7 +195,9 @@ li {
     *zoom:1;
 
 }
-
+.bbm{
+    border-bottom: 1px solid #F7F7F7
+}
 .wd{
     width:1080px;
     min-width: 1080px;

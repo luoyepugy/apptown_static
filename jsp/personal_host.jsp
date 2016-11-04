@@ -16,7 +16,7 @@
     <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet"> 
     <link href="/css/base.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
-    <link  rel="shorcut icon"   href="http://www.apptown.cn/img/shortCut.ico" />    
+    <link  rel="shorcut icon"   href="/img/LOGO.png" />     
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1472551681_3187165.css">
 <!--[if IE]>    <link href="/css/ie.css" rel="stylesheet"><![endif]-->
 <title>e场景活动</title>
@@ -107,7 +107,7 @@
 						                                  </p>
 						                                 <p class="mt15">
 						                                     <span class="green_new mr5" ng-bind="z.browse_count"></span>浏览
-						                                     <span class="ml20 green_new mr5" ng-bind="z.person_count"></span>参与
+						                                     <span class="ml20 green_new mr5" ng-bind="z.activity_number"></span>参与
 						                                  </p>
 						                                 <!-- 暂时屏蔽赞助 -->  
 						                              <!-- <a class="btn btn-primary act_sub_poiu act_sub_poiu_o" data-href="/support/12282{{z.support_id}}12282.httl" ng-if="z.support_id!=null">我要赞助</a>
@@ -212,7 +212,7 @@
 						                                  </p>
 						                                 <p class="mt15">
 						                                     <span class="green_new mr5" ng-bind="d.browse_count"></span>浏览
-						                                     <span class="ml20 green_new mr5" ng-bind="d.person_count"></span>参与
+						                                     <span class="ml20 green_new mr5" ng-bind="d.activity_number"></span>参与
 						                                  </p>
 						                                 <!-- 暂时屏蔽赞助 -->
 						                              <!-- <a class="btn btn-primary act_sub_poiu act_sub_poiu_o" data-href="/support/12282{{d.support_id}}12282.httl" ng-if="d.support_id!=null">我要赞助</a>

@@ -94,41 +94,48 @@ $(document).ready(function(){
 	        	   }
 	          }
 	        },
-	        {field:'activity_number',title:'报名人数',width:200,align:'center',formatter:function(value,rowData,rowIndex){
+	        {field:'activity_number',title:'报名人数',width:120,align:'center',formatter:function(value,rowData,rowIndex){
 	        	return '<a name="exportData"  data-id="'+rowData.id+'" onclick="exportData(this)">'+value+"</a>";
 	          }
 	        },
-	        {field:'browse_count',title:'浏览量',width:200,align:'center',formatter:function(value,rowData,rowIndex){
+	        {field:'browse_count',title:'浏览量',width:120,align:'center',formatter:function(value,rowData,rowIndex){
 	        	return '<a name="exportData"  data-id="'+rowData.id+'" onclick="exportData(this)">'+value+"</a>";
 	          }
 	        },
-	        {field:'hot_banner',title:'活动轮播',width:200,align:'center',formatter:function(value,rowData,rowIndex){
+	        {field:'hot_banner',title:'活动轮播',width:150,align:'center',formatter:function(value,rowData,rowIndex){
 	        	var str = "";
 	        	if(value){
 	        		str = 'checked="checked"';
 	        	}
 	        	return '<input class="banner_activity" '+str+' name="play" type="checkbox" value="2" data-type="0" data-id="'+rowData.id+'" onclick="onLoadDataGid(this)" />';
 	        }},
-	        {field:'hot_reco',title:'精选活动',width:200,align:'center',formatter:function(value,rowData,rowIndex){
+	        {field:'hot_reco',title:'精选活动',width:150,align:'center',formatter:function(value,rowData,rowIndex){
 	        	var str = "";
 	        	if(value){
 	        		str = 'checked="checked"';
 	        	}
 	        	return '<input class="banner_activity" '+str+' name="reco" type="checkbox" value="2" data-type="1" data-id="'+rowData.id+'" onclick="onLoadDataGid(this)" />';
 	        }},
-	        {field:'hot_detail',title:'推荐活动',width:200,align:'center',formatter:function(value,rowData,rowIndex){
+	        {field:'hot_detail',title:'推荐活动',width:150,align:'center',formatter:function(value,rowData,rowIndex){
 	        	var str = "";
 	        	if(value){
 	        		str = 'checked="checked"';
 	        	}
 	        	return '<input class="banner_activity" '+str+' name="remm" type="checkbox" value="2" data-type="2" data-id="'+rowData.id+'" onclick="onLoadDataGid(this)" />';
 	        }},
-	        {field:'hot_activity',title:'热门活动',width:200,align:'center',formatter:function(value,rowData,rowIndex){
+	        {field:'hot_activity',title:'热门活动',width:150,align:'center',formatter:function(value,rowData,rowIndex){
 	        	var str = "";
 	        	if(value){
 	        		str = 'checked="checked"';
 	        	}
 	        	return '<input class="banner_activity" '+str+' name="hot" type="checkbox" value="2" data-type="3" data-id="'+rowData.id+'" onclick="onLoadDataGid(this)" />';
+	        }},
+	        {field:'down_shelf',title:'是否下架',width:150,align:'center',formatter:function(value,rowData,rowIndex){
+	        	var str = "";
+	        	if(value==0){
+	        		str = 'checked="checked"';
+	        	}
+	        	return '<input type="checkbox" class="banner_activity" '+str+'  id="'+rowData.id+'" onclick="down_self(this)" />';
 	        }},
 	        {field:'labels',title:'活动标签',align:'center',hidden:true},
 	    ]],
@@ -148,14 +155,14 @@ $(document).ready(function(){
 					});
                }},'-',{
                 text:'上传活动轮播图片',iconCls:'icon-up',handler:uploadImageDiv  
-				},'-',{
+				},'-',/*{
                 text:'关联itemId',iconCls:'icon-up',handler:setItem
-                },'-',{
+                },'-',*/{
                 text:'修改活动',iconCls:'icon-edit',handler:editActivity
                 },'-',{
                 text:'查看活动',iconCls:'icon-view',handler:viewActivity
                 },'-',{
-                text:'标签设置',iconCls:'icon-view',handler:setlabelWindow
+                text:'标签设置',iconCls:'icon-edit',handler:setlabelWindow
                 }
 		]
 	});
@@ -324,21 +331,25 @@ $(document).ready(function(){
 	/** 上传活动轮播图片 **/
 	function uploadImageDiv(){
 		var objs = $('#activity_list_tab').datagrid("getSelections");//获取表格选中行数据
-		if(objs==null){
+		if(objs.length>1){
+			$.messager.alert('消息框','只能选择一条!');
+			return ;
+		}
+		if(objs==null||objs.length<1){
 			$.messager.alert('消息框','请在表格中选中需要上传banner图片的数据!');
 			return ;
-		}else if(!objs.hot_banner){
+		}else if(!objs[0].hot_banner){
 			$.messager.alert('消息框','请在表格中选中已经设置活动轮播的数据!');
 			return ;
 		}else{
 			
-			if(objs.length>1){
+			/*if(objs.length>1){
 				$.messager.alert('提示','一次只能删除一行！');
 				return;
-			}
+			}*/
 			
 			
-			$("#activity_name").text(objs[0].name);
+			$("#activity_name").text(objs[0].activity_title);
 			$("#activity_id").text(objs[0].id);
 			$.ajax({
 				type:'POST',
@@ -444,8 +455,26 @@ $(document).ready(function(){
         return   year+"/"+month+"/"+date+" "+hour+":"+minute;
     }
 });
-
-
+/**上架下架**/
+function down_self(obj){
+	$.ajax({
+		type : 'POST',
+		url : '/activity_manage/down_self',
+		data : {
+			'activity_id' : obj.id
+		},
+		contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+		dataType : 'json',
+		success : function(data) {
+			if(data.code==0){
+				$.messager.alert('消息框',data.msg);
+			}else{
+				$.messager.alert('消息框',data.msg);
+			}
+			$('#activity_list_tab').datagrid("reload");
+		}
+	});
+}
 
 /** 活动轮播和推荐 **/
 function onLoadDataGid(x){

@@ -554,6 +554,7 @@ function query_activity_list(list_data){
 		this.sponsor_image_url=data.sponsor_image_url;//主办方头像	
 		this.is_free=data.is_free;//是否免费 
 		this.activity_money=data.activity_money==null?0:data.activity_money;//活动金额
+		this.activity_number=data.activity_number;//参与人数
 	}
 
 	

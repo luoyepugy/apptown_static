@@ -44,7 +44,7 @@
                       
                       <p class="mt10 mt10 zc">时间：<span ng-bind="ac.activity_time"></span></p>
                         <p class="mt10  zc">地点：<span ng-bind="ac.activity_address"></span></p>
-                      <p class="mt10"><span class="bqi_pooiu_q ml0" data-x="{{ac.type-1}}" ng-bind="classify[0].maker_title[ac.type-1].name"></span></p>
+                      <!--<p class="mt10"><span class="bqi_pooiu_q ml0" data-x="{{ac.type-1}}" ng-bind="classify[0].maker_title[ac.type-1].name"></span></p>-->
                       
                   </div>
                   
@@ -72,7 +72,7 @@
                       </div>
                       
                        <p class="binhg_iiyt mt20" ng-if="act_fu.active_state==1&&ac.status==1">
-                         <a data-href="/activity/to_sponsor_activity?activityId={{ac.id_p}}">编辑</a><br>
+                         <a data-href="/activity/to_sponsor_activity?activityId={{ac.id_p}}&republish=0">编辑</a><br>
                          <a ng-click="act_fu.post_activity(ac.id_p)">发布</a><br>
                         </p>
                        <p class="binhg_iiyt mt40" ng-if="act_fu.active_state==2">
