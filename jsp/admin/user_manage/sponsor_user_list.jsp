@@ -77,6 +77,8 @@
     	<p style="display: block; line-height: 20px; height: 20px; text-align: center;">
     		<span> <label>账号ID:</label></span>
     		<input class="easyui-validatebox" type="text" id="user_id" />
+    		<span> <label>主办方名称:</label></span>
+    		<input class="easyui-validatebox" type="text" id="name" />
     		<span> <label>审核状态:</label></span>
     		<select  class="easyui-combobox" style="width: 160px;" id="status" panelHeight="100" >
 				<option value="">全部</option>

@@ -68,7 +68,7 @@
 						</div>
 					</li>
 				</ul>
-				<div class="dib"><img style="width: 270px;height: 170px;" src="/img/activity/help_card.png" alt="联系名片"></div>
+				<div class="dib"><img style="width: 320px;height: 210px;" src="/img/activity/help_card.png" alt="联系名片"></div>
 				<div class="tcdPageCode"></div>
 			</div>
 			<div class="j-card" style="display: none;"><img src="/img/activity/help_card.png" alt="酒店图片"></div>

@@ -21,7 +21,8 @@
     </head>
 <input type="hidden" value="${activity.id}" id="activityId" >
 <input type="hidden" value="${flag}" id="flag" >
-<body >
+<input type="hidden" value="${userId}" id="userId" >
+<body>
     <section class="nav_sign_w">
       <section class="nav_sign_n">
           <section class="sign_in tl pd">
@@ -35,7 +36,7 @@
     <p class="mt20"></p>
     <ul class="mui-table-view f-color-878787 sine_font">
          <li class="mui-table-view-cell br0">
-                <input type="text" data-src="${ticket_count}"   placeholder="输入6位数字的票券号码" class="entry_code" id="entry_code">
+                <input type="text" data-src="${ticket_count}"   placeholder="输入票券号码" class="entry_code" id="entry_code">
          </li>
          <li>
          </li>    
@@ -93,10 +94,6 @@
      	</p>
      	<button id="check_sign" class="check_sign">查看签到卡</button>
      </section> 
-     
-     
-     
-
     <script src="/js/common/jquery-1.11.3.min.js"></script>
     <script src="/js/common/zepto.min.js"></script>
     <script src="/js/common/mui.min.js"></script>

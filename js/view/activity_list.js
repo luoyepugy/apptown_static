@@ -131,8 +131,10 @@ angular.module('activity_list', [ "directive_mml","activity_servrt"])
    					})
    					if($scope.act_list.length==0){
    						$(".zhng_poi_a").show();
+   						$('.tcdPageCode').hide()
    					}else{
    						$(".zhng_poi_a").hide();
+   						$('.tcdPageCode').show()
    					}
    					
    					$(".act_poiuy_case").show();

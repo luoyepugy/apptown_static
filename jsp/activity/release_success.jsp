@@ -1,17 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html>
+<html ng-app="index_date">   
 <head>
     <meta charset="UTF-8">
     <title>恭喜您，活动发布成功</title>
     <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="/css/common/font-awesome.css" rel="stylesheet">
-    <link href="/css/base.css" rel="stylesheet">
+    <link href="/css/base.css" rel="stylesheet"> 
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/page/release_success.css" rel="stylesheet">
 	</head>
-	<body>
+	<body ng-controller="indexController">
+	  	    <div class="phone_iconh_a">
+	        <div class="cen mt80">
+	           	<span class="pr">
+	           		<img id="phone_poii">
+	           		<i class="fa fa-close zc fz24"></i>
+	           	</span>
+	        </div>
+	    </div>
+	    
 	  <%@include file="/jsp/common/mml_nav.jsp"%>
 	  <div class="wd bgff  pm40">
 	      <p class="pt10 pm10 cen " style="border-bottom: 1px solid #e0e0e0">
@@ -38,7 +47,7 @@
                    <div class="cen fz16">
 	                   <img src="${imgicon }" id="qc_down_er"><br>
 	                   微信扫描，分享朋友圈
-	                   <a class="f_q down_icon_w" href="${imgicon }" download="${imgicon }"></a>
+	                   <a class="f_q down_icon_w" ng-href="${imgicon }" download="${imgicon }"></a>
 	              </div>
 	              <div class="bghs mt20 pd pt10 pm10">
 	                  <p class="fz16 zc">快速分享到：</p>
@@ -90,8 +99,8 @@
 	                       </div>
 	                       
 	                       <p class="fr mt30">
-	                          <a class="yj4 wwer_ert ml20 dfdf_bhggfr" href="/activity/69871${actId}69871.httl">查看活动界面</a>
-	                           <a class="yj4 wwer_ert" href="/activity/to_sponsor_activity?activityId=${actId}&republish=0">返回修改活动</a>
+	                          <a class="yj4 wwer_ert ml20 dfdf_bhggfr" ng-href="/activity/69871${actId}69871.httl">查看活动界面</a>
+	                           <a class="yj4 wwer_ert" ng-href="/activity/to_sponsor_activity?activityId=${actId}&republish=0">返回修改活动</a>
 	                       </p>
 	                  </div>
 	                  <p class="qc"></p>
@@ -109,7 +118,14 @@
 	 	<span class="yj4"> 复制成功</span> 
 	   </p>
 	 
+
 	     <%@include file="/jsp/common/mml_bottom.jsp"%>
+	     
+	     
+	     
+	     
+	   
+	    <script src="/js/view/index.js"></script>
 	     <script src="/js/mode/methods_jq.js"></script>
 	     <script src="/js/common/jquery.zclip.min.js"></script>
 	     <script>
@@ -125,6 +141,14 @@
 	           },4000)
 	         }
 	     });
+	     $(".j-navCity").remove()
+	     $(".interlinkage ").removeClass("none")
+	 	  $("body").on("click",".yqh_img_q",function(){  //鼠标移动改元素
+	    	   $(".phone_iconh_a").addClass("show")
+	     })
+	     $(".phone_iconh_a").on("click",function(){
+	    	   $(".phone_iconh_a").removeClass("show")
+	     })
 	     var act_id=${actId};
 	     var title="${title}"
 	     var details="${details}"
@@ -138,6 +162,7 @@
 	             success : function(data) {
 	            	 $(".phone_bg").empty().append('<img class="yqh_img_q" src="'+data.msg+'">');
 	            	 $(".success_btn").attr("href",data.msg).attr("download",data.msg);
+	            	 $("#phone_poii").attr("src",data.msg)
 	             },
 	             error : function(res) { 
 
@@ -158,7 +183,7 @@
 	    	 }
 	    	 
 	     })
-           
+          
 	     </script>
 	     
 	</body>

@@ -6,14 +6,16 @@
     <div class="browser-happy">  
     </div>
     <div class="browser-happy-content">
-      <p class="fz20">您的浏览器版本真的很低啊！<i class="iconfont icon-close gray" onclick="closeBrowserTip()"></i></p>
-      <p class="mt20 gray">为了更好的用户体验，我们平台为你推荐了几个浏览器，请您下载以下版本的浏览器。</p>
-      <p class="mt10"><span class="j-browserTip green fz18 pointer" onclick="closeBrowserTip()">继续访问&lt;&lt;&lt;</span></p>
-      <div class="mt30">
-        <a ng-href="http://www.google.cn/chrome/browser/desktop/index.html"><img class="icon100 mr20" src="/img/icon-chrome.png" alt="chrome"></a>
-        <a ng-href="http://www.firefox.com.cn/download/"><img class="icon100" src="/img/icon-firefox.png" alt="firefox"></a>
+      <p class="fz20">您的浏览器版本真的很低啊！<span onclick="closeBrowserTip()"><i class="iconfont icon-close gray"></i></span></p>
+      <p class="mt20 gray">如果您现在使用的是<a target="_blank" class="green" ng-href="http://se.360.cn/">360浏览器</a>或<a ng-href="http://ie.sogou.com/" target="_blank">搜狗浏览器</a>，请在搜索地址栏右上角切换成极速模式，以获得更好的浏览体验。（操作如下图）</p>
+      <p class="mt10 gray"><img src="/img/browser.png" alt="指示图"></p>
+      <p class="mt20 gray">如果您现在使用的是IE浏览器，请您升级浏览器，以获得更好的浏览体验。</p>
+      <p class="mt10 gray">为了更好的用户体验，我们平台为你推荐了几个浏览器，请您下载以下版本的浏览器。</p>
+      <p class="mt10"><span class="j-browserTip green fz16 pointer" onclick="closeBrowserTip()">继续访问&lt;&lt;&lt;</span></p>
+        <a ng-href="http://www.google.cn/chrome/browser/desktop/index.html" target="_blank"><img class="mr20" style="width:50px;height:50px;" src="/img/icon-chrome.png" alt="chrome"></a>
+        <a ng-href="http://www.firefox.com.cn/download/" target="_blank"><img class="icon50" src="/img/icon-firefox.png"  style="width:50px;height:50px;"  alt="firefox"></a>
       </div>
-      <p class="gray mt5"><span class="mr20 tc db" style="width: 100px;">Chrome</span><span class="tc db" style="width: 100px;">火狐</span></p>
+      
     </div>
   </div>
 <![endif]-->
@@ -23,6 +25,7 @@
     document.getElementById('browserWrap').style.display = 'none';
   }
 </script>
+
 
 	<!-- 菜单栏 -->
 <link href="/css/common/font-awesome.css" rel="stylesheet"> 
@@ -75,8 +78,8 @@
                       <li class="fl">
                      <div class="input-prepend input-append poiut_idex_q mt18">
                             <div class="btn-group">
-                                <button class="btn dropdown-toggle btn dropdown_toggle_o" data-toggle="dropdown">
-                                  	<span id="option" >${option}</span>
+                                <button  class="btn dropdown-toggle btn dropdown_toggle_o" data-toggle="dropdown">
+                                  	<span id="option" ></span>
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-pou padding_none" >
@@ -218,4 +221,4 @@
 			$("#option").html("活动");
 		}
 	}
-</script>
+  </script>

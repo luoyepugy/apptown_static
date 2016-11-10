@@ -1,5 +1,6 @@
 angular.module('searchHostMain',["directive_mml","activity_servrt"])
 .controller('searchHost',["$scope","activity_data",function($scope,activity_data) {//主办方搜索
+	$('.j-navCity').addClass('none').prev('a').removeClass('none');
 	 $(".dropdown_toggle_o").html('活动号'+' <span class="caret"></span>')
 	var form_json={};//传过去的json
 	form_json.pageIndex=1;//初始化页码
@@ -34,6 +35,11 @@ angular.module('searchHostMain',["directive_mml","activity_servrt"])
 								backFn:function(p){	//回调,p为当前页数												      
 								}
     						});	 
+    						if(user_P.length>0){
+    							$('.tcdPageCode').show();
+    						}else{
+    							$('.tcdPageCode').hide();
+    						}
     						$scope.person=user_P;
     						$scope.pResult=data.results;
     					}, function error() {

@@ -195,7 +195,7 @@
 		    <div class="container">
 		        <div class="step-content"><label><img src="/img/apk_down_android.png" width="90" height="90"/></label></div>
 		        <a href="https://itunes.apple.com/cn/app/e-chang-jing-huo-dong/id1110240836?mt=8&uo=4" class="ios text-hide">App Store下载</a>
-		        <a href="http://resource.apptown.cn/app/app.apk" class="android text-hide">Android 下载</a>
+		        <a href="http://resource.apptown.cn/app/echangjinghuodong.apk" class="android text-hide">Android 下载</a>
 		        <div class="icon-lg-phone"></div>
 		    </div>
 		</div>

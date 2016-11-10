@@ -97,7 +97,7 @@
              </li>
             <li class="zq mt20 the_editor" style="z-index:999999;position:relative;" >
 
-                     <label class="f_d title_poi fl">活动详情 <span class="hs">*</span></label>
+                     <label class="f_d title_poi fl">酒店详情 <span class="hs">*</span></label>
                      <div class="ov map_poou_car rich_text">
                           <div id="myEditor" > </div>
 
