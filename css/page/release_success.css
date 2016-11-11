@@ -90,6 +90,9 @@
     background: #4EA45D;
     color: #fff
 }
+.dfdf_bhggfr:hover{
+	color:#4FA45D !important
+}
 .poiu_pup_p{
     position: fixed;
     width: 100%;
@@ -141,4 +144,24 @@
 }
 a:hover{
 	color:#fff
+}
+
+
+
+.phone_iconh_a {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0.5);
+    background-color: rgba(0,0,0,.6);
+    z-index: 100000;
+    display: none;
+}
+
+i.fa.fa-close.zc.fz24 {
+    position: absolute;
+    right: 9px;
+    margin-top: 10px;
+    font-size: 25px;
+    cursor: pointer;
 }
