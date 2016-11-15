@@ -163,9 +163,12 @@ $(document).ready(function(){
                 text:'查看活动',iconCls:'icon-view',handler:viewActivity
                 },'-',{
                 text:'标签设置',iconCls:'icon-edit',handler:setlabelWindow
+                },'-',{
+                text:'上（下）架',iconCls:'icon-edit',handler:down_self_batch
                 }
 		]
 	});
+	
 	
 	function setlabelWindow(){
 		var rows = $('#activity_list_tab').datagrid("getSelections");
@@ -461,7 +464,7 @@ function down_self(obj){
 		type : 'POST',
 		url : '/activity_manage/down_self',
 		data : {
-			'activity_id' : obj.id
+			'activity_ids' : obj.id
 		},
 		contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 		dataType : 'json',
@@ -474,6 +477,36 @@ function down_self(obj){
 			$('#activity_list_tab').datagrid("reload");
 		}
 	});
+}
+
+function down_self_batch(){
+	$.messager.confirm('提示','确定上（下）架所有所选活动吗？',function(r){   
+	    if (r){   
+	    	var objs = $('#activity_list_tab').datagrid("getSelections");
+	    	var aids="";//所选活动ID下划线隔开
+	    	for (var i = 0; i < objs.length; i++) {
+	    		aids+=objs[i].id+"_"
+			}
+	    	$.ajax({
+	    		type : 'POST',
+	    		url : '/activity_manage/down_self',
+	    		data : {
+	    			'activity_ids' : aids
+	    		},
+	    		contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+	    		dataType : 'json',
+	    		success : function(data) {
+	    			if(data.code==0){
+	    				$.messager.alert('消息框',data.msg);
+	    			}else{
+	    				$.messager.alert('消息框',data.msg);
+	    			}
+	    			$('#activity_list_tab').datagrid("reload");
+	    		}
+	    	});
+	    }   
+	});
+	
 }
 
 /** 活动轮播和推荐 **/

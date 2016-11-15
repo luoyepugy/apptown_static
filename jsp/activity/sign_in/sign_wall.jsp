@@ -55,31 +55,36 @@
                  
                  
                  
-                   <span class="cf fz20 fl ml100 cen"  ui-sref="streaming({act_id:activityId})"> 
+                   <span class="cf fz20 fl ml80 cen"  ui-sref="streaming({act_id:activityId})"> 
                    <i class="f_i poiuy_po_b"></i><br> 
                     视频
                  </span>
                  
-                   <span class="cf fz20 fl ml100 cen" ui-sref="sign_wall">
+                   <span class="cf fz20 fl ml80 cen" ui-sref="sign_wall">
                    <i class="f_i poiuy_po_c"></i><br>
                 	    签到墙
                  </span>
                  
                  
-                  <span class="cf fz20 fl ml100 cen" ng-click="stau()">
+                  <span class="cf fz20 fl ml80 cen" ng-click="stau()">
                    <i class="f_i poiuy_po_d"></i><br> 
                 	  投票
                  </span>
 
-                 <span class="cf fz20 fl ml100 cen" ng-click="adCarousel.show()">
+                 <span class="cf fz20 fl ml80 cen" ng-click="adCarousel.show()">
                    <img src="/img/icon-ad.png" alt="广告屏图标">
                    <p class="mt5">广告屏</p>
                  </span>
                  
                  
-                           <span class="cf fz20 fl ml100 cen"  ui-sref="lotteryraffle({act_id:activityId})"> 
+                <span class="cf fz20 fl ml80 cen"  ui-sref="lotteryraffle({act_id:activityId})"> 
                    <i class="f_i poiuy_po_e"></i><br> 
                     抽奖
+                 </span>
+
+                 <span class="cf fz20 fl ml80 cen" ui-sref="comment({activityId: activityId})"> 
+                   <i class="f_i poiuy_po_f"></i><br> 
+                    留言
                  </span>
                  
              <p class="qc"></p>
@@ -131,6 +136,7 @@
     <script src="/js/common/prism-min.js"></script>
     <script src="/js/entity/entity_activity.js?v=10"></script>
     <script src="/js/mode/directive.js"></script>
+    <script src="/js/common/modules-pc.js"></script>
     <script src="/js/service/service_activity.js?v=10"></script> 
     <script src="/js/view/sign_in/sign_ticket.js"></script>
 

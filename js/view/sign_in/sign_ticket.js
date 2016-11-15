@@ -1,7 +1,7 @@
 /**
  * 签到墙视图
  */
-angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router","ngWebSocket"])
+angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router","ngWebSocket", "common", 'request'])
 .controller('sign_ticketxController',["$scope","activity_data","MyData",function($scope,activity_data,MyData) {
 	var parameter={}
 	parameter.activity_id=$("#activityId").val();
@@ -134,6 +134,46 @@ angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router","n
 			        waterMark:"/img/sylogo.png|TL|0.15|0.5" 
 			    });
 		 }); 
+	
+})
+
+/*============================== 留言 ================================*/
+.controller('commentCtrl',function($scope,$stateParams, httpService, messageService) { 
+	var speed=30;
+    var index = 0,
+    	flag = false;
+    	
+    $scope.commentList = [];
+    function Marquee(){
+   		if(demo2.offsetTop-demo.scrollTop<=0){
+   			demo.scrollTop-=demo1.offsetHeight;
+   		} else {
+  		 	demo.scrollTop++;
+   		}
+    	if((demo.scrollTop / 400).toString().length == 1 && !flag) {
+    		index++;
+   			getMore();
+    	}
+    }
+	setInterval(function() {
+		index = 1;
+		getMore();
+	}, 60000 * 5);
+    
+   var MyMar=setInterval(Marquee,speed);
+
+   var getMore = function() {
+    	httpService.getDatas('GET', '/comment/comment_list', {pageIndex: index,pageSize: 10, source_id: $stateParams.activityId}).then(function(data) {
+			if(data.rows.length > 0 && index == 1) {
+				$scope.commentList = data.rows;
+			} else {
+				flag = true;
+				$scope.commentList = $scope.commentList.concat(data.rows);
+			}
+		});
+    }
+
+    
 	
 })
 /*============================================抽奖======================*/
@@ -280,6 +320,10 @@ angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router","n
     	url: '/lotteryraffle/:act_id', //抽奖
     	templateUrl: '/html/activity/lottery_raffle.html',
     	controller: 'lotteryraffleCtrl'
+    }).state('comment',{
+    	url: '/comment/:activityId', //留言
+    	templateUrl: '/html/activity/comment.html',
+    	controller: 'commentCtrl'
     })
 
 

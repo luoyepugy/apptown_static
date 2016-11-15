@@ -24,7 +24,15 @@ $(document).ready(function(){
 	        {field:'name',title:'用户名',width:200,align:'center'},
 	        {field:'module',title:'模块',width:200,align:'center'},
 	        {field:'opt',title:'动作',width:200,align:'center'},
-	        {field:'result',title:'结果',width:200,align:'center'},
+	        {field:'result',title:'结果',width:200,align:'center',formatter:function(value){
+        		if(value == 1){
+        			return '成功';
+        		}else{
+        			return '失败';
+        		}
+        	
+       		  }
+	        },
 	        {field:'msg',title:'消息',width:200,align:'center'}
 	    ]],
 	    loadMsg:"数据加载中请稍后!",

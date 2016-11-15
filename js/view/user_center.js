@@ -288,7 +288,8 @@ angular.module('user_center',["directive_mml",'tm.pagination',"activity_servrt",
 		 updata_icon("/user/upload_user_icon",function(url){
 			$('.userIcon').attr('src', url);
             $scope.user_detail.user_icon  = url;
-		 })
+            location.reload() ;
+		 })		 
 	}
 	 /*个人中心获取基本信息*/
     activity_data.person_userDetail().then(
@@ -326,7 +327,7 @@ angular.module('user_center',["directive_mml",'tm.pagination',"activity_servrt",
  	 			    	console.log(data.msg);
  	 				    return;
  	 			    }
- 	 			     $scope.my_act.user_id=data.info.user_id
+ 	 			     $scope.my_act.flag=1
  	 			   if( $scope.act_fu.active_state==1){
  	 				  $scope.act_fu.list_a();
  	 				  $scope.act_fu.fengye();

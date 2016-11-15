@@ -175,6 +175,7 @@ $(document).ready(function(){
 		queryParams.user_id = $('#user_id').val();
 		queryParams.status = $("#status").combobox('getValue'); 
 		queryParams.type = $("#type").combobox('getValue'); 
+		queryParams.name=$("#name").val();
 		_grid .datagrid('reload');
 	}
 

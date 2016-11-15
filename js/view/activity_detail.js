@@ -433,23 +433,33 @@ $(function(){
 	},1000)
 		
 	 $(window).scroll( function() {
-		
+
 		 var top_po_l=$(this).scrollTop()-(top_s+0);
 		 var  max_top=$(".act_list_p_lefy").height()-$(".act_list_p_right").height()//最多滚动的距离
 		 if($(this).scrollTop()>tipye){
 			 $(".liuy_tipye_top").css({"position":"fixed","top":"0","z-index":1000})
 			 $(".men_nav").hide()
+			 $(".act_list_right_a_1").addClass("marhion_left")
+			  if(top_po_l<max_top){	
+				  $(".act_list_p_right").css({ "margin-top": top_po_l})
+			  }
+			 
 		 }else{
 			 $(".liuy_tipye_top").css({"position":"relative","top":"0"})
-			  $(".men_nav").show()
+			 $(".men_nav").show()
+			 	 $(".act_list_right_a_1").removeClass("marhion_left")
+			 	 $(".act_list_p_right").css({ "margin-top": 0})
+			
 		 }
-		 if($(this).scrollTop()>top_s){
-			 if(top_po_l<max_top){
+		 /*if($(this).scrollTop()>top_s){
+			 if(top_po_l<max_top){				
 				 $(".act_list_p_right").css({ "margin-top": top_po_l})
+				 $(".act_list_right_a_1").animate({marginLeft:"424px"});
 			 }
 		 }else{
 			 $(".act_list_p_right").css({ "margin-top": 0})
-		 }
+			 $(".act_list_right_a_1").animate({marginLeft:"0"});
+		 }*/
 	 })
 	
 	 /*回复按钮触发事件*/

@@ -628,12 +628,12 @@ $(document).on("click",".remove_video",function(){
     activity_data.create_activity($scope.activities_data).then(
         function success(data) {
           if(data.code!=0){
-             $scope.mml.err_pup(data.msg)
-            return
+             $scope.mml.err_pup(data.msg);
+            return;
           }
           var rand_a= Math.floor(Math.random()*100000)
            if(rand_a<10000){
-                  rand_a+=10000
+                  rand_a+=10000;
            } 
 
           if(status==0){
@@ -645,7 +645,7 @@ $(document).on("click",".remove_video",function(){
           var id_p=rand_a+data.msg+rand_a
           sessionStorage.a_name="";//初始化缓存
           sessionStorage.removeItem("a_name");
-          window.location.href='/activity/'+id_p+'.httl'
+          window.location.href='/activity/'+id_p+'.httl';
         }, function error() {
           console.log("发起活动失败")
     });
@@ -955,15 +955,23 @@ $(document).on("click",".remove_video",function(){
                 $("#vote_detail").focus();
                 return;
             }
-            var list = this.datas.voteItemList;
-            $(".act_input_a_voge_ws input[type='text']").map(function(i){
+     
+/*            $(".act_input_a_voge_ws input[type='text']").map(function(i){
                 var img_url =$(this).parents(".map_poou_car").find(".browse_maps").attr("src"); 
-                list[i]['image_urls'] = img_url;
-                list[i]['item_name'] = $(this).val();
+                $scope.voteSetting.datas.voteItemList[i]= img_url;
+                $scope.voteSetting.datas.voteItemList[i]["fuck"]= $(this).val();
+            });*/
+            var hhgf=[]
+            $(".act_input_a_voge_ws input[type='text']").map(function(i){
+            	hhgf.push({})
+                var img_url =$(this).parents(".map_poou_car").find(".browse_maps").attr("src"); 
+                hhgf[i]["image_urls"]= img_url;
+                hhgf[i]["item_name"]= $(this).val();
             });
+            $scope.voteSetting.datas.voteItemList=hhgf 
             alert('投票设置保存成功');
-            console.log($scope.voteSetting.datas);
-        }
+            console.log( $scope.voteSetting.datas.voteItemList);
+        } 
     }
     $scope.voteSetting.init();
 

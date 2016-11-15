@@ -1,0 +1,62 @@
+
+<style>
+.commentWrap {
+	width: 850px;
+	height: 450px;
+	background: #fff;
+	border: 5px solid #cab325;
+	padding: 20px;
+	overflow: hidden;
+}	
+.commentWrap li img {
+	width: 50px;
+	height: 50px;
+    border: 2px solid #CC91A8;
+    border-radius: 50%;
+}
+.commentWrap .list {
+	border: 1px solid #ccc;
+	padding: 20px;
+	margin: 20px 0;
+}
+
+</style>
+<!-- 留言 -->
+<div id="demo" class="commentWrap">
+<div id="demo1" >
+	<ul class="mess_poiou">
+        <li  ng-repeat="item in commentList" class="list">
+        	<div>
+        	   <img ng-src="{{item.user_icon}}" class="user_icon_q fl yj">
+		         <div class="ov pl20">
+		           <div class="fz16">
+		               <span class="fl zq"><a ng-bind="item.user_name"> </a></span> 
+		               <span class="fr zc" ng-bind="item.create_time|getDateDiff:''"></span>
+		               <p class="qc"></p>
+		           </div>
+		           <p class="zc dian mt10 poiu_poou" ng-bind="item.comment_content">
+		           </p>
+		        </div>
+        	 	<div ng-repeat="child in item.childsComment" class="mt20">
+	               <img ng-src="{{child.user_icon}}" class="user_icon_q fl yj">
+	                 <div class="ov pl20">
+	                   <div class="fz16">
+	                       <span class="fl zq"><a > {{child.user_name}} </a>回复 {{item.user_name}}</span> 
+	                       <span class="fr zc" ng-bind="child.create_time|getDateDiff:''"></span>
+	                       <p class="qc"></p>
+	                   </div>
+	                   <p class="zc dian mt5 poiu_poou" ng-bind="child.comment_content">
+	                   </p>
+	                  </div>
+	            </div> 
+		    </div>
+        </li>
+    </ul>    
+</div>
+<div id="demo2"></div>
+</div>
+<!-- /留言 -->
+
+<script>
+   demo2.innerHTML=demo1.innerHTML;
+</script>

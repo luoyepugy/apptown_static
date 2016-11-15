@@ -131,6 +131,7 @@ $(".apply_confirm").on("click",function(){
 	var name = $("#name").val();             // 姓名
 	var tel  = $("#phone").val();            // 电话号码
 	var activityId = $("#activityId").val(); //活动ID
+	var userId   = $("#userId").val();  //userId
 	if(name==""){
 		mui.alert("请输入姓名","","确认",function(){});
 		return ;
@@ -150,7 +151,8 @@ $(".apply_confirm").on("click",function(){
 	var param_data = {
 			"name":name,
 			"tel" : tel,
-			"activityId" :activityId
+			"activityId" :activityId,
+			"userId" :userId 
 		};
 	// 处理报名并签到
 	$.ajax({

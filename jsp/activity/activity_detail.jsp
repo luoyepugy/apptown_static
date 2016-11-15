@@ -162,6 +162,13 @@
                       <p class="liuy_tipye_top_n fl act" data-hf="#activity_details">活动详情</p>
                       <p class="liuy_tipye_top_n fl" data-hf="#act_mentors" ng-if="detail.honored_guest.length>0">活动嘉宾 <span class="hs" ng-bind="'('+detail.honored_guest.length+'人)'"></span></p>
                       <p class="liuy_tipye_top_n fl" data-hf="#participants" ng-if="results>0">参与人数 <span class="hs" ng-bind="'('+results+'人)'"></span></p>
+                      <p class="act_list_right_a_1  act_list_right_p fl gd" ng-if="detail.status==0">
+                        	<a class="btn btn-primary apply_button" ng-if="detail.apply_switch==0" style="background:#f4f4f4;color:#575757">报名已结束</a>
+                         <a class="btn btn-primary apply_button " id="apply_button_poi" ng-click="act_detail.sign_up_p()" ng-if="active_state==1&&detail.is_applay!=true&&detail.apply_switch==1"> 我要报名 </a>
+                         <a class="btn btn-primary apply_button " ng-if="active_state==2&&detail.is_applay!=true" style="background:#f4f4f4;color:#575757"> 活动已结束</a>
+                   		 <a class="btn btn-primary apply_button " ng-if="detail.is_applay==true" style="background:#f4f4f4;color:#575757"> 活动已报名</a>
+                   	
+                   	  </p>
                       <p class="qc"></p>
                 </div>  
                 
@@ -253,7 +260,7 @@
                                <img ng-src="{{ms.user_icon}}" class="user_icon_q fl">
                                  <div class="ov pl20">
                                    <div class="fz16">
-                                       <span class="fl zq"><a href="#" ng-bind="ms.user_name" class="user_name_o_i"> </a></span> 
+                                       <span class="fl zq"><a ng-bind="ms.user_name" class="user_name_o_i"> </a></span> 
                                        <span class="fr zc" ng-bind="ms.create_time|getDateDiff:''"></span>
                                        <p class="qc"></p>
                                    </div>
@@ -279,7 +286,7 @@
                                <img ng-src="{{co.user_icon}}" class="user_icon_q fl">
                                  <div class="ov pl20">
                                    <div class="fz16">
-                                       <span class="fl zq"><a href="#" ng-bind="co.user_name"> </a></span> 
+                                       <span class="fl zq"><a ng-bind="co.user_name"> </a></span> 
                                        <span class="fr zc" ng-bind="co.create_time|getDateDiff:''"></span>
                                        <p class="qc"></p>
                                    </div>
