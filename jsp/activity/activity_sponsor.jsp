@@ -224,7 +224,7 @@
                     <p class="qc"></p>
              </li>
              <li class="zq mt20 mb30 activity_label_list" style="z-index:9">
-                     <label class="f_d title_poi fl mt20">活动标签 </label>
+                     <label class="f_d title_poi fl mt20">活动标签</label>
                      <div class="map_poou_car fl release_type_wrap mt10 pr">
                             <div class="re_type_wrap fl" >
                             	<span class="re_type_plus">+</span>
@@ -308,35 +308,31 @@
              </li>
               <li class="zq mt20 pr modify_disable_par ">
                      <label class="f_d title_poi fl mt20">报名表单设置</label>
-                     <div class="ov map_poou_car"   >
-                          <div ng-repeat="fo in row_po_form">
-                          	<p class="row_po_form" ng-if="$index<2">
-                          	
-                                <i class="f_i radio_p"></i>
-                                <span class="mr10">必填</span> | <span  class="f_d  ml10 poiuyt_iu" ng-bind="fo.name"></span>
-                                <input type="text" class="act_input_a ipue ml10 ipug" placeholder="报名用户的{{fo.name}}" readonly>
-                          	 </p> 
-                          	 
-                         <p class="row_po_form row_po_form_zdy" ng-if="$index>1">
-                             <i class="f_i  radio_p_xz gx_xzm" data-xz="0" ng-if="fo.necessary=='y'"></i>
-                                  <i class="f_i  radio_p_xz" data-xz="1" ng-if="fo.necessary=='n'"></i>
-                             <span >必填</span>  |  &nbsp; 
-                             <input type="text" class="act_input_a ml10 ipuf" value="{{fo.name}}"> 
-                             <input type="text" class="act_input_a ipue ml10 ipug" placeholder="提示信息写在这里" readonly>
-                             <i class="f_i delect_icon modify_disa"  title="删除" ng-click="select_click.delect_fom_p($index)"></i>
-                         </p>
-                         
-                         
-                          </div>
-                            
-             
-          
-                         <p class="mt20 modify_disa">
-                             <a class="btn btn-primary add_form_p add_form_p_fpr modify_disable" ng-click="select_click.add_fom_p()">+ 添加更多表单</a>
-                         </p>
+                     <div class="ov enrollSetting">
+
+                            <div class="re_type_show fl mt10">
+                                <ul>                                
+                                    <li data-enroll="{{i}}" ng-if="$index<2" style="background-color: #eee;" class="re_type_show_list fl pr mr20 mb10 on" ng-repeat="i in enrollSetting.list track by $index">
+                                        <span ng-bind="i.name"></span>
+                                    </li>
+                                    <li data-enroll="{{i}}" ng-if="$index>1 && $index<=7" class="re_type_show_list fl pr mr20 mb10 j-selectEnroll" style="cursor: pointer;background-color: #fff;" ng-repeat="i in enrollSetting.list track by $index">
+                                        <span ng-bind="i.name"></span>
+                                    </li>
+                                    <li data-enroll="{{i}}" ng-if="$index>7" class="re_type_show_list fl pr mr20 mb10 on" ng-repeat="i in enrollSetting.list track by $index">
+                                        <span ng-bind="i.name"></span>
+                                        <i class="fa fa-times-circle close_ty" ng-click="enrollSetting.delete($index)" ></i>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="qc"></div>
+                            <div>
+                                <div ng-if="enrollSetting.list.length<=12" class="re_type_wrap fl mr20" ng-click="enrollSetting.add()" style="width:40px;height: 40px;cursor: pointer;">
+                                    <span class="re_type_plus">+</span>
+                                </div>
+                                <label class="none j-addEnroll" style="line-height: 50px;"><input type="text" name="" value="" maxlength="10"><em class="confirmBtn" ng-click="enrollSetting.confirm()">确定</em></label>
+                            </div>
                      </div>
-                     <div class="display_show" ></div>
-                   
              </li>
              <li class="zq mt20 pr">
                      <label class="f_d title_poi fl mt10">匿名打赏</label>
@@ -344,12 +340,14 @@
                           <p class="row_po_form">
                               <i ng-hide="id>0&&reward.open==true&&status!=1" class="f_i radio_p_xz gx_xzm j-rewardOpen" data-xz="0"></i>
                               <i ng-if="id>0&&reward.open==true&&status!=1" class="f_i radio_p"></i>
-                              <span class="mr10">支持匿名打赏功能</span><span class="red">提示：</span>勾选后收到用户的现金打赏哦！
-                          </p>  
-                          <p class="row_po_form mt10">
+                              <span class="mr10 mr20">支持匿名打赏</span>
+                              <i class="f_i radio_p_xz j-privacy" data-xz="1"></i>
+                              <span class="mr10">设置为私密活动</span>
+                          </p>
+                          <!-- <p class="row_po_form mt10">
                              <span >打赏提示语</span> 
                              <input type="text" name="rewardRemark" class="act_input_a ipue ml10 ipug" ng-model="reward.remark" maxlength="20"  value="活动不易，打赏一下组织者吧！">
-                         </p>
+                         </p> -->
                      </div>
              </li>
         </ul>

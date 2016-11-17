@@ -36,7 +36,7 @@
    	    <img ng-src="{{x.image_urls}}">
    	    <ul class="about_vote_p">
    	        <label class="about_vote_right" data-i=1 data-id="{{x.id}}"></label>
-   	    	<p class="about_vote_p1">NO.<span ng-bind="x.id"></span> <span ng-bind="x.item_name"></span></p>
+   	    	<p class="about_vote_p1"><span ng-bind="x.id"></span> <span ng-bind="x.item_name"></span></p>
    	    </ul>
    </section>
   

@@ -140,7 +140,7 @@ angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router","n
 /*============================== 留言 ================================*/
 .controller('commentCtrl',function($scope,$stateParams, httpService, messageService) { 
 	var speed=30;
-    var index = 0,
+    var index = 1,
     	flag = false;
     	
     $scope.commentList = [];
@@ -155,25 +155,26 @@ angular.module('sign_ticket', [ "directive_mml","activity_servrt","ui.router","n
    			getMore();
     	}
     }
-	setInterval(function() {
-		index = 1;
-		getMore();
-	}, 60000 * 5);
     
    var MyMar=setInterval(Marquee,speed);
 
    var getMore = function() {
     	httpService.getDatas('GET', '/comment/comment_list', {pageIndex: index,pageSize: 10, source_id: $stateParams.activityId}).then(function(data) {
-			if(data.rows.length > 0 && index == 1) {
-				$scope.commentList = data.rows;
-			} else {
-				flag = true;
-				$scope.commentList = $scope.commentList.concat(data.rows);
-			}
-		});
+  			if(data.rows.length > 0 && index == 1) {
+            $scope.commentList = data.rows;
+          } else {
+            $scope.commentList = $scope.commentList.concat(data.rows);
+          }
+          if(data.rows.length == 0) {
+            flag = true;
+            setInterval(function() {
+              index = 1;
+              getMore();
+            }, 60000);
+          }
+		  });
     }
-
-    
+    getMore(); 
 	
 })
 /*============================================抽奖======================*/

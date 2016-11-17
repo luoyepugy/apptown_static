@@ -13,15 +13,12 @@ angular.module('activity_sponsor', ["directive_mml","activity_servrt","common","
     $scope.ticket_array=[];//票卷 
     $scope.img_icon=[];//活动封面
     $scope.img_src="";//弹出层选中的地址
-    $scope.row_po_form=[{"name":"姓名","necessary":"y","designation":"name","random":new Date().getTime()},{"name":"手机号码","necessary":"y","designation":"tel","random":new Date().getTime()}];//表单
     $scope.activities_data={};//活动详细数据
     $scope.sp_id=-1;
     $scope.pj_id=-1;
     $scope.reward = {'remark': '活动不易，打赏一下组织者吧！'};
     $scope.labelArr=[];//活动标签数据
     $scope.republish = $('#republish').val();
-
-    console.log($scope.republish);
 
     var submitNumber = 0;
     activity_data.getDatas('GET', '/sponsor/get_sponsorapply')//如果是认证主办方，自动填充主办方和联系方式表单
@@ -196,25 +193,6 @@ $(document).on("click",".remove_video",function(){
         updata_icon("/activity/upload_activity_cover",function(url){
            $(".case_poiuy_i").append(' <p class="pr fl case_icon">  <img src="'+url+'" class="case_poiu_a">    <img src="/img/close.png" class="icon_close_a"  data-dismiss="alert">   </p>')
         })
-    },"add_fom_p":function(){//添加表单按钮
-        if($scope.id>0&&$scope.status==0){
-          return
-        }
-     $($scope.row_po_form).map(function(x){
-        if(this.length==0){
-          $scope.row_po_form.splice(x,1)
-        }
-      })
-       $scope.row_po_form.push({"name":"","necessary":"y","designation":"","random":new Date().getTime()}) 
-       console.log( $scope.row_po_form)
-    },"delect_fom_p":function(idex){//删除表单按钮
-     $($scope.row_po_form).map(function(x){
-        if(this.length==0){
-          $scope.row_po_form.splice(x,1)
-        }
-      })
-      $scope.row_po_form.splice(idex,1)
-      
     },"jia_p_add_icon":function(){//嘉宾图片上传
       /*$(".jia_p_add_icon").attr("src","/img/img_icon.gif"); */
       $("#iconFile").click();
@@ -386,28 +364,12 @@ $(document).on("click",".remove_video",function(){
         
         $scope.activities_data.activity.live_url=$(".video_text").val()//视频直播地址
         // $scope.activities_data.vote=$scope.voteSetting.datas;
-
-        $(".row_po_form_zdy").map(function(x){   
-           var xz=$(this).find(".radio_p_xz").attr("data-xz");//获取是否选中
-           var form_map=$(this).find(".ipuf").val();   
-           xz==0?(xz="y"):(xz="n") 
-           $scope.row_po_form[x+2].name=form_map  
-           $scope.row_po_form[x+2].necessary=xz
-           $scope.row_po_form[x+2].designation=form_map
-           if(!form_mm.isnull(form_map)){
-            form_yz=true;
-               }
-        })
         
-         $($scope.row_po_form).map(function(x){
-          if(this.length==0){
-            $scope.row_po_form.splice(x,1)
-          }
-        })
-        if(form_yz){
-          $scope.mml.err_pup("自定义表单不能为空");
-             return;
-        }
+        $scope.enrollSetting.select = [];
+        $('.enrollSetting li.on').each(function() {
+          $scope.enrollSetting.select.push($(this).data('enroll'));
+        });
+
 
         /*
         * 张晗
@@ -422,10 +384,14 @@ $(document).on("click",".remove_video",function(){
         	tip_remark=$scope.reward.remark;
         }
         $scope.activities_data.activity.tip = JSON.stringify({open: rewardOpen, remark: tip_remark});
+        
+        // 私密活动
+        $scope.privacy = ($('.j-privacy').attr('data-xz') == 0) ? 0 : null; 
+        $scope.activities_data.activity.privacy = $scope.privacy;
 
 
 
-        $scope.activities_data.form_config=$scope.row_po_form;//表单
+        $scope.activities_data.form_config=$scope.enrollSetting.select;//表单
         $scope.activities_data.honored_guest=$scope.guest_data;//嘉宾
         $scope.activities_data.activity.status=status;//0：发布，1：保存  
         $(".case_poiuy_i .case_poiu_a").map(function(){
@@ -555,6 +521,7 @@ $(document).on("click",".remove_video",function(){
               "support_id":$scope.sponsored_id, 
               "ad_urls_array": $scope.adSetting.ad_urls_array,
               "tip": $scope.activities_data.activity.tip,
+              "privacy": $scope.privacy,
               "label":activity_label
               },"honored_guest":$scope.guest_data
           } 
@@ -590,7 +557,6 @@ $(document).on("click",".remove_video",function(){
         activity_data.update_activity(data_p).then(
             function success(data) {
                 if(data.code!=0){
-
                   alert(data.msg)
                   return;
                 }
@@ -598,7 +564,6 @@ $(document).on("click",".remove_video",function(){
                  if(rand_a<10000){
                         rand_a+=10000
                  }
-           
                 window.location.href='/activity/'+(rand_a+""+$scope.id+""+rand_a)+'.httl'
               
             }, function error() {
@@ -680,14 +645,13 @@ $(document).on("click",".remove_video",function(){
          activities_data.details=$("#myEditor").html();//富文本编辑器
          activities_data.person_limit=$("#number_online").val();//人数上线
          activities_data.ticket_array=$scope.ticket_array//票卷
-         activities_data.form_config=$scope.row_po_form;//表单
+         activities_data.form_config=$scope.enrollSetting.select;//表单
          activities_data.honored_guest=$scope.guest_data;//嘉宾
          activities_data.main_host=$("#main_host").val();//主办方单位
          activities_data.live_url=$(".video_text").val();//视频直播地址
 
          activities_data.sponsor_url=$("#upLoadImg").attr("src");//二维码地址
          sessionStorage.a_name=JSON.stringify(activities_data);
-         
          
     }
      if($scope.id>0){
@@ -712,6 +676,13 @@ $(document).on("click",".remove_video",function(){
                   } else {
                 	  $('.j-rewardOpen').addClass('gx_xzm').attr('data-xz', 0);
                   }
+                  // 私密活动
+                  if(data.info.privacy==0) {
+                    $('.j-privacy').addClass('gx_xzm').attr('data-xz', 0);
+                  } else {
+                    $('.j-privacy').removeClass('gx_xzm').attr('data-xz', 1);
+                  }
+
 
                 // 投票数据
                 $scope.voteSetting.datas = km.vote;
@@ -778,7 +749,7 @@ $(document).on("click",".remove_video",function(){
                           $("#upLoadImg").attr("src",km.sponsor_url);
                          $("#number_online").val(km.person_limit);
                          $scope.ticket_array=km.ticket_list==null?[]:km.ticket_list;//票卷
-                         $scope.row_po_form= km.detail_config==null?[]:km.detail_config;//表单
+                         $scope.enrollSetting.select= km.detail_config==null?[]:km.detail_config;//表单
                          $scope.guest_data= km.honored_guest==null?[]:km.honored_guest;//嘉宾 
                          // $scope.select_click.date_pou[0]=km.vote
                         var pattern = /upload_code/; //二维码关注设置进来传值      
@@ -787,14 +758,9 @@ $(document).on("click",".remove_video",function(){
                       $("#atten_set_on").click();
                       $(".upload_deminmnection").css("display","block")
                     }   
-                         $($scope.row_po_form).map(function(x){
-                        
-                       if(this.name==""){
-                         $scope.row_po_form.splice(x,1) 
-                       }
-                       })
-                    
-                        console.log( $scope.row_po_form);
+
+                    $scope.enrollSetting.init();
+
         });
        //        }, function error() {
        //          console.log("获取活动详情失败")
@@ -831,15 +797,8 @@ $(document).on("click",".remove_video",function(){
                   $("#myEditor").html( km.details);//富文本编辑器
                   $("#number_online").val(km.person_limit);//人数上线
                   $scope.ticket_array=km.ticket_array//票卷
-                  $scope.row_po_form= km.form_config;//表单
                   $scope.guest_data= km.honored_guest;//嘉宾
-
-                  $($scope.row_po_form).map(function(x){
-                    if(this.name==""){
-                      $scope.row_po_form.splice(x,1)
-                    }
-                  })
-                    console.log($scope.row_po_form)
+                  
              }
     
   
@@ -898,7 +857,66 @@ $(document).on("click",".remove_video",function(){
     }, function error() {
       console.log("获取省份失败")
   });
+
+    /*
+     * 张晗
+     * 报名表单设置
+     *
+     */
+    $scope.enrollSetting = {
+      select: [],
+      list: [
+        {"name":"姓名","necessary":"y","designation":"name"},
+        {"name":"手机号码","necessary":"y","designation":"tel"},
+        {"name":"微信","necessary":"y",'sign':2},
+        {"name":"QQ","necessary":"y",'sign':2},
+        {"name":"公司","necessary":"y",'sign':2},
+        {"name":"职位","necessary":"y",'sign':2},
+        {"name":"邮箱","necessary":"y",'sign':2},
+        {"name":"地址","necessary":"y",'sign':2}
+      ],
+      init: function() {
+        $.each($scope.enrollSetting.select, function(i,v) {
+          switch(v.sign) {
+            case 3: $scope.enrollSetting.list.push(v); break;
+            default: $('.enrollSetting li').each(function() {
+              if(v.name == $(this).find('span').text()) {
+                $(this).addClass('on');
+              }
+            });
+          }
+        });
+      },
+      add: function() {
+        if($scope.id>0&&$scope.status==0){
+          return
+        }
+        $('.j-addEnroll').removeClass('none');
+      },
+      delete: function(index) {
+        this.list.splice(index, 1);
+      },
+      confirm: function() {
+        var val = $.trim($('.j-addEnroll').find('input').val());
+        if(val) {
+          this.list.push({"name": val,"necessary":"y",'sign':3});
+          $('.j-addEnroll').addClass('none');
+        } else {
+          $scope.mml.err_pup("表单信息内容不能为空");
+        }
+      }
+    };
+    // 选择表单选项
+    $('body').on('click', '.j-selectEnroll', function() {
+      $(this).toggleClass('on');
+    });
     
+
+    
+
+
+
+
     /*
      * 张晗
      * 投票设置

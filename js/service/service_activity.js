@@ -254,8 +254,7 @@ angular.module('activity_servrt', []).
            var code_use ;
            if(check){
         	  code_use = 2 ; // 已签到
-           } 
-           console.info(code_use);
+           }
            $http.get('/consumption/activity_id_by_consumption_list',
         		   {params:{"activity_id":activity_id,"status":"1","pageIndex":pageIndex,"pageSize":pageSize,"content_detail":text,"sort":"2","code_use":code_use,"order_id":order_id}
         		   }).success(function(data){

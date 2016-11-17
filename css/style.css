@@ -732,6 +732,22 @@ a{
     line-height: 36px;
 
 }
+.act_list_right_a_1 a{
+	width: 120px;
+	height: 43px;
+	font-size: 16px;
+	line-height: 36px;
+	border-radius: 0;
+}
+.act_list_right_a_1 {
+	margin-left:500px;
+	opacity: 0;
+	margin-top:-2px;
+}
+.marhion_left{
+	opacity: 1;
+	margin-left: 0px !important;
+}
 #lod_piuyy{
     display: none
 }
@@ -769,6 +785,7 @@ a{
     width: 848px;
     height: 50px;
     border: 1px solid #f1f1f1;
+    overflow: hidden;
 }
 
 .liuy_tipye_top .fl{
@@ -2770,7 +2787,8 @@ img.right_icon_a {
 .repay-options li.last {
     margin-top: 7px;
 }
-.repay-options li .confirmBtn {
+.repay-options li .confirmBtn,
+.enrollSetting .confirmBtn {
     background: #4ea45d;
     color: #fff;
     padding: 5px 10px;
@@ -2784,35 +2802,11 @@ img.right_icon_a {
     cursor: pointer;
     padding: 5px 20px;
 }
-.repay-options li > span.on {
-    border-color: #4ea45d;
-    background: url('/img/activity/repay-selected.png') no-repeat right bottom;
-}
-
-/* 回报标题选项 */
-.repay-options li {
-    display: inline-block;  
-    margin-right: 5px;
-    margin-bottom: 10px; 
-}
-.repay-options li.last {
-    margin-top: 7px;
-}
-.repay-options li .confirmBtn {
-    background: #4ea45d;
-    color: #fff;
-    padding: 5px 10px;
-    position: relative;
-    bottom: 3px;
-    border-radius: 3px;
-}
-.repay-options li > span {
-    border: 1px solid #e0e0e0;
+.enrollSetting li {
     border-radius: 5px;
-    cursor: pointer;
-    padding: 5px 20px;
 }
-.repay-options li > span.on {
+.repay-options li > span.on,
+.enrollSetting li.on {
     border-color: #4ea45d;
     background: url('/img/activity/repay-selected.png') no-repeat right bottom;
 }
