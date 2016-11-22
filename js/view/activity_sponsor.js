@@ -52,6 +52,10 @@ angular.module('activity_sponsor', ["directive_mml","activity_servrt","common","
     $scope.normalAnswer=function(){//常见问题显示
     $(".loan_tip ").css("display","block")
   }
+  httpService.getDatas('GET', '/picture/all').then(function(data) {//活动主图
+	  $scope.select_click.default_cover=angular.fromJson(data)
+	  $scope.poster_se=$scope.select_click.default_cover[5].childs
+  });
      $scope.checkLoanForm=function(){ //白条立刻申请检查表单
       var periods=parseInt($("#pay_money_time").find("option:selected").text());
       var loan_name=$(".loan_name").val().trim(); //姓名
@@ -137,7 +141,7 @@ $(document).on("click",".remove_video",function(){
     var tyt_poiu=false,lj_it=false;
 
     $scope.select_click={
-        "default_cover":[
+        /*"default_cover":[
                           {"id":"1","name":"创客活动","img":"http://resource.apptown.cn/poster/3-3.jpg"},
                           {"id":"2","name":"活动赞助","img":"http://resource.apptown.cn/poster/1-1.jpg"},
                           {"id":"3","name":"户外交友","img":"http://resource.apptown.cn/poster/2-2.jpg"},
@@ -157,14 +161,18 @@ $(document).on("click",".remove_video",function(){
                           {"id":"17","name":"活动投票","img":"http://resource.apptown.cn/poster/17-17.jpg"},
                           {"id":"18","name":"活动赞助","img":"http://resource.apptown.cn/poster/18-18.jpg"}
                         ]//默认封面
+    */
+    "select_poster":function(ev,post_id){//选择封面1111111111
+    	$('.se_text_1').removeClass('active');
+    	$(ev.target).addClass('active');
+    	$scope.poster_se=$scope.select_click.default_cover[post_id].childs
+    	console.log($scope.select_click.default_cover[0].childs)
+    	
+    }
     ,"img_selected":function(){ //弹出层确认按钮触发
-       if($(".case_poiuy_i .case_icon").length>3){
-         alert("图片最多上次4张");
-         $('#upde_p_icon_pup').modal('toggle')
-         return;
-       }
+    	$('.img_src_poster').attr({"src":$scope.img_src+'?v='+new Date().getTime(),"data-x":"2"})
        $('#upde_p_icon_pup').modal('toggle')
-       $scope.img_icon.push( $scope.img_src+'?v='+new Date().getTime())
+
     },"delect_icon":function(index){//删除封面触发
       $scope.img_icon.splice(index,1);
     },"pre_p":function(id){//获取城市  
@@ -183,15 +191,11 @@ $(document).on("click",".remove_video",function(){
         }, function error() {
           console.log("获取城市失败")
       });
-    },"up_icon_a":function(){//活动封面图片上传
-         if($(".case_poiuy_i .case_icon").length>3){
-           $scope.mml.err_pup("活动封面最多上次4张!");
-               return;
-           }
+    },"up_icon_a":function(){//活动封面图片上传         
         $("#iconFile").click();
       
         updata_icon("/activity/upload_activity_cover",function(url){
-           $(".case_poiuy_i").append(' <p class="pr fl case_icon">  <img src="'+url+'" class="case_poiu_a">    <img src="/img/close.png" class="icon_close_a"  data-dismiss="alert">   </p>')
+        	$('.img_src_poster').attr({"src":url+'?v='+new Date().getTime(),"data-x":"2"})
         })
     },"jia_p_add_icon":function(){//嘉宾图片上传
       /*$(".jia_p_add_icon").attr("src","/img/img_icon.gif"); */
@@ -332,6 +336,7 @@ $(document).on("click",".remove_video",function(){
         var m_industry=$("#m_industry").val();//行业       
         var activity_type=parseInt($("#release_type_value").val())//活动标签
         var activity_label="";
+        var activity_poster_attr=$('.img_src_poster').attr('data-x');//活动海报        
         if($scope.labelArr.length>0){
         	for(var i=0;i<$scope.labelArr.length;i++){
         	activity_label=activity_label+$scope.labelArr[i].id+","
@@ -397,16 +402,15 @@ $(document).on("click",".remove_video",function(){
         $(".case_poiuy_i .case_poiu_a").map(function(){
           usr_oc+=$(this).attr("src")+"*"
         })
-        $scope.activities_data.activity.poster=usr_oc;
+        $scope.activities_data.activity.poster=$('.img_src_poster').attr("src");
         if(!form_mm.isnull(  $scope.activities_data.activity.name)){
           $scope.mml.err_pup("活动名称不能为空");
                 $("#name_event").focus();
                  return;
          }
-        if($scope.activities_data.activity.poster==""){
-          $scope.mml.err_pup("请上传图片");
-          
-              window.location.href="#the_editor";
+        if( $scope.activities_data.activity.poster=="/img/activity_poster.png"){
+          $scope.mml.err_pup("请上传活动主图");          
+              window.location.href="#poster_id";
                return;
        }
 
@@ -507,7 +511,7 @@ $(document).on("click",".remove_video",function(){
               "address":$("#detailed_address").val(),
               "details":$("#myEditor").html().trim(),
               "name":$("#name_event").val().trim(),
-              "poster":usr_oc,
+              "poster":$('.img_src_poster').attr("src"),
               "start_date":new Date(startDate).getTime(),
               "end_date":new Date(endDate).getTime(),
               "city":$("#city_p").attr("data-id"),
@@ -649,7 +653,8 @@ $(document).on("click",".remove_video",function(){
          activities_data.honored_guest=$scope.guest_data;//嘉宾
          activities_data.main_host=$("#main_host").val();//主办方单位
          activities_data.live_url=$(".video_text").val();//视频直播地址
-
+         activities_data.poster_url=$('.img_src_poster').attr('src');//活动海报
+         activities_data.poster_attr=$('.img_src_poster').attr('data-x');//活动海报
          activities_data.sponsor_url=$("#upLoadImg").attr("src");//二维码地址
          sessionStorage.a_name=JSON.stringify(activities_data);
          
@@ -757,7 +762,8 @@ $(document).on("click",".remove_video",function(){
                       $(".atten_set input").removeAttr("checked");
                       $("#atten_set_on").click();
                       $(".upload_deminmnection").css("display","block")
-                    }   
+                    }  
+                    $('.img_src_poster').attr({'src':km.images_po[0]});//活动海报
 
                     $scope.enrollSetting.init();
 
@@ -798,6 +804,7 @@ $(document).on("click",".remove_video",function(){
                   $("#number_online").val(km.person_limit);//人数上线
                   $scope.ticket_array=km.ticket_array//票卷
                   $scope.guest_data= km.honored_guest;//嘉宾
+                  $('.img_src_poster').attr({'src':km.poster_url,'data-x':km.poster_attr});//活动海报             
                   
              }
     
@@ -901,9 +908,14 @@ $(document).on("click",".remove_video",function(){
         if(val) {
           this.list.push({"name": val,"necessary":"y",'sign':3});
           $('.j-addEnroll').addClass('none');
+          $('.j-addEnroll').find('input').val('');
         } else {
           $scope.mml.err_pup("表单信息内容不能为空");
         }
+      },
+      cancel: function() {
+        $('.j-addEnroll').addClass('none');
+        $('.j-addEnroll').find('input').val('');
       }
     };
     // 选择表单选项

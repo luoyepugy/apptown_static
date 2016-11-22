@@ -67,10 +67,11 @@
                           </tbody>
                      
                      </table>
-                      <div style="text-align:center">
-                         <div style="display: inline-block;" class="tcdPageCode">
+                      <div style="text-align:center" >
+                         <div style="display: inline-block;" class="tcdPageCode" ng-if="rewardResult!=0">
 					
 						</div>
+					     <p   ng-if="rewardResult==0" class="zhng_poi_a" style="display: block;">暂无打赏名单</p>
                       </div>
 		                 
 		              </div>

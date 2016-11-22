@@ -94,7 +94,7 @@
                  <p class="cf cen fz30">活动签到</p>
                  
    
-                <img class="sig_qc mt30" alt="分享二维码" src="http://www.2d-code.cn/2dcode/api.php?key=c_e170d93zzNkfW4eEg0KMr0oYZvO8ZIkR47oRRwUkt4&amp;text=http://apptown.cn/scan/scanActivityCode?activityId=${activityId }&amp;logo=http://resource.apptown.cn/share/share_activity.png">
+                <img class="sig_qc mt30" alt="分享二维码" src="http://www.apptown.cn/qrcode.jsp?content=http://apptown.cn/scan/scanActivityCode?activityId=${activityId }">
                  <p class="cen cf fz20 mt30">扫一扫 马上签到</p>
              </div>
              

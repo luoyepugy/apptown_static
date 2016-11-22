@@ -122,7 +122,7 @@
     <!-- /暂时屏蔽赞助白条 -->
 
     
-    <div class="wd mt20 bgff sponsor_div gji_poi">
+    <div class="wd mt20 bgff sponsor_div gji_poi" id="poster_id">
          <p class="fz18 act_title_a">基本信息</p>
          <ul class="form_poiu_q_m mt20 form_poiu_q_m_o">
              <li class="zq">
@@ -133,26 +133,33 @@
              
                <li class="zq mt20 " id="the_editor">
                      <label class="f_d title_poi fl mt10">活动主图 <span class="hs">*</span></label>
+                     <div class="fl pr mt10 img_src_poster_wrap">
+                     	<img data-x="1"   class="case_poiu_a img_src_poster"  width="214" height="120"  src="/img/activity_poster.png"/>  
+                     	<img src="/img/close.png" class="icon_close_a" ng-click="select_click.delect_icon($index)" >
+                     </div>
+                     <div class="fl btn_up_wrap">
+                     	<a class="fz16 btn_up cen yj4" ng-href="#upde_p_icon_pup"   data-toggle="modal">选择主图</a>
+                     	<a class="fz16 btn_up mt10 cen yj4" style="color:#878787;border: 1px solid #878787;" ng-click="select_click.up_icon_a()" >上传主图</a>
+                     </div>
                      <div class="ov ">
-                         <a class="btn btn-primary pr up_icon_po fz16" ng-click="select_click.up_icon_a()"><label class="f_i up_icon"></label>本地上传</a>
-                    
-                     <a ng-href="#upde_p_icon_pup" class="ml30"  data-toggle="modal">没有准备封面?</a>
-                    <span class="zc">提示:尺寸不小于640*360px，不大于3M,最多四张</span>
                     <div class="case_poiuy_i"> 
                         <p class="qc"></p>
                         
-                        <p class="pr fl case_icon"  ng-repeat="img in img_icon">  
+                        <!--<p class="pr fl case_icon"  ng-repeat="img in img_icon">  
                             <img ng-src="{{img}}" class="case_poiu_a">  
                             <img src="/img/close.png" class="icon_close_a" ng-click="select_click.delect_icon($index)" >  
-                         </p>
+                         </p>-->
                          
                          
                         
                            
                     </div>
-                         
+                        
                          
                         </div>
+                        <div class="qc">
+                     	
+                     </div> 
              </li>
              
              
@@ -330,14 +337,14 @@
                                 <div ng-if="enrollSetting.list.length<=12" class="re_type_wrap fl mr20" ng-click="enrollSetting.add()" style="width:40px;height: 40px;cursor: pointer;">
                                     <span class="re_type_plus">+</span>
                                 </div>
-                                <label class="none j-addEnroll" style="line-height: 50px;"><input type="text" name="" value="" maxlength="10"><em class="confirmBtn" ng-click="enrollSetting.confirm()">确定</em></label>
+                                <label class="none j-addEnroll" style="line-height: 50px;"><input type="text" name="" value="" maxlength="10"><em class="confirmBtn" ng-click="enrollSetting.confirm()">确定</em><em class="confirmBtn" style="background: #aaa;" ng-click="enrollSetting.cancel()">取消</em></label>
                             </div>
                      </div>
              </li>
              <li class="zq mt20 pr">
                      <label class="f_d title_poi fl mt10">匿名打赏</label>
                      <div class="ov map_poou_car">
-                          <p class="row_po_form">
+                          <p class="row_po_form" style="padding-bottom: 5px;">
                               <i ng-hide="id>0&&reward.open==true&&status!=1" class="f_i radio_p_xz gx_xzm j-rewardOpen" data-xz="0"></i>
                               <i ng-if="id>0&&reward.open==true&&status!=1" class="f_i radio_p"></i>
                               <span class="mr10 mr20">支持匿名打赏</span>
@@ -347,7 +354,7 @@
                           <!-- <p class="row_po_form mt10">
                              <span >打赏提示语</span> 
                              <input type="text" name="rewardRemark" class="act_input_a ipue ml10 ipug" ng-model="reward.remark" maxlength="20"  value="活动不易，打赏一下组织者吧！">
-                         </p> -->
+                          </p> -->
                      </div>
              </li>
         </ul>
@@ -715,12 +722,25 @@
     
     
    <!--   默认活动封面图片-->
-       <div id="upde_p_icon_pup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+       <div style="width:750px;margin-top: 10%;" id="upde_p_icon_pup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="pup_te_p ov">
-                 <div class="ptp_icon_n">
-                     <div class="fl case_icon" ng-repeat="sdcove in select_click.default_cover" >
+            	<div class=" fz18  zd pb10 pl40" style="border-bottom: 1px solid #e0e0e0;background: #f8f8f8;padding-left:25px;padding-top: 10px;border-radius: 4px;">
+            		选择主图
+            	</div>
+            	<ul class="se_text_wrap  pt10 pl10">
+            		<li class="fl se_text_1 active" ng-click="select_click.select_poster($event,0)">默认</li>
+            		<li class="fl se_text_1" ng-click="select_click.select_poster($event,6)">商会</li> 
+            		<li class="fl se_text_1" ng-click="select_click.select_poster($event,4)">科技</li> 
+            		<li class="fl se_text_1" ng-click="select_click.select_poster($event,2)">户外</li> 
+            		<li class="fl se_text_1" ng-click="select_click.select_poster($event,3)">聚会</li> 
+            		<li class="fl se_text_1" ng-click="select_click.select_poster($event,1)">创客</li> 
+            		<li class="fl se_text_1" ng-click="select_click.select_poster($event,5)">百搭</li> 
+            		<li class="qc"></li>
+            	</ul>
+                 <div class="ptp_icon_n" style="background: #fff;padding-left:15px">
+                     <div class="fl case_icon" ng-repeat="sdcove in poster_se" >
                         <p class="pr">
-                            <img ng-src="{{sdcove.img}}" class="case_poiu_a">
+                            <img ng-src="{{sdcove}}" class="case_poiu_a">
                             <img src="/img/pitch_on.png" class="gx_icon_a">
                          </p>
                          <p class="zc fz20 mt10" ng-bind="sdcove.name"></p>

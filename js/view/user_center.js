@@ -1104,6 +1104,7 @@ $(".user_list_left li").css({"background":"#fff"}).eq(3).css({"background":"#f1f
 	var getRewardList = function(index) {
 		httpService.getDatas('GET', '/activityTip/' + $scope.id, {'pageIndex': index, 'pageSize':10}).then(function(data) {
 			$scope.rewardList = data.rows;
+			$scope.rewardResult=data.total
 			$(".tcdPageCode").createPage({
 						pageCount:Math.ceil(data.total/10),
 						current:index,

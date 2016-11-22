@@ -1405,7 +1405,7 @@ p.zhng_poi_a {
 /*发起活动*/
 .act_title_a{
     padding: 20px  20px;
-    padding-top: 50px;
+    padding-top: 20px;
 }
 .form_poiu_q_m_o .mt20{
     position: relative;
@@ -1764,6 +1764,41 @@ padding:0;
 -o-transform:rotate(90deg); 	/* Opera */
 
 }
+.btn_up_wrap {
+	padding-left: 13px;
+	padding-top: 10px;
+}
+.btn_up {
+	width:120px;
+	line-height: 30px;
+	display: block;
+	color:#4EA45D;
+	border: 1px solid #4EA45D;
+	
+}
+.se_text_1 {
+	width: 62px;
+    line-height: 35px;
+    text-align: center;
+    color: #575757;
+    margin-left: 33px;
+    cursor: pointer;
+}
+.se_text_wrap {
+	margin-left: -20px;
+}
+.se_text_wrap .active {
+	border-bottom: 1px solid #4EA45D;
+	color: #4EA45D;
+}
+.img_src_poster_wrap {
+	width: 214px;
+	height: 120px;
+}
+.img_src_poster  {
+     width: 214px;
+	height: 120px;
+}
 /*视频直播*/
 .video_content {
 	padding:20px 20px 30px 20px;
@@ -1795,22 +1830,21 @@ padding:0;
     padding-top: 16px;
 }
 .case_icon{
-    width: 205px;
+    width: 180px;
     text-align: center;
-    margin-left:29px;
     margin-top: 10px;
 }
 .case_icon .case_poiu_a{
-    width: 205px;
-    height: 122px;
+    width: 161px;
+    height: 90px;
     cursor: pointer;
       
 }
 .gx_icon_a{
     position: absolute;
-    left: 0px;
+    left: 9px;
     top: 0px;
-    width: 100%;
+    width: 161px;
     height: 100%;
     display: none;
 }
@@ -1822,7 +1856,7 @@ padding:0;
 }
 .pup_icon_bottom{
     padding-top: 20px;
-    padding-bottom: 14px;
+    padding-bottom: 20px;
     border-top: 1px solid #f1f1f1;
 }
 .pup_icon_bottom a{
@@ -1838,9 +1872,10 @@ padding:0;
     background: #fff;
     color: #4FA45D;
     border: 1px solid #4FA45D;
+    width:60px;
 }
 .sub_poiy_a{
-    width: 190px;
+    width: 120px;
 }
 .xl_oiu:hover .{
     display: block !important
@@ -2795,6 +2830,7 @@ img.right_icon_a {
     position: relative;
     bottom: 3px;
     border-radius: 3px;
+    margin-left: 5px;
 }
 .repay-options li > span {
     border: 1px solid #e0e0e0;

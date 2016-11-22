@@ -79,7 +79,7 @@
                      分享至朋友圈 
                    </p>
                      
-                    <img class="qc_icon_q pr" alt="分享二维码" src="http://www.2d-code.cn/2dcode/api.php?key=c_e170d93zzNkfW4eEg0KMr0oYZvO8ZIkR47oRRwUkt4&amp;text=http://apptown.cn&amp;logo=http://resource.apptown.cn/share/share_activity.png">
+                    <img class="qc_icon_q pr" alt="分享二维码" src="http://www.apptown.cn/qrcode.jsp?content=http://apptown.cn">
                      <p class="mt10 fz16">扫一扫分享才精彩</p>
                 </div>
                 

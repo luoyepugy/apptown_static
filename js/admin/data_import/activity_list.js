@@ -81,7 +81,7 @@ $(document).ready(function(){
 	          }
 	          
             },
-	        {field:'cityName',title:'所在城市',width:200,align:'center'},
+	        {field:'city_came',title:'所在城市',width:200,align:'center'},
 	        {field:'contact_way',title:'联系方式',width:200,align:'center'},
 	        {field:'activity_status',title:'活动状态',width:200,align:'center',formatter:function(value,rowData,rowIndex){
 	        	   // 0--未开始   1--已过期   2--正在进行中  

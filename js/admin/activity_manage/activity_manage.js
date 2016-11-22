@@ -94,11 +94,11 @@ $(document).ready(function(){
 	        	   }
 	          }
 	        },
-	        {field:'activity_number',title:'报名人数',width:120,align:'center',formatter:function(value,rowData,rowIndex){
+	        {field:'activity_number',sortable:true,title:'报名人数',width:130,align:'center',formatter:function(value,rowData,rowIndex){
 	        	return '<a name="exportData"  data-id="'+rowData.id+'" onclick="exportData(this)">'+value+"</a>";
 	          }
 	        },
-	        {field:'browse_count',title:'浏览量',width:120,align:'center',formatter:function(value,rowData,rowIndex){
+	        {field:'browse_count',title:'浏览量',sortable:true,width:130,align:'center',formatter:function(value,rowData,rowIndex){
 	        	return '<a name="exportData"  data-id="'+rowData.id+'" onclick="exportData(this)">'+value+"</a>";
 	          }
 	        },

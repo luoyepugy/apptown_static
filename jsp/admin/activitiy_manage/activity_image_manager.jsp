@@ -137,7 +137,6 @@ function uploadImage(){
        secureuri:true,
        fileElementId:'uploadfile',
        dataType:'json',
-       data:{id:$("#id_edit").val()},
        success: function (data,status){
            if(data.code == 0){
             $("#sponsor_icon_edit").attr("src",data.msg);   
@@ -156,7 +155,6 @@ function uploadImage2(){
       secureuri:true,
       fileElementId:'uploadfile2',
       dataType:'json',
-      data:{id:$("#id_edit").val()},
       success: function (data,status){
           if(data.code == 0){
            $("#sponsor_icon_edit2").attr("src",data.msg);   

@@ -12,8 +12,8 @@
       <p class="mt20 gray">如果您现在使用的是IE浏览器，请您升级浏览器，以获得更好的浏览体验。</p>
       <p class="mt10 gray">为了更好的用户体验，我们平台为你推荐了几个浏览器，请您下载以下版本的浏览器。</p>
       <p class="mt10"><span class="j-browserTip green fz16 pointer" onclick="closeBrowserTip()">继续访问&lt;&lt;&lt;</span></p>
-        <a ng-href="http://www.google.cn/chrome/browser/desktop/index.html" target="_blank"><img class="mr20" style="width:50px;height:50px;" src="/img/icon-chrome.png" alt="chrome"></a>
-        <a ng-href="http://www.firefox.com.cn/download/" target="_blank"><img class="icon50" src="/img/icon-firefox.png"  style="width:50px;height:50px;"  alt="firefox"></a>
+        <a href="http://www.google.cn/chrome/browser/desktop/index.html" target="_blank"><img class="mr20" style="width:50px;height:50px;" src="/img/icon-chrome.png" alt="chrome"></a>
+        <a href="http://www.firefox.com.cn/download/" target="_blank"><img class="icon50" src="/img/icon-firefox.png"  style="width:50px;height:50px;"  alt="firefox"></a>
       </div>
       
     </div>
@@ -100,7 +100,7 @@
                     <li class="nav_li"><a class="interlinkage" target="_blank" ng-href="/jsp/appdownload.jsp">App下载</a></li>
                     <li class="nav_li"><a class="interlinkage" target="_blank" ng-href="/activity/hotel_list">活动助手</a></li>
                     
-                    <li class="fr user_logo  fz16 user_logo_a">
+                    <li class="fr user_logo  fz16 user_logo_a" style="padding:8px 0px">
                       
                     <a   ng-click="nav_mml.loging()" pupshow="log_in">登录</a> / 
                     <a  class="reset_set" ng-click="nav_mml.reset_set()" pupshow="log_in">注册</a>

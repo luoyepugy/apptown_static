@@ -134,6 +134,7 @@ angular.module('activity_detail', [ "directive_mml","activity_servrt"])
 			       function success(data) {
 			    	  if(data.code!=0){
 			    		  alert(data.msg)
+			    		     	  $('#change_form').modal('toggle')
 			    		  return
 			    	  }
 			    	  $('#change_form').modal('toggle')

@@ -8,8 +8,8 @@
 		<meta name="viewport" content="width=960, initial-scale=1.0" />
 		<meta name="distribution" content="global" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-		<link  rel="shorcut icon"   href="http://www.apptown.cn/img/shortCut.ico" />
 		<meta name="author" content="e场景活动" />
+		<link  rel="shorcut icon"   href="/img/LOGO.png" />       
 		<meta property='og:description'  content='e场景一便捷的活动,众筹发布平台,帮助主办方免费提供活动发布｜报名管理和推广｜购票验票|众筹支付｜活动名单和数据管理CRM,动画相片微场景制作等线上工具；发布包括创客创业,艺术表演,论坛讲座,研讨会,社团活动,公益活动,展会沙龙等线下活动的内容资讯。同时参加用户能快速关注和报名活动方便建立彼此间社交关系，增加票券销售量。通过E场景您还可以轻松在微信朋友圈、聊天群里组织企业及个人的各类活动。' />
 		<meta name="keywords" content="创客活动网站,聚会活动,投票系统,线上售票,活动名单,创新创业,论坛讲座,课程,户外运动,促销展会沙龙,同城社交,展会沙龙,公益活动,创客融资平台" />
 		<meta name="description" content="e场景一便捷的活动,众筹发布平台,帮助主办方免费提供活动发布｜报名管理和推广｜购票验票|众筹支付｜活动名单和数据管理CRM,动画相片微场景制作等线上工具；发布包括创客创业,艺术表演,论坛讲座,研讨会,社团活动,公益活动,展会沙龙等线下活动的内容资讯。同时参加用户能快速关注和报名活动方便建立彼此间社交关系，增加票券销售量。通过E场景您还可以轻松在微信朋友圈、聊天群里组织企业及个人的各类活动" />

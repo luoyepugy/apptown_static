@@ -308,9 +308,9 @@
             </div>
             
             <div class="act_list_p_right fr  bgff">
-            <c:if test="${support_id<0||support_id==undefined}">  
+            <!--<c:if test="${support_id<0||support_id==undefined}">  
             	<div class="cen pd poiut_top_q">
-            	<!-- <div class="raise_right fl">
+            	 <div class="raise_right fl">
                           <p class="zc dian fz16 b" >￥0</p>
                           <p>目标金额</p>
                     </div>
@@ -325,36 +325,36 @@
                     <div class="raise_right fl mt10">
                       <p class="zc dian fz16 b" >0天</p>
                           <p>剩余时间</p>
-                    </div> -->
+                    </div>
                     
-                     <!--<div class="raise_right fl mt10 raise_right_qc pr"  ng-init="qcode('raise_right_qc','http://m.apptown.cn/activity_support/support_detail?activity_support_id=${support_id}',97,100)" >
+                     <div class="raise_right fl mt10 raise_right_qc pr"  ng-init="qcode('raise_right_qc','http://m.apptown.cn/activity_support/support_detail?activity_support_id=${support_id}',97,100)" >
                        <img src="/img/share_activity.png" class="logo_p_act">
                     </div>
                     
                     <div class="raise_right fl mt10">
                         <p class="fz12 mt20">扫描左侧二维码</p>
                         <p>"<span class="fz20 hs">马上赞助</span>"</p>
-                    </div>-->
-                    <!-- <p class="qc"></p>
+                    </div>
+                     <p class="qc"></p>
                     
                     <p class="mt10 cen">
                      <a class="btn   want_sponsor"   target="_blank">我要赞助</a> 
                    
                      
-                    </p> -->
-                   <!-- <p class="mt10">  <span class="hs b " ng-bind="detail_o.join_count"></span>已赞助</p>-->
-               <!--<div class="cen pd poiut_top_q">
+                    </p> 
+                   <p class="mt10">  <span class="hs b " ng-bind="detail_o.join_count"></span>已赞助</p>
+               <div class="cen pd poiut_top_q">
                    <p class="fz18 zq mt10"><strong>便捷的活动发布平台${support_id }</strong></p>
                    <p class="mt10">
                      轻松举办一场活动<br>
                        <a class="btn btn-primary  want_launch" ng-href="/activity/to_sponsor_activity">我要发起</a>
                    </p>
-                </div> -->
-               </div>
+                </div>
+               </div> 
                 </c:if>
                      <c:if test="${support_id>0&&status}">   
                 <div class="cen pd poiut_top_q">
-                    <!-- <div class="raise_right fl">
+                     <div class="raise_right fl">
                           <p class="hs dian fz16 b" ng-bind="'￥'+detail_o.target_amount"></p>
                           <p>目标金额</p>
                     </div>
@@ -369,8 +369,7 @@
                     <div class="raise_right fl mt10">
                       <p class="hs dian fz16 b" ng-bind="detail_o.end_time|reduce_time:''"></p>
                           <p>剩余时间</p>
-                    </div> -->
-                    
+                    </div> 
                      <div class="raise_right fl mt10 raise_right_qc pr"  ng-init="qcode('raise_right_qc','http://m.apptown.cn/activity_support/support_detail?activity_support_id=${support_id}',97,100)" >
                        <img src="/img/share_activity.png" class="logo_p_act">
                     </div>
@@ -388,7 +387,7 @@
                     </p>
                     <p class="mt10">  <span class="hs b " ng-bind="detail_o.join_count"></span>已赞助</p>
                 </div>
-                </c:if>
+                </c:if>-->
                  <div class="cen pd poiut_top_q">
                  
                    <p class="mt20 zc fz16">
@@ -396,7 +395,7 @@
                      分享至朋友圈 
                    </p>
                      <img class="qc_icon_q pr" alt="分享二维码" 
-                     src="http://www.2d-code.cn/2dcode/api.php?key=c_e170d93zzNkfW4eEg0KMr0oYZvO8ZIkR47oRRwUkt4&text=http://m.apptown.cn/index.html%23/activity_detail/${activityId}&logo=http://resource.apptown.cn/share/share_activity.png">
+                     src="http://www.apptown.cn/qrcode.jsp?content=http://m.apptown.cn/index.html%23/activity_detail/${activityId}">
                      <p class="mt30 fz16">扫一扫分享才精彩</p>
                 </div>
                 

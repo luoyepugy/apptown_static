@@ -34,7 +34,7 @@
 	         <div class="person_code_wrap">
 	                  <div class="fr">
 	                    <div style="padding:10px;">
-	                          <img class="person_code"   width="150" height="150"   ng-src="http://www.2d-code.cn/2dcode/api.php?key=c_e170d93zzNkfW4eEg0KMr0oYZvO8ZIkR47oRRwUkt4&text=http://m.apptown.cn/index.html%23/personal_host/{{perDeta.user_id}}&logo=http://resource.apptown.cn/share/share_activity.png">
+	                          <img class="person_code"   width="150" height="150"   ng-src="http://www.apptown.cn/qrcode.jsp?content=http://m.apptown.cn/index.html%23/personal_host/{{perDeta.user_id}}">
 	                    </div>
 	                     
 	                       		                    	                    
@@ -333,7 +333,7 @@
                      分享至朋友圈 
                    </p>
                      
-                    <img class="qc_icon_q pr" alt="分享二维码" src="http://www.2d-code.cn/2dcode/api.php?key=c_e170d93zzNkfW4eEg0KMr0oYZvO8ZIkR47oRRwUkt4&amp;text=http://apptown.cn&amp;logo=http://resource.apptown.cn/share/share_activity.png">
+                    <img class="qc_icon_q pr" alt="分享二维码" src="http://www.apptown.cn/qrcode.jsp?content=http://apptown.cn">
                      <p class="mt10 fz16">扫一扫分享才精彩</p>
                 </div>
                 

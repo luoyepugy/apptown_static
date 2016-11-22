@@ -66,7 +66,7 @@
             
             <div class="fl qc_bottom_a">
                 <p class="cf fz12">e场景活动APP</p>
-                <img src="http://www.2d-code.cn/2dcode/api.php?key=c_e170d93zzNkfW4eEg0KMr0oYZvO8ZIkR47oRRwUkt4&text=http://apptown.cn/downloadAndroidApp&logo=http://resource.apptown.cn/share/share_activity.png" class="qc_icon_a">
+                <img src="http://www.apptown.cn/qrcode.jsp?content=http://apptown.cn/downloadAndroidApp" class="qc_icon_a">
                 <p class="cen fz12 cf ">扫描下载</p>
             </div>
             <p class="qc"></p>
@@ -76,7 +76,7 @@
     
     <p class="cen bottm_text cf ">
              慢慢来 版权所有 2013-2016 apptown.cn All Rights Reserved 粤ICP备
-    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260232769'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1260232769%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>             
+   <!-- <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260232769'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1260232769%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>-->             
     </p>
     
     </div>
